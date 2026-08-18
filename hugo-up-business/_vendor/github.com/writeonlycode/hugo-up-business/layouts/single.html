@@ -1,0 +1,26 @@
+{{ define "main" }}
+<section class="py-16 bg-[#0a0f1d] text-white min-h-screen">
+  <div class="container mx-auto px-4">
+
+    <!-- Título da Página -->
+    {{ with .Title }}
+    <h1 class="text-white mb-8 text-center text-4xl font-extrabold xl:text-6xl">{{ . | markdownify }}</h1>
+    {{ end }}
+
+    <!-- Descrição nas Parâmetros -->
+    {{ with .Params.description }}
+    <p class="mx-auto mb-12 text-center text-gray-300 text-base xl:text-lg leading-relaxed xl:max-w-[60%]">
+      {{ . | markdownify }}
+    </p>
+    {{ end }}
+
+    <!-- Conteúdo vindo do arquivo Markdown -->
+    {{ with .Content }}
+    <div class="prose prose-lg prose-invert mx-auto prose-a:text-blue-400 prose-headings:text-white">
+      {{ . }}
+    </div>
+    {{ end }}
+
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,70 @@
+<section id="services" class="py-20 bg-[#0a0f1d] text-white overflow-hidden">
+  <div class="container mx-auto px-4 lg:px-8 max-w-7xl">
+    
+    <!-- Grid Principal: Texto na esquerda, Cards na direita -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+
+      <!-- COLUNA DA ESQUERDA: TÍTULOS E DESCRIÇÃO -->
+      <div class="lg:col-span-4 lg:sticky lg:top-32 pr-0 lg:pr-6">
+        
+        {{ with .kicker }}
+        <span class="text-blue-500 font-bold tracking-widest uppercase text-xs mb-4 block">
+          {{ . }}
+        </span>
+        {{ end }}
+
+        {{ with .title }}
+        <h2 class="text-white text-3xl md:text-4xl lg:text-4xl font-extrabold leading-tight mb-6">
+          {{ . | markdownify }}
+        </h2>
+        {{ end }}
+
+        {{ with .text }}
+        <p class="text-gray-400 text-base leading-relaxed">
+          {{ . | markdownify }}
+        </p>
+        {{ end }}
+        
+      </div>
+
+      <!-- COLUNA DA DIREITA: GRID DE CARDS -->
+      <div class="lg:col-span-8">
+        {{ if .cards }}
+        <!-- Grid interno dos cards (1 coluna no mobile, 2 no tablet, 3 no desktop) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          
+          {{ range .cards }}
+          <!-- Card individual -->
+          <div class="bg-[#111827] rounded-2xl p-6 border border-gray-800 hover:border-blue-500/50 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] flex flex-col h-full group">
+            
+            <!-- Ícone (usando emoji do YAML encapsulado em um box escuro) -->
+            {{ with .icon }}
+            <div class="w-12 h-12 bg-gray-800/50 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform duration-300">
+              {{ . }}
+            </div>
+            {{ end }}
+
+            <!-- Título do Card -->
+            {{ with .title }}
+            <h3 class="text-white text-lg font-bold mb-3 group-hover:text-blue-400 transition-colors duration-300">
+              {{ . | markdownify }}
+            </h3>
+            {{ end }}
+
+            <!-- Texto descritivo -->
+            {{ with .text }}
+            <p class="text-gray-400 text-sm leading-relaxed flex-grow">
+              {{ . | markdownify }}
+            </p>
+            {{ end }}
+            
+          </div>
+          {{ end }}
+
+        </div>
+        {{ end }}
+      </div>
+
+    </div>
+  </div>
+</section>

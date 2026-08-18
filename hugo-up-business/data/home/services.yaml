@@ -1,0 +1,25 @@
+enable: true
+
+kicker: "ÁREAS DE ATUAÇÃO"
+title: "Conhecimento técnico aplicado às principais áreas da Engenharia."
+text: "Oferecemos suporte especializado e consultoria em áreas STEM. Auxiliamos estudantes e profissionais no desenvolvimento de projetos, simulações, programação e análise de dados, sempre com rigor analítico e foco em resultados de alta qualidade."
+
+cards:
+  - icon: "⚡"
+    title: "Engenharia Elétrica"
+    text: "Circuitos Elétricos, Eletrônica, Eletrônica de Potência, Instrumentação, Conversão Eletromecânica, Sistemas de Energia e áreas correlatas."
+  - icon: "💻"
+    title: "Programação Científica"
+    text: "Desenvolvimento de algoritmos, scripts e automações utilizando Python, MATLAB, C/C++ e Microcontroladores."
+  - icon: "📊"
+    title: "Ciência de Dados e BI"
+    text: "Tratamento, análise e visualização de dados. Power BI, Pandas, ETL, Dashboards, Power Query e integração de APIs."
+  - icon: "⚙️"
+    title: "Simulação Computacional"
+    text: "Modelagem, validação e análise avançada utilizando MATLAB, Simulink, LTspice e PSIM."
+  - icon: "📐"
+    title: "Matemática e Física"
+    text: "Suporte analítico em Cálculo, Álgebra Linear, Geometria Analítica, EDO, Física Clássica e Métodos Numéricos."
+  - icon: "📄"
+    title: "Projetos Acadêmicos"
+    text: "Desenvolvimento completo de projetos técnicos, elaboração de relatórios, organização de códigos e documentação."

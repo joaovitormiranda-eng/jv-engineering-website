@@ -1,0 +1,56 @@
+enable: true
+
+title: "Softwares e Tecnologias"
+text: "Utilizamos as principais ferramentas da Engenharia, programação, simulação computacional e análise de dados para desenvolver soluções técnicas de alta precisão."
+
+items:
+  - name: "MATLAB"
+    image: "images/software/matlab.svg"
+    tag: "Simulação"
+
+  - name: "Python"
+    image: "images/software/Pythoncerto.svg"
+    tag: "Data & Dev"
+
+  - name: "LTspice"
+    image: "images/software/ltspice.svg"
+    tag: "Circuitos"
+    invert: true # Força o logo escuro a ficar claro no dark mode
+
+  - name: "Power BI"
+    image: "images/software/Power-BI.svg"
+    tag: "Analytics"
+
+  - name: "VS Code"
+    image: "images/software/vscode.svg"
+    tag: "IDE"
+
+  - name: "Arduino"
+    image: "images/software/arduino3.png"
+    tag: "Sistemas Embarcados"
+
+  - name: "Altair"
+    image: "images/software/altaircerto.png"
+    tag: "Engenharia"
+
+  - name: "SimulIDE"
+    image: "images/software/simulide.png"
+    tag: "Simulação"
+
+  - name: "Jupyter"
+    image: "images/software/Jupyter.svg"
+    tag: "Data Science"
+
+  - name: "LaTeX"
+    image: "images/software/latex5.png"
+    tag: "Relatórios"
+    invert: true # Força o logo escuro a ficar claro no dark mode
+
+  - name: "AutoCAD"
+    image: "images/software/autocad-seeklogo.png"
+    tag: "CAD & Projetos"
+
+  - name: "Git"
+    image: "images/software/github-icon.svg"
+    tag: "Versionamento"
+    invert: true # Força o logo escuro a ficar claro no dark mode

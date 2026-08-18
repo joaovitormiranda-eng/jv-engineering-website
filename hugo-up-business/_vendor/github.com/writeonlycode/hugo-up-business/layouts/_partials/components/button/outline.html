@@ -1,0 +1,5 @@
+<a class="inline-flex items-center justify-center gap-2 border border-blue-500/40 text-blue-400 hover:bg-blue-600 hover:text-white hover:border-blue-600 font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:-translate-y-0.5 group"
+  href="{{ .href }}" {{ if in .href "http" }}target="_blank" rel="noopener noreferrer" {{ end }}>
+  <span>{{ .label }}</span>
+  {{ partial "icons/arrow-right" }}
+</a>

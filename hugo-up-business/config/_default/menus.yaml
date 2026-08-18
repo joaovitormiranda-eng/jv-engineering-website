@@ -1,0 +1,50 @@
+main:
+  - name: "Início"
+    url: "/#hero"
+    weight: 1
+
+  - name: "Sobre"
+    url: "/#about"
+    weight: 2
+
+  - name: "Serviços"
+    url: "/#services"
+    weight: 3
+
+  - name: "Projetos"
+    url: "/#portfolio"
+    weight: 4
+
+  - name: "Depoimentos"
+    url: "/#testimonials"
+    weight: 5
+
+  - name: "Blog"
+    url: "/blog"
+    weight: 6
+
+buttons:
+  - name: "Falar conosco"
+    url: "https://wa.me/5516981946642"
+    weight: 1
+
+footer:
+  - name: "Início"
+    url: "/#hero"
+    weight: 1
+
+  - name: "Serviços"
+    url: "/#services"
+    weight: 2
+
+  - name: "Projetos"
+    url: "/#portfolio"
+    weight: 3
+
+  - name: "Depoimentos"
+    url: "/#testimonials"
+    weight: 4
+
+  - name: "Contato"
+    url: "https://wa.me/5516981946642"
+    weight: 5

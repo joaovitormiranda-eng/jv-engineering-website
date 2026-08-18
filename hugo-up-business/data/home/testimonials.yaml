@@ -1,0 +1,24 @@
+enable: true
+
+title: "Excelência e Rigor Técnico Comprovados"
+
+featured: 
+  image: "images/4.png"
+  text: "A modelagem computacional foi entregue com excelência. Código extremamente organizado, documentação clara e total domínio técnico do problema proposto."
+  client: "L.M. — Engenharia de Telecomunicações"
+
+items:
+  - text: "Profissionalismo ímpar e agilidade na entrega, mesmo com requisitos complexos de simulação. A validação dos modelos teóricos foi impecável."
+    client: "G.A. — Engenharia de Controle e Automação"
+
+  - text: "Alto nível de comprometimento e precisão técnica. A análise foi fundamentada com rigor acadêmico absoluto. Recomendo fortemente a consultoria."
+    client: "B.R. — Engenharia Elétrica"
+
+  - text: "Resultados analíticos exatos e resolução rigorosa. A qualidade do detalhamento matemático superou todas as expectativas da avaliação."
+    client: "L.C. — Engenharia Mecânica"
+
+  - text: "Projeto entregue com nível profissional. O detalhamento técnico e a estruturação garantiram a nota máxima no dimensionamento do sistema."
+    client: "M.T. — Engenharia de Energia"
+
+  - text: "Implementação algorítmica perfeita e bem otimizada. Os métodos numéricos foram executados e validados sem nenhuma margem de erro."
+    client: "A.S. — Engenharia de Computação"

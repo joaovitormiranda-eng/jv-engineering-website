@@ -1,0 +1,32 @@
+enable: true
+
+items:
+  - image: "images/1.jpg"
+    pretitle: "Processamento e Simulação"
+    title: "Modelagem e Simulação Computacional"
+    text: "Desenvolvimento de modelos computacionais e Processamento Digital de Sinais (PDS) para analisar, validar e otimizar sistemas de Engenharia utilizando MATLAB, Simulink e LTspice."
+    buttons:
+      - label: "Ver detalhes"
+        link: "/portfolio/modelagem-simulacao/"
+      - label: "Entrar em contato"
+        link: "https://wa.me/5516981946642"
+
+  - image: "images/2.jpg"
+    pretitle: "Ciência de Dados"
+    title: "Análise de Dados e Business Intelligence"
+    text: "Tratamento, modelagem e visualização de dados utilizando Python (Pandas/NumPy) e Power BI, transformando bases técnicas complexas em dashboards interativos para apoio à tomada de decisão."
+    buttons:
+      - label: "Ver detalhes"
+        link: "/portfolio/qualidade-energia/"
+      - label: "Entrar em contato"
+        link: "https://wa.me/5516981946642"
+
+  - image: "images/33.png"
+    pretitle: "Algoritmos e Métodos Numéricos"
+    title: "Programação Científica e Lógica Nebulosa"
+    text: "Desenvolvimento de algoritmos matemáticos e sistemas especialistas. Implementação de Lógica Nebulosa (Fuzzy) utilizando GNU Octave e MATLAB para modelagem de incertezas e análise de superfícies de resposta em Engenharia."
+    buttons:
+      - label: "Ver detalhes"
+        link: "/portfolio/solucoes-computacionais/"
+      - label: "Entrar em contato"
+        link: "https://wa.me/5516981946642"

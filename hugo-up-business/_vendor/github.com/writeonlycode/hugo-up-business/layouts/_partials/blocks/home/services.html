@@ -1,0 +1,60 @@
+<section id="services" class="py-16 bg-[#0a0f1d] text-white">
+  <div class="container mx-auto px-4">
+
+    <!-- Título Principal da Seção -->
+    {{ with .title }}
+    <h2 class="text-white mb-4 text-center text-4xl font-extrabold xl:text-5xl">{{ . | markdownify }}</h2>
+    {{ end }}
+
+    <!-- Subtítulo / Descrição da Seção -->
+    {{ with .text }}
+    <p class="mx-auto mb-16 text-center text-gray-300 text-base xl:text-lg leading-relaxed xl:max-w-[60%]">
+      {{ . | markdownify }}
+    </p>
+    {{ end }}
+
+    <!-- Grid de Cards de Serviços -->
+    {{ if .cards }}
+    <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+      {{ range .cards }}
+
+      <!-- Card com Fundo Escuro, Borda Discreta e Efeito Hover Azul -->
+      <div
+        class="bg-[#111827] rounded-2xl overflow-hidden shadow-2xl border border-gray-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col group">
+
+        <!-- Imagem de ponta a ponta (Protegida contra o formatador do VS Code) -->
+        {{ with .image }}
+        {{ $imgClass := "w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105" }}
+        {{ partial "utilities/image" (dict "src" . "class" $imgClass) }}
+        {{ end }}
+
+        <!-- Área de texto e botão -->
+        <div class="flex flex-col flex-grow items-start text-left p-6 xl:p-8">
+
+          {{ with .title }}
+          <h3 class="text-white mb-3 text-xl font-bold group-hover:text-blue-400 transition-colors duration-300">
+            {{ . | markdownify }}
+          </h3>
+          {{ end }}
+
+          {{ with .text }}
+          <p class="mb-8 flex-grow text-gray-300 text-sm xl:text-base leading-relaxed">
+            {{ . | markdownify }}
+          </p>
+          {{ end }}
+
+          {{ with .button }}
+          <div class="mt-auto">
+            {{ partial "components/button/primary" (dict "label" .label "href" .link) }}
+          </div>
+          {{ end }}
+
+        </div>
+
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+  </div>
+</section>

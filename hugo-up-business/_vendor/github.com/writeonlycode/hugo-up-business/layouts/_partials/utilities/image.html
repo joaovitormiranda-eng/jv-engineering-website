@@ -1,0 +1,52 @@
+{{/* 1. Validação do argumento src */}}
+{{ if not .src }}
+{{ errorf "Image Partial: o argumento 'src' é obrigatório." }}
+{{ end }}
+
+{{/* 2. Busca a imagem no Page Bundle ou na pasta assets/ */}}
+{{ $resource := false }}
+
+{{ with .page }}
+{{ with .Resources.Get $.src }}{{ $resource = . }}{{ end }}
+{{ else }}
+{{ if page }}
+{{ with page.Resources.Get .src }}{{ $resource = . }}{{ end }}
+{{ end }}
+{{ end }}
+
+{{ if not $resource }}
+{{ with resources.Get .src }}{{ $resource = . }}{{ end }}
+{{ end }}
+
+{{/* 3. Se a imagem foi encontrada pelo Hugo */}}
+{{ if $resource }}
+
+{{ $isSVG := eq $resource.MediaType.SubType "svg" }}
+{{ $srcset := "" }}
+
+{{ if not $isSVG }}
+{{ $breakpoints := (slice 576 768 992 1200 1400) }}
+{{ $images := slice }}
+{{ range $breakpoints }}
+{{ if (ge $resource.Width .) }}
+{{ $opts := (printf "%dx webp" .) }}
+{{ $images = append $images (slice ($resource.Resize $opts)) }}
+{{ end }}
+{{ end }}
+
+{{ $srcsetList := slice }}
+{{ range $images }}
+{{ $srcsetList = append $srcsetList (slice (printf "%s %dw" .Permalink .Width)) }}
+{{ end }}
+{{ $srcset = delimit $srcsetList ", " }}
+{{ end }}
+
+<img src="{{ $resource.Permalink }}" {{ if not $isSVG }} {{ with $resource.Width }}width="{{ . }}" {{ end }} {{ with
+  $resource.Height }}height="{{ . }}" {{ end }} {{ with $srcset }}srcset="{{ . }}" {{ end }} {{ end }} {{ with $.sizes
+  }}sizes="{{ . }}" {{ end }} {{ with $.class }}class="{{ . }}" {{ end }} alt="{{ with $.alt }}{{ . }}{{ end }}"
+  loading="{{ with $.loading }}{{ . }}{{ else }}lazy{{ end }}" decoding="async" />
+
+{{ else }}
+{{/* Fallback seguro: se não encontrar no assets, renderiza HTML simples sem quebrar o site */}}
+<img src="{{ .src | relURL }}" {{ with .class }}class="{{ . }}" {{ end }} alt="{{ with .alt }}{{ . }}{{ end }}" />
+{{ end }}

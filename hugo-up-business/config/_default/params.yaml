@@ -1,0 +1,26 @@
+title: "JV Engineering"
+
+description: "Consultoria de alto nível em Engenharia, Simulação Computacional e Modelagem Matemática. Entregamos precisão, rigor analítico e soluções definitivas para desafios complexos em áreas STEM."
+
+images:
+  - "images/logo.png"
+
+logo: "logo.png"
+
+favicons:
+  themeColor: "#0F172A"
+  backgroundColor: "#0F172A"
+  faviconColor: "#FFFFFF"
+
+social:
+  linkedin: "https://www.linkedin.com/in/joaovitormirandasousa"
+  github: "https://github.com/joaovitormonica87-cmyk"
+
+location:
+  - "Atendimento remoto • Brasil"
+
+contact:
+  - '<a href="mailto:joaovitormonica87@gmail.com" class="hover:text-primary transition-colors">joaovitormonica87@gmail.com</a>'
+  - '<a href="https://wa.me/5516981946642" target="_blank" class="hover:text-primary transition-colors">+55 (16) 98194-6642</a>'
+
+copyright: "© 2026 JV Engineering. Todos os direitos reservados."
