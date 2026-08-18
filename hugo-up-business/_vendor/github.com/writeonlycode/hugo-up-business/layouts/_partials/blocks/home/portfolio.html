@@ -1,0 +1,182 @@
+<section id="portfolio"
+  class="py-16 xl:py-24 bg-[#0a0f1d] text-white relative overflow-hidden border-t border-slate-800/60">
+
+  <!-- Efeitos de Luz no Fundo (Glow) -->
+  <div class="absolute top-1/4 -left-20 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="container mx-auto px-4 flex flex-col gap-16 xl:gap-24 relative z-10">
+    {{ range $i, $e := .items }}
+    <div class="grid xl:grid-cols-2 gap-8 xl:gap-12 items-center">
+
+      <!-- COLUNA DO MOCKUP EM CÓDIGO (alterna lados com base na ordem $i) -->
+      <div class="{{ if (eq (mod $i 2) 0) }}xl:order-2{{ end }} flex flex-col items-center justify-center w-full">
+
+        {{ if eq $i 0 }}
+        <!-- MOCKUP 1: SIMULAÇÃO COMPUTACIONAL (MATLAB / OSCILOSCÓPIO) -->
+        <div
+          class="w-full max-w-lg rounded-2xl border border-slate-800 bg-[#0d111e] shadow-2xl overflow-hidden font-mono text-xs">
+          <!-- Header da Janela -->
+          <div class="flex items-center justify-between px-4 py-3 bg-[#13192b] border-b border-slate-800">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+              <span class="ml-2 text-xs text-slate-400 font-sans font-medium">simulink_model.slx</span>
+            </div>
+            <span class="text-[10px] text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2 py-0.5 rounded font-sans">
+              MATLAB • Simulação Ativa
+            </span>
+          </div>
+
+          <!-- Osciloscópio & Telemetria -->
+          <div class="p-5 space-y-4 bg-[#090d18]">
+            <div
+              class="h-40 w-full rounded-xl bg-slate-950/90 border border-slate-800/80 p-3 relative flex items-center justify-center overflow-hidden">
+              <div
+                class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_16px] opacity-30">
+              </div>
+              <svg class="w-full h-full relative z-10" viewBox="0 0 300 80" fill="none">
+                <path d="M0 40 Q 30 5, 60 40 T 120 40 T 180 40 T 240 40 T 300 40" stroke="#0284c7" stroke-width="1.5"
+                  stroke-dasharray="2 2" opacity="0.4" />
+                <path d="M0 40 Q 25 -10, 50 40 T 100 40 T 150 10 T 200 60 T 250 35 T 300 40" stroke="#38bdf8"
+                  stroke-width="2.5" fill="none" class="drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
+              </svg>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center font-mono text-[11px]">
+              <div class="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800">
+                <span class="text-slate-500 block text-[9px] uppercase">Overshoot</span>
+                <span class="text-sky-400 font-bold">&lt; 4.2%</span>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800">
+                <span class="text-slate-500 block text-[9px] uppercase">Fase</span>
+                <span class="text-emerald-400 font-bold">62.8°</span>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800">
+                <span class="text-slate-500 block text-[9px] uppercase">Modelo</span>
+                <span class="text-emerald-400 font-bold">VALIDADO ✓</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {{ else if eq $i 1 }}
+        <!-- MOCKUP 2: CIÊNCIA DE DADOS & BI (DASHBOARD & METRICS) -->
+        <div
+          class="w-full max-w-lg rounded-2xl border border-slate-800 bg-[#0d111e] shadow-2xl overflow-hidden font-mono text-xs">
+          <div class="flex items-center justify-between px-4 py-3 bg-[#13192b] border-b border-slate-800">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+              <span class="ml-2 text-xs text-slate-400 font-sans font-medium">analytics_dashboard.py</span>
+            </div>
+            <span
+              class="text-[10px] text-purple-400 bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 rounded font-sans">
+              Power BI • Pandas
+            </span>
+          </div>
+
+          <div class="p-5 space-y-4 bg-[#090d18]">
+            <div class="grid grid-cols-2 gap-3">
+              <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+                <span class="text-[10px] text-slate-400 font-sans">Acurácia do Modelo</span>
+                <div class="text-lg font-bold text-emerald-400 font-mono">99.4%</div>
+                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div class="bg-emerald-400 h-full w-[99.4%]"></div>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+                <span class="text-[10px] text-slate-400 font-sans">Processamento</span>
+                <div class="text-lg font-bold text-purple-400 font-mono">1.2M reg/s</div>
+                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div class="bg-purple-400 h-full w-[85%]"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+              <span class="text-[10px] text-slate-400 font-sans">Tendência de Previsão</span>
+              <div class="flex items-end justify-between h-16 gap-2 pt-2 px-1">
+                <div class="w-full bg-blue-500/20 hover:bg-blue-500/40 h-[40%] rounded-t transition-all"></div>
+                <div class="w-full bg-blue-500/30 hover:bg-blue-500/50 h-[65%] rounded-t transition-all"></div>
+                <div class="w-full bg-blue-500/40 hover:bg-blue-500/60 h-[50%] rounded-t transition-all"></div>
+                <div class="w-full bg-blue-500/60 hover:bg-blue-500/80 h-[85%] rounded-t transition-all"></div>
+                <div class="w-full bg-sky-400 h-[100%] rounded-t shadow-[0_0_10px_rgba(56,189,248,0.5)]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {{ else }}
+        <!-- MOCKUP 3: PROGRAMAÇÃO CIENTÍFICA (IDE / CODE) -->
+        <div
+          class="w-full max-w-lg rounded-2xl border border-slate-800 bg-[#0d111e] shadow-2xl overflow-hidden font-mono text-xs">
+          <div class="flex items-center justify-between px-4 py-3 bg-[#13192b] border-b border-slate-800">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+              <span class="ml-2 text-xs text-slate-400 font-sans font-medium">solver_opt.cpp</span>
+            </div>
+            <span
+              class="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded font-sans">
+              GCC 13.2 • High Performance
+            </span>
+          </div>
+
+          <div class="p-5 space-y-2 text-slate-300 leading-relaxed overflow-x-auto bg-[#090d18]">
+            <p><span class="text-purple-400">template</span> &lt;<span class="text-amber-400">typename</span> T&gt;</p>
+            <p><span class="text-blue-400">void</span> <span class="text-sky-300">optimize_mesh</span>(Mesh&amp; grid) {
+            </p>
+            <p class="pl-4 text-slate-500">#pragma omp parallel for</p>
+            <p class="pl-4"><span class="text-purple-400">for</span> (<span class="text-blue-400">auto</span>&amp; cell
+              : grid.cells) {</p>
+            <p class="pl-8">cell.solve_eigenvalues();</p>
+            <p class="pl-4">}</p>
+            <p>}</p>
+          </div>
+
+          <div class="bg-[#080c16] px-4 py-3 border-t border-slate-800/80 font-mono text-[11px] space-y-1">
+            <p class="text-slate-400"><span class="text-emerald-400">$</span> ./solver_bin --threads=8</p>
+            <p class="text-sky-400">[SUCCESS] Conversão concluída em 0.042s (14 iterações)</p>
+          </div>
+        </div>
+        {{ end }}
+
+      </div>
+
+      <!-- Coluna de Informações e Ações -->
+      <div class="flex flex-col justify-center">
+        {{ with .pretitle }}
+        <p class="text-blue-400 mb-2 text-center font-bold xl:text-start text-sm uppercase tracking-wider">{{ . |
+          markdownify }}</p>
+        {{ end }}
+
+        {{ with .title }}
+        <h2 class="text-white mb-4 text-center text-3xl font-extrabold xl:text-4xl xl:text-start leading-tight">{{ . |
+          markdownify }}</h2>
+        {{ end }}
+
+        {{ with .text }}
+        <p class="text-gray-300 mb-6 text-center xl:text-start leading-relaxed text-base xl:text-lg">{{ . | markdownify
+          }}</p>
+        {{ end }}
+
+        <div class="flex items-center justify-center gap-4 xl:justify-start">
+          {{ range $i, $e := .buttons }}
+          {{ if (eq $i 0) }}
+          {{ partial "components/button/primary" (dict "label" .label "href" .link) }}
+          {{ else }}
+          {{ partial "components/button/outline" (dict "label" .label "href" .link) }}
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+
+    </div>
+    {{ end }}
+  </div>
+</section>

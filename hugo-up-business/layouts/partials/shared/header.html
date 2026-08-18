@@ -1,0 +1,62 @@
+<nav class="sticky top-0 z-[100] bg-[#0a0f1d]/95 backdrop-blur-md border-b border-gray-800/60 transition-all duration-300">
+  <div class="container mx-auto flex items-center justify-between px-4 py-3 xl:py-5">
+
+    <!-- DESKTOP LOGO (Fica visível na barra mobile fechada) -->
+    <a class="flex items-center xl:-ml-8" href="{{ .Site.BaseURL }}">
+      <!-- Altura levemente ajustada para mobile (h-12) para não estourar a barra -->
+      {{ $logoClassDesktop := "h-12 w-auto xl:h-16 object-contain" }}
+      {{ partial "utilities/image.html" (dict "src" "images/logo.png" "class" $logoClassDesktop) }}
+    </a>
+
+    <!-- BOTÃO HAMBÚRGUER (MOBILE) -->
+    <button class="cursor-pointer text-white hover:text-blue-400 transition-colors p-2 xl:hidden" type="button"
+      data-toggle-target="#navbarContent" data-toggle-class="-translate-y-full" aria-label="Toggle Navigation">
+      {{ partial "heroicons/bars-4" }}
+    </button>
+
+    <!-- CONTEÚDO DO MENU / DRAWER MOBILE (TELA CHEIA) -->
+    <div
+      class="fixed top-0 left-0 z-[120] flex h-[100dvh] w-full -translate-y-full flex-col bg-[#0a0f1d] duration-500 xl:static xl:h-auto xl:w-auto xl:translate-y-0 xl:flex-row xl:items-center xl:gap-8 xl:bg-transparent"
+      id="navbarContent">
+
+      <!-- CABEÇALHO DO MENU MOBILE ABERTO (Logo + X) -->
+      <div class="flex w-full items-center justify-between px-4 py-3 border-b border-gray-800/80 xl:hidden">
+        <a class="flex items-center" href="{{ .Site.BaseURL }}">
+          {{ $logoClassMobile := "h-12 w-auto object-contain" }}
+          {{ partial "utilities/image.html" (dict "src" "images/logo.png" "class" $logoClassMobile) }}
+        </a>
+
+        <button class="cursor-pointer text-white hover:text-blue-400 transition-colors p-2" type="button"
+          data-toggle-target="#navbarContent" data-toggle-class="-translate-y-full" aria-label="Toggle Navigation">
+          {{ partial "heroicons/x-mark" }}
+        </button>
+      </div>
+
+      <!-- ÁREA DE LINKS E BOTÕES (Centralizados na tela) -->
+      <div class="flex flex-col items-center justify-center flex-1 gap-8 p-6 overflow-y-auto xl:flex-row xl:p-0 xl:overflow-visible xl:justify-end w-full">
+        
+        <!-- LINKS PRINCIPAIS -->
+        <ul class="flex flex-col items-center gap-6 xl:flex-row xl:gap-8 w-full">
+          {{ range site.Menus.main }}
+          <li class="w-full text-center">
+            <a class="block w-full py-2 text-gray-200 hover:text-blue-400 text-xl xl:text-base font-medium transition-colors duration-200"
+              href="{{ .URL }}">
+              {{ .Name }}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+
+        <!-- BOTÕES DE AÇÃO -->
+        <ul class="flex flex-col items-center gap-4 mt-4 xl:mt-0 xl:flex-row xl:gap-4 w-full xl:w-auto px-4 xl:px-0">
+          {{ range .Site.Menus.buttons }}
+          <li class="w-full sm:w-80 xl:w-auto text-center">
+            {{ partial "components/button/primary" (dict "label" .Name "href" .URL ) }}
+          </li>
+          {{ end }}
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</nav>

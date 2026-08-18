@@ -1,0 +1,28 @@
+enable: true
+
+badge: "USP • Engenharia Elétrica • MATLAB • Python • Power BI"
+title: "Seu parceiro técnico durante toda a graduação."
+subtitle: "Muito além de uma entrega pontual."
+
+text: >
+  Acompanhamento especializado para estudantes de Engenharia e áreas STEM. 
+  Suporte técnico em projetos, simulações computacionais, programação e 
+  análise de dados com excelência e acompanhamento contínuo.
+
+# Nossos números entrando pela lista de destaques que o Hero lê nativamente:
+highlights:
+  - "📊 +50 Alunos Atendidos"
+  - "🚀 +300 Projetos Desenvolvidos"
+  - "🎓 +40 Disciplinas Atendidas"
+  - "⚡ 100% de Acompanhamento Contínuo"
+
+buttons:
+  - label: "Solicitar orçamento no WhatsApp"
+    url: "https://wa.me/5516981946642"
+    link: "https://wa.me/5516981946642"
+    
+  - label: "Conhecer áreas de atuação"
+    url: "#services"
+    link: "#services"
+
+image: "images/10.jpg"

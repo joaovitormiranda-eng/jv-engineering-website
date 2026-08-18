@@ -1,0 +1,11 @@
+enable: true
+
+title: "Eleve o rigor técnico dos seus projetos"
+
+text: "Consultoria especializada em **Engenharia, Simulação Computacional e Modelagem Matemática**. Do embasamento acadêmico à resolução de sistemas complexos, garantimos precisão absoluta na sua entrega."
+
+image: "images/logo.png"
+
+button:
+  label: "Falar com Especialista"
+  url: "https://wa.me/5516981946642"

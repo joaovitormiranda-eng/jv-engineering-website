@@ -1,0 +1,50 @@
+baseURL: "https://joaovitormiranda-eng.github.io/jv-engineering-website/"
+canonifyURLs: true
+relativeURLs: false
+
+theme: "github.com/writeonlycode/hugo-up-business"
+languageCode: "pt-br"
+
+build:
+  buildStats:
+    enable: true
+
+  cachebusters:
+    - source: "assets/notwatching/hugo_stats\\.json"
+      target: "css"
+
+    - source: "(postcss|tailwind)\\.config\\.js"
+      target: 'css'
+
+module:
+  hugo_version:
+    min: "0.147.8"
+
+  imports:
+    - path: github.com/writeonlycode/hugo-up-business
+
+  mounts:
+    - source: 'hugo_stats.json'
+      target: 'assets/notwatching/hugo_stats.json'
+      disableWatch: true
+
+    - source: 'assets'
+      target: 'assets'
+
+taxonomies:
+  series: "series"
+  tags: "tags"
+
+# Suporte ao LaTeX (Goldmark Passthrough)
+markup:
+  goldmark:
+    renderer:
+      unsafe: true  # Permite carregar os scripts do KaTeX
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - ["$$", "$$"]
+          inline:
+            - ["$", "$"]

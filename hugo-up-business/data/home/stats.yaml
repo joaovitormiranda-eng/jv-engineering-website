@@ -1,0 +1,11 @@
+enable: true
+title: "Números que geram confiança"
+subtitle: "O impacto prático do nosso acompanhamento"
+
+items:
+  - value: "+50"
+    label: "Alunos Atendidos"
+  - value: "+300"
+    label: "Projetos Desenvolvidos"
+  - value: "+40"
+    label: "Disciplinas Atendidas"

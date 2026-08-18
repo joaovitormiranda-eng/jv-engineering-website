@@ -1,0 +1,58 @@
+<nav class="sticky top-0 z-40 bg-[#0a0f1d]/90 backdrop-blur-md border-b border-gray-800/60 transition-all duration-300">
+  <div class="container mx-auto flex items-center justify-between px-4 py-4 xl:py-5">
+
+    <!-- DESKTOP LOGO -->
+    <a class="flex items-center xl:-ml-8" href="{{ .Site.BaseURL }}">
+      {{ $logoClassDesktop := "h-20 w-auto xl:h-28 object-contain" }}
+      {{ partial "utilities/image.html" (dict "src" "images/logo.png" "class" $logoClassDesktop) }}
+    </a>
+
+    <!-- BOTÃO HAMBÚRGUER (MOBILE) -->
+    <button class="cursor-pointer text-white hover:text-blue-400 transition-colors p-2 xl:hidden" type="button"
+      data-toggle-target="#navbarContent" data-toggle-class="-translate-y-full" aria-label="Toggle Navigation">
+      {{ partial "heroicons/bars-4" }}
+    </button>
+
+    <!-- CONTEÚDO DO MENU / DRAWER MOBILE -->
+    <div
+      class="fixed inset-0 z-50 flex -translate-y-full flex-col items-center justify-center gap-8 bg-[#0a0f1d] duration-500 xl:relative xl:translate-y-0 xl:flex-row xl:z-auto xl:bg-transparent"
+      id="navbarContent">
+
+      <!-- CABEÇALHO DO MENU MOBILE -->
+      <div
+        class="container absolute top-0 mx-auto flex items-center justify-between px-4 py-4 xl:hidden border-b border-gray-800/80">
+        <a class="flex items-center" href="{{ .Site.BaseURL }}">
+          {{ $logoClassMobile := "h-16 w-auto object-contain" }}
+          {{ partial "utilities/image.html" (dict "src" "images/logo.png" "class" $logoClassMobile) }}
+        </a>
+
+        <button class="cursor-pointer text-white hover:text-blue-400 transition-colors p-2 xl:hidden" type="button"
+          data-toggle-target="#navbarContent" data-toggle-class="-translate-y-full" aria-label="Toggle Navigation">
+          {{ partial "heroicons/x-mark" }}
+        </button>
+      </div>
+
+      <!-- LINKS PRINCIPAIS -->
+      <ul class="flex flex-col gap-8 xl:flex-row xl:gap-8">
+        {{ range site.Menus.main }}
+        <li class="text-center">
+          <a class="text-gray-200 hover:text-blue-400 text-lg xl:text-base font-medium transition-colors duration-200"
+            href="{{ .URL }}">
+            {{ .Name }}
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+
+      <!-- BOTÕES DE AÇÃO -->
+      <ul class="flex flex-col gap-4 xl:flex-row xl:gap-4">
+        {{ range .Site.Menus.buttons }}
+        <li class="text-center">
+          {{ partial "components/button/primary" (dict "label" .Name "href" .URL ) }}
+        </li>
+        {{ end }}
+      </ul>
+
+    </div>
+  </div>
+</nav>
