@@ -30,7 +30,7 @@ jobs:
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
@@ -54,7 +54,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL="https://joaovitormonica87-cmyk.github.io/jv-engineering-website/"
+            --baseURL="https://joaovitormiranda-eng.github.io/jv-engineering-website/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
