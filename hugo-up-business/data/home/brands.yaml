@@ -9,7 +9,7 @@ items:
     tag: "Simulação"
 
   - name: "Python"
-    image: "images/software/Pythoncerto.svg"
+    image: "images/software/pythoncerto.svg"
     tag: "Data & Dev"
 
   - name: "LTspice"
