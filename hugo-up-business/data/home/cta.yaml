@@ -9,3 +9,8 @@ image: "images/logo.png"
 button:
   label: "Falar com Especialista"
   url: "https://wa.me/5516981946642"
+
+checklist:
+  - "Resposta Rápida"
+  - "Rigor Acadêmico"
+  - "Precisão Analítica"
