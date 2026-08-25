@@ -14,13 +14,11 @@ favicons:
 
 social:
   linkedin: "https://www.linkedin.com/in/joaovitormirandasousa"
-  github: "https://github.com/joaovitormiranda-eng" # <-- Novo!
+  github: "https://github.com/joaovitormiranda-eng"
+  email: "mailto:joaovitormonica87@gmail.com"
+  whatsapp: "https://wa.me/5516981946642" # Se não quiser nem o ícone do zap, é só apagar essa linha!
 
 location:
   - "Atendimento remoto • Brasil"
-
-contact:
-  - '<a href="mailto:joaovitormonica87@gmail.com" class="hover:text-primary transition-colors">joaovitormonica87@gmail.com</a>'
-  - '<a href="https://wa.me/5516981946642" target="_blank" class="hover:text-primary transition-colors">+55 (16) 98194-6642</a>'
 
 copyright: "© 2026 JV Engineering. Todos os direitos reservados."
