@@ -42,7 +42,7 @@
           <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-300">
           </div>
           <div class="relative rounded-2xl bg-white/5 p-6 border border-white/10 backdrop-blur-md flex justify-center items-center">
-            <!-- O pulo do gato: brightness-0 invert transforma a logo em branca -->
+            <!-- brightness-0 invert transforma a logo em branca -->
             {{ $imgClass := "w-full max-w-xs object-contain drop-shadow-2xl brightness-0 invert opacity-90" }}
             {{ partial "utilities/image.html" (dict "src" . "class" $imgClass) }}
           </div>
@@ -65,12 +65,14 @@
       </div>
       {{ end }}
 
-      <!-- Checklist de Garantias Rápidas -->
+      <!-- Checklist de Garantias Rápidas Puxando do YAML -->
+      {{ with .checklist }}
       <div class="mt-8 pt-6 border-t border-gray-800/80 flex flex-wrap items-center justify-center gap-6 text-xs text-gray-400 font-mono">
-        <span class="flex items-center gap-1.5"><span class="text-emerald-400">✓</span> Resposta Rápida</span>
-        <span class="flex items-center gap-1.5"><span class="text-emerald-400">✓</span> Sigilo Absoluto</span>
-        <span class="flex items-center gap-1.5"><span class="text-emerald-400">✓</span> Precisão Analítica</span>
+        {{ range . }}
+        <span class="flex items-center gap-1.5"><span class="text-emerald-400">✓</span> {{ . }}</span>
+        {{ end }}
       </div>
+      {{ end }}
 
     </div>
   </div>
