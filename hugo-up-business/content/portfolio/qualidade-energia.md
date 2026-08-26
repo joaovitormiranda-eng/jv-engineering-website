@@ -81,18 +81,18 @@ O objetivo deste projeto consistiu no desenvolvimento de uma **arquitetura de so
 O pipeline executa o cálculo vetorial contínuo da série temporal (**1.666 amostras** ao longo de **138,75 horas** de medição contínua) para derivar as grandezas elétricas fundamentais da instalação:
 
 <!-- CARD ESTILIZADO DE EQUAÇÕES MATEMÁTICAS -->
-<div class="my-6 p-6 rounded-xl bg-[#111827] border border-gray-800 font-mono text-sm md:text-base text-gray-200 shadow-inner space-y-3 text-center">
+<div class="my-6 p-6 rounded-xl bg-[#111827] border border-gray-800 font-mono text-sm md:text-base text-gray-200 shadow-inner space-y-4 text-center">
   <div>
-    <span class="text-blue-400 font-bold">Potência Aparente:</span> $S(t) = \sqrt{P(t)^2 + Q(t)^2}$
+    <span class="text-blue-400 font-bold">Potência Aparente:</span> <i>S</i>(<i>t</i>) = &radic;<span class="border-t border-gray-300"><i>P</i>(<i>t</i>)<sup>2</sup> + <i>Q</i>(<i>t</i>)<sup>2</sup></span>
   </div>
   <div>
-    <span class="text-amber-400 font-bold">Fator de Potência Real:</span> $FP(t) = \frac{P(t)}{S(t)}$
+    <span class="text-amber-400 font-bold">Fator de Potência Real:</span> <i>FP</i>(<i>t</i>) = <i>P</i>(<i>t</i>) / <i>S</i>(<i>t</i>)
   </div>
   <div>
-    <span class="text-purple-400 font-bold">Distorção Harmônica:</span> $\text{THD}_V = \left(\frac{\sqrt{\sum V_n^2}}{V_1}\right) \cdot 100\%$
+    <span class="text-purple-400 font-bold">Distorção Harmônica:</span> <i>THD</i><sub>V</sub> = (&radic;&sum; <i>V</i><sub>n</sub><sup>2</sup> / <i>V</i><sub>1</sub>) &times; 100%
   </div>
-  <div class="pt-2 border-t border-gray-800/80 max-w-md mx-auto">
-    <span class="text-emerald-400 font-bold">Dimensionamento Capacitivo:</span> $Q_c = P_{\text{pico}} \cdot (\tan \phi_1 - \tan \phi_2)$
+  <div class="pt-3 border-t border-gray-800 max-w-md mx-auto">
+    <span class="text-emerald-400 font-bold">Dimensionamento Capacitivo:</span> <i>Q</i><sub>c</sub> = <i>P</i><sub>pico</sub> &times; (tan &phi;<sub>1</sub> &minus; tan &phi;<sub>2</sub>)
   </div>
 </div>
 
