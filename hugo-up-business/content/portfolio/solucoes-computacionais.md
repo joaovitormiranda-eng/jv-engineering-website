@@ -23,7 +23,7 @@ tags:
     <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Variáveis Linguísticas</span>
   </div>
   <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-blue-400">27</span>
+    <span class="block text-2xl md:text-3xl font-extrabold text-blue-400">5</span>
     <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Regras de Inferência</span>
   </div>
   <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
@@ -47,10 +47,19 @@ tags:
       <p class="text-gray-400 text-xs m-0">Acesse a arquitetura completa em MATLAB/Octave e scripts do motor de inferência no GitHub.</p>
     </div>
   </div>
-  <a href="https://github.com/joaovitormonica87-cmyk" target="_blank" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
+  <a href="https://github.com/joaovitormiranda-eng/MATLAB/tree/main/Gorjeta" target="_blank" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
     Ver Repositório no GitHub →
   </a>
 </div>
+
+### 📁 Estrutura do Repositório
+
+O código-fonte foi modularizado para comparar a lógica clássica com a lógica difusa. No repositório, você terá acesso aos seguintes scripts:
+
+* **`tip_crisp.m`**: Baseline do sistema usando lógica clássica (regras de *if/else* rígidas) vetorizada para comparação de superfície.
+* **`tip_fuzzy_manual.m`**: O motor principal (Core). Implementação de um sistema Fuzzy Mamdani vetorial sem dependência de toolboxes, com proteção contra div/0 e suporte visual Dark Mode (`parula`).
+* **`tip_fuzzy_legacy.m`**: Implementação legada utilizando a Fuzzy Logic Toolbox nativa do MATLAB (`newfis`/`addvar`) para validação cruzada.
+* **`compare_tips.m`**: Script de auditoria que calcula o MAE (Erro Médio Absoluto) e gera visualização comparativa simultânea.
 
 ---
 
@@ -62,7 +71,7 @@ tags:
 | **Nível de Maturidade** | Modelagem Preditiva & Controle Não-Linear |
 | **Ferramentas Computacionais** | MATLAB, GNU Octave, Fuzzy Logic Toolbox |
 | **Arquitetura da Solução** | Fuzzificação ➔ Motor de Regras (Mamdani) ➔ Defuzzificação (Centroide) |
-| **Métricas Avaliadas** | Grau de Pertinência, Superfície de Resposta, Tempo de Execução |
+| **Métricas Avaliadas** | Grau de Pertinência, Superfície de Resposta, MAE vs Crisp |
 
 ---
 
@@ -78,19 +87,38 @@ O objetivo deste projeto consistiu no desenvolvimento de uma **arquitetura algor
 
 O pipeline executa o cálculo matricial contínuo das funções geométricas para derivar as respostas do controlador, substituindo a rigidez dos limites clássicos por graus de pertinência:
 
-<!-- CARD ESTILIZADO DE EQUAÇÕES MATEMÁTICAS (SEM LATEX / TEXTO LIMPO) -->
-<div class="my-6 p-6 rounded-xl bg-[#111827] border border-gray-800 font-mono text-sm md:text-base text-gray-200 shadow-inner space-y-3 text-center">
+<!-- CONTAINER DE EQUAÇÕES FORMATADO COM HTML/UNICODE PURO -->
+<div class="my-6 p-6 rounded-xl bg-[#111827] border border-gray-800 font-mono text-sm md:text-base space-y-6">
   <div>
-    <span class="text-blue-400 font-bold">Função Triangular:</span> μ_A(x) = max( min( (x - a)/(b - a), (c - x)/(c - b) ), 0 )
+    <span class="text-blue-400 font-bold block text-xs tracking-wider uppercase mb-1">Função Triangular (Pertinência)</span>
+    <div class="text-gray-200 bg-[#0B0F17] p-3 rounded-lg border border-gray-800/60 overflow-x-auto text-center font-serif text-lg italic">
+      μ<sub>A</sub>(x) = max( min( (x - a)/(b - a) , (c - x)/(c - b) ) , 0 )
+    </div>
   </div>
+
   <div>
-    <span class="text-amber-400 font-bold">Intersecção (AND):</span> μ_(A ∩ B)(x) = min( μ_A(x), μ_B(x) )
+    <span class="text-amber-400 font-bold block text-xs tracking-wider uppercase mb-1">Intersecção (AND) - T-Norma</span>
+    <div class="text-gray-200 bg-[#0B0F17] p-3 rounded-lg border border-gray-800/60 overflow-x-auto text-center font-serif text-lg italic">
+      μ<sub>A ∩ B</sub>(x) = min( μ<sub>A</sub>(x) , μ<sub>B</sub>(x) )
+    </div>
   </div>
+
   <div>
-    <span class="text-purple-400 font-bold">União (OR):</span> μ_(A ∪ B)(x) = max( μ_A(x), μ_B(x) )
+    <span class="text-purple-400 font-bold block text-xs tracking-wider uppercase mb-1">União (OR) - S-Norma</span>
+    <div class="text-gray-200 bg-[#0B0F17] p-3 rounded-lg border border-gray-800/60 overflow-x-auto text-center font-serif text-lg italic">
+      μ<sub>A ∪ B</sub>(x) = max( μ<sub>A</sub>(x) , μ<sub>B</sub>(x) )
+    </div>
   </div>
-  <div class="pt-2 border-t border-gray-800/80 max-w-md mx-auto">
-    <span class="text-emerald-400 font-bold">Centroide (Defuzzificação):</span> z* = ∫ [ μ_C(z) · z ] dz / ∫ μ_C(z) dz
+
+  <div>
+    <span class="text-emerald-400 font-bold block text-xs tracking-wider uppercase mb-1">Centroide (Defuzzificação por Centro de Gravidade)</span>
+    <div class="text-gray-200 bg-[#0B0F17] p-4 rounded-lg border border-gray-800/60 overflow-x-auto text-center font-serif text-lg italic flex items-center justify-center gap-2">
+      <span>z* = </span>
+      <span class="inline-flex flex-col items-center justify-center align-middle">
+        <span class="border-b border-gray-500 px-2">∫ μ<sub>C</sub>(z) · z dz</span>
+        <span class="px-2">∫ μ<sub>C</sub>(z) dz</span>
+      </span>
+    </div>
   </div>
 </div>
 
@@ -100,23 +128,22 @@ O pipeline executa o cálculo matricial contínuo das funções geométricas par
 
 Para assegurar reprodutibilidade, alto desempenho e padrões de engenharia corporativa, a solução foi componentizada em quatro pilares funcionais:
 
-*   **Ingestão e Fuzzificação:** Mapeamento de entradas brutas (sinais de sensores) em variáveis linguísticas utilizando funções de pertinência geométricas (triangulares/trapezoidais) parametrizadas vetorialmente.
-*   **Motor Analytics Baseado em Regras:** Processamento do banco de **27 regras condicionais** (SE-ENTÃO) via método de Mamdani, aplicando operadores t-norma para as intersecções.
-*   **Engine de Agregação de Saída:** Composição da resposta global de controle unindo os conjuntos fuzzy resultantes de cada regra ativada.
-*   **Motor de Defuzzificação (Centroide):** Cálculo numérico da integral geométrica (centro de massa) para converter a área matemática agregada em um único valor físico determinístico aplicável aos atuadores.
+* **Ingestão e Fuzzificação:** Mapeamento de entradas brutas em variáveis linguísticas utilizando funções de pertinência geométricas (triangulares/trapezoidais) parametrizadas vetorialmente com tratamento contra indefinições matemáticas.
+* **Motor Analytics Baseado em Regras:** Processamento do banco de regras condicionais (SE-ENTÃO) via método de Mamdani, aplicando operadores t-norma (`min`) e s-norma (`max`).
+* **Engine de Agregação de Saída:** Composição da resposta global de controle por meio do agrupamento (*clipping*) dos conjuntos fuzzy de saída.
+* **Motor de Defuzzificação (Centroide):** Cálculo numérico da integral geométrica (centro de massa) convertendo a área matemática agregada em um valor físico determinístico.
 
 ---
 
 ## 03. Verificação, Validação & Diagnóstico Executivo (V&V)
 
 ### 🔹 Superfície de Controle 3D
-A combinação de todo o banco de regras gera uma **Superfície de Resposta 3D** não-linear. Essa malha computacional mapeia todas as permutações possíveis entre as variáveis de entrada, permitindo validar e auditar o comportamento do controlador de ponta a ponta.
+A combinação do banco de regras gera uma **Superfície de Resposta 3D** não-linear. Essa malha computacional mapeia todas as permutações possíveis entre as variáveis de entrada, permitindo validar e auditar o comportamento do controlador de ponta a ponta.
 
-<!-- FIGURA 1: SUPERFÍCIE 3D -->
 <figure class="my-6 text-center">
-  <img src="/images/portfolio/fuzzy/fuzzy-superficie-resposta-3d.png" alt="Superfície de resposta 3D gerada pelo motor de inferência fuzzy Mamdani" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full max-w-3xl" />
+  <img src="/images/portfolio/fuzzy/fuzzy-superficie-resposta-3d.png" alt="Superfície de resposta 3D gerada pelo motor de inferência fuzzy Mamdani" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
   <figcaption class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
-    Figura 1: Malha 3D da Superfície de Resposta evidenciando transições contínuas e não-lineares sem zonas mortas.
+    Figura 1: Malha 3D de alta resolução da Superfície de Resposta evidenciando transições contínuas e não-lineares sem zonas mortas.
   </figcaption>
 </figure>
 
@@ -125,9 +152,8 @@ A combinação de todo o banco de regras gera uma **Superfície de Resposta 3D**
 ### 🔹 Continuidade e Eliminação de Chattering
 Durante os testes de estresse paramétrico, o modelo provou ser estritamente contínuo e estável. Ao contrário de lógicas booleanas Bang-Bang, que causam atuações abruptas repetitivas, a transição fuzzy elimina o *chattering*, configurando o sistema ideal para comandos suaves em válvulas e servomotores.
 
-<!-- FIGURA 2: MAPA DE CONTORNO 2D -->
 <figure class="my-6 text-center">
-  <img src="/images/portfolio/fuzzy/fuzzy-mapa-contorno-2d.png" alt="Mapa de contorno 2D das zonas de transição da gorjeta fuzzy" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full max-w-3xl" />
+  <img src="/images/portfolio/fuzzy/fuzzy-mapa-contorno-2d.png" alt="Mapa de contorno 2D das zonas de transição da gorjeta fuzzy" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
   <figcaption class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
     Figura 2: Mapa de contorno 2D ilustrando as zonas de transição suave e atuação proporcional para redução de desgaste mecânico.
   </figcaption>
@@ -137,71 +163,39 @@ Durante os testes de estresse paramétrico, o modelo provou ser estritamente con
 
 ## 04. Entregáveis de Processo e Impacto (ROI Técnico & Financeiro)
 
-*   **Autonomia de Decisão:** Sistema capaz de gerenciar incertezas sem intervenção humana, operando em tempo real com latência inferior a **15 milissegundos**.
-*   **Otimização de CAPEX:** A eliminação do *chattering* reduz drasticamente a fadiga mecânica de contatores e atuadores elétricos, prolongando o ciclo de vida dos ativos industriais.
-*   **Independência Computacional:** A implementação vetorial nativa dispensa toolboxes comerciais caras, permitindo a execução gratuita em instâncias de GNU Octave ou embarcada em microcontroladores via conversão para C.
-*   **Auditabilidade e Reprodutibilidade:** Toda a lógica de controle está mapeada geometricamente, permitindo ajustes finos matemáticos diretos nos parâmetros das funções de pertinência.
+* **Autonomia de Decisão:** Sistema capaz de gerenciar incertezas sem intervenção humana, operando em tempo real com latência inferior a **15 milissegundos**.
+* **Otimização de CAPEX:** A eliminação do *chattering* reduz drasticamente a fadiga mecânica de contatores e atuadores elétricos, prolongando o ciclo de vida dos ativos industriais.
+* **Independência Computacional:** A implementação vetorial nativa dispensa toolboxes comerciais caras, permitindo a execução gratuita em instâncias de GNU Octave ou embarcada em microcontroladores via conversão para C.
+* **Auditabilidade e Reprodutibilidade:** Toda a lógica de controle está mapeada geometricamente, permitindo ajustes finos matemáticos diretos nos parâmetros das funções de pertinência.
 
 ---
 
 ## 05. Implementação Computacional (Core Code)
 
-O trecho de código abaixo destaca os métodos centrais de criação das funções dinâmicas e o laço de varredura otimizado para gerar a malha da superfície de controle sem sobrecarga de memória:
+O trecho de código abaixo destaca a arquitetura vetorizada nativa e a resolução de malha de alta definição sem dependência de dependências proprietárias:
 
 ```matlab
 % ==========================================================
-% MOTOR DE INFERÊNCIA FUZZY - CORE IMPLEMENTATION
-% Status: QA Aprovado | Método: Mamdani | Ambiente: GNU Octave
+% MOTOR DE INFERÊNCIA FUZZY - CORE VETORIAL
+% Status: QA Aprovado | Método: Mamdani | Ambiente: MATLAB / Octave
 % ==========================================================
 
-% 1. Definição Dinâmica das Funções de Pertinência (Handles)
-mu_tip_peq = @(x) trimf(x, [0 5 7]);
-mu_tip_med = @(x) trimf(x, [8 10 12]);
-mu_tip_gen = @(x) trimf(x, [13 15 20]);
+function [val, F, S, TipGrid] = tip_fuzzy_manual(food, service)
+    y = 0:0.1:20; % Universo de discurso da saída (Gorjeta %)
 
-% 2. Geração da Malha de Estados para a Superfície 3D
-[F, S] = meshgrid(0:0.5:10, 0:0.5:10);
-TipGrid = zeros(size(F));
+    % --- Funções de Pertinência Robustas (Proteção contra NaN) ---
+    trapmf = @(x, p) max(min( ...
+        min((p(2)==p(1)) + (p(2)~=p(1))*(x - p(1))/max(p(2)-p(1), eps), ...
+            (p(4)==p(3)) + (p(4)~=p(3))*(p(4) - x)/max(p(4)-p(3), eps)), 1), 0);
+    trimf  = @(x, p) max(min((x - p(1))/max(p(2)-p(1), eps), ...
+                             (p(3) - x)/max(p(3)-p(2), eps)), 0);
 
-% 3. Avaliação Iterativa (Fuzzificação + Inferência)
-for i = 1:numel(F)
-    TipGrid(i) = eval_point(F(i), S(i), ...
-        mu_food_ruim, mu_food_bom, mu_food_exc, ...
-        mu_serv_ruim, mu_serv_bom, mu_serv_exc, ...
-        mu_tip_peq, mu_tip_med, mu_tip_gen, y);
+    % --- Geração da Malha de Resposta (Passo 0.1) ---
+    [F, S] = meshgrid(0:0.1:10, 0:0.1:10);
+    TipGrid = arrayfun(@(f, s) eval_engine(f, s, mf, y), F, S);
+    
+    % --- Visualização Dark Mode com Paleta Parula ---
+    figure('Name', 'Superfície Fuzzy', 'Color', [0.03 0.05 0.09]);
+    surf(F, S, TipGrid, 'EdgeColor', 'none');
+    shading interp; colormap(parula);
 end
-
-% 4. Auditabilidade: Execução de Diagnóstico Pontual
-% [INFO] Entrada Simulada: (food=8, service=9) -> Saída = 14.98%
->> tip_fuzzy_manual(8, 9)
-
-``` 
----
-
-<!-- CARTÃO DE CONCLUSÃO & CALL TO ACTION (CTA) NO FINAL DA PÁGINA -->
-<div style="margin: 3rem 0; padding: 2.5rem; border-radius: 1rem; background: linear-gradient(to right, #1e3a8a, #111827); border: 1px solid #3b82f6; text-align: center; color: white; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);">
-  <p style="color: #93c5fd; font-weight: bold; font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">Conclusão do Projeto</p>
-  
-  <p style="color: #d1d5db; font-size: 1rem; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-    Este projeto reflete o valor da <strong>Modelagem Matemática e Lógica Fuzzy aplicada à Engenharia</strong>. Ao automatizar tarefas complexas de controle e criar sistemas que lidam nativamente com incertezas, garantimos comandos precisos e respaldados matematicamente, permitindo que a tomada de decisão operacional seja segura, contínua e robusta.
-  </p>
-  
-  <hr style="border-color: #374151; margin: 1.5rem 0;">
-  
-  <h3 style="font-size: 1.5rem; font-weight: 800; color: white; margin-bottom: 1rem;">
-    Precisa de suporte especializado em Métodos Numéricos ou Automação?
-  </h3>
-  
-  <p style="color: #9ca3af; font-size: 0.875rem; margin-bottom: 1.5rem;">
-    Desenvolvemos algoritmos em MATLAB/Python, controle avançado e modelagens analíticas rigorosas para impulsionar a eficiência e a estabilidade da sua operação.
-  </p>
-  
-  <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-    <a href="https://wa.me/5516981946642?text=Olá!%20Gostaria%20de%20uma%20consultoria%20em%20Algoritmos/Fuzzy" target="_blank" style="display: inline-block; padding: 0.75rem 1.5rem; border-radius: 0.5rem; background-color: #2563eb; color: white; font-weight: bold; text-decoration: none;">
-      Solicitar Consultoria Técnica →
-    </a>
-    <a href="/#portfolio" style="display: inline-block; padding: 0.75rem 1.5rem; border-radius: 0.5rem; background-color: #374151; color: #d1d5db; font-weight: 600; text-decoration: none;">
-      ← Voltar ao Portfólio
-    </a>
-  </div>
-</div>
