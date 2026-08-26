@@ -49,7 +49,7 @@ tags:
       <p class="text-gray-400 text-xs m-0">Acesse a arquitetura completa em Python, scripts ETL e gerador LaTeX no GitHub.</p>
     </div>
   </div>
-  <a href="https://github.com/joaovitormonica87-cmyk" target="_blank" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
+  <a href="https://github.com/joaovitormiranda-eng/analise-qee-python" target="_blank" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
     Ver Repositório no GitHub →
   </a>
 </div>
@@ -102,10 +102,10 @@ O pipeline executa o cálculo vetorial contínuo da série temporal (**1.666 amo
 
 Para assegurar reprodutibilidade, alto desempenho e padrões de engenharia corporativa, a solução foi componentizada em quatro pilares funcionais:
 
-*   **Ingestão ETL & Sanitização Temporal:** Parser de planilhas complexas com eliminação dinâmica de colunas nulas (*ghost columns*) e conversão computacional do formato de data serial do Excel (`origin="1899-12-30"`) para objetos `datetime` padronizados no padrão ISO.
-*   **Motor Analytics Vetorial & Audit Normativo:** Vetorização de cálculos estatísticos diários e globais via NumPy/Pandas, varredura de Afundamentos Momentâneos de Tensão (VTCDs) e verificação estrita de *compliance* com o **Módulo 8 do PRODIST (ANEEL)**.
-*   **Engine de Visualização Executiva:** Exportação automatizada dos gráficos operacionais de alta resolução (**250 DPI**) com parâmetros estéticos padronizados para compor documentações técnicas.
-*   **Motor de Reporting TeX Automatizado:** Geração autônoma de tabelas normativas em sintaxe nativa `.tex`, convertendo separadores decimais para a norma brasileira (vírgula) para imediata compilação de laudos.
+* **Ingestão ETL & Sanitização Temporal:** Parser de planilhas complexas com eliminação dinâmica de colunas nulas (*ghost columns*) e conversão computacional do formato de data serial do Excel (`origin="1899-12-30"`) para objetos `datetime` padronizados no padrão ISO.
+* **Motor Analytics Vetorial & Audit Normativo:** Vetorização de cálculos estatísticos diários e globais via NumPy/Pandas, varredura de Afundamentos Momentâneos de Tensão (VTCDs) e verificação estrita de *compliance* com o **Módulo 8 do PRODIST (ANEEL)**.
+* **Engine de Visualização Executiva:** Exportação automatizada dos gráficos operacionais de alta resolução (**250 DPI**) com parâmetros estéticos padronizados para compor documentações técnicas.
+* **Motor de Reporting TeX Automatizado:** Geração autônoma de tabelas normativas em sintaxe nativa `.tex`, convertendo separadores decimais para a norma brasileira (vírgula) para imediata compilação de laudos.
 
 ---
 
@@ -177,10 +177,10 @@ A decomposição do espectro de corrente revelou a causa raiz do problema: expre
 
 ## 04. Entregáveis de Processo e Impacto (ROI Técnico & Financeiro)
 
-*   **Ganho de Eficiência Operacional:** Redução do tempo de processamento de laudos de horas para **menos de 3 segundos** (ganho de produtividade superior a 98%).
-*   **Otimização de CAPEX:** O dimensionamento preciso (**Q<sub>c</sub> = 2,85 kvar**) preveniu o sobredimensionamento e o investimento desnecessário em bancos capacitivos.
-*   **Mitigação de Penalidades Regulatórias:** Mapeamento exato das 298 ocorrências de FP excedente para programação de acionamentos automáticos.
-*   **Auditabilidade e Reprodutibilidade:** Eliminação de erros manuais via compilação autônoma de relatórios técnicos em código LaTeX.
+* **Ganho de Eficiência Operacional:** Redução do tempo de processamento de laudos de horas para **menos de 3 segundos** (ganho de produtividade superior a 98%).
+* **Otimização de CAPEX:** O dimensionamento preciso (**Q<sub>c</sub> = 2,85 kvar**) preveniu o sobredimensionamento e o investimento desnecessário em bancos capacitivos.
+* **Mitigação de Penalidades Regulatórias:** Mapeamento exato das 298 ocorrências de FP excedente para programação de acionamentos automáticos.
+* **Auditabilidade e Reprodutibilidade:** Eliminação de erros manuais via compilação autônoma de relatórios técnicos em código LaTeX.
 
 ---
 
@@ -226,9 +226,6 @@ def exportar_tabela_latex(df_stats: pd.DataFrame, arquivo_saida: str):
     with open(arquivo_saida, "w", encoding="utf-8") as f:
         f.write("\n".join(linhas))
 ```
-
----
-
 ## 06. Competências Demonstradas
 
 * **Python & Engenharia de Software Aplicada:** Pipeline robusto e escalável.
@@ -237,33 +234,3 @@ def exportar_tabela_latex(df_stats: pd.DataFrame, arquivo_saida: str):
 * **Análise Normativa de Qualidade de Energia:** Rigor técnico fundamentado no PRODIST/ANEEL.
 * **Automação de Relatórios de Engenharia:** Conversão autônoma de dataframes para sintaxe nativa de LaTeX.
 * **Modelagem e Dimensionamento Elétrico de Ativos:** Adequação de fator de potência e projeto de capacitores.
-
----
-
-<!-- CARTÃO DE CONCLUSÃO & CALL TO ACTION (CTA) NO FINAL DA PÁGINA -->
-<div style="margin: 3rem 0; padding: 2.5rem; border-radius: 1rem; background: linear-gradient(to right, #1e3a8a, #111827); border: 1px solid #3b82f6; text-align: center; color: white; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);">
-  <p style="color: #93c5fd; font-weight: bold; font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;">Conclusão do Projeto</p>
-  
-  <p style="color: #d1d5db; font-size: 1rem; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-    Este projeto reflete o valor da <strong>Ciência de Dados aplicada à Engenharia Elétrica</strong>. Ao automatizar tarefas repetitivas de baixo valor agregado, o pipeline garante diagnósticos precisos, ágeis e respaldados por normas regulatórias, permitindo que a tomada de decisão seja rápida, segura e fundamentada em dados.
-  </p>
-  
-  <hr style="border-color: #374151; margin: 1.5rem 0;">
-  
-  <h3 style="font-size: 1.5rem; font-weight: 800; color: white; margin-bottom: 1rem;">
-    Precisa de suporte especializado em Data Analytics ou Qualidade de Energia?
-  </h3>
-  
-  <p style="color: #9ca3af; font-size: 0.875rem; margin-bottom: 1.5rem;">
-    Desenvolvemos automações em Python, painéis executivos e modelagens analíticas rigorosas para impulsionar a eficiência e o compliance da sua operação.
-  </p>
-  
-  <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-    <a href="https://wa.me/5516981946642?text=Olá!%20Gostaria%20de%20uma%20consultoria%20em%20Python/Data%20Analytics" target="_blank" style="display: inline-block; padding: 0.75rem 1.5rem; border-radius: 0.5rem; background-color: #2563eb; color: white; font-weight: bold; text-decoration: none;">
-      Solicitar Consultoria Técnica →
-    </a>
-    <a href="/#portfolio" style="display: inline-block; padding: 0.75rem 1.5rem; border-radius: 0.5rem; background-color: #374151; color: #d1d5db; font-weight: 600; text-decoration: none;">
-      ← Voltar ao Portfólio
-    </a>
-  </div>
-</div>
