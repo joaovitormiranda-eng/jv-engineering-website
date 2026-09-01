@@ -19,9 +19,9 @@ main:
     url: "/#testimonials"
     weight: 5
 
-  - name: "Blog"
-    url: "/blog"
-    weight: 6
+#  - name: "Blog"
+#   url: "/blog"
+#   weight: 6
 
 buttons:
   - name: "Falar conosco"
