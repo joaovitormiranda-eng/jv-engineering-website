@@ -1,35 +1,35 @@
-# 🚀 JV Engineering | Plataforma e Portfólio Digital
+# JV Engineering | Plataforma e Portfólio Digital
 
-Bem-vindo ao repositório oficial da **JV Engineering**, uma plataforma focada em oferecer suporte técnico especializado para estudantes de Engenharia e áreas STEM. 
+Repositório oficial da plataforma desenvolvida para oferecer suporte acadêmico e técnico especializado a estudantes de Engenharia e áreas STEM.
 
-🌐 **Acesse o site em produção:** [JV Engineering](https://joaovitormiranda-eng.github.io/jv-engineering-website/)
+Acesse o site em produção: [JV Engineering](https://joaovitormiranda-eng.github.io/jv-engineering-website/)
 
 ---
 
-## 🎯 O Propósito do Projeto (Business Goal)
+## Contexto e Objetivo
 
-A JV Engineering nasceu para acompanhar estudantes durante toda a sua trajetória acadêmica. Este site atua como nosso principal canal de aquisição (captação de alunos) e consolidação da marca. O objetivo é transmitir confiança, excelência técnica e proximidade, convertendo visitantes em alunos parceiros de longo prazo.
+A JV Engineering surgiu para apoiar estudantes durante toda a sua trajetória acadêmica na graduação. Este site atua como o principal canal de aquisição e consolidação da marca. 
 
-Nosso público-alvo inclui estudantes de:
-* Engenharia Elétrica, Eletrônica e Mecatrônica.
-* Engenharia de Computação, Ciência de Dados e áreas STEM.
+O objetivo do projeto é transmitir credibilidade técnica, apresentar o portfólio de serviços de forma clara e facilitar o contato orgânico de alunos de cursos como Engenharia Elétrica, Eletrônica, Mecatrônica, Computação e Ciência de Dados.
 
-## 💻 O Desafio Técnico (Under the Hood)
+## Arquitetura e Desenvolvimento
 
-Construir e estruturar este site do zero foi um grande desafio de engenharia de software e web design. A premissa foi evitar construtores de sites pesados e lentos, optando por uma arquitetura leve, voltada para performance e otimização para motores de busca (indexado via Google Search Console).
+A premissa técnica do projeto foi evitar construtores de sites pesados (page builders). A escolha foi construir uma arquitetura leve, voltada para alta performance de carregamento e otimizada para indexação orgânica (Google Search Console).
 
-**Stack Tecnológico:**
-* **Gerador de Sites Estáticos (SSG):** Desenvolvido com **Hugo**, garantindo compilação ultrarrápida e entrega de arquivos estáticos.
-* **Front-end Customizado:** Estruturação de páginas, responsividade e interatividade construídas utilizando **HTML5, CSS3 e JavaScript**.
-* **Integração Contínua (CI/CD):** Deploy 100% automatizado utilizando **GitHub Actions**, com hospedagem gerenciada diretamente pelo **GitHub Pages**.
+O stack utilizado inclui:
 
-## 📈 Roadmap e Funcionalidades Futuras
+* **Gerador de Sites Estáticos (SSG):** Desenvolvido com Hugo, garantindo compilação rápida e entrega eficiente de arquivos estáticos.
+* **Front-end Customizado:** Estrutura e interatividade construídas do zero utilizando HTML5, CSS3 e JavaScript.
+* **CI/CD e Hospedagem:** Fluxo de deploy automatizado utilizando GitHub Actions, com o ambiente de produção hospedado nativamente no GitHub Pages.
 
-O desenvolvimento da plataforma segue um fluxo ágil de melhorias contínuas. Próximos passos:
-- [x] Lançamento da *Landing Page* e indexação orgânica.
-- [ ] Criação de uma "Biblioteca de Projetos" e Casos de Sucesso.
-- [ ] Integração nativa para agendamento de consultorias e orçamentos (WhatsApp/Calendário).
-- [ ] Otimização contínua de UX/UI.
+## Roadmap de Desenvolvimento
+
+O projeto segue um fluxo ágil de melhorias. Os próximos passos incluem:
+
+- [x] Lançamento da página principal (Landing Page) e indexação orgânica.
+- [ ] Criação de uma seção para "Biblioteca de Projetos" e casos de sucesso.
+- [ ] Integração para agendamento de consultorias e orçamentos direto para o WhatsApp.
+- [ ] Refatoração contínua de interface (UI) e usabilidade (UX).
 
 ---
 *Projetado e desenvolvido por João Vitor Miranda Sousa.*
