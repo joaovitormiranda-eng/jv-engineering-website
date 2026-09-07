@@ -48,7 +48,7 @@ tags:
       <p class="text-gray-400 text-xs m-0">Acesse o repositório completo com scripts .m e documentação técnica no GitHub.</p>
     </div>
   </div>
-  <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO" target="_blank" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
+  <a href="https://github.com/joaovitormiranda-eng/MATLAB/tree/main/Sinais%20e%20sistemas" target="_blank" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
     Ver Repositório no GitHub →
   </a>
 </div>
