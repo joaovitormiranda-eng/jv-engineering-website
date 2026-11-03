@@ -27,3 +27,6 @@ Thumbs.db
 # Optional: if you use Netlify or Vercel, ignore their local folders
 .netlify/
 .vercel/
+
+# Personal document: keep the local copy out of version control
+/assets/images/historicoescolar_sme0892.pdf
