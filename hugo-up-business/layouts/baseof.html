@@ -15,46 +15,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 
-  {{ $description := "" }}
-  {{ if .IsHome }}
-  {{ $description = .Site.Params.description }}
-  {{ else if .Description }}
-  {{ $description = .Description }}
-  {{ else }}
-  {{ $description = .Site.Params.description }}
+  {{ $metadata := partial "site-metadata.html" . }}
+  <meta name="description" content="{{ $metadata.description }}" />
+  {{ if and (ne .Kind "404") (not .Params.noindex) }}
+  <link rel="canonical" href="{{ .Permalink }}" />
   {{ end }}
-  <meta name="description" content="{{ $description }}" />
 
   <!-- SEO -->
   {{ partial "google_analytics.html" . }}
-  {{ partial "opengraph.html" . }}
+  {{ partial "opengraph.html" $metadata }}
   {{ partial "schema.html" . }}
-  {{ partial "twitter_cards.html" . }}
+  {{ partial "twitter_cards.html" $metadata }}
 
   <!-- Favicons -->
-  {{ with resources.Get "favicon.ico" }}
-  <link rel="icon" type="image/x-icon" href="{{ .Permalink }}" />
-  {{ end }}
-
-  {{ with resources.Get "apple-touch-icon.png" }}
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ .Permalink }}" />
-  {{ end }}
-
-  {{ with resources.Get "favicon-32x32.png" }}
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ .Permalink }}" />
-  {{ end }}
-
-  {{ with resources.Get "favicon-16x16.png" }}
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ .Permalink }}" />
-  {{ end }}
-
-  {{ with resources.Get "site.webmanifest" }}
-  <link rel="manifest" href="{{ .Permalink }}" />
-  {{ end }}
-
-  {{ with resources.Get "safari-pinned-tab.svg" }}
-  <link rel="mask-icon" href="{{ .Permalink }}" color="#2563eb" />
-  {{ end }}
+  {{ partial "favicons.html" . }}
 
   <!-- Cor da Barra do Navegador no Celular (Dark Mode) -->
   <meta name="msapplication-TileColor" content="#0a0f1d" />
