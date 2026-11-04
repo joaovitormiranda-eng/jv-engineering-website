@@ -157,7 +157,7 @@ Comparação técnica que comprova a recuperação do ativo de dados. A atenuaç
 ## 04. Entregáveis de Processo e Impacto (ROI Técnico)
 
 *   **Algoritmo Modular em MATLAB:** Código-fonte componentizado, parametrizado e pronto para implantação em plataformas de teste contínuo ou hardwares embarcados.
-*   **Recuperação de Ativo de Dados:** Atenuação completa da interferência mantendo **100% da integridade de amplitude e fase** das variáveis essenciais.
+*   **Recuperação de Ativo de Dados:** Atenuação da interferência com filtragem bidirecional de fase zero (`filtfilt`), cuja resposta em amplitude é determinada pelo filtro.
 *   **Documentação Analítica (Traceability):** Relatório completo cobrindo a rastreabilidade desde a modelagem matemática até a verificação experimental.
 
 ---
@@ -180,9 +180,12 @@ ordem = 4;         % Topologia do filtro (4ª ordem)
 % Síntese do Filtro de Resposta Plana
 [b, a] = butter(ordem, fc/(fs/2), 'low');
 
-% Processamento e Isolamento do Sinal
-sinal_recuperado = filter(b, a, sinal_sujo);
+% Filtragem bidirecional de fase zero para processamento offline
+sinal_recuperado = filtfilt(b, a, sinal_sujo);
 ```
+
+Na filtragem bidirecional, a resposta em magnitude corresponde ao quadrado da resposta do filtro de uma passagem, conforme a [documentação de `filtfilt` da MathWorks](https://www.mathworks.com/help/signal/ref/filtfilt.html).
+
 ## 06. Competências Demonstradas
 
 * **MATLAB & Signal Processing Toolbox:** Implementação avançada de algoritmos de PDS e manipulação de vetores.

@@ -163,7 +163,7 @@ A auditoria de qualidade de onda apontou inconformidades regulatórias críticas
   </p>
 </div>
 
-A decomposição do espectro de corrente revelou a causa raiz do problema: expressiva contaminação por **9ª ordem (4,42 A)** e componentes *triplen* (3ª e 7ª ordens), indicativo típico de desbalanceamento severo por cargas não lineares monofásicas e fontes chaveadas.
+A decomposição do espectro de corrente revelou a causa raiz do problema: expressiva contaminação por **9ª ordem (4,42 A)** e componentes de 3ª e 7ª ordens (a 3ª e a 9ª são harmônicas *triplen*; a 7ª não integra esse grupo), indicativo típico de desbalanceamento severo por cargas não lineares monofásicas e fontes chaveadas.
 
 <!-- PAINEL INTERATIVO - FIGURA 5 -->
 <div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
