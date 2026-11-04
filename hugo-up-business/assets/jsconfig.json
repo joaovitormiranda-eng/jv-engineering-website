@@ -2,7 +2,7 @@
  "compilerOptions": {
   "paths": {
    "*": [
-    "..\\_vendor\\github.com\\writeonlycode\\hugo-up-business\\assets\\*"
+    "*"
    ]
   }
  }
