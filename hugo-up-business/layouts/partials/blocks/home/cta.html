@@ -38,13 +38,13 @@
      <!-- Imagem / Card Visual -->
       {{ with .image }}
       <div class="mb-8 flex items-center justify-center">
-        <div class="relative group">
+        <div class="relative group w-full max-w-sm">
           <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-300">
           </div>
           <div class="relative rounded-2xl bg-white/5 p-6 border border-white/10 backdrop-blur-md flex justify-center items-center">
-            <!-- brightness-0 invert transforma a logo em branca -->
-            {{ $imgClass := "w-full max-w-xs object-contain drop-shadow-2xl brightness-0 invert opacity-90" }}
-            {{ partial "utilities/image.html" (dict "src" . "class" $imgClass) }}
+            {{ $logo := resources.Get . | fingerprint }}
+            <img src="{{ $logo.RelPermalink }}" width="764" height="494" alt=""
+              class="block h-auto w-full max-w-xs object-contain drop-shadow-2xl" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>

@@ -2,10 +2,16 @@
   <div class="container mx-auto flex items-center justify-between px-4 py-3 xl:py-5">
 
     <!-- DESKTOP LOGO (Fica visível na barra mobile fechada) -->
-    <a class="flex items-center xl:-ml-8" href="{{ .Site.BaseURL }}" aria-label="JV Engineering — início">
-      <!-- Altura levemente ajustada para mobile (h-12) para não estourar a barra -->
-      {{ $logoClassDesktop := "h-12 w-auto xl:h-16 object-contain" }}
-      {{ partial "utilities/image.html" (dict "src" "images/logo.png" "class" $logoClassDesktop) }}
+    {{ $symbol := resources.Get "images/brand/symbol-white.svg" | fingerprint }}
+    {{ $horizontal := resources.Get "images/brand/logo-horizontal-white.svg" | fingerprint }}
+    {{/* Accessing RelPermalink keeps the original PNG published for existing references. */}}
+    {{ $legacyLogoURL := (resources.Get "images/logo.png").RelPermalink }}
+    <a class="flex h-12 shrink-0 items-center xl:h-16" href="{{ .Site.BaseURL }}" aria-label="JV Engineering — início">
+      <picture class="block">
+        <source media="(min-width: 80rem)" srcset="{{ $horizontal.RelPermalink }}" width="256" height="48" />
+        <img src="{{ $symbol.RelPermalink }}" width="66" height="48" alt=""
+          class="block h-12 w-[66px] object-contain xl:w-64" loading="eager" fetchpriority="high" decoding="async" />
+      </picture>
     </a>
 
     <!-- BOTÃO HAMBÚRGUER (MOBILE) -->
@@ -22,8 +28,8 @@
       <!-- CABEÇALHO DO MENU MOBILE ABERTO (Logo + X) -->
       <div class="flex w-full items-center justify-between px-4 py-3 border-b border-gray-800/80 xl:hidden">
         <a class="flex items-center" href="{{ .Site.BaseURL }}" aria-label="JV Engineering — início">
-          {{ $logoClassMobile := "h-12 w-auto object-contain" }}
-          {{ partial "utilities/image.html" (dict "src" "images/logo.png" "class" $logoClassMobile) }}
+          <img src="{{ $symbol.RelPermalink }}" width="66" height="48" alt=""
+            class="block h-12 w-[66px] object-contain" loading="eager" decoding="async" />
         </a>
 
         <button class="cursor-pointer text-white hover:text-blue-400 transition-colors p-2" type="button"

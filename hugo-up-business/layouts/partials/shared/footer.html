@@ -10,13 +10,10 @@
       <div class="xl:col-span-6 flex flex-col items-center xl:items-start gap-4">
         
         <!-- LOGO -->
-        <a class="flex justify-center xl:justify-start w-full" href="{{ site.BaseURL }}">
-          <img 
-            src="{{ relURL "images/logo.png" }}" 
-            alt="JV Engineering" 
-            class="h-12 w-auto object-contain opacity-90 hover:opacity-100 transition-all" 
-            style="filter: brightness(0) invert(1); margin-left: -18px;" 
-          />
+        <a class="flex justify-center xl:justify-start w-full" href="{{ site.BaseURL }}" aria-label="JV Engineering — início">
+          {{ $logo := resources.Get "images/brand/logo-full-white.svg" | fingerprint }}
+          <img src="{{ $logo.RelPermalink }}" width="764" height="494" alt=""
+            class="block h-20 w-auto object-contain" loading="lazy" decoding="async" />
         </a>
 
         <!-- DESCRIÇÃO -->
