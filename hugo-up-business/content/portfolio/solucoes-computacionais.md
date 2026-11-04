@@ -2,6 +2,10 @@
 title: "Modelagem de Incertezas com Lógica Nebulosa (Fuzzy) em MATLAB/Octave"
 date: 2026-08-04
 draft: false
+catalog_image:
+  src: "images/portfolio/fuzzy-contorno.png"
+  alt: "Mapa de contorno da gorjeta estimada pelo sistema Fuzzy, em função das avaliações de comida e serviço de zero a dez, com escala de cores em porcentagem."
+  caption: "Inferência Fuzzy · mapa de contorno da gorjeta"
 slug: "solucoes-computacionais"
 description: "Desenvolvimento, validação e execução de sistemas especialistas baseados em Lógica Fuzzy para automação de controle, análise de superfícies de resposta e tomada de decisão não-linear em Engenharia."
 categories:
