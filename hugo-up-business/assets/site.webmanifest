@@ -1,0 +1,18 @@
+{{- $icon192 := resources.Get "android-chrome-192x192.png" -}}
+{{- $icon512 := resources.Get "android-chrome-512x512.png" -}}
+{{- $icons := slice
+  (dict "src" $icon192.RelPermalink "sizes" "192x192" "type" "image/png" "purpose" "any maskable")
+  (dict "src" $icon512.RelPermalink "sizes" "512x512" "type" "image/png" "purpose" "any maskable")
+-}}
+{{- dict
+  "name" site.Title
+  "short_name" "JV Eng."
+  "id" site.Home.Permalink
+  "start_url" site.Home.Permalink
+  "scope" site.Home.Permalink
+  "theme_color" "#0a0f1d"
+  "background_color" "#0a0f1d"
+  "display" "standalone"
+  "icons" $icons
+  | jsonify
+-}}

@@ -1,0 +1,32 @@
+{{- $title := .Site.Title -}}
+{{- if and (not .IsHome) (ne .Title .Site.Title) -}}
+  {{- $title = printf "%s | %s" .Title .Site.Title -}}
+{{- end -}}
+
+{{- $description := .Site.Params.description -}}
+{{- if .IsHome -}}
+  {{- $description = .Site.Params.description -}}
+{{- else if .Description -}}
+  {{- $description = .Description -}}
+{{- else if and .IsSection (eq .Section "portfolio") -}}
+  {{- $description = "Portfólio técnico da JV Engineering: processamento digital de sinais, qualidade de energia elétrica e inferência Fuzzy." -}}
+{{- else if eq .Kind "taxonomy" -}}
+  {{- $description = "Explore os projetos do portfólio da JV Engineering por tecnologias e áreas de engenharia." -}}
+{{- else if eq .Kind "term" -}}
+  {{- $description = printf "Projetos relacionados a %s no portfólio técnico da JV Engineering: modelos, programação científica e análises de engenharia." .Title -}}
+{{- end -}}
+
+{{- $type := "website" -}}
+{{- if and .IsPage (eq .Section "portfolio") -}}
+  {{- $type = "article" -}}
+{{- end -}}
+{{- $image := resources.Get "images/social/jv-engineering.png" | fingerprint -}}
+{{- return (dict
+  "title" $title
+  "description" ($description | plainify)
+  "type" $type
+  "url" .Permalink
+  "siteName" .Site.Title
+  "image" $image.Permalink
+  "imageAlt" "JV Engineering — engenharia, simulação e modelagem matemática."
+) -}}
