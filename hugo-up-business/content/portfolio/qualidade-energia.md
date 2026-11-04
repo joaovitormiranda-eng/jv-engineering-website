@@ -2,6 +2,10 @@
 title: "Pipeline Automatizado em Python para Diagnóstico de Qualidade de Energia"
 date: 2026-07-28
 draft: false
+catalog_image:
+  src: "images/portfolio/qee-curva-carga.png"
+  alt: "Curva de carga do bloco analisado: potência ativa total em kW ao longo do período de medição, de 22 a 28 de maio."
+  caption: "Curva de carga · potência ativa em kW"
 slug: "qualidade-energia"
 description: "Desenvolvimento, validação e execução de um pipeline em Python para automação de ETL, análise estatística vetorial e diagnóstico normativo de Qualidade de Energia Elétrica (QEE) conforme PRODIST/ANEEL."
 categories:

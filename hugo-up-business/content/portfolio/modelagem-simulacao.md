@@ -2,6 +2,10 @@
 title: "Filtragem Digital e Processamento de Sinais com MATLAB"
 date: 2026-07-28
 draft: false
+catalog_image:
+  src: "images/portfolio/pds-espectro.png"
+  alt: "Espectro do sinal de entrada do projeto PDS: amplitude em função da frequência, com pico de interferência próximo de 300 Hz."
+  caption: "Espectro do sinal de entrada · frequência em Hz"
 slug: "modelagem-simulacao"
 url: "/portfolio/modelagem-simulacao/"
 description: "Desenvolvimento, simulação e validação experimental de uma solução computacional em MATLAB para remoção de ruídos via Filtro IIR Butterworth e análise espectral por FFT."
