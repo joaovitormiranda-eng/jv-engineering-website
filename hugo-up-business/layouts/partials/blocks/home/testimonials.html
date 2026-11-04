@@ -12,42 +12,42 @@
     <div class="text-center max-w-3xl mx-auto mb-12">
       <span
         class="text-blue-400 font-mono text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 mb-3 inline-block">
-        PROVA SOCIAL & RIGOR TÉCNICO
+        MÉTODO & DOCUMENTAÇÃO
       </span>
       {{ with .title }}
       <h2 class="text-white text-3xl xl:text-5xl font-extrabold tracking-tight mt-2">{{ . | markdownify }}</h2>
       {{ end }}
     </div>
 
-    <!-- Barra de Métricas de Confiança (Estilo Consultoria B2B) -->
+    <!-- Critérios de trabalho, sem notas ou métricas comerciais não documentadas -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-16">
       <div
         class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center shadow-lg hover:border-blue-500/30 transition-colors">
-        <span class="block text-2xl xl:text-3xl font-extrabold text-blue-400 font-mono">100%</span>
-        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Entregas no Prazo</span>
+        <span class="block text-2xl xl:text-3xl font-extrabold text-blue-400 font-mono">Escopo</span>
+        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Requisitos definidos</span>
       </div>
       <div
         class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center shadow-lg hover:border-blue-500/30 transition-colors">
-        <span class="block text-2xl xl:text-3xl font-extrabold text-emerald-400 font-mono">5.0 / 5.0</span>
-        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Avaliação Média</span>
+        <span class="block text-2xl xl:text-3xl font-extrabold text-emerald-400 font-mono">Modelos</span>
+        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Simulação computacional</span>
       </div>
       <div
         class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center shadow-lg hover:border-blue-500/30 transition-colors">
-        <span class="block text-2xl xl:text-3xl font-extrabold text-purple-400 font-mono">+200</span>
-        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Projetos Validados</span>
+        <span class="block text-2xl xl:text-3xl font-extrabold text-purple-400 font-mono">Código</span>
+        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Programação científica</span>
       </div>
      <div
         class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center shadow-lg hover:border-blue-500/30 transition-colors">
-        <span class="block text-2xl xl:text-3xl font-extrabold text-amber-400 font-mono">100%</span>
-        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Precisão Técnica</span>
+        <span class="block text-2xl xl:text-3xl font-extrabold text-amber-400 font-mono">Análise</span>
+        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Interpretação técnica</span>
       </div>
     </div>
 
-    <!-- Depoimento em Destaque (Featured) -->
-    {{ with .featured }}
-    <div class="grid grid-cols-12 gap-8 items-center mb-16">
+    <!-- Apresentação institucional; os relatos originais do YAML não são publicados -->
+    {{ with .approach }}
+    <div class="grid grid-cols-12 gap-y-8 xl:gap-8 items-center mb-16">
 
-      <!-- Card Tech QA Validated -->
+      <!-- Card de abordagem técnica, sem selo de avaliação formal -->
       <div class="col-span-12 flex flex-col justify-center xl:col-span-5">
         <div
           class="relative w-full max-w-sm mx-auto bg-[#111827] border border-blue-500/30 rounded-2xl p-6 shadow-[0_0_30px_rgba(59,130,246,0.15)] text-left font-mono">
@@ -56,31 +56,31 @@
           <div class="flex items-center justify-between border-b border-gray-800 pb-3 mb-4">
             <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span class="text-[11px] text-blue-400 font-bold uppercase tracking-wider">JV // QA_VALIDATED</span>
+              <span class="text-[11px] text-blue-400 font-bold uppercase tracking-wider">JV // MÉTODO</span>
             </div>
             <span
               class="text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              SCORE 10/10
+              POR PROJETO
             </span>
           </div>
 
           <!-- Indicador Central -->
           <div class="text-center py-3">
             <div
-              class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-tr from-blue-600/20 to-cyan-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-3xl font-extrabold shadow-inner">
-              10
+              class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-tr from-blue-600/20 to-cyan-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-2xl font-extrabold shadow-inner">
+              V&amp;V
             </div>
-            <h4 class="text-white text-base font-bold font-sans">Média Máxima Garantida</h4>
-            <p class="text-gray-400 text-xs font-sans mt-1">Rigor acadêmico e validação computacional em cada projeto.
+            <h3 class="text-white text-base font-bold font-sans">Análise técnica documentada</h3>
+            <p class="text-gray-400 text-xs font-sans mt-1">Hipóteses, parâmetros e comparação de resultados.
             </p>
           </div>
 
           <!-- Checklist Técnico -->
           <div class="space-y-2 pt-4 border-t border-gray-800/80 text-xs text-gray-300 font-sans">
             <div class="flex items-center justify-between">
-              <span class="text-gray-400 flex items-center gap-1.5"><span class="text-emerald-400">✓</span> Precisão
-                Analítica</span>
-              <span class="text-emerald-400 font-mono font-bold">100%</span>
+              <span class="text-gray-400 flex items-center gap-1.5"><span class="text-emerald-400">✓</span> Critérios
+                de análise</span>
+              <span class="text-emerald-400 font-mono font-bold">Por projeto</span>
             </div>
             <div class="flex items-center justify-between">
               <span class="text-gray-400 flex items-center gap-1.5"><span class="text-emerald-400">✓</span> Código
@@ -92,39 +92,40 @@
         </div>
       </div>
 
-      <!-- Card do Depoimento Principal -->
+      <!-- Card institucional, sem citação ou atribuição a cliente -->
       <div
-        class="col-span-12 flex flex-col justify-center {{ if .image }}xl:col-span-7{{ else }}xl:col-span-12 max-w-4xl mx-auto{{ end }}">
+        class="col-span-12 flex flex-col justify-center xl:col-span-7">
         <div
           class="flex flex-col items-start gap-6 rounded-2xl bg-[#111827] p-8 xl:p-10 border border-blue-500/30 shadow-[0_0_30px_rgba(59,130,246,0.1)] relative">
 
-          <!-- Rating Stars + Tag -->
+          <!-- Identificação institucional -->
           <div class="flex items-center justify-between w-full">
-            <div class="flex text-amber-400 text-sm tracking-widest">
-              ★★★★★
-            </div>
             <span
               class="text-[11px] font-mono font-medium px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
-              DESTAQUE
+              {{ .label }}
             </span>
           </div>
 
           <div class="flex items-start gap-5">
-            <!-- Avatar Elegante com Inicial -->
+            <!-- Marca textual institucional -->
             <div
-              class="size-14 min-h-14 min-w-14 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-white font-bold text-xl shadow-lg shrink-0">
-              {{ if .client }}{{ substr .client 0 1 }}{{ else }}★{{ end }}
+              class="size-14 min-h-14 min-w-14 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-slate-950 font-bold text-xl shadow-lg shrink-0">
+              JV
             </div>
 
             <div class="flex flex-col gap-3">
-              <p class="text-gray-200 text-base xl:text-lg leading-relaxed italic font-light">
-                "{{ .text | markdownify }}"
+              <h3 class="text-white text-base xl:text-lg font-bold">{{ .title }}</h3>
+              <p class="text-gray-200 text-base xl:text-lg leading-relaxed font-light">
+                {{ .text | markdownify }}
               </p>
-              <div class="pt-2 border-t border-gray-800/80">
-                <span class="text-blue-400 font-bold not-italic text-sm xl:text-base">— {{ .client }}</span>
-              </div>
             </div>
           </div>
+
+          {{ with site.Params.social.whatsapp }}
+          <div class="w-full text-center sm:text-start">
+            {{ partial "components/button/primary" (dict "label" "Conversar sobre meu projeto" "href" .) }}
+          </div>
+          {{ end }}
 
         </div>
       </div>
@@ -132,36 +133,32 @@
     </div>
     {{ end }}
 
-    <!-- Grid de Outros Depoimentos -->
-    {{ if .items }}
+    <!-- Competências apresentadas no portfólio -->
+    {{ if .capabilities }}
     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {{ range $i, $e := .items }}
+      {{ range .capabilities }}
       <div
         class="flex flex-col justify-between gap-6 rounded-xl bg-[#111827] p-6 xl:p-8 border border-gray-800 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 group">
 
-        <!-- Topo do Card: Estrelas + Texto -->
+        <!-- Descrição da competência -->
         <div>
-          <div class="flex items-center text-amber-400 text-xs tracking-widest mb-4">
-            ★★★★★
-          </div>
 
           <div class="flex items-start gap-4">
             <p
-              class="text-gray-300 text-sm xl:text-base leading-relaxed italic group-hover:text-white transition-colors">
-              "{{ .text | markdownify }}"
+              class="text-gray-300 text-sm xl:text-base leading-relaxed group-hover:text-white transition-colors">
+              {{ .text | markdownify }}
             </p>
           </div>
         </div>
 
-        <!-- Rodapé do Card com Avatar e Nome do Cliente -->
+        <!-- Identificação da competência -->
         <div class="pt-4 border-t border-gray-800/80 flex items-center justify-between">
           <div class="flex items-center gap-3">
             <div
               class="size-9 min-h-9 min-w-9 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold text-xs shrink-0">
-              {{ if .client }}{{ substr .client 0 1 }}{{ else }}★{{ end }}
+              {{ substr .label 0 1 }}
             </div>
-            <span class="text-blue-400 text-xs xl:text-sm font-semibold not-italic truncate max-w-[200px]">— {{ .client
-              }}</span>
+            <h3 class="text-blue-400 text-xs xl:text-sm font-semibold">{{ .label }}</h3>
           </div>
         </div>
 

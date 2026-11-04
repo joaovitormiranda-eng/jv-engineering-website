@@ -61,7 +61,7 @@ tags:
 | Parâmetro | Especificação / Tecnologias |
 | :--- | :--- |
 | **Domínio de Aplicação** | Qualidade da Energia Elétrica (QEE), Eficiência & Data Analytics |
-| **Nível de Maturidade** | Engenharia de Dados & Diagnóstico de Ativos (CMMI Level 3) |
+| **Abordagem Técnica** | Engenharia de Dados & Diagnóstico de Ativos |
 | **Ferramentas Computacionais** | Python, Pandas, NumPy, Matplotlib, OpenPyXL, Engine TeX |
 | **Arquitetura da Solução** | Pipeline ETL Modular + Audit Normativo (PRODIST/ANEEL) + Report Engine |
 | **Métricas Avaliadas** | Perfil de Demanda, Fator de Potência, THD<sub>V</sub>, THD<sub>I</sub>, Harmônicas Triplen |
@@ -73,6 +73,8 @@ tags:
 Campanhas industriais e prediais de monitoramento de Qualidade de Energia Elétrica (QEE) geram dezenas de milhares de registros em séries temporais. Tradicionalmente, esses relatórios são consolidados de forma manual em planilhas eletrônicas — um fluxo moroso, propenso a falhas de digitação e ineficiente para auditorias normativas rápidas.
 
 O objetivo deste projeto consistiu no desenvolvimento de uma **arquitetura de software automatizada em Python** capaz de receber logs brutos de analisadores de energia trifásicos, sanitizar inconsistências temporais, calcular grandezas fundamentais e emitir laudos executivos em **menos de 3 segundos**.
+
+**Escopo dos indicadores:** As medições elétricas referem-se ao estudo de caso descrito no repositório. O tempo de execução e o ganho de produtividade são indicadores informados do projeto, dependentes da base de dados, das etapas incluídas e do ambiente de execução; não representam uma garantia para outras aplicações.
 
 > **Arquitetura do Fluxo de Valor:** Arquivo Bruto (.xlsx) ➔ Ingestão & Sanitização ETL ➔ Motor Analytics Vetorial ➔ Dashboards Executivos + Relatório TeX Auto-Gerado
 
@@ -180,7 +182,7 @@ A decomposição do espectro de corrente revelou a causa raiz do problema: expre
 * **Ganho de Eficiência Operacional:** Redução do tempo de processamento de laudos de horas para **menos de 3 segundos** (ganho de produtividade superior a 98%).
 * **Otimização de CAPEX:** O dimensionamento preciso (**Q<sub>c</sub> = 2,85 kvar**) preveniu o sobredimensionamento e o investimento desnecessário em bancos capacitivos.
 * **Mitigação de Penalidades Regulatórias:** Mapeamento exato das 298 ocorrências de FP excedente para programação de acionamentos automáticos.
-* **Auditabilidade e Reprodutibilidade:** Eliminação de erros manuais via compilação autônoma de relatórios técnicos em código LaTeX.
+* **Auditabilidade e Reprodutibilidade:** Automação da geração de relatórios técnicos em código LaTeX, reduzindo a necessidade de transcrição manual.
 
 ---
 

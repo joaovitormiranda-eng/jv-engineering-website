@@ -58,7 +58,7 @@ O código-fonte foi modularizado para comparar a lógica clássica com a lógica
 
 * **`tip_crisp.m`**: Baseline do sistema usando lógica clássica (regras de *if/else* rígidas) vetorizada para comparação de superfície.
 * **`tip_fuzzy_manual.m`**: O motor principal (Core). Implementação de um sistema Fuzzy Mamdani vetorial sem dependência de toolboxes, com proteção contra div/0 e suporte visual Dark Mode (`parula`).
-* **`tip_fuzzy_legacy.m`**: Implementação legada utilizando a Fuzzy Logic Toolbox nativa do MATLAB (`newfis`/`addvar`) para validação cruzada.
+* **`tip_fuzzy.m`**: Implementação utilizando a Fuzzy Logic Toolbox nativa do MATLAB (`newfis`/`addvar`) para comparação com o motor manual.
 * **`compare_tips.m`**: Script de auditoria que calcula o MAE (Erro Médio Absoluto) e gera visualização comparativa simultânea.
 
 ---
@@ -68,7 +68,7 @@ O código-fonte foi modularizado para comparar a lógica clássica com a lógica
 | Parâmetro | Especificação / Tecnologias |
 | :--- | :--- |
 | **Domínio de Aplicação** | Sistemas de Controle, Automação & Data Analytics |
-| **Nível de Maturidade** | Modelagem Preditiva & Controle Não-Linear |
+| **Abordagem Técnica** | Inferência Mamdani & Análise de Superfícies de Resposta |
 | **Ferramentas Computacionais** | MATLAB, GNU Octave, Fuzzy Logic Toolbox |
 | **Arquitetura da Solução** | Fuzzificação ➔ Motor de Regras (Mamdani) ➔ Defuzzificação (Centroide) |
 | **Métricas Avaliadas** | Grau de Pertinência, Superfície de Resposta, MAE vs Crisp |
@@ -79,9 +79,9 @@ O código-fonte foi modularizado para comparar a lógica clássica com a lógica
 
 Na Engenharia clássica, os sistemas de controle baseiam-se frequentemente em modelos matemáticos rígidos e lógica booleana (0 ou 1). No entanto, diversos processos industriais reais lidam com incertezas e variáveis qualitativas que são inviáveis de se modelar exclusivamente com equações diferenciais exatas.
 
-O objetivo deste projeto consistiu no desenvolvimento de uma **arquitetura algorítmica em GNU Octave/MATLAB** capaz de receber sinais de sensores brutos, traduzir o conhecimento empírico de operadores (regras linguísticas) e emitir comandos operacionais exatos em **menos de 15 ms**.
+O projeto implementa uma **arquitetura de inferência Mamdani em GNU Octave/MATLAB** aplicada à estimativa de gorjeta a partir das avaliações de comida e serviço. A descrição do projeto informa execução em **menos de 15 ms**; esse indicador depende da plataforma e do escopo da medição e requer um benchmark reproduzível para comparação entre ambientes.
 
-> **Arquitetura do Fluxo de Valor:** Coleta de Sinais (Crisp) ➔ Mapeamento de Pertinência (Fuzzificação) ➔ Avaliação Baseada em Regras (Mamdani) ➔ Saída Operacional Exata (Defuzzificação)
+> **Arquitetura do Fluxo de Valor:** Entradas Numéricas (Crisp) ➔ Mapeamento de Pertinência (Fuzzificação) ➔ Avaliação Baseada em Regras (Mamdani) ➔ Estimativa de Gorjeta (Defuzzificação)
 
 ### Modelagem Matemática do Pipeline
 
@@ -138,24 +138,24 @@ Para assegurar reprodutibilidade, alto desempenho e padrões de engenharia corpo
 ## 03. Verificação, Validação & Diagnóstico Executivo (V&V)
 
 ### 🔹 Superfície de Controle 3D
-A combinação do banco de regras gera uma **Superfície de Resposta 3D** não-linear. Essa malha computacional mapeia todas as permutações possíveis entre as variáveis de entrada, permitindo validar e auditar o comportamento do controlador de ponta a ponta.
+A combinação do banco de regras gera uma **Superfície de Resposta 3D** não-linear. A malha amostra combinações das variáveis de entrada e permite examinar a gorjeta estimada no domínio amostrado.
 
 <figure class="my-6 text-center">
   <img src="/images/portfolio/fuzzy/fuzzy-superficie-resposta-3d.png" alt="Superfície de resposta 3D gerada pelo motor de inferência fuzzy Mamdani" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
   <figcaption class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
-    Figura 1: Malha 3D de alta resolução da Superfície de Resposta evidenciando transições contínuas e não-lineares sem zonas mortas.
+    Figura 1: Malha 3D da gorjeta estimada em função das avaliações de comida e serviço.
   </figcaption>
 </figure>
 
 ---
 
-### 🔹 Continuidade e Eliminação de Chattering
-Durante os testes de estresse paramétrico, o modelo provou ser estritamente contínuo e estável. Ao contrário de lógicas booleanas Bang-Bang, que causam atuações abruptas repetitivas, a transição fuzzy elimina o *chattering*, configurando o sistema ideal para comandos suaves em válvulas e servomotores.
+### 🔹 Transições da Superfície e Limites de Aplicação {#-continuidade-e-eliminação-de-chattering}
+Os gráficos permitem examinar as transições da saída no exemplo de cálculo de gorjeta. A avaliação de estabilidade em malha fechada, de *chattering* e de efeitos sobre atuadores exige um modelo dinâmico e ensaios específicos; o escopo deste demonstrador é a análise da superfície de inferência.
 
 <figure class="my-6 text-center">
   <img src="/images/portfolio/fuzzy/fuzzy-mapa-contorno-2d.png" alt="Mapa de contorno 2D das zonas de transição da gorjeta fuzzy" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
   <figcaption class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
-    Figura 2: Mapa de contorno 2D ilustrando as zonas de transição suave e atuação proporcional para redução de desgaste mecânico.
+    Figura 2: Mapa de contorno 2D da gorjeta estimada em função das avaliações de comida e serviço.
   </figcaption>
 </figure>
 
@@ -163,8 +163,8 @@ Durante os testes de estresse paramétrico, o modelo provou ser estritamente con
 
 ## 04. Entregáveis de Processo e Impacto (ROI Técnico & Financeiro)
 
-* **Autonomia de Decisão:** Sistema capaz de gerenciar incertezas sem intervenção humana, operando em tempo real com latência inferior a **15 milissegundos**.
-* **Otimização de CAPEX:** A eliminação do *chattering* reduz drasticamente a fadiga mecânica de contatores e atuadores elétricos, prolongando o ciclo de vida dos ativos industriais.
+* **Inferência Baseada em Regras:** Estimativa de saída a partir de entradas numéricas e regras linguísticas, com latência informada inferior a **15 milissegundos**. Aplicações em tempo real exigem a verificação dos requisitos temporais na plataforma de destino.
+* **Aplicações de Controle:** A adaptação para válvulas, servomotores ou outros atuadores exige validação na planta antes de estimar impactos no desgaste ou no investimento em equipamentos.
 * **Independência Computacional:** A implementação vetorial nativa dispensa toolboxes comerciais caras, permitindo a execução gratuita em instâncias de GNU Octave ou embarcada em microcontroladores via conversão para C.
 * **Auditabilidade e Reprodutibilidade:** Toda a lógica de controle está mapeada geometricamente, permitindo ajustes finos matemáticos diretos nos parâmetros das funções de pertinência.
 

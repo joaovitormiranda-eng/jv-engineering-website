@@ -33,7 +33,7 @@ tags:
   </div>
   <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
     <span class="block text-2xl md:text-3xl font-extrabold text-emerald-400">300 Hz</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Interferência Eliminada</span>
+    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Interferência Alvo</span>
   </div>
 </div>
 
@@ -60,7 +60,7 @@ tags:
 | Parâmetro | Especificação / Tecnologias |
 | :--- | :--- |
 | **Domínio de Aplicação** | Processamento Digital de Sinais (PDS) & Instrumentação |
-| **Nível de Maturidade** | Engenharia de Sistemas & Alta Precisão (CMMI Level 3) |
+| **Abordagem Técnica** | Engenharia de Sistemas & Processamento Digital de Sinais |
 | **Ferramentas Computacionais** | MATLAB, Signal Processing Toolbox, DSP Pipeline |
 | **Arquitetura do Filtro** | IIR Passa-Baixa Butterworth (Topologia Maximamente Plana) |
 | **Métodos de Validação** | Transformada Rápida de Fourier (FFT), Diagramas de Bode |
@@ -71,7 +71,7 @@ tags:
 
 Em cenários industriais de instrumentação, automação e sistemas de comunicação, sinais elétricos brutos capturados por sensores frequentemente sofrem severas distorções causadas por **interferências eletromagnéticas (EMI)** e **ruídos térmicos de fundo**. 
 
-O objetivo deste projeto consistiu em desenhar e validar uma arquitetura de software em **MATLAB** capaz de isolar e recuperar com alta fidelidade a informação de um sinal contaminado por componentes determinísticas de alta amplitude e ruído estocástico, garantindo a integridade dos dados para tomada de decisão.
+O objetivo deste projeto consistiu em desenhar e analisar uma arquitetura de software em **MATLAB** para atenuar componentes determinísticas de alta amplitude e ruído estocástico, comparando o sinal filtrado com o sinal de referência.
 
 ### Modelagem Matemática do Sistema (Baseline)
 
@@ -131,7 +131,9 @@ A Transformada Rápida de Fourier mapeou os picos fundamentais de informação (
 ---
 
 ### 🔹 Resposta em Frequência (Diagrama de Bode)
-O diagrama de magnitude e fase certifica o comportamento do filtro: ganho unitário (**0 dB**) na banda de passagem e atenuação superior a **-40 dB** na região de interferência, garantindo a robustez do projeto.
+O diagrama apresenta magnitude e fase do filtro. Os indicadores de **0 dB** na banda de passagem e **-40 dB** na região de interferência devem ser interpretados na resposta em frequência e nas condições de processamento descritas abaixo.
+
+A figura apresenta a resposta do filtro de uma passagem, calculada por `freqz(b, a, ...)`. O processamento do sinal usa `filtfilt`, cuja resposta em magnitude corresponde ao quadrado da resposta de uma passagem; os valores devem ser interpretados considerando essa distinção.
 
 <!-- PAINEL INTERATIVO - FIGURA 3 -->
 <div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
