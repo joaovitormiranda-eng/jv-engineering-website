@@ -1,6 +1,26 @@
 enable: true
 
-title: "Excelência e Rigor Técnico Comprovados"
+title: "Abordagem técnica do início à entrega"
+
+approach:
+  label: "ENGENHARIA APLICADA"
+  title: "Do problema à interpretação dos resultados"
+  text: "Modelagem matemática, programação científica e análise de dados conectadas aos requisitos de cada projeto. O portfólio apresenta exemplos de filtragem digital, qualidade de energia e inferência fuzzy."
+
+capabilities:
+  - label: "Modelagem matemática"
+    text: "Formulação de hipóteses, definição de variáveis e escolha de métodos coerentes com o problema de engenharia."
+  - label: "Simulação computacional"
+    text: "Exploração do comportamento de modelos e comparação entre cenários e sinais de referência."
+  - label: "Programação científica"
+    text: "Implementação de algoritmos em MATLAB, GNU Octave e Python, com organização do código e explicação dos métodos."
+  - label: "Análise de dados"
+    text: "Tratamento de registros, cálculo de indicadores e visualizações para apoiar a interpretação técnica."
+  - label: "Documentação técnica"
+    text: "Apresentação das hipóteses, parâmetros e resultados, com atenção ao escopo e aos limites de aplicação."
+
+# Relatos originais preservados. A publicação depende de confirmação da origem,
+# da atribuição e da autorização; o partial público usa approach e capabilities.
 
 featured: 
   image: "images/4.png"
