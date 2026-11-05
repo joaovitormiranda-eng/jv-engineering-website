@@ -21,6 +21,23 @@
     </div>
     {{ end }}
 
+    {{ if eq .Section "portfolio" }}
+    {{ with .GetTerms "tags" }}
+    <nav class="mx-auto mt-12 max-w-5xl border-t border-gray-800 pt-6" aria-label="Tecnologias e áreas do projeto">
+      {{ with site.GetPage "/tags" }}
+      <p class="mb-4 text-sm font-semibold">
+        <a class="text-blue-400 hover:text-white" href="{{ .RelPermalink }}">Tecnologias e áreas</a>
+      </p>
+      {{ end }}
+      <ul class="flex flex-wrap gap-3 text-sm">
+        {{ range . }}
+        <li><a class="text-blue-400 hover:text-white underline underline-offset-4" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+    {{ end }}
+    {{ end }}
+
   </div>
 </section>
 {{ end }}
