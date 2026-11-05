@@ -113,7 +113,7 @@ Observa-se a degradação massiva sofrida pelo sinal original devido à sobrepos
 
 <!-- PAINEL INTERATIVO - FIGURA 1 -->
 <div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/pds/figura1.png" alt="Sinal Original vs Sinal Corrompido" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
+  <img src="/images/portfolio/pds/figura1.png" width="830" height="542" loading="lazy" decoding="async" alt="Sinal Original vs Sinal Corrompido" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
   <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 1: Degradação temporal do sinal de entrada (Interferência + Estocástico).
   </p>
@@ -126,7 +126,7 @@ A Transformada Rápida de Fourier mapeou os picos fundamentais de informação (
 
 <!-- PAINEL INTERATIVO - FIGURA 2 -->
 <div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/pds/figura2.png" alt="Espectro de Frequência do Sinal Sujo" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
+  <img src="/images/portfolio/pds/figura2.png" width="898" height="613" loading="lazy" decoding="async" alt="Espectro de Frequência do Sinal Sujo" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
   <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 2: Análise espectral de base validando a distribuição de frequências.
   </p>
@@ -141,7 +141,7 @@ A figura apresenta a resposta do filtro de uma passagem, calculada por `freqz(b,
 
 <!-- PAINEL INTERATIVO - FIGURA 3 -->
 <div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/pds/figura3.png" alt="Resposta em Frequência do Filtro Passa-Baixa" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
+  <img src="/images/portfolio/pds/figura3.png" width="672" height="423" loading="lazy" decoding="async" alt="Resposta em Frequência do Filtro Passa-Baixa" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
   <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 3: Homologação da magnitude e fase do filtro Butterworth (4ª Ordem).
   </p>
@@ -154,7 +154,7 @@ Comparação técnica que comprova a recuperação do ativo de dados. A atenuaç
 
 <!-- PAINEL INTERATIVO - FIGURA 4 -->
 <div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/pds/figura4.png" alt="Resultado da Filtragem" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
+  <img src="/images/portfolio/pds/figura4.png" width="605" height="393" loading="lazy" decoding="async" alt="Resultado da Filtragem" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
   <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 4: Sinal recuperado, atestando a eficácia total do modelo PDS aplicado.
   </p>

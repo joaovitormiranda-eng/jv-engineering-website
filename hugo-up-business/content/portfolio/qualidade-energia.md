@@ -122,7 +122,7 @@ A curva de carga evidencia o perfil operacional da instalação. Registrou-se um
 
 <!-- PAINEL INTERATIVO - FIGURA 1 -->
 <div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/qee/curvacarga.png" alt="Curva de Carga do Bloco" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
+  <img src="/images/portfolio/qee/curvacarga.png" width="3300" height="1350" loading="lazy" decoding="async" alt="Curva de Carga do Bloco" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
   <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 1: Curva de Carga temporal com registro da demanda máxima de 51,39 kW e consumo total de 1.507,71 kWh no período.
   </p>
@@ -137,7 +137,7 @@ Para adequar o sistema no ponto de demanda máxima (**P = 51,39 kW**, **FP<sub>1
 
 <!-- PAINEL INTERATIVO - FIGURA 2 -->
 <div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/qee/fatorpotencia.png" alt="Fator de Potência ao Longo da Medição" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
+  <img src="/images/portfolio/qee/fatorpotencia.png" width="3300" height="1350" loading="lazy" decoding="async" alt="Fator de Potência ao Longo da Medição" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
   <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 2: Monitoramento contínuo do FP com linhas de referência normativas (0,92 regulatório e 0,95 meta).
   </p>
@@ -150,7 +150,7 @@ A consolidação vetorial agrupada por data permite mapear os dias de maior inte
 
 <!-- PAINEL INTERATIVO - FIGURA 3 -->
 <div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/qee/energiadiaria.png" alt="Energia Ativa Diária Estimada" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
+  <img src="/images/portfolio/qee/energiadiaria.png" width="2700" height="1350" loading="lazy" decoding="async" alt="Energia Ativa Diária Estimada" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
   <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 3: Consumo de energia ativa diário acumulado (Total do período: 1.507,71 kWh).
   </p>
@@ -163,7 +163,7 @@ A auditoria de qualidade de onda apontou inconformidades regulatórias críticas
 
 <!-- PAINEL INTERATIVO - FIGURA 4 -->
 <div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/qee/thdtensao.png" alt="Distorção Harmônica Total de Tensão" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
+  <img src="/images/portfolio/qee/thdtensao.png" width="3300" height="1350" loading="lazy" decoding="async" alt="Distorção Harmônica Total de Tensão" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
   <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 4: THD<sub>V</sub> contínuo indicando não-conformidade com o padrão PRODIST/ANEEL (10%).
   </p>
@@ -173,7 +173,7 @@ A decomposição do espectro de corrente revelou a causa raiz do problema: expre
 
 <!-- PAINEL INTERATIVO - FIGURA 5 -->
 <div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/qee/harmonicascorrente.png" alt="Componentes Harmônicas de Corrente" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
+  <img src="/images/portfolio/qee/harmonicascorrente.png" width="3300" height="1350" loading="lazy" decoding="async" alt="Componentes Harmônicas de Corrente" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
   <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 5: Espectro harmônico médio de corrente por fase com destaque para ordens ímpares triplen.
   </p>
