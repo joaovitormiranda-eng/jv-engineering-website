@@ -1,0 +1,57 @@
+<section class="bg-[#0a0f1d] py-16 text-white">
+  <div class="container mx-auto px-4">
+    <header class="mx-auto mb-12 max-w-5xl">
+      <nav aria-label="Caminho da página" class="mb-8 text-sm text-gray-300">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ site.Home.RelPermalink }}">Início</a></li>
+          <li aria-hidden="true">/</li>
+          {{ if .IsSection }}
+          <li aria-current="page">Serviços</li>
+          {{ else }}
+          {{ with site.GetPage "/servicos" }}
+          <li><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">Serviços</a></li>
+          {{ end }}
+          <li aria-hidden="true">/</li>
+          <li aria-current="page">{{ .Params.card_title }}</li>
+          {{ end }}
+        </ol>
+      </nav>
+      <p class="mb-4 text-sm font-semibold text-blue-400">Atendimento remoto · Escopo definido para cada projeto</p>
+      <h1 class="mb-6 text-4xl font-extrabold leading-tight xl:text-6xl">{{ .Title }}</h1>
+      <p class="max-w-3xl text-lg leading-relaxed text-gray-300">{{ .Description }}</p>
+      <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+        {{ with site.Params.social.whatsapp }}
+        {{ partial "components/button/primary" (dict "label" "Conversar sobre meu projeto" "href" .) }}
+        {{ end }}
+        <a class="text-blue-400 underline underline-offset-4 hover:text-white" href="#projetos">Ver exemplos técnicos</a>
+      </div>
+    </header>
+
+    {{ if .IsSection }}
+    <section class="mx-auto mb-12 max-w-5xl" aria-labelledby="ofertas">
+      <h2 id="ofertas" class="mb-6 text-2xl font-bold">Escolha o apoio técnico para sua demanda</h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        {{ range .RegularPages.ByWeight }}
+        <article class="flex h-full flex-col rounded-2xl border border-gray-800 bg-[#111827] p-6">
+          <h3 class="mb-3 text-xl font-bold">{{ .Params.card_title }}</h3>
+          <p class="mb-6 flex-grow leading-relaxed text-gray-300">{{ .Params.card_text }}</p>
+          <a class="font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">{{ .Params.link_label }}</a>
+        </article>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+
+    <div class="prose prose-lg prose-invert mx-auto max-w-5xl prose-a:text-blue-400 prose-headings:text-white">
+      {{ .Content }}
+    </div>
+
+    <section class="mx-auto mt-12 max-w-5xl rounded-2xl border border-gray-800 bg-[#111827] p-6" aria-labelledby="conversar">
+      <h2 id="conversar" class="mb-3 text-2xl font-bold">Vamos definir o escopo do seu projeto?</h2>
+      <p class="mb-6 max-w-3xl leading-relaxed text-gray-300">Conte o objetivo, os materiais disponíveis e o tipo de apoio que procura. A conversa inicial ajuda a avaliar a viabilidade e os próximos passos.</p>
+      {{ with site.Params.social.whatsapp }}
+      {{ partial "components/button/primary" (dict "label" "Conversar sobre meu projeto" "href" .) }}
+      {{ end }}
+    </section>
+  </div>
+</section>
