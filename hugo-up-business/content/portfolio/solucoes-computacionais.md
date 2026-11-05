@@ -145,7 +145,7 @@ Para assegurar reprodutibilidade, alto desempenho e padrões de engenharia corpo
 A combinação do banco de regras gera uma **Superfície de Resposta 3D** não-linear. A malha amostra combinações das variáveis de entrada e permite examinar a gorjeta estimada no domínio amostrado.
 
 <figure class="my-6 text-center">
-  <img src="/images/portfolio/fuzzy/fuzzy-superficie-resposta-3d.png" alt="Superfície de resposta 3D gerada pelo motor de inferência fuzzy Mamdani" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
+  <img src="/images/portfolio/fuzzy/fuzzy-superficie-resposta-3d.png" width="3507" height="1527" loading="lazy" decoding="async" alt="Superfície de resposta 3D gerada pelo motor de inferência fuzzy Mamdani" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
   <figcaption class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
     Figura 1: Malha 3D da gorjeta estimada em função das avaliações de comida e serviço.
   </figcaption>
@@ -157,7 +157,7 @@ A combinação do banco de regras gera uma **Superfície de Resposta 3D** não-l
 Os gráficos permitem examinar as transições da saída no exemplo de cálculo de gorjeta. A avaliação de estabilidade em malha fechada, de *chattering* e de efeitos sobre atuadores exige um modelo dinâmico e ensaios específicos; o escopo deste demonstrador é a análise da superfície de inferência.
 
 <figure class="my-6 text-center">
-  <img src="/images/portfolio/fuzzy/fuzzy-mapa-contorno-2d.png" alt="Mapa de contorno 2D das zonas de transição da gorjeta fuzzy" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
+  <img src="/images/portfolio/fuzzy/fuzzy-mapa-contorno-2d.png" width="3453" height="1588" loading="lazy" decoding="async" alt="Mapa de contorno 2D das zonas de transição da gorjeta fuzzy" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
   <figcaption class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
     Figura 2: Mapa de contorno 2D da gorjeta estimada em função das avaliações de comida e serviço.
   </figcaption>
