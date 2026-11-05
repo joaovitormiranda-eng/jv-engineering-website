@@ -44,7 +44,7 @@
 <img src="{{ $resource.Permalink }}" {{ if not $isSVG }} {{ with $resource.Width }}width="{{ . }}" {{ end }} {{ with
   $resource.Height }}height="{{ . }}" {{ end }} {{ with $srcset }}srcset="{{ . }}" {{ end }} {{ end }} {{ with $.sizes
   }}sizes="{{ . }}" {{ end }} {{ with $.class }}class="{{ . }}" {{ end }} alt="{{ with $.alt }}{{ . }}{{ end }}"
-  loading="{{ with $.loading }}{{ . }}{{ else }}lazy{{ end }}" decoding="async" />
+  loading="{{ with $.loading }}{{ . }}{{ else }}lazy{{ end }}" {{ with $.fetchpriority }}fetchpriority="{{ . }}" {{ end }}decoding="async" />
 
 {{ else }}
 {{/* Fallback seguro: se não encontrar no assets, renderiza HTML simples sem quebrar o site */}}
