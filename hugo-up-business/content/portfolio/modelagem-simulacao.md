@@ -1,6 +1,7 @@
 ---
 title: "Filtragem Digital e Processamento de Sinais com MATLAB"
 date: 2026-07-28
+lastmod: 2026-11-04
 draft: false
 catalog_image:
   src: "images/portfolio/pds-espectro.png"

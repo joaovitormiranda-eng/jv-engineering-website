@@ -1,6 +1,7 @@
 ---
 title: "Modelagem de Incertezas com Lógica Nebulosa (Fuzzy) em MATLAB/Octave"
 date: 2026-08-04
+lastmod: 2026-11-04
 draft: false
 catalog_image:
   src: "images/portfolio/fuzzy-contorno.png"

@@ -48,3 +48,7 @@ footer:
   - name: "Contato"
     url: "https://wa.me/5516981946642"
     weight: 5
+
+  - name: "Catálogo de projetos"
+    pageRef: "/portfolio"
+    weight: 6

@@ -1,6 +1,7 @@
 ---
 title: "Pipeline Automatizado em Python para Diagnóstico de Qualidade de Energia"
 date: 2026-07-28
+lastmod: 2026-11-04
 draft: false
 catalog_image:
   src: "images/portfolio/qee-curva-carga.png"
