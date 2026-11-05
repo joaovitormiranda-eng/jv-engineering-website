@@ -38,6 +38,15 @@
     {{ end }}
     {{ end }}
 
+    {{ with .Params.service }}
+    {{ with site.GetPage . }}
+    <nav class="mx-auto mt-8 max-w-5xl border-t border-gray-800 pt-6" aria-label="Serviço relacionado ao projeto">
+      <p class="mb-3 text-gray-300">Quer discutir uma aplicação desses métodos ao seu projeto?</p>
+      <a class="font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </nav>
+    {{ end }}
+    {{ end }}
+
   </div>
 </section>
 {{ end }}

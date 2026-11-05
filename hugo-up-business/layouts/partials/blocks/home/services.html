@@ -24,6 +24,9 @@
           {{ . | markdownify }}
         </p>
         {{ end }}
+        {{ with site.GetPage "/servicos" }}
+        <a class="mt-6 inline-block font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">Conhecer os serviços de MATLAB e Python</a>
+        {{ end }}
         
       </div>
 

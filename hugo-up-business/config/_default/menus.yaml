@@ -34,7 +34,7 @@ footer:
     weight: 1
 
   - name: "Serviços"
-    url: "/#services"
+    pageRef: "/servicos"
     weight: 2
 
   - name: "Projetos"
