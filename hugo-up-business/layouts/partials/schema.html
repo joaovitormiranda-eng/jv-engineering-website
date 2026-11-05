@@ -1,0 +1,11 @@
+{{- if .IsHome -}}
+{{- $person := dict
+  "@context" "https://schema.org"
+  "@type" "Person"
+  "@id" (printf "%s#responsavel" .Permalink)
+  "name" site.Params.professional.name
+  "url" (printf "%s#responsavel" .Permalink)
+  "sameAs" (slice site.Params.social.github)
+-}}
+<script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
+{{- end -}}

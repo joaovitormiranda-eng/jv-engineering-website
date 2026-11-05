@@ -1,7 +1,7 @@
 ---
 title: "Pipeline Automatizado em Python para Diagnóstico de Qualidade de Energia"
 date: 2026-07-28
-lastmod: 2026-11-04
+lastmod: 2026-11-05
 service: "/servicos/python-engenharia"
 draft: false
 catalog_image:
@@ -9,7 +9,7 @@ catalog_image:
   alt: "Curva de carga do bloco analisado: potência ativa total em kW ao longo do período de medição, de 22 a 28 de maio."
   caption: "Curva de carga · potência ativa em kW"
 slug: "qualidade-energia"
-description: "Desenvolvimento, validação e execução de um pipeline em Python para automação de ETL, análise estatística vetorial e diagnóstico normativo de Qualidade de Energia Elétrica (QEE) conforme PRODIST/ANEEL."
+description: "Estudo de processamento de dados elétricos em Python com Pandas, NumPy e Matplotlib, incluindo gráficos e relatório do caso analisado."
 categories:
   - "Ciência de Dados"
   - "Engenharia Elétrica"
@@ -78,9 +78,9 @@ tags:
 
 Campanhas industriais e prediais de monitoramento de Qualidade de Energia Elétrica (QEE) geram dezenas de milhares de registros em séries temporais. Tradicionalmente, esses relatórios são consolidados de forma manual em planilhas eletrônicas — um fluxo moroso, propenso a falhas de digitação e ineficiente para auditorias normativas rápidas.
 
-O objetivo deste projeto consistiu no desenvolvimento de uma **arquitetura de software automatizada em Python** capaz de receber logs brutos de analisadores de energia trifásicos, sanitizar inconsistências temporais, calcular grandezas fundamentais e emitir laudos executivos em **menos de 3 segundos**.
+O objetivo deste projeto consistiu no desenvolvimento de uma **arquitetura de software automatizada em Python** capaz de receber logs brutos de analisadores de energia trifásicos, sanitizar inconsistências temporais, calcular grandezas fundamentais e gerar relatórios de análise em **menos de 3 segundos**.
 
-**Escopo dos indicadores:** As medições elétricas referem-se ao estudo de caso descrito no repositório. O tempo de execução e o ganho de produtividade são indicadores informados do projeto, dependentes da base de dados, das etapas incluídas e do ambiente de execução; não representam uma garantia para outras aplicações.
+**Escopo dos indicadores:** As medições elétricas referem-se ao estudo de caso descrito no repositório. O tempo de execução e o ganho de produtividade são indicadores informados do projeto, dependentes da base de dados, das etapas incluídas e do ambiente de execução; não representam uma garantia para outras aplicações. As referências normativas orientam a análise computacional do estudo e não equivalem a um laudo de conformidade da instalação.
 
 > **Arquitetura do Fluxo de Valor:** Arquivo Bruto (.xlsx) ➔ Ingestão & Sanitização ETL ➔ Motor Analytics Vetorial ➔ Dashboards Executivos + Relatório TeX Auto-Gerado
 
@@ -113,7 +113,7 @@ Para assegurar reprodutibilidade, alto desempenho e padrões de engenharia corpo
 * **Ingestão ETL & Sanitização Temporal:** Parser de planilhas complexas com eliminação dinâmica de colunas nulas (*ghost columns*) e conversão computacional do formato de data serial do Excel (`origin="1899-12-30"`) para objetos `datetime` padronizados no padrão ISO.
 * **Motor Analytics Vetorial & Audit Normativo:** Vetorização de cálculos estatísticos diários e globais via NumPy/Pandas, varredura de Afundamentos Momentâneos de Tensão (VTCDs) e verificação estrita de *compliance* com o **Módulo 8 do PRODIST (ANEEL)**.
 * **Engine de Visualização Executiva:** Exportação automatizada dos gráficos operacionais de alta resolução (**250 DPI**) com parâmetros estéticos padronizados para compor documentações técnicas.
-* **Motor de Reporting TeX Automatizado:** Geração autônoma de tabelas normativas em sintaxe nativa `.tex`, convertendo separadores decimais para a norma brasileira (vírgula) para imediata compilação de laudos.
+* **Motor de Reporting TeX Automatizado:** Geração autônoma de tabelas normativas em sintaxe nativa `.tex`, convertendo separadores decimais para a norma brasileira (vírgula) para imediata compilação de relatórios.
 
 ---
 
@@ -185,9 +185,9 @@ A decomposição do espectro de corrente revelou a causa raiz do problema: expre
 
 ## 04. Entregáveis de Processo e Impacto (ROI Técnico & Financeiro)
 
-* **Ganho de Eficiência Operacional:** Redução do tempo de processamento de laudos de horas para **menos de 3 segundos** (ganho de produtividade superior a 98%).
-* **Otimização de CAPEX:** O dimensionamento preciso (**Q<sub>c</sub> = 2,85 kvar**) preveniu o sobredimensionamento e o investimento desnecessário em bancos capacitivos.
-* **Mitigação de Penalidades Regulatórias:** Mapeamento exato das 298 ocorrências de FP excedente para programação de acionamentos automáticos.
+* **Ganho de Eficiência Operacional:** Redução do tempo de processamento de relatórios de horas para **menos de 3 segundos** (ganho de produtividade superior a 98%).
+* **Estimativa de Compensação Reativa:** O dimensionamento informado (**Q<sub>c</sub> = 2,85 kvar**) pertence ao estudo computacional. Sua aplicação depende da avaliação técnica da instalação; não há comprovação apresentada de investimento realizado ou economia financeira obtida.
+* **Análise de Ocorrências:** O estudo informa 298 ocorrências de FP excedente. Esse mapeamento não comprova implantação de acionamentos automáticos nem redução efetiva de penalidades.
 * **Auditabilidade e Reprodutibilidade:** Automação da geração de relatórios técnicos em código LaTeX, reduzindo a necessidade de transcrição manual.
 
 ---

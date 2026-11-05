@@ -2,15 +2,15 @@ enable: true
 
 title: "Eleve o rigor técnico dos seus projetos"
 
-text: "Consultoria especializada em **Engenharia, Simulação Computacional e Modelagem Matemática**. Da formulação do problema à interpretação dos resultados, desenvolvemos modelos, código e documentação conforme os requisitos do projeto."
+text: "Apoio técnico em **programação científica, simulação computacional e análise de dados**. Da formulação do problema à interpretação dos resultados, desenvolvemos modelos, código e documentação conforme o escopo combinado."
 
 image: "images/brand/logo-full-white.svg"
 
 button:
-  label: "Falar com Especialista"
+  label: "Conversar sobre meu projeto"
   url: "https://wa.me/5516981946642"
 
 checklist:
-  - "Resposta Rápida"
+  - "Escopo definido"
   - "Rigor Acadêmico"
-  - "Precisão Analítica"
+  - "Métodos documentados"

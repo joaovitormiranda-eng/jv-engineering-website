@@ -14,6 +14,13 @@
     </p>
     {{ end }}
 
+    {{ if eq .Section "portfolio" }}
+    <aside class="mx-auto mb-8 max-w-5xl rounded-xl border border-gray-800 bg-[#111827] p-4" aria-label="Contexto do estudo publicado">
+      <p class="mb-3 text-sm leading-relaxed text-gray-300">Estudo técnico do portfólio, apresentado com métodos, código e resultados no contexto documentado. Não é apresentado como case de cliente nem como garantia para outras aplicações.</p>
+      {{ partial "shared/responsible.html" . }}
+    </aside>
+    {{ end }}
+
     <!-- Conteúdo vindo do arquivo Markdown -->
     {{ with .Content }}
     <div class="prose prose-lg prose-invert mx-auto max-w-5xl prose-a:text-blue-400 prose-headings:text-white">

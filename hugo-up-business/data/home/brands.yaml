@@ -1,7 +1,7 @@
 enable: true
 
 title: "Softwares e Tecnologias"
-text: "Utilizamos as principais ferramentas da Engenharia, programação, simulação computacional e análise de dados para desenvolver soluções técnicas de alta precisão."
+text: "Os projetos publicados demonstram métodos em MATLAB, GNU Octave e Python. Os ícones apresentam ferramentas relacionadas às áreas de estudo; as ferramentas de cada atendimento são definidas conforme o escopo."
 
 items:
   - name: "MATLAB"
