@@ -1,25 +1,5 @@
 enable: true
 
 kicker: "ÁREAS DE ATUAÇÃO"
-title: "Conhecimento técnico aplicado às principais áreas da Engenharia."
-text: "Apoio computacional para estudantes, pesquisadores e profissionais, com exemplos públicos em sinais, qualidade de energia e lógica Fuzzy. O escopo, as ferramentas e os entregáveis são definidos após avaliar os materiais de cada pedido."
-
-cards:
-  - icon: "⚡"
-    title: "Engenharia Elétrica"
-    text: "Análise computacional de sinais e dados elétricos, com exemplos publicados de filtragem digital e qualidade de energia."
-  - icon: "💻"
-    title: "Programação Científica"
-    text: "Implementação e revisão de scripts em MATLAB, GNU Octave e Python, com métodos, entradas e requisitos definidos."
-  - icon: "📊"
-    title: "Análise de Dados"
-    text: "Tratamento de tabelas com Pandas e NumPy, cálculo de indicadores e visualizações técnicas com Matplotlib."
-  - icon: "⚙️"
-    title: "Simulação Computacional"
-    text: "Modelagem e exploração de cenários em MATLAB e GNU Octave, incluindo filtros e sistemas de inferência Fuzzy."
-  - icon: "📐"
-    title: "Métodos e Interpretação"
-    text: "Formulação de hipóteses, definição de variáveis e interpretação dos resultados no contexto físico do problema."
-  - icon: "📄"
-    title: "Projetos Acadêmicos"
-    text: "Orientação, revisão de código e documentação voltadas ao aprendizado, respeitando as regras da instituição e a autoria do estudante."
+title: "Qual problema técnico você precisa enfrentar?"
+text: "Comece pela dúvida ou pelo projeto, mesmo sem saber qual ferramenta utilizar. As áreas abaixo orientam a conversa; viabilidade, métodos e entregáveis são avaliados para cada demanda."

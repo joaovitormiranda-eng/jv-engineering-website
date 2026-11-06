@@ -25,18 +25,19 @@
         </p>
         {{ end }}
         {{ with site.GetPage "/servicos" }}
-        <a class="mt-6 inline-block font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">Conhecer os serviços de MATLAB e Python</a>
+        <a class="mt-6 inline-block font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">Conhecer áreas e formas de atendimento</a>
         {{ end }}
         
       </div>
 
       <!-- COLUNA DA DIREITA: GRID DE CARDS -->
       <div class="lg:col-span-8">
-        {{ if .cards }}
+        {{ with site.Data.services.areas }}
         <!-- Grid interno dos cards (1 coluna no mobile, 2 no tablet, 3 no desktop) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           
-          {{ range .cards }}
+          {{ range . }}
+          {{ $area := . }}
           <!-- Card individual -->
           <div class="bg-[#111827] rounded-2xl p-6 border border-gray-800 hover:border-blue-500/50 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] flex flex-col h-full group">
             
@@ -55,10 +56,13 @@
             {{ end }}
 
             <!-- Texto descritivo -->
-            {{ with .text }}
+            {{ with .summary }}
             <p class="text-gray-400 text-sm leading-relaxed flex-grow">
               {{ . | markdownify }}
             </p>
+            {{ end }}
+            {{ with site.GetPage "/servicos" }}
+            <a class="mt-4 text-sm font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}#{{ $area.id }}">{{ $area.link_label }}</a>
             {{ end }}
             
           </div>

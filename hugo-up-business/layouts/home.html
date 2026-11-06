@@ -8,16 +8,16 @@
 {{ if .enable }}{{ partial "blocks/home/about.html" . }}{{ end }}
 {{ end }}
 
+{{ with .Site.Data.home.services }}
+{{ if .enable }}{{ partial "blocks/home/services.html" . }}{{ end }}
+{{ end }}
+
 {{ with .Site.Data.home.brands }}
 {{ if .enable }}{{ partial "blocks/home/brands.html" . }}{{ end }}
 {{ end }}
 
 {{ with .Site.Data.home.portfolio }}
 {{ if .enable }}{{ partial "blocks/home/portfolio.html" . }}{{ end }}
-{{ end }}
-
-{{ with .Site.Data.home.services }}
-{{ if .enable }}{{ partial "blocks/home/services.html" . }}{{ end }}
 {{ end }}
 
 {{ with .Site.Data.home.testimonials }}

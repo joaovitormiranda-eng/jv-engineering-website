@@ -1,20 +1,25 @@
 ---
-title: "Programação científica e simulação computacional"
-description: "Apoio técnico em MATLAB e Python: programação científica, análise de sinais e dados de engenharia, com código, gráficos e documentação conforme o escopo."
+title: "Áreas e serviços de suporte técnico"
+heading: "Áreas de suporte técnico"
+description: "Suporte em Engenharia Elétrica e Computação: circuitos, programação, embarcados, modelos e dados. Apresente sua demanda para avaliar o escopo."
 date: 2026-11-05
-lastmod: 2026-11-05
+lastmod: 2026-11-06
 draft: false
 ---
 
-## Quando esse apoio faz sentido
+## Formas de apoio {#quando-esse-apoio-faz-sentido}
 
-Você tem um modelo para implementar, um script que precisa de revisão ou dados técnicos que ainda não se transformaram em uma análise clara? A JV Engineering oferece apoio na formulação do problema, no desenvolvimento do código e na interpretação dos resultados.
+A JV Engineering atende estudantes, pesquisadores e pessoas com demandas técnicas compatíveis em Engenharia Elétrica, Computação e áreas STEM. O ponto de partida é o problema, não uma linguagem ou software obrigatório.
 
-O atendimento remoto é voltado a estudantes, pesquisadores e profissionais que precisam de uma contribuição computacional com escopo definido. A escolha das ferramentas e dos métodos depende dos dados, das hipóteses e dos requisitos de cada pedido.
+- **Orientação e explicação:** compreender conceitos, discutir métodos e resolver problemas de forma orientada, com participação de quem está aprendendo.
+- **Revisão e depuração:** analisar uma solução existente, investigar erros e organizar código, modelos ou documentação.
+- **Desenvolvimento técnico:** implementar uma solução para um projeto próprio ou autorizado, com requisitos, entregáveis e critérios de conferência combinados.
+
+Essas modalidades podem se complementar. Se você ainda não sabe como classificar a necessidade, descreva o objetivo e o que está impedindo o avanço.
 
 ## Projetos publicados {#projetos}
 
-Os estudos do portfólio mostram métodos, código e resultados em contextos específicos. Eles ajudam a avaliar a abordagem técnica, sem representar uma garantia de desempenho para outros problemas.
+Os estudos do portfólio demonstram competências específicas com métodos, código e resultados documentados. Não são uma lista exaustiva das áreas de atendimento, casos de clientes ou garantias para outras aplicações.
 
 - [Filtragem digital e análise espectral em MATLAB]({{< relref "/portfolio/modelagem-simulacao" >}}): filtro IIR Butterworth, FFT e comparação de sinais.
 - [Inferência Fuzzy em MATLAB e GNU Octave]({{< relref "/portfolio/solucoes-computacionais" >}}): sistema Mamdani e visualização de superfícies de resposta em um exemplo didático.
@@ -22,19 +27,19 @@ Os estudos do portfólio mostram métodos, código e resultados em contextos esp
 
 ## Como o trabalho é conduzido
 
-1. **Entendimento do pedido.** Conversamos sobre o problema, os arquivos disponíveis, o contexto de uso e o resultado esperado.
-2. **Definição do escopo.** Combinamos o que será desenvolvido ou revisado, os entregáveis, os critérios de conferência e as condições de atendimento.
-3. **Implementação e análise.** Organizamos o código e verificamos os resultados em relação aos dados e às hipóteses acordadas.
-4. **Entrega e explicação.** Apresentamos os arquivos e a documentação combinados, com orientações para uso e limitações conhecidas.
+1. **Entender a necessidade.** Você apresenta a dúvida ou projeto, os materiais, o contexto de uso e o resultado esperado.
+2. **Avaliar a viabilidade.** Verificamos requisitos, complexidade, recursos e responsabilidades. Quando faltam informações ou o pedido não pode ser assumido, isso é esclarecido.
+3. **Combinar o escopo.** Definimos a forma de apoio, os entregáveis, os critérios de conferência, os prazos e as condições aplicáveis.
+4. **Desenvolver e explicar.** Conduzimos o trabalho combinado e apresentamos os métodos, os arquivos pertinentes e as limitações conhecidas.
 
 ## O que enviar para uma primeira avaliação
 
-Descreva o objetivo do projeto e informe quais ferramentas utiliza, quais arquivos já possui, o que está impedindo o avanço e o prazo desejado. Para dados técnicos, inclua a origem, as unidades e o significado das colunas. Envie somente materiais que você pode compartilhar e combine previamente o tratamento de informações confidenciais.
+Envie o objetivo, a dúvida concreta, o que já tentou e os materiais que possui: enunciado, esquema, código, modelo ou amostra de dados. Informe restrições do ambiente e o prazo desejado, mesmo que ainda não saiba qual ferramenta utilizar. Compartilhe somente materiais autorizados e combine previamente o tratamento de informações confidenciais.
 
 ## Escopo e responsabilidades
 
-Os entregáveis podem incluir scripts organizados, modelos computacionais, gráficos, rotinas de processamento e documentação. A viabilidade, o prazo e as condições são definidos após a análise do pedido; não há promessa de resultado universal.
+Conforme o pedido, podem ser combinados explicações, revisão comentada, código, modelos, gráficos, instruções de teste e documentação. Mencionar uma área ou ferramenta não significa que qualquer demanda será aceita; a aplicação em condições reais depende das verificações e dos responsáveis pertinentes.
 
-O apoio acadêmico é orientado ao aprendizado, à revisão e ao desenvolvimento técnico legítimo. Não inclui realizar provas ou assumir a autoria de atividades avaliativas em nome de terceiros. O solicitante deve informar as regras da instituição e as formas de colaboração permitidas.
+O apoio acadêmico respeita o aprendizado, a autoria e as regras da instituição. Não inclui realizar provas ou assumir a autoria de atividades avaliativas em nome de terceiros.
 
-Estas ofertas são de programação e análise computacional. Não incluem medição presencial, inspeção de instalações, emissão de laudos, ART ou responsabilidade técnica regulamentada. A aplicação dos resultados em uma situação real depende da avaliação dos responsáveis pelo projeto.
+O atendimento é remoto. Projetos com hardware exigem materiais e condições de teste definidos; não há promessa de montagem ou validação física sem avaliação. Não são oferecidos medição presencial, inspeção de instalações, laudos, ART ou responsabilidade técnica regulamentada.
