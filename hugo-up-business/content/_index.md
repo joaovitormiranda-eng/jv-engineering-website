@@ -1,4 +1,4 @@
 ---
-title: "Up Business"
+title: "Programação científica com MATLAB e Python"
 layout: "home"
 ---

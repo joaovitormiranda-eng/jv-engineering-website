@@ -1,6 +1,9 @@
 {{- $title := .Site.Title -}}
-{{- if and (not .IsHome) (ne .Title .Site.Title) -}}
+{{- if ne .Title .Site.Title -}}
   {{- $title = printf "%s | %s" .Title .Site.Title -}}
+{{- end -}}
+{{- if eq .Kind "term" -}}
+  {{- $title = printf "%s: projetos e estudos | %s" .Title .Site.Title -}}
 {{- end -}}
 
 {{- $description := .Site.Params.description -}}
@@ -14,6 +17,9 @@
   {{- $description = "Explore os projetos do portfólio da JV Engineering por tecnologias e áreas de engenharia." -}}
 {{- else if eq .Kind "term" -}}
   {{- $description = printf "Projetos relacionados a %s no portfólio técnico da JV Engineering: modelos, programação científica e análises de engenharia." .Title -}}
+  {{- with index site.Data.seo.tags (replace (.Title | lower) " " "-") -}}
+    {{- $description = .description -}}
+  {{- end -}}
 {{- end -}}
 
 {{- $type := "website" -}}
