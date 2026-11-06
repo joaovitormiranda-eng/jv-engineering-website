@@ -7,7 +7,18 @@
 
   <div class="container mx-auto px-4 flex flex-col gap-16 xl:gap-24 relative z-10">
     {{ range $i, $e := .items }}
-    <div class="grid xl:grid-cols-2 gap-8 xl:gap-12 items-center">
+    {{ $contactService := "general" }}
+    {{ range .buttons }}
+      {{ if hasPrefix .link "/portfolio/" }}
+        {{ with site.GetPage .link }}
+          {{ with .Params.service }}
+            {{ if in . "matlab" }}{{ $contactService = "matlab" }}{{ end }}
+            {{ if in . "python" }}{{ $contactService = "python" }}{{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    <div class="grid xl:grid-cols-2 gap-8 xl:gap-12 items-center" data-contact-service="{{ $contactService }}">
 
       <!-- COLUNA DO MOCKUP EM CÓDIGO (alterna lados com base na ordem $i) -->
       <div class="{{ if (eq (mod $i 2) 0) }}xl:order-2{{ end }} flex flex-col items-center justify-center w-full">

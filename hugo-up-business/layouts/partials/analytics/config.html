@@ -1,0 +1,6 @@
+{{- $a := site.Params.analytics -}}
+{{- $valid := and (eq (len (findRE `^G-[A-Z0-9]+$` ($a.measurement_id | default ""))) 1) $a.settings_reviewed (in (slice 2 14) (int ($a.retention_months | default 0))) -}}
+{{- if and $a.enabled (not $valid) -}}
+  {{- errorf "Analytics: ativação exige ID GA4 válido, settings_reviewed e retention_months confirmado (2 ou 14)." -}}
+{{- end -}}
+{{- return (dict "active" (and hugo.IsProduction $a.enabled $valid) "id" ($a.measurement_id | default "") "retention" ($a.retention_months | default 0)) -}}

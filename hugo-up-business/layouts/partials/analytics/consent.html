@@ -1,0 +1,13 @@
+{{- if (partial "analytics/config.html" .).active -}}
+<section id="analytics-consent" class="analytics-consent" aria-labelledby="analytics-consent-title" hidden>
+  <h2 id="analytics-consent-title" tabindex="-1">Medição opcional de visitas</h2>
+  <p>Podemos usar o Google Analytics para entender visitas e cliques de contato. Só carregamos a ferramenta com sua autorização. Recusar não limita o site.</p>
+  <p><a href="{{ (site.GetPage "/privacidade").RelPermalink }}">Como usamos os dados</a></p>
+  <p id="analytics-status" role="status" aria-live="polite"></p>
+  <div class="analytics-actions">
+    <button type="button" data-analytics-choice="accepted">Aceitar Analytics</button>
+    <button type="button" data-analytics-choice="denied">Recusar / desativar Analytics</button>
+    <button type="button" data-analytics-close aria-label="Fechar preferências sem alterar a escolha">Fechar</button>
+  </div>
+</section>
+{{- end -}}

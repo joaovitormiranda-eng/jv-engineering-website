@@ -1,4 +1,10 @@
 title: "JV Engineering"
+analytics:
+  enabled: true
+  measurement_id: "G-80LQ6M066J"
+  # Confirmado pelo proprietário: medição aprimorada desativada; retenção de 2 meses.
+  settings_reviewed: true
+  retention_months: 2
 
 description: "Programação científica, simulação computacional e análise de dados com MATLAB, GNU Octave e Python. Apoio técnico com exemplos documentados e escopo definido."
 

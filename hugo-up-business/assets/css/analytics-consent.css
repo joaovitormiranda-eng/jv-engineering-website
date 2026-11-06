@@ -1,0 +1,17 @@
+.analytics-consent[hidden], .analytics-preferences[hidden] { display: none; }
+.analytics-consent {
+  position: fixed; z-index: 60; bottom: 1rem; left: 1rem; right: 1rem;
+  max-width: 38rem; margin-left: auto; padding: 1.25rem;
+  background: #111827; color: #e5e7eb; border: 1px solid #6b7280; border-radius: 1rem;
+  box-shadow: 0 6px 24px #0008; max-height: 70vh; overflow: auto;
+  font-size: .875rem; line-height: 1.5;
+}
+.analytics-consent h2 { color: #fff; font-size: 1.125rem; font-weight: 700; margin-bottom: .5rem; }
+.analytics-consent p { margin-bottom: .65rem; }
+.analytics-consent a, .analytics-preferences { color: #93c5fd; text-decoration: underline; text-underline-offset: 3px; }
+.analytics-preferences { display: block; margin: 1rem auto 0; font-size: .875rem; }
+.analytics-actions { display: flex; gap: .65rem; flex-wrap: wrap; }
+.analytics-actions button { background: #1f2937; color: #fff; border: 1px solid #9ca3af; border-radius: .5rem; padding: .6rem .8rem; cursor: pointer; }
+.analytics-actions button:hover { background: #374151; }
+.analytics-consent :focus-visible, .analytics-preferences:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
+@media (min-width: 80rem) { .analytics-preferences { margin-left: 0; } }

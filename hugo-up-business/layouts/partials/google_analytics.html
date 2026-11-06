@@ -1,1 +1,24 @@
-<!-- Google Analytics -->
+{{- $a := partial "analytics/config.html" . -}}
+{{- if $a.active -}}
+  {{- $type := "other" -}}
+  {{- $service := "general" -}}
+  {{- if .IsHome -}}{{- $type = "home" -}}
+  {{- else if eq .Section "servicos" -}}
+    {{- $type = "services" -}}
+    {{- if eq .File.ContentBaseName "matlab" -}}{{- $type = "matlab" -}}{{- $service = "matlab" -}}{{- end -}}
+    {{- if eq .File.ContentBaseName "python-engenharia" -}}{{- $type = "python" -}}{{- $service = "python" -}}{{- end -}}
+  {{- else if eq .Section "portfolio" -}}{{- $type = "portfolio" -}}
+    {{- with .Params.service -}}
+      {{- if in . "matlab" -}}{{- $service = "matlab" -}}{{- end -}}
+      {{- if in . "python" -}}{{- $service = "python" -}}{{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $config := dict "id" $a.id "page" .Permalink "title" .Title "pageType" $type "serviceType" $service "contact" site.Params.social.whatsapp "cookiePath" (urls.Parse site.BaseURL).Path -}}
+  <script id="analytics-config" type="application/json">{{ $config | jsonify | safeJS }}</script>
+  {{- with resources.Get "css/analytics-consent.css" | minify -}}
+  <style>{{ .Content | safeCSS }}</style>
+  {{- end -}}
+  {{- with resources.Get "js/analytics.js" | js.Build (dict "minify" true) | fingerprint -}}
+  <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+  {{- end -}}
+{{- end -}}
