@@ -3,19 +3,13 @@
 
 <head>
   <!-- Title -->
-  {{ if .IsHome }}
-  <title>{{ .Site.Title }}</title>
-  {{ else if (eq .Title .Site.Title ) }}
-  <title>{{ .Site.Title }}</title>
-  {{ else }}
-  <title>{{ .Title }} | {{ .Site.Title }}</title>
-  {{ end }}
+  {{ $metadata := partial "site-metadata.html" . }}
+  <title>{{ $metadata.title }}</title>
 
   <!-- Meta -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 
-  {{ $metadata := partial "site-metadata.html" . }}
   <meta name="description" content="{{ $metadata.description }}" />
   {{ if and (ne .Kind "404") (not .Params.noindex) }}
   <link rel="canonical" href="{{ .Permalink }}" />
