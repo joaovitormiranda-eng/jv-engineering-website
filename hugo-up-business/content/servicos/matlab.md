@@ -2,7 +2,7 @@
 title: "Consultoria MATLAB e análise de sinais"
 description: "Programação e revisão de scripts MATLAB, filtragem digital, FFT e modelagem computacional, com exemplos de PDS e Fuzzy, código explicado e escopo definido."
 date: 2026-11-05
-lastmod: 2026-11-05
+lastmod: 2026-11-06
 draft: false
 weight: 1
 card_title: "MATLAB e análise de sinais"
@@ -11,6 +11,8 @@ link_label: "Conhecer a consultoria MATLAB"
 ---
 
 ## Que problemas podem ser atendidos
+
+Esta é uma especialidade dentro do suporte multidisciplinar da JV Engineering. Para uma necessidade em outra linguagem, circuitos ou sistemas embarcados, consulte as [áreas de suporte técnico]({{< relref "/servicos" >}}#areas) e apresente o contexto para avaliação.
 
 O serviço apoia a transformação de um problema técnico em código MATLAB compreensível e organizado. Pode atender quem precisa implementar um método, revisar um script existente ou interpretar resultados de uma simulação.
 

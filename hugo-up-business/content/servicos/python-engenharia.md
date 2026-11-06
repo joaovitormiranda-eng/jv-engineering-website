@@ -2,7 +2,7 @@
 title: "Python para engenharia e análise de dados"
 description: "Tratamento de dados técnicos com Pandas e NumPy, gráficos com Matplotlib e automação de relatórios em Python, a partir dos arquivos e requisitos fornecidos."
 date: 2026-11-05
-lastmod: 2026-11-05
+lastmod: 2026-11-06
 draft: false
 weight: 2
 card_title: "Python e dados de engenharia"
@@ -11,6 +11,8 @@ link_label: "Conhecer o serviço Python para engenharia"
 ---
 
 ## Que problemas podem ser atendidos
+
+Esta página detalha o atendimento em Python, uma das especialidades da JV Engineering. Demandas com outras ferramentas ou áreas podem ser apresentadas pelo [índice de suporte técnico em Engenharia e Computação]({{< relref "/servicos" >}}#areas), sem precisar se encaixar nesta oferta.
 
 O serviço apoia quem possui dados técnicos e precisa organizar uma análise que possa ser executada novamente, conferida e compreendida. O ponto de partida são os arquivos e os requisitos do projeto, não uma conclusão previamente prometida.
 

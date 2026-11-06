@@ -6,6 +6,10 @@
   <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="container mx-auto px-4 flex flex-col gap-16 xl:gap-24 relative z-10">
+    <header class="max-w-3xl">
+      <h2 class="text-white text-3xl sm:text-4xl font-extrabold mb-4">{{ .title }}</h2>
+      <p class="text-slate-300 leading-relaxed">{{ .text }}</p>
+    </header>
     {{ range $i, $e := .items }}
     {{ $contactService := "general" }}
     {{ range .buttons }}
@@ -157,7 +161,7 @@
         {{ end }}
 
         {{ with .title }}
-        <h2 class="text-white mb-4 text-center text-3xl font-extrabold xl:text-4xl xl:text-start leading-tight">{{ . | markdownify }}</h2>
+        <h3 class="text-white mb-4 text-center text-3xl font-extrabold xl:text-4xl xl:text-start leading-tight">{{ . | markdownify }}</h3>
         {{ end }}
 
         {{ with .text }}

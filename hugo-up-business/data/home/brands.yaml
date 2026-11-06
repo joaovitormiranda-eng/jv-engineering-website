@@ -1,56 +1,56 @@
 enable: true
 
-title: "Softwares e Tecnologias"
-text: "Os projetos publicados demonstram métodos em MATLAB, GNU Octave e Python. Os ícones apresentam ferramentas relacionadas às áreas de estudo; as ferramentas de cada atendimento são definidas conforme o escopo."
+title: "Ferramentas a serviço do problema"
+text: "Linguagens, ambientes, simuladores e plataformas têm papéis diferentes. A escolha depende dos requisitos e dos recursos disponíveis. Os estudos demonstram usos específicos de MATLAB, GNU Octave e Python; outras tecnologias podem ser discutidas na avaliação da demanda."
 
 items:
   - name: "MATLAB"
     image: "images/software/matlab.svg"
-    tag: "Simulação"
+    tag: "Linguagem e ambiente"
 
   - name: "Python"
     image: "images/software/pythoncerto.svg"
-    tag: "Data & Dev"
+    tag: "Linguagem"
 
   - name: "LTspice"
     image: "images/software/ltspice.svg"
-    tag: "Circuitos"
+    tag: "Simulador de circuitos"
     invert: true # Força o logo escuro a ficar claro no dark mode
 
   - name: "Power BI"
     image: "images/software/Power-BI.svg"
-    tag: "Analytics"
+    tag: "Visualização de dados"
 
   - name: "VS Code"
     image: "images/software/vscode.svg"
-    tag: "IDE"
+    tag: "Editor de código"
 
   - name: "Arduino"
     image: "images/software/arduino3.png"
-    tag: "Sistemas Embarcados"
+    tag: "Plataforma embarcada"
 
   - name: "Altair"
     image: "images/software/altaircerto.png"
-    tag: "Engenharia"
+    tag: "Suíte de engenharia"
 
   - name: "SimulIDE"
     image: "images/software/simulide.png"
-    tag: "Simulação"
+    tag: "Simulador eletrônico"
 
   - name: "Jupyter"
     image: "images/software/Jupyter.svg"
-    tag: "Data Science"
+    tag: "Ambiente de notebooks"
 
   - name: "LaTeX"
     image: "images/software/latex5.png"
-    tag: "Relatórios"
+    tag: "Preparação de documentos"
     invert: true # Força o logo escuro a ficar claro no dark mode
 
   - name: "AutoCAD"
     image: "images/software/autocad-seeklogo.png"
-    tag: "CAD & Projetos"
+    tag: "Ferramenta CAD"
 
-  - name: "Git"
+  - name: "GitHub"
     image: "images/software/github-icon.svg"
-    tag: "Versionamento"
+    tag: "Plataforma de repositórios"
     invert: true # Força o logo escuro a ficar claro no dark mode

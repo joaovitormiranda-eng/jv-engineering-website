@@ -1,4 +1,6 @@
 enable: true
+title: "Exemplos técnicos documentados"
+text: "Os estudos de sinais, dados elétricos e lógica Fuzzy demonstram métodos em contextos específicos. São exemplos do portfólio, não uma lista de todas as demandas que podem ser avaliadas."
 
 items:
   - image: "images/1.jpg"

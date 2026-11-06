@@ -5,15 +5,15 @@ title: "Abordagem técnica do início à entrega"
 approach:
   label: "ENGENHARIA APLICADA"
   title: "Do problema à interpretação dos resultados"
-  text: "Modelagem matemática, programação científica e análise de dados conectadas aos requisitos de cada projeto. O portfólio apresenta exemplos de filtragem digital, qualidade de energia e inferência fuzzy."
+  text: "Partimos da dúvida, dos materiais e do resultado esperado para definir como apoiar: explicar um conceito, revisar uma solução ou desenvolver uma implementação. Métodos, ferramentas e formas de conferir o trabalho são combinados conforme o contexto."
 
 capabilities:
   - label: "Modelagem matemática"
     text: "Formulação de hipóteses, definição de variáveis e escolha de métodos coerentes com o problema de engenharia."
   - label: "Simulação computacional"
     text: "Exploração do comportamento de modelos e comparação entre cenários e sinais de referência."
-  - label: "Programação científica"
-    text: "Implementação de algoritmos em MATLAB, GNU Octave e Python, com organização do código e explicação dos métodos."
+  - label: "Programação e revisão"
+    text: "Organização, depuração e implementação de código, escolhendo a linguagem e o ambiente conforme os requisitos do projeto."
   - label: "Análise de dados"
     text: "Tratamento de registros, cálculo de indicadores e visualizações para apoiar a interpretação técnica."
   - label: "Documentação técnica"

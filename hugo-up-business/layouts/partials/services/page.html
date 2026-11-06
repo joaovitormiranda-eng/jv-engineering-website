@@ -17,22 +17,49 @@
         </ol>
       </nav>
       <p class="mb-4 text-sm font-semibold text-blue-400">Atendimento remoto · Escopo definido para cada projeto</p>
-      <h1 class="mb-6 text-4xl font-extrabold leading-tight xl:text-6xl">{{ .Title }}</h1>
+      <h1 class="mb-6 text-4xl font-extrabold leading-tight xl:text-6xl">{{ .Params.heading | default .Title }}</h1>
       <p class="max-w-3xl text-lg leading-relaxed text-gray-300">{{ .Description }}</p>
       <div class="mt-6 max-w-3xl">
         {{ partial "shared/responsible.html" . }}
       </div>
       <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
         {{ with site.Params.social.whatsapp }}
-        {{ partial "components/button/primary" (dict "label" "Conversar sobre meu projeto" "href" .) }}
+        {{ partial "components/button/primary" (dict "label" "Descrever minha demanda" "href" .) }}
         {{ end }}
         <a class="text-blue-400 underline underline-offset-4 hover:text-white" href="#projetos">Ver exemplos técnicos</a>
       </div>
     </header>
 
     {{ if .IsSection }}
+    <section class="mx-auto mb-12 max-w-5xl" aria-labelledby="areas">
+      <h2 id="areas" tabindex="-1" class="mb-4 text-2xl font-bold">Comece pela natureza do problema</h2>
+      <p class="mb-6 leading-relaxed text-gray-300">Você pode apresentar uma demanda mesmo sem saber qual software utilizar. As áreas orientam a avaliação; a aceitação e os entregáveis dependem dos requisitos, da complexidade e das condições de execução.</p>
+      <nav aria-label="Áreas de suporte técnico" class="mb-8">
+        <ul class="flex flex-wrap gap-x-6 gap-y-3 text-sm">
+          {{ range site.Data.services.areas }}
+          <li><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="#{{ .id }}">{{ .title }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+      <div class="grid gap-6 md:grid-cols-2">
+        {{ range site.Data.services.areas }}
+        <article class="rounded-2xl border border-gray-800 bg-[#111827] p-6">
+          <h3 id="{{ .id }}" tabindex="-1" class="mb-3 text-xl font-bold">{{ .title }}</h3>
+          <p class="mb-4 leading-relaxed text-gray-300">{{ .topics }}</p>
+          <p class="text-sm leading-relaxed text-gray-300"><strong class="text-white">Para avaliar o pedido:</strong> {{ .inputs }}</p>
+          {{ $areaTitle := .title }}
+          {{ with site.Params.social.whatsapp }}
+          <a class="mt-4 inline-block font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Conversar sobre {{ $areaTitle }} pelo WhatsApp">Conversar sobre esta área</a>
+          {{ end }}
+        </article>
+        {{ end }}
+      </div>
+      <p class="mt-6 leading-relaxed text-gray-300">Não encontrou uma categoria exata? Descreva o problema e os materiais disponíveis. A avaliação pode indicar um escopo viável, pedir mais informações ou esclarecer que a demanda não pode ser assumida.</p>
+    </section>
+
     <section class="mx-auto mb-12 max-w-5xl" aria-labelledby="ofertas">
-      <h2 id="ofertas" class="mb-6 text-2xl font-bold">Escolha o apoio técnico para sua demanda</h2>
+      <h2 id="ofertas" class="mb-4 text-2xl font-bold">Serviços especializados com exemplos publicados</h2>
+      <p class="mb-6 leading-relaxed text-gray-300">Se a demanda envolve MATLAB ou Python, estas páginas detalham o escopo e apresentam estudos relacionados. São especialidades dentro da atuação multidisciplinar, não as únicas demandas que podem ser avaliadas.</p>
       <div class="grid gap-6 md:grid-cols-2">
         {{ range .RegularPages.ByWeight }}
         <article class="flex h-full flex-col rounded-2xl border border-gray-800 bg-[#111827] p-6">
@@ -50,10 +77,10 @@
     </div>
 
     <section class="mx-auto mt-12 max-w-5xl rounded-2xl border border-gray-800 bg-[#111827] p-6" aria-labelledby="conversar">
-      <h2 id="conversar" class="mb-3 text-2xl font-bold">Vamos definir o escopo do seu projeto?</h2>
+      <h2 id="conversar" class="mb-3 text-2xl font-bold">Vamos avaliar sua demanda técnica?</h2>
       <p class="mb-6 max-w-3xl leading-relaxed text-gray-300">Conte o objetivo, os materiais disponíveis e o tipo de apoio que procura. A conversa inicial ajuda a avaliar a viabilidade e os próximos passos.</p>
       {{ with site.Params.social.whatsapp }}
-      {{ partial "components/button/primary" (dict "label" "Conversar sobre meu projeto" "href" .) }}
+      {{ partial "components/button/primary" (dict "label" "Descrever minha demanda" "href" .) }}
       {{ end }}
     </section>
   </div>

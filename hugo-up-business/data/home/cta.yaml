@@ -1,8 +1,8 @@
 enable: true
 
-title: "Eleve o rigor técnico dos seus projetos"
+title: "Conte qual é o seu desafio técnico"
 
-text: "Apoio técnico em **programação científica, simulação computacional e análise de dados**. Da formulação do problema à interpretação dos resultados, desenvolvemos modelos, código e documentação conforme o escopo combinado."
+text: "Uma dúvida em circuitos, um código que não funciona ou um projeto com sensores? Apresente o contexto, o que já possui e onde precisa de apoio. Avaliamos a demanda para definir orientação, revisão ou desenvolvimento técnico com escopo claro."
 
 image: "images/brand/logo-full-white.svg"
 
@@ -12,5 +12,5 @@ button:
 
 checklist:
   - "Escopo definido"
-  - "Rigor Acadêmico"
+  - "Métodos explicados"
   - "Métodos documentados"

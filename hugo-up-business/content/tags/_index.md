@@ -1,4 +1,4 @@
 ---
 title: "Tecnologias e áreas dos projetos"
-description: "Encontre estudos técnicos por ferramenta, método ou área de engenharia. Cada termo leva aos projetos publicados e às suas condições de análise."
+description: "Explore as ferramentas e os métodos dos estudos publicados. Estes termos organizam o portfólio e não delimitam todas as áreas de suporte da JV Engineering."
 ---

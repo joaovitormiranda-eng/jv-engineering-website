@@ -37,6 +37,10 @@
     </nav>
     {{ end }}
 
+    {{ with site.GetPage "/servicos" }}
+    <p class="mt-6 text-sm"><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">Outras demandas? Conheça as áreas de suporte técnico</a></p>
+    {{ end }}
+
     <div class="pt-16 pb-8">{{ partial "pagination.html" . }}</div>
   </div>
 </section>

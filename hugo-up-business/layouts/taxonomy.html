@@ -12,6 +12,10 @@
     </p>
     {{ end }}
 
+    {{ with site.GetPage "/servicos" }}
+    <p class="mb-8 text-center text-sm"><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">Conhecer todas as áreas de suporte técnico</a></p>
+    {{ end }}
+
     <ul class="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2 xl:grid-cols-3">
       {{/* Keep the existing page/1 alias and list every term on one page. */}}
       {{ $terms := .Pages.ByTitle }}
