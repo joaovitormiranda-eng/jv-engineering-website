@@ -1,7 +1,7 @@
 ---
 title: "Modelagem de Incertezas com Lógica Nebulosa (Fuzzy) em MATLAB/Octave"
 date: 2026-08-04
-lastmod: 2026-11-04
+lastmod: 2026-11-05
 service: "/servicos/matlab"
 draft: false
 catalog_image:
@@ -9,7 +9,7 @@ catalog_image:
   alt: "Mapa de contorno da gorjeta estimada pelo sistema Fuzzy, em função das avaliações de comida e serviço de zero a dez, com escala de cores em porcentagem."
   caption: "Inferência Fuzzy · mapa de contorno da gorjeta"
 slug: "solucoes-computacionais"
-description: "Desenvolvimento, validação e execução de sistemas especialistas baseados em Lógica Fuzzy para automação de controle, análise de superfícies de resposta e tomada de decisão não-linear em Engenharia."
+description: "Exemplo didático de inferência Fuzzy Mamdani em MATLAB e GNU Octave para estimar gorjetas, com regras e superfícies de resposta documentadas."
 categories:
   - "Algoritmos"
   - "Métodos Numéricos"

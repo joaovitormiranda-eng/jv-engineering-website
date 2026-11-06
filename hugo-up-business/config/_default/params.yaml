@@ -1,11 +1,15 @@
 title: "JV Engineering"
 
-description: "Consultoria em Engenharia, Simulação Computacional e Modelagem Matemática. Modelos, programação científica e análise de dados para apoiar projetos e decisões técnicas em áreas STEM."
+description: "Programação científica, simulação computacional e análise de dados com MATLAB, GNU Octave e Python. Apoio técnico com exemplos documentados e escopo definido."
 
 images:
   - "images/logo.png"
 
 logo: "logo.png"
+
+professional:
+  name: "João Vitor Miranda Sousa"
+  education: "Graduando em Engenharia Elétrica na USP"
 
 favicons:
   themeColor: "#0F172A"

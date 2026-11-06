@@ -1,7 +1,7 @@
 ---
 title: "Filtragem Digital e Processamento de Sinais com MATLAB"
 date: 2026-07-28
-lastmod: 2026-11-04
+lastmod: 2026-11-05
 service: "/servicos/matlab"
 draft: false
 catalog_image:
@@ -10,7 +10,7 @@ catalog_image:
   caption: "Espectro do sinal de entrada · frequência em Hz"
 slug: "modelagem-simulacao"
 url: "/portfolio/modelagem-simulacao/"
-description: "Desenvolvimento, simulação e validação experimental de uma solução computacional em MATLAB para remoção de ruídos via Filtro IIR Butterworth e análise espectral por FFT."
+description: "Estudo computacional em MATLAB com filtro IIR Butterworth, FFT e comparação de sinais, com parâmetros e limites da simulação documentados."
 categories:
   - "Modelagem e Simulação"
   - "Engenharia Elétrica"
