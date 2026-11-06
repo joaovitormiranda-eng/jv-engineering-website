@@ -85,6 +85,7 @@
     {{ partial "shared/header" . }}
     <main id="main-content" class="grow" tabindex="-1">{{ block "main" . }}{{ end }}</main>
     {{ partial "shared/footer" . }}
+    {{ partial "analytics/consent.html" . }}
   </div>
 </body>
 

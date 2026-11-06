@@ -88,6 +88,9 @@
           </li>
           {{ end }}
         </ul>
+        {{ if (partial "analytics/config.html" .).active }}
+        <button type="button" class="analytics-preferences" data-analytics-preferences aria-controls="analytics-consent" aria-expanded="false" hidden>Preferências de privacidade</button>
+        {{ end }}
       </div>
 
       <!-- COLUNA 3: LOCALIZAÇÃO -->

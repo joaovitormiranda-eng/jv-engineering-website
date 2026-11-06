@@ -1,0 +1,5 @@
+{{ if (partial "analytics/config.html" .Page).active }}
+<p><strong>Analytics está disponível somente após consentimento.</strong> Você pode aceitar, recusar ou rever a escolha no controle do rodapé.</p>
+{{ else }}
+<p><strong>Analytics está desativado nesta versão do site.</strong> Nenhuma tag GA4 é carregada e não há banner de consentimento analítico. A medição está desabilitada na configuração do site; as informações abaixo descrevem seu funcionamento quando habilitada e autorizada.</p>
+{{ end }}

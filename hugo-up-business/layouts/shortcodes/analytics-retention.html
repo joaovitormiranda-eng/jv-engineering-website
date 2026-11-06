@@ -1,0 +1,6 @@
+{{ $a := partial "analytics/config.html" .Page }}
+{{ if in (slice 2 14) (int $a.retention) }}
+<p>A configuração declarada para retenção dos dados de eventos no GA4 é de {{ $a.retention }} meses, a ser mantida em correspondência com a propriedade pelo responsável. Esse prazo não equivale à duração dos cookies nem determina o prazo de todos os relatórios agregados.</p>
+{{ else }}
+<p>O prazo de retenção efetivamente configurado na propriedade GA4 ainda precisa ser confirmado pelo responsável antes da ativação da coleta. Não apresentamos um prazo presumido como se já estivesse configurado na conta.</p>
+{{ end }}

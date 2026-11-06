@@ -52,3 +52,7 @@ footer:
   - name: "Catálogo de projetos"
     pageRef: "/portfolio"
     weight: 6
+
+  - name: "Privacidade"
+    pageRef: "/privacidade"
+    weight: 7
