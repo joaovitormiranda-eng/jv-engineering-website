@@ -4,8 +4,7 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
+permissions: {}
 
 concurrency:
   group: ci-pr-${{ github.event.pull_request.number }}
@@ -21,26 +20,30 @@ jobs:
     name: Build Hugo
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: read
     env:
-      HUGO_VERSION: 0.164.0
       HUGO_ENVIRONMENT: production
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-          submodules: recursive
-          fetch-depth: 0
+          fetch-depth: 1
+
+      - name: Test supply-chain safeguards
+        working-directory: .
+        run: python3 .github/scripts/test-supply-chain.py
 
       - name: Install Hugo CLI
-        run: |
-          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+        working-directory: .
+        run: bash .github/scripts/install-hugo.sh
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '24.18.0'
+          package-manager-cache: false
 
       - name: Install Node dependencies
         run: npm ci --include=dev --ignore-scripts
@@ -53,18 +56,5 @@ jobs:
             --baseURL="https://joaovitormiranda-eng.github.io/jv-engineering-website/"
 
       - name: Verify build output
-        run: |
-          for file in public/index.html public/portfolio/index.html public/sitemap.xml; do
-            if [ ! -s "$file" ]; then
-              echo "::error::Build output missing or empty: $file"
-              exit 1
-            fi
-          done
-          if [ -z "$(find public/css -type f -name 'styles.*.css' -size +0c -print -quit)" ]; then
-            echo "::error::Compiled Tailwind CSS missing or empty"
-            exit 1
-          fi
-          if [ -z "$(find public/js -type f -name '*.js' -size +0c -print -quit)" ]; then
-            echo "::error::Compiled JavaScript missing or empty"
-            exit 1
-          fi
+        working-directory: .
+        run: python3 .github/scripts/verify-build.py hugo-up-business/public --manifest "$RUNNER_TEMP/site-manifest.json"
