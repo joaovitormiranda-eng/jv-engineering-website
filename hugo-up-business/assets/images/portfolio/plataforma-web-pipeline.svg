@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1080" viewBox="0 0 1440 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Fluxo de validação e publicação da JV Engineering</title>
+  <desc id="desc">Um Pull Request para main executa o CI de build Hugo, sem deploy. Após revisão humana e merge, o push em main executa build, upload do artefato e deploy no GitHub Pages.</desc>
+  <rect width="1440" height="1080" fill="#0a0f1d"/>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="720" y="98" fill="#ffffff" font-size="64" font-weight="700">Validar antes de publicar</text>
+    <text x="720" y="152" fill="#cbd5e1" font-size="28">Arquitetura documental do próprio site</text>
+    <g fill="#111827" stroke="#3b82f6" stroke-width="3">
+      <rect x="100" y="216" width="1240" height="154" rx="22"/>
+      <rect x="100" y="446" width="1240" height="154" rx="22"/>
+      <rect x="100" y="676" width="1240" height="206" rx="22"/>
+    </g>
+    <g fill="#ffffff" font-size="56" font-weight="700">
+      <text x="720" y="276">Pull Request para main</text>
+      <text x="720" y="506">Revisão humana e merge</text>
+      <text x="720" y="736">Publicação pelo push em main</text>
+    </g>
+    <g fill="#cbd5e1" font-size="30">
+      <text x="720" y="328">CI: npm ci → build Hugo → conferir saídas</text>
+      <text x="720" y="558">A validação do PR não faz deploy</text>
+      <text x="720" y="790">Build → artefato → GitHub Pages</text>
+      <text x="720" y="840">Permissões de publicação no job de deploy</text>
+    </g>
+    <g stroke="#7dd3fc" stroke-width="6" fill="none">
+      <path d="M720 384v44m-14-15 14 15 14-15"/>
+      <path d="M720 614v44m-14-15 14 15 14-15"/>
+    </g>
+    <text x="720" y="962" fill="#93c5fd" font-size="30">Hugo · Tailwind CSS · JavaScript · GitHub Actions</text>
+    <text x="720" y="1014" fill="#cbd5e1" font-size="25">Diagrama baseado nos workflows; não é medição de desempenho.</text>
+  </g>
+</svg>

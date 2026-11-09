@@ -5,12 +5,18 @@
         {{ with .Params.catalog_image }}
         {{ $source := resources.Get .src }}
         {{ if not $source }}{{ errorf "Portfolio image not found: %s" .src }}{{ end }}
+        {{ $format := "png" }}
+        {{ if eq .format "webp" }}{{ $format = "webp q90" }}{{ end }}
         {{ $largest := $source }}
-        {{ if gt $source.Width 1440 }}{{ $largest = $source.Resize "1440x png" }}{{ end }}
+        {{ if gt $source.Width 1440 }}
+          {{ $largest = $source.Resize (printf "1440x %s" $format) }}
+        {{ else if eq .format "webp" }}
+          {{ $largest = $source.Resize (printf "%dx %s" $source.Width $format) }}
+        {{ end }}
         {{ $srcset := slice }}
         {{ range slice 320 400 640 800 1200 }}
           {{ if lt . $largest.Width }}
-            {{ $image := $source.Resize (printf "%dx png" .) }}
+            {{ $image := $source.Resize (printf "%dx %s" . $format) }}
             {{ $srcset = $srcset | append (printf "%s %dw" $image.RelPermalink $image.Width) }}
           {{ end }}
         {{ end }}

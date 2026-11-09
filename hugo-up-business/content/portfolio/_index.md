@@ -1,4 +1,4 @@
 ---
 title: "Portfólio de Projetos"
-description: "Estudos documentados de sinais, qualidade de energia e lógica Fuzzy. São exemplos técnicos específicos, não uma lista exaustiva das demandas que podem ser avaliadas."
+description: "Estudos documentados de sinais, energia, lógica Fuzzy e desenvolvimento de software. Exemplos técnicos específicos, com métodos, fontes e limites de aplicação."
 ---
