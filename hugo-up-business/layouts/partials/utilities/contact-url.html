@@ -1,0 +1,11 @@
+{{- /* Only the configured contact receives a static, non-sensitive message. */ -}}
+{{- $href := .href -}}
+{{- $authorized := site.Params.social.whatsapp -}}
+{{- $target := urls.Parse $href -}}
+{{- $contact := urls.Parse $authorized -}}
+{{- if and (eq $target.Scheme $contact.Scheme) (eq $target.Host $contact.Host) (eq $target.Path $contact.Path) -}}
+  {{- $context := .context | default "general" -}}
+  {{- $message := index site.Data.contact.messages $context | default site.Data.contact.messages.general -}}
+  {{- $href = printf "%s?%s" $authorized (querify "text" $message) -}}
+{{- end -}}
+{{- return $href -}}

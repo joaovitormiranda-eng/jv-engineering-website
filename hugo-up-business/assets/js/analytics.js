@@ -168,6 +168,7 @@ if (configNode) {
     else if (anchor.closest('#testimonials')) location = 'approach';
     else if (anchor.closest('main section > div > header')) location = 'service_intro';
     else if (anchor.closest('section[aria-labelledby="conversar"]')) location = 'service_end';
+    else if (anchor.dataset.contactLocation === 'service_area') location = 'service_area';
     else if (config.pageType === 'home') location = 'home_cta';
     const componentService = anchor.closest('[data-contact-service]')?.dataset.contactService;
     const service = ['matlab', 'python'].includes(componentService) ? componentService : config.serviceType;

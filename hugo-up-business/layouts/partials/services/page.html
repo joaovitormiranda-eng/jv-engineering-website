@@ -1,3 +1,8 @@
+{{ $contactContext := "general" }}
+{{ if not .IsSection }}
+  {{ if eq .File.ContentBaseName "matlab" }}{{ $contactContext = "matlab" }}{{ end }}
+  {{ if eq .File.ContentBaseName "python-engenharia" }}{{ $contactContext = "python" }}{{ end }}
+{{ end }}
 <section class="bg-[#0a0f1d] py-16 text-white">
   <div class="container mx-auto px-4">
     <header class="mx-auto mb-12 max-w-5xl">
@@ -24,10 +29,11 @@
       </div>
       <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
         {{ with site.Params.social.whatsapp }}
-        {{ partial "components/button/primary" (dict "label" "Descrever minha demanda" "href" .) }}
+        {{ partial "components/button/primary" (dict "label" "Descrever minha demanda" "href" . "contact_context" $contactContext) }}
         {{ end }}
         <a class="text-blue-400 underline underline-offset-4 hover:text-white" href="#projetos">Ver exemplos técnicos</a>
       </div>
+      <p class="mt-4 text-sm leading-relaxed text-gray-300">O WhatsApp abre com uma mensagem inicial que você pode editar antes de enviar. Não precisa escolher uma ferramenta nem enviar arquivos para iniciar a conversa.</p>
     </header>
 
     {{ if .IsSection }}
@@ -48,8 +54,9 @@
           <p class="mb-4 leading-relaxed text-gray-300">{{ .topics }}</p>
           <p class="text-sm leading-relaxed text-gray-300"><strong class="text-white">Para avaliar o pedido:</strong> {{ .inputs }}</p>
           {{ $areaTitle := .title }}
+          {{ $areaID := .id }}
           {{ with site.Params.social.whatsapp }}
-          <a class="mt-4 inline-block font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Conversar sobre {{ $areaTitle }} pelo WhatsApp">Conversar sobre esta área</a>
+          <a class="mt-4 inline-flex min-h-11 items-center py-2 font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ partial "utilities/contact-url.html" (dict "href" . "context" $areaID) }}" target="_blank" rel="noopener noreferrer" data-contact-location="service_area" aria-label="Conversar sobre {{ $areaTitle }} pelo WhatsApp">Conversar sobre esta área</a>
           {{ end }}
         </article>
         {{ end }}
@@ -80,7 +87,7 @@
       <h2 id="conversar" class="mb-3 text-2xl font-bold">Vamos avaliar sua demanda técnica?</h2>
       <p class="mb-6 max-w-3xl leading-relaxed text-gray-300">Conte o objetivo, os materiais disponíveis e o tipo de apoio que procura. A conversa inicial ajuda a avaliar a viabilidade e os próximos passos.</p>
       {{ with site.Params.social.whatsapp }}
-      {{ partial "components/button/primary" (dict "label" "Descrever minha demanda" "href" .) }}
+      {{ partial "components/button/primary" (dict "label" "Descrever minha demanda" "href" . "contact_context" $contactContext) }}
       {{ end }}
     </section>
   </div>

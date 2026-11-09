@@ -171,9 +171,9 @@
         <div class="flex items-center justify-center gap-4 xl:justify-start">
           {{ range $i, $e := .buttons }}
             {{ if (eq $i 0) }}
-              {{ partial "components/button/primary" (dict "label" .label "href" .link) }}
+              {{ partial "components/button/primary" (dict "label" .label "href" .link "contact_context" $contactService) }}
             {{ else }}
-              {{ partial "components/button/outline" (dict "label" .label "href" .link) }}
+              {{ partial "components/button/outline" (dict "label" .label "href" .link "contact_context" $contactService) }}
             {{ end }}
           {{ end }}
         </div>

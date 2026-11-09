@@ -1,0 +1,9 @@
+messages:
+  general: "Olá! Gostaria de conversar sobre uma demanda técnica com a JV Engineering."
+  eletrica-eletronica: "Olá! Tenho uma demanda de Engenharia Elétrica ou Eletrônica e gostaria de avaliar o atendimento."
+  programacao-desenvolvimento: "Olá! Gostaria de avaliar uma demanda de programação ou desenvolvimento."
+  embarcados-automacao: "Olá! Gostaria de avaliar uma demanda de sistemas embarcados ou automação."
+  modelagem-controle-simulacao: "Olá! Gostaria de avaliar uma demanda de modelagem, controle ou simulação."
+  dados-matematica-documentacao: "Olá! Gostaria de avaliar uma demanda de dados, matemática ou documentação técnica."
+  matlab: "Olá! Gostaria de avaliar uma demanda envolvendo MATLAB."
+  python: "Olá! Gostaria de avaliar uma demanda envolvendo Python para engenharia ou análise de dados."
