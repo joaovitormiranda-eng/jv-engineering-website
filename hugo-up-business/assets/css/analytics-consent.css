@@ -14,4 +14,9 @@
 .analytics-actions button { background: #1f2937; color: #fff; border: 1px solid #9ca3af; border-radius: .5rem; padding: .6rem .8rem; cursor: pointer; }
 .analytics-actions button:hover { background: #374151; }
 .analytics-consent :focus-visible, .analytics-preferences:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
+/* Keep font swapping from moving the close button into an extra mobile row. */
+@media (max-width: 40rem) {
+  .analytics-actions { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .analytics-actions button { min-width: 0; min-height: 44px; }
+}
 @media (min-width: 80rem) { .analytics-preferences { margin-left: 0; } }
