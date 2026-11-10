@@ -18,7 +18,7 @@ build:
 
 module:
   hugo_version:
-    min: "0.147.8"
+    min: "0.169.0"
 
   imports:
     - path: github.com/writeonlycode/hugo-up-business
@@ -33,6 +33,18 @@ module:
 
 taxonomies:
   tags: "tags"
+
+# Hugo 0.169 keeps Node sandboxing enabled; permit only the required CLI
+# in addition to Hugo's default executable allowlist.
+security:
+  exec:
+    allow:
+      - '^(dart-)?sass$'
+      - '^go$'
+      - '^git$'
+      - '^node$'
+      - '^postcss$'
+      - '^tailwindcss$'
 
 # Suporte ao LaTeX (Goldmark Passthrough)
 markup:

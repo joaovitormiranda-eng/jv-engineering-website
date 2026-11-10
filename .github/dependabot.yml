@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /hugo-up-business
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    groups:
+      tailwind:
+        patterns:
+          - tailwindcss
+          - "@tailwindcss/*"
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 2

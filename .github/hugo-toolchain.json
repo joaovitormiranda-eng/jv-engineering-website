@@ -1,0 +1,6 @@
+{
+  "version": "0.169.0",
+  "linux_amd64_deb_sha256": "a20f7da84e0981bebbecc032cc87f0dda2049a844727720aab14e61ce416e5e9",
+  "release": "https://github.com/gohugoio/hugo/releases/tag/v0.169.0",
+  "checksums": "https://github.com/gohugoio/hugo/releases/download/v0.169.0/hugo_0.169.0_checksums.txt"
+}
