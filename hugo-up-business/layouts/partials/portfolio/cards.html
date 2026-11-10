@@ -5,15 +5,19 @@
         {{ with .Params.catalog_image }}
         {{ $source := resources.Get .src }}
         {{ if not $source }}{{ errorf "Portfolio image not found: %s" .src }}{{ end }}
+        {{ $vector := eq $source.MediaType.SubType "svg" }}
+        {{ $width := .width | default 792 }}
+        {{ $height := .height | default 468 }}
+        {{ $largest := $source }}
+        {{ $srcset := slice }}
+        {{ if not $vector }}
         {{ $format := "png" }}
         {{ if eq .format "webp" }}{{ $format = "webp q90" }}{{ end }}
-        {{ $largest := $source }}
         {{ if gt $source.Width 1440 }}
           {{ $largest = $source.Resize (printf "1440x %s" $format) }}
         {{ else if eq .format "webp" }}
           {{ $largest = $source.Resize (printf "%dx %s" $source.Width $format) }}
         {{ end }}
-        {{ $srcset := slice }}
         {{ range slice 320 400 640 800 1200 }}
           {{ if lt . $largest.Width }}
             {{ $image := $source.Resize (printf "%dx %s" . $format) }}
@@ -21,12 +25,15 @@
           {{ end }}
         {{ end }}
         {{ $srcset = $srcset | append (printf "%s %dw" $largest.RelPermalink $largest.Width) }}
+        {{ $width = $largest.Width }}
+        {{ $height = $largest.Height }}
+        {{ end }}
         <figure>
           {{/* Contain preserves the complete scientific figure; hover never scales it. */}}
           <div class="aspect-[4/3] w-full bg-[#080d16] p-3">
-            <img src="{{ $largest.RelPermalink }}" srcset="{{ delimit $srcset ", " }}"
+            <img src="{{ $largest.RelPermalink }}" {{ if not $vector }}srcset="{{ delimit $srcset ", " }}"{{ end }}
               sizes="(min-width: 80rem) calc((100vw - 10.875rem) / 3), (min-width: 48rem) calc((100vw - 7.25rem) / 2), calc(100vw - 3.625rem)"
-              width="{{ $largest.Width }}" height="{{ $largest.Height }}" alt="{{ .alt }}"
+              width="{{ $width }}" height="{{ $height }}" alt="{{ .alt }}"
               class="block h-full w-full object-contain" loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}" decoding="async" />
           </div>
           <figcaption class="border-b border-gray-800 px-4 py-3 text-xs leading-relaxed text-gray-300">{{ .caption }}</figcaption>

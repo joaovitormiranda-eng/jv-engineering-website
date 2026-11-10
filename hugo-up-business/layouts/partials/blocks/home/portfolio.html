@@ -81,32 +81,31 @@
               <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
               <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
               <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-              <span class="ml-2 text-xs text-slate-400 font-sans font-medium">data_pipeline.py</span>
+              <span class="ml-2 text-xs text-slate-400 font-sans font-medium">jv_qee</span>
             </div>
             <span class="text-[10px] text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 px-2 py-0.5 rounded font-sans">
-              Ilustrativo
+              Dados sintéticos
             </span>
           </div>
 
           <div class="p-5 space-y-2 text-slate-300 leading-relaxed overflow-x-auto bg-[#090d18]">
-            <p><span class="text-purple-400">import</span> pandas <span class="text-purple-400">as</span> pd</p>
-            <p><span class="text-purple-400">import</span> numpy <span class="text-purple-400">as</span> np</p>
+            <p><span class="text-purple-400">from</span> jv_qee.config <span class="text-purple-400">import</span> Config</p>
+            <p><span class="text-purple-400">from</span> jv_qee.generator <span class="text-purple-400">import</span> generate</p>
             <br>
-            <p><span class="text-slate-500"># Carregamento e limpeza de dados técnicos</span></p>
-            <p>df = pd.read_csv(<span class="text-green-400">'sensor_telemetry.csv'</span>)</p>
-            <p>clean_df = df.dropna().query(<span class="text-green-400">'voltage > 0.5'</span>)</p>
+            <p><span class="text-slate-400"># Modelo independente; sem medições reais</span></p>
+            <p>config = Config(</p>
+            <p class="pl-4">scenario=<span class="text-green-400">"S4"</span>, n=1008,</p>
+            <p class="pl-4">seed=746031</p>
+            <p>)</p>
+            <p>dados = generate(config)</p>
             <br>
-            <p><span class="text-slate-500"># Agrupamento para dashboard</span></p>
-            <p>summary = clean_df.groupby(<span class="text-green-400">'zone'</span>).agg({</p>
-            <p class="pl-4"><span class="text-green-400">'current'</span>: <span class="text-green-400">'mean'</span>,</p>
-            <p class="pl-4"><span class="text-green-400">'efficiency'</span>: <span class="text-green-400">'max'</span></p>
-            <p>})</p>
+            <p><span class="text-slate-400"># Fasores → indicadores → SVGs</span></p>
           </div>
           
           <div class="bg-[#080c16] px-4 py-3 border-t border-slate-800/80 font-mono text-[11px] space-y-1">
-             <p class="text-slate-400"><span class="text-yellow-400">~</span> python data_pipeline.py</p>
-             <p class="text-slate-300">INFO: Processando 1.2M registros...</p>
-             <p class="text-emerald-400">[SUCCESS] DataFrame exportado para BI. Eficiência máx: 98.2%</p>
+             <p class="text-slate-400"><span class="text-yellow-400">~</span> python -m jv_qee.cli suite --output resultados</p>
+             <p class="text-slate-300">9 cenários sintéticos documentados</p>
+             <p class="text-emerald-400">Avaliação normativa: not_assessed</p>
           </div>
         </div>
 

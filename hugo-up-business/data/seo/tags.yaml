@@ -1,10 +1,10 @@
 # Contextos extraídos exclusivamente dos três estudos publicados no portfólio.
 automação:
-  description: "Automação nos estudos do portfólio: processamento de dados elétricos em Python e inferência por regras Fuzzy em um exemplo didático."
+  description: "Automação nos estudos do portfólio: geração e análise de dados elétricos sintéticos em Python e inferência por regras Fuzzy em um exemplo didático."
 butterworth:
   description: "Filtro IIR Butterworth no estudo de sinais em MATLAB: parâmetros, resposta em frequência e comparação entre sinais de entrada e saída."
 etl:
-  description: "Extração, tratamento e organização de dados no pipeline de qualidade de energia em Python, com arquivos, indicadores e gráficos do caso estudado."
+  description: "Organização e validação de tabelas sintéticas no pipeline de qualidade de energia em Python, com exportação Excel, CSVs e indicadores reproduzíveis."
 fft:
   description: "Análise espectral por FFT no projeto de processamento de sinais em MATLAB, com comparação dos sinais no tempo e na frequência."
 filtros-digitais:
@@ -14,23 +14,23 @@ fuzzy-logic:
 gnu-octave:
   description: "GNU Octave no exemplo didático de inferência Fuzzy: regras Mamdani, estimativa de gorjetas e visualização da superfície de resposta."
 latex:
-  description: "LaTeX na documentação do pipeline de qualidade de energia: preparação de um relatório técnico a partir do processamento de dados em Python."
+  description: "LaTeX como referência de navegação histórica da documentação técnica. O estudo QEE sintético atual produz relatórios Markdown e não depende de LaTeX."
 matlab:
   description: "Estudos em MATLAB: filtragem digital com Butterworth e FFT, além de inferência Fuzzy Mamdani, com código, parâmetros e resultados documentados."
 matplotlib:
-  description: "Gráficos com Matplotlib no estudo de qualidade de energia em Python: curva de carga, fator de potência, energia e indicadores de harmônicas."
+  description: "Gráficos SVG com Matplotlib no estudo sintético de qualidade de energia: carga, fatores de potência, distorção, neutro e eventos programados."
 modelagem-matemática:
   description: "Modelagem matemática no exemplo didático de lógica Fuzzy: variáveis linguísticas, regras de inferência e estimativa de gorjetas em MATLAB e Octave."
 numpy:
-  description: "NumPy no processamento de dados elétricos em Python: operações numéricas e indicadores apresentados no estudo de qualidade de energia."
+  description: "NumPy no modelo elétrico sintético em Python: fasores RMS, harmônicos, potências, desequilíbrio e corrente de neutro com hipóteses explícitas."
 pandas:
-  description: "Pandas no pipeline de qualidade de energia em Python: leitura, organização e tratamento de tabelas para análise e documentação dos dados elétricos."
+  description: "Pandas no pipeline sintético de qualidade de energia: organização e validação de tabelas, intervalos temporais e exportação de resultados em Python."
 pds:
   description: "Processamento digital de sinais em MATLAB: filtro IIR Butterworth, FFT e comparação dos sinais, com parâmetros e limites do estudo documentados."
 python:
-  description: "Python aplicado a dados elétricos: pipeline com Pandas, NumPy e Matplotlib para tratamento de arquivos, indicadores e relatório de qualidade de energia."
+  description: "Python na simulação de qualidade de energia: dados sintéticos independentes, cálculos físicos, testes, Excel e SVGs com Pandas, NumPy e Matplotlib."
 qualidade-de-energia:
-  description: "Estudo computacional de qualidade de energia em Python: curva de carga, fator de potência e harmônicas, com contexto e limites da análise."
+  description: "Qualidade de energia em simulação Python: potências, energia, harmônicos, desequilíbrio e neutro, sem medições reais ou certificação normativa."
 sinais-e-sistemas:
   description: "Sinais e sistemas no estudo PDS em MATLAB: análise no tempo e na frequência e interpretação de um filtro IIR Butterworth."
 sistemas-especialistas:

@@ -1,15 +1,17 @@
 ---
-title: "Pipeline Automatizado em Python para Diagnóstico de Qualidade de Energia"
+title: "Qualidade de energia com dados sintéticos em Python"
 date: 2026-07-28
-lastmod: 2026-11-05
+lastmod: 2026-11-10
 service: "/servicos/python-engenharia"
 draft: false
 catalog_image:
-  src: "images/portfolio/qee-curva-carga.png"
-  alt: "Curva de carga do bloco analisado: potência ativa total em kW ao longo do período de medição, de 22 a 28 de maio."
-  caption: "Curva de carga · potência ativa em kW"
+  src: "images/portfolio/qee/03_carga.svg"
+  width: 792
+  height: 468
+  alt: "Simulação S1: perfil de potência ativa em degraus nas primeiras 48 horas, sem medições reais."
+  caption: "QEE sintético · perfil de carga simulado em Python"
 slug: "qualidade-energia"
-description: "Estudo de processamento de dados elétricos em Python com Pandas, NumPy e Matplotlib, incluindo gráficos e relatório do caso analisado."
+description: "Simulação trifásica em Python com dados sintéticos: potências, energia, harmônicos, desequilíbrio e corrente de neutro, com testes e gráficos SVG reproduzíveis."
 categories:
   - "Ciência de Dados"
   - "Engenharia Elétrica"
@@ -24,221 +26,131 @@ tags:
   - "Automação"
 ---
 
-<!-- METRICAS DE IMPACTO (KPI GRID) -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-8">
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-blue-400">1.666</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Amostras Temporais</span>
-  </div>
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-blue-400">51,39 kW</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Demanda de Pico</span>
-  </div>
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-emerald-400">0,949</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">FP Médio Global</span>
-  </div>
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-emerald-400">&lt; 3s</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Tempo de Pipeline</span>
-  </div>
-</div>
+**Os dados e resultados deste estudo são sintéticos e foram gerados por simulação computacional. Não representam medições de instalações reais nem certificação de conformidade normativa.**
 
-<!-- CARD DO REPOSITORIO GITHUB -->
-<div class="my-8 p-4 rounded-xl bg-[#111827] border border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-  <div class="flex items-center gap-3">
-    <div class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20">
-      <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-    </div>
-    <div>
-      <h4 class="text-white font-bold text-sm mb-0.5">Código-Fonte do Projeto</h4>
-      <p class="text-gray-400 text-xs m-0">Acesse a arquitetura completa em Python, scripts ETL e gerador LaTeX no GitHub.</p>
-    </div>
-  </div>
-  <a href="https://github.com/joaovitormiranda-eng/analise-qee-python" target="_blank" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
-    Ver Repositório no GitHub →
-  </a>
-</div>
+## Problema e objetivo
 
----
+Como conferir um cálculo de qualidade da energia quando se conhecem as grandezas que o originaram? Este projeto próprio usa um modelo elétrico explícito para gerar entradas controladas, processar indicadores e comparar os resultados com oráculos físicos e matemáticos.
 
-### 📋 Ficha Técnica (Project Charter)
+A implementação computacional é funcional: gera dados, valida tabelas, exporta Excel, produz relatórios e desenha gráficos vetoriais. Os cenários elétricos são simulações didáticas independentes. Nenhuma amostra, distribuição ajustada, evento ou conclusão numérica da antiga base de medições é utilizada na nova geração.
 
-| Parâmetro | Especificação / Tecnologias |
-| :--- | :--- |
-| **Domínio de Aplicação** | Qualidade da Energia Elétrica (QEE), Eficiência & Data Analytics |
-| **Abordagem Técnica** | Engenharia de Dados & Diagnóstico de Ativos |
-| **Ferramentas Computacionais** | Python, Pandas, NumPy, Matplotlib, OpenPyXL, Engine TeX |
-| **Arquitetura da Solução** | Pipeline ETL Modular + Audit Normativo (PRODIST/ANEEL) + Report Engine |
-| **Métricas Avaliadas** | Perfil de Demanda, Fator de Potência, THD<sub>V</sub>, THD<sub>I</sub>, Harmônicas Triplen |
+O estudo demonstra programação científica, modelagem, processamento de dados e documentação. Não é um case contratado nem um diagnóstico de instalação.
 
----
+## Pipeline Python e reprodução
 
-## 01. Contexto & Desafio Técnico (Business Case)
+O pacote modular `src/jv_qee/` separa configuração, fasores e cálculos físicos, geração sintética, indicadores, validação, exportação e visualização. NumPy sustenta as operações numéricas, Pandas organiza as tabelas, openpyxl trata XLSX e Matplotlib gera os SVGs estáticos.
 
-Campanhas industriais e prediais de monitoramento de Qualidade de Energia Elétrica (QEE) geram dezenas de milhares de registros em séries temporais. Tradicionalmente, esses relatórios são consolidados de forma manual em planilhas eletrônicas — um fluxo moroso, propenso a falhas de digitação e ineficiente para auditorias normativas rápidas.
+1. **Configurar:** escolher cenário, semente, número de intervalos e parâmetros elétricos.
+2. **Gerar:** construir tensões e correntes coerentes com o modelo e segmentar mudanças programadas.
+3. **Calcular e conferir:** derivar potências, energia e indicadores; recusar entradas inválidas explicitamente.
+4. **Exportar:** reunir metadados, parâmetros, tabelas, validações e referências em `QEE_DADOS_SINTETICOS.xlsx`, além de CSVs, relatório Markdown e manifesto de proveniência.
+5. **Visualizar:** produzir 12 figuras SVG; cinco estão apresentadas abaixo. O site publica somente arquivos estáticos, sem executar Python no navegador.
 
-O objetivo deste projeto consistiu no desenvolvimento de uma **arquitetura de software automatizada em Python** capaz de receber logs brutos de analisadores de energia trifásicos, sanitizar inconsistências temporais, calcular grandezas fundamentais e gerar relatórios de análise em **menos de 3 segundos**.
+| Parâmetro padrão | Valor definido para a simulação |
+| --- | --- |
+| Sistema | Trifásico, quatro fios, sequência ABC e neutro ideal |
+| Tensão nominal linha–linha | 380 V RMS |
+| Frequência nominal | 60 Hz |
+| Corrente fundamental de referência | 20 A por fase |
+| Fator de deslocamento de referência | 0,95 indutivo |
+| Série semanal | 1.008 intervalos de 600 s, total de 168 h |
+| Semente | 746031 |
+| Formas de onda | Janelas curtas a 15.360 Hz; não uma semana inteira nessa taxa |
+| Avaliação normativa | `normative_assessment = not_assessed` |
 
-**Escopo dos indicadores:** As medições elétricas referem-se ao estudo de caso descrito no repositório. O tempo de execução e o ganho de produtividade são indicadores informados do projeto, dependentes da base de dados, das etapas incluídas e do ambiente de execução; não representam uma garantia para outras aplicações. As referências normativas orientam a análise computacional do estudo e não equivalem a um laudo de conformidade da instalação.
+Esses parâmetros são escolhas do modelo, não características atribuídas a uma instalação real. A duração dos intervalos pode ser configurada e as fronteiras dos eventos são tratadas antes da agregação.
 
-> **Arquitetura do Fluxo de Valor:** Arquivo Bruto (.xlsx) ➔ Ingestão & Sanitização ETL ➔ Motor Analytics Vetorial ➔ Dashboards Executivos + Relatório TeX Auto-Gerado
+## Cenários elétricos controlados
 
-### Modelagem Matemática do Pipeline
+| Cenário | Fenômeno modelado |
+| --- | --- |
+| S0 | Referência nominal equilibrada |
+| S1 | Perfil periódico e degrau de carga |
+| S2 / S3 | Cargas indutiva e capacitiva, com sinais distintos de Q₁ |
+| S4 | Harmônicos prescritos de tensão e corrente |
+| S4b | Harmônicos triplos e soma das correntes no neutro |
+| S5 | Desequilíbrio de tensão por componentes simétricas |
+| S6 | Afundamento, elevação e interrupção sintéticos programados |
+| S7 | Frequência variável definida pela fase analítica conhecida |
 
-O pipeline executa o cálculo vetorial contínuo da série temporal (**1.666 amostras** ao longo de **138,75 horas** de medição contínua) para derivar as grandezas elétricas fundamentais da instalação:
+São nove cenários válidos. S8 reúne entradas artificiais inválidas para testes, não uma campanha de medição. S7 não é um estimador certificado de frequência.
 
-<!-- CARD ESTILIZADO DE EQUAÇÕES MATEMÁTICAS -->
-<div class="my-6 p-6 rounded-xl bg-[#111827] border border-gray-800 font-mono text-sm md:text-base text-gray-200 shadow-inner space-y-4 text-center">
-  <div>
-    <span class="text-blue-400 font-bold">Potência Aparente:</span> <i>S</i>(<i>t</i>) = &radic;<span class="border-t border-gray-300"><i>P</i>(<i>t</i>)<sup>2</sup> + <i>Q</i>(<i>t</i>)<sup>2</sup></span>
-  </div>
-  <div>
-    <span class="text-amber-400 font-bold">Fator de Potência Real:</span> <i>FP</i>(<i>t</i>) = <i>P</i>(<i>t</i>) / <i>S</i>(<i>t</i>)
-  </div>
-  <div>
-    <span class="text-purple-400 font-bold">Distorção Harmônica:</span> <i>THD</i><sub>V</sub> = (&radic;&sum; <i>V</i><sub>n</sub><sup>2</sup> / <i>V</i><sub>1</sub>) &times; 100%
-  </div>
-  <div class="pt-3 border-t border-gray-800 max-w-md mx-auto">
-    <span class="text-emerald-400 font-bold">Dimensionamento Capacitivo:</span> <i>Q</i><sub>c</sub> = <i>P</i><sub>pico</sub> &times; (tan &phi;<sub>1</sub> &minus; tan &phi;<sub>2</sub>)
-  </div>
-</div>
+## Grandezas e verificações físicas
 
----
+As tensões e correntes são representadas por **fasores RMS complexos por fase e ordem harmônica**. As potências são derivadas dessas grandezas, sem inventar P, Q, S e fator de potência separadamente:
 
-## 02. Arquitetura e Engenharia da Solução
+- **Potência ativa:** soma de Re(Vₕ Iₕ*) por fase e ordem.
+- **Potência reativa fundamental Q₁:** soma de Im(V₁ I₁*); positiva no caso indutivo e negativa no capacitivo.
+- **Potência aparente SΣ:** soma de Vᵣₘₛ Iᵣₘₛ das fases. Não é a potência aparente efetiva da IEEE 1459.
+- **Fator de potência verdadeiro:** P/SΣ. O fator de deslocamento fundamental DPF₁ considera somente a fundamental; eles podem diferir sob distorção.
+- **THD:** razão entre a raiz da soma dos quadrados das componentes harmônicas e a fundamental, calculada separadamente para tensão e corrente.
+- **Desequilíbrio:** 100 |V⁻|/|V⁺|, com componentes simétricas fundamentais.
+- **Neutro:** soma fasorial das correntes por ordem, seguida da composição RMS; harmônicos triplos podem somar em vez de se cancelar.
+- **Energia:** soma de P médio × duração explícita dos intervalos, com conversão para kWh e indicação de cobertura e lacunas.
 
-Para assegurar reprodutibilidade, alto desempenho e padrões de engenharia corporativa, a solução foi componentizada em quatro pilares funcionais:
+Sob distorção, **P² + Q₁² = SΣ² não é uma identidade geral**. A média de fatores de potência também não substitui a agregação das grandezas físicas.
 
-* **Ingestão ETL & Sanitização Temporal:** Parser de planilhas complexas com eliminação dinâmica de colunas nulas (*ghost columns*) e conversão computacional do formato de data serial do Excel (`origin="1899-12-30"`) para objetos `datetime` padronizados no padrão ISO.
-* **Motor Analytics Vetorial & Audit Normativo:** Vetorização de cálculos estatísticos diários e globais via NumPy/Pandas, varredura de Afundamentos Momentâneos de Tensão (VTCDs) e verificação estrita de *compliance* com o **Módulo 8 do PRODIST (ANEEL)**.
-* **Engine de Visualização Executiva:** Exportação automatizada dos gráficos operacionais de alta resolução (**250 DPI**) com parâmetros estéticos padronizados para compor documentações técnicas.
-* **Motor de Reporting TeX Automatizado:** Geração autônoma de tabelas normativas em sintaxe nativa `.tex`, convertendo separadores decimais para a norma brasileira (vírgula) para imediata compilação de relatórios.
+A suíte do repositório verifica oráculos analíticos, RMS e formas de onda, sinais de Q₁, integração temporal e fronteiras, THD, neutro, desequilíbrio, entradas inválidas, determinismo e ida e volta pelo Excel. Os resultados e os comandos são consultáveis na [documentação de testes da versão integrada](https://github.com/joaovitormiranda-eng/analise-qee-python/blob/96cf14a3d56e1266d795563c3233d6d7907f44de/docs/testing.md).
 
----
+## Cinco exemplos de resultados sintéticos
 
-## 03. Verificação, Validação & Diagnóstico Executivo (V&V)
+As figuras mantêm os eixos, unidades, cenários e avisos do repositório científico. Cada uma pode ser aberta em tamanho original para inspeção e zoom.
 
-### 🔹 Perfil Temporal de Demanda e Curva de Carga
-A curva de carga evidencia o perfil operacional da instalação. Registrou-se um consumo de base (*baseload*) entre **3 kW** e **5 kW** nos finais de semana e picos operacionais estruturados durante os dias úteis, atingindo a **demanda máxima de 51,39 kW** no dia 22/05 às 15:21.
+### Perfil de carga e integração temporal
 
-<!-- PAINEL INTERATIVO - FIGURA 1 -->
-<div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/qee/curvacarga.png" width="3300" height="1350" loading="lazy" decoding="async" alt="Curva de Carga do Bloco" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
-    Figura 1: Curva de Carga temporal com registro da demanda máxima de 51,39 kW e consumo total de 1.507,71 kWh no período.
-  </p>
-</div>
+Em S1, a corrente acompanha um perfil periódico com retenção de ordem zero e um degrau de 20% em 12 h; a tensão permanece rígida. O perfil tem duas oscilações por dia e não foi ajustado a consumo real. Na configuração semanal padrão, a energia integrada é aproximadamente **1.992,862 kWh**, resultado da simulação, sem estimativa de economia.
 
----
+{{< qee-figure file="03_carga.svg" number="1" alt="Cenário S1: potência ativa em kW versus tempo em horas, com perfil em degraus e mudança de carga em 12 horas." caption="Figura 1 — Perfil sintético S1 nas primeiras 48 h. Os degraus representam o modelo segmentado; a energia é integrada sobre os intervalos explícitos, não estimada pela aparência da curva." >}}
 
-### 🔹 Eficiência Energética e Fator de Potência
-Apesar do Fator de Potência médio global figurar em **0,949**, o monitoramento contínuo identificou **298 registros em inconformidade regulatória (< 0,92)**, concentrados majoritariamente em períodos de madrugada e horários de baixa solicitação de carga.
+### Fator de potência e fator de deslocamento
 
-Para adequar o sistema no ponto de demanda máxima (**P = 51,39 kW**, **FP<sub>1</sub> = 0,934**), o algoritmo dimensionou pontualmente um **banco de capacitores de 2,85 kvar** para atingir a meta operacional de **FP<sub>2</sub> = 0,95**, otimizando a alocação de CAPEX.
+O sinal de Q₁ diferencia o comportamento indutivo do capacitivo. Em S4, os harmônicos fazem o fator de potência verdadeiro diferir do deslocamento fundamental; um único número de FP não caracteriza todas as condições elétricas.
 
-<!-- PAINEL INTERATIVO - FIGURA 2 -->
-<div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/qee/fatorpotencia.png" width="3300" height="1350" loading="lazy" decoding="async" alt="Fator de Potência ao Longo da Medição" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
-    Figura 2: Monitoramento contínuo do FP com linhas de referência normativas (0,92 regulatório e 0,95 meta).
-  </p>
-</div>
+Na comparação agregada, os marcadores mostram a razão ∫P dt / ∫SΣ dt e a média temporal de DPF₁ em cada cenário. Essas agregações têm definições diferentes e não devem ser interpretadas como grandezas de faturamento.
 
----
+{{< qee-figure file="06_fp.svg" number="2" alt="Comparação discreta da razão entre integrais de P e SΣ e da média temporal de DPF fundamental nos nove cenários sintéticos." caption="Figura 2 — Razão ∫P dt / ∫SΣ dt e média temporal de DPF₁ por cenário. Os pontos representam condições sintéticas distintas, sem linha de limite regulatório ou conclusão de faturamento." >}}
 
-### 🔹 Balanço Diário de Consumo Energético
-A consolidação vetorial agrupada por data permite mapear os dias de maior intensidade produtiva, destacando a terça-feira (26/05) como o pico de consumo acumulado do período (**422,12 kWh**).
+### Distorção harmônica
 
-<!-- PAINEL INTERATIVO - FIGURA 3 -->
-<div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/qee/energiadiaria.png" width="2700" height="1350" loading="lazy" decoding="async" alt="Energia Ativa Diária Estimada" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
-    Figura 3: Consumo de energia ativa diário acumulado (Total do período: 1.507,71 kWh).
-  </p>
-</div>
+Os coeficientes prescritos em S4 produzem, na fase A, **THDV ≈ 2,236%** e **THDI ≈ 14,422%**. São razões relativas a fundamentais diferentes. Calcular esses valores não demonstra conformidade normativa, TDD ou severidade em uma rede real.
 
----
+{{< qee-figure file="07_thd.svg" number="3" alt="Cenário S4: THD da fase A, aproximadamente 2,236% para tensão e 14,422% para corrente." caption="Figura 3 — Indicadores discretos de distorção calculados dos fasores harmônicos. O modelo não implementa avaliação normativa completa." >}}
 
-### 🔬 Diagnóstico Avançado de Qualidade de Onda (Deep-Dive Técnico)
-A auditoria de qualidade de onda apontou inconformidades regulatórias críticas. A linha de base da Distorção Harmônica Total de Tensão (**THD<sub>V</sub>**) permaneceu estabilizada em patamares próximos a **18%**, violando o limite máximo de **10%** fixado pelo Módulo 8 do PRODIST (ANEEL) para barramentos de baixa tensão. Adicionalmente, identificaram-se transientes severos de até **80%** na fase **V<sub>3</sub>**, correlacionados a um afundamento momentâneo de **147,20 V**.
+### Harmônicos triplos e corrente de neutro
 
-<!-- PAINEL INTERATIVO - FIGURA 4 -->
-<div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/qee/thdtensao.png" width="3300" height="1350" loading="lazy" decoding="async" alt="Distorção Harmônica Total de Tensão" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
-    Figura 4: THD<sub>V</sub> contínuo indicando não-conformidade com o padrão PRODIST/ANEEL (10%).
-  </p>
-</div>
+Em S4b, uma terceira harmônica de **3 A RMS por fase** produz **9 A RMS no neutro** pela soma em fase dessas componentes. O cancelamento das fundamentais equilibradas não implica cancelamento dos harmônicos triplos.
 
-A decomposição do espectro de corrente revelou a causa raiz do problema: expressiva contaminação por **9ª ordem (4,42 A)** e componentes de 3ª e 7ª ordens (a 3ª e a 9ª são harmônicas *triplen*; a 7ª não integra esse grupo), indicativo típico de desbalanceamento severo por cargas não lineares monofásicas e fontes chaveadas.
+{{< qee-figure file="09_neutro.svg" number="4" alt="Cenário S4b: formas de onda das correntes de fase e do neutro, em painéis com escalas próprias e tempo em milissegundos." caption="Figura 4 — Correntes sintéticas no sistema a quatro fios. Os painéis distinguem as correntes instantâneas das fases e do neutro; 9 A é o RMS do neutro, não seu pico." >}}
 
-<!-- PAINEL INTERATIVO - FIGURA 5 -->
-<div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
-  <img src="/images/portfolio/qee/harmonicascorrente.png" width="3300" height="1350" loading="lazy" decoding="async" alt="Componentes Harmônicas de Corrente" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
-    Figura 5: Espectro harmônico médio de corrente por fase com destaque para ordens ímpares triplen.
-  </p>
-</div>
+### Eventos programados e janela RMS
 
----
+S6 programa envelopes de **0,70 pu por 200 ms**, **1,15 pu por 300 ms** e **0,01 pu por 500 ms**. A tensão e a corrente são escaladas juntas, em um exercício de admitância constante. A curva RMS de um ciclo suaviza as fronteiras em relação ao envelope programado.
 
-## 04. Entregáveis de Processo e Impacto (ROI Técnico & Financeiro)
+{{< qee-figure file="10_eventos.svg" number="5" alt="Cenário S6: envelope programado e tensão RMS móvel de um ciclo versus tempo em segundos, incluindo redução, elevação e interrupção sintéticas." caption="Figura 5 — Comparação entre eventos conhecidos e resposta da janela RMS. Não é um detector normativo certificado nem uma reprodução de ocorrências reais." >}}
 
-* **Ganho de Eficiência Operacional:** Redução do tempo de processamento de relatórios de horas para **menos de 3 segundos** (ganho de produtividade superior a 98%).
-* **Estimativa de Compensação Reativa:** O dimensionamento informado (**Q<sub>c</sub> = 2,85 kvar**) pertence ao estudo computacional. Sua aplicação depende da avaliação técnica da instalação; não há comprovação apresentada de investimento realizado ou economia financeira obtida.
-* **Análise de Ocorrências:** O estudo informa 298 ocorrências de FP excedente. Esse mapeamento não comprova implantação de acionamentos automáticos nem redução efetiva de penalidades.
-* **Auditabilidade e Reprodutibilidade:** Automação da geração de relatórios técnicos em código LaTeX, reduzindo a necessidade de transcrição manual.
+## Limitações e interpretação
 
----
+O modelo assume fonte rígida, neutro ideal e correntes prescritas. Não resolve impedância da rede, ressonância, saturação, instrumentação ou transitórios eletromagnéticos. A agregação harmônica de segmentos não equivale à FFT integral de uma janela contendo transientes.
 
-## 05. Implementação Computacional (Core Code)
+Há verificações de energia e desequilíbrio no código e nas demais figuras, além das cinco selecionadas. O eventual exercício ideal de compensação reativa do repositório tem hipóteses restritas e **não dimensiona nem recomenda a instalação de bancos de capacitores**.
 
-O trecho de código abaixo destaca os métodos centrais de ingestão ETL, sanitização de timestamps legados do Excel e geração autônoma de relatórios formatados:
+A avaliação permanece **`not_assessed`**: não se afirmam conformidade PRODIST/IEC/IEEE, multas, diagnóstico de instalação, economia financeira, equivalência com instrumento certificado ou validação de medições históricas.
 
-```python
-# ==========================================================
-# PIPELINE DE QUALIDADE DE ENERGIA - ETL & REPORT AUTOMATION
-# Status: QA Aprovado | Target: Compliance PRODIST/ANEEL
-# ==========================================================
+## Código, documentação e proveniência
 
-import pandas as pd
-import numpy as np
+O [repositório QEE no GitHub](https://github.com/joaovitormiranda-eng/analise-qee-python) contém o código e as instruções atuais. Esta apresentação utiliza a [versão mesclada do PR #1](https://github.com/joaovitormiranda-eng/analise-qee-python/commit/96cf14a3d56e1266d795563c3233d6d7907f44de).
 
-def carregar_e_sanitizar(caminho_excel: str) -> pd.DataFrame:
-    """Carrega dados brutos, remove colunas fantasma e trata datas legadas."""
-    df = pd.read_excel(caminho_excel)
-    df = df.loc[:, ~df.columns.astype(str).str.startswith("Unnamed")]
-    
-    # Tratamento de data em formato serial do Excel (origin 1899-12-30)
-    if np.issubdtype(df["Time"].dtype, np.number):
-        df["DataHora"] = pd.to_datetime(df["Time"], unit="D", origin="1899-12-30")
-    else:
-        df["DataHora"] = pd.to_datetime(df["Time"], errors="coerce")
-        
-    return df.dropna(subset=["DataHora"]).sort_values("DataHora").reset_index(drop=True)
+Para reproduzir o pacote, siga as [instruções de ambiente e reprodução](https://github.com/joaovitormiranda-eng/analise-qee-python/blob/96cf14a3d56e1266d795563c3233d6d7907f44de/docs/reproduction.md): a CLI `python -m jv_qee.cli suite --output resultados` gera os nove cenários, a planilha, CSVs, manifesto, relatório e 12 SVGs. Use um diretório novo e as dependências fixadas. Determinismo numérico não significa identidade binária do arquivo XLSX.
 
-def exportar_tabela_latex(df_stats: pd.DataFrame, arquivo_saida: str):
-    """Gera bloco de código TeX com separador decimal PT-BR (vírgula)."""
-    linhas = [
-        "\\begin{tabular}{lrrr}", 
-        "\\hline", 
-        "Grandeza & Média & Mínimo & Máximo \\\\", 
-        "\\hline"
-    ]
-    for _, r in df_stats.iterrows():
-        med, mini, maxi = [f"{v:.2f}".replace('.', ',') for v in [r['Media'], r['Minimo'], r['Maximo']]]
-        linhas.append(f"{r['Grandeza']} & {med} & {mini} & {maxi} \\\\")
-    linhas.extend(["\\hline", "\\end{tabular}"])
-    
-    with open(arquivo_saida, "w", encoding="utf-8") as f:
-        f.write("\n".join(linhas))
-```
-## 06. Competências Demonstradas
+Referências metodológicas da versão integrada:
 
-* **Python & Engenharia de Software Aplicada:** Pipeline robusto e escalável.
-* **Tratamento e Análise Vetorial de Séries Temporais:** Alta performance via Pandas e NumPy.
-* **Visualização de Dados Executiva:** Geração de gráficos normativos via Matplotlib.
-* **Análise Normativa de Qualidade de Energia:** Rigor técnico fundamentado no PRODIST/ANEEL.
-* **Automação de Relatórios de Engenharia:** Conversão autônoma de dataframes para sintaxe nativa de LaTeX.
-* **Modelagem e Dimensionamento Elétrico de Ativos:** Adequação de fator de potência e projeto de capacitores.
+- [Modelo físico, hipóteses e integração temporal](https://github.com/joaovitormiranda-eng/analise-qee-python/blob/96cf14a3d56e1266d795563c3233d6d7907f44de/docs/methodology.md).
+- [Validação e oráculos de engenharia](https://github.com/joaovitormiranda-eng/analise-qee-python/blob/96cf14a3d56e1266d795563c3233d6d7907f44de/docs/validation.md).
+- [Cenários e parâmetros](https://github.com/joaovitormiranda-eng/analise-qee-python/blob/96cf14a3d56e1266d795563c3233d6d7907f44de/docs/scenarios.md).
+- [Critérios das figuras e acessibilidade vetorial](https://github.com/joaovitormiranda-eng/analise-qee-python/blob/96cf14a3d56e1266d795563c3233d6d7907f44de/docs/graphics.md).
+
+As figuras autorais de João Vitor Miranda Sousa são reutilizadas sob MIT; os contornos de fonte DejaVu/Bitstream mantêm seus avisos próprios. A licença não altera os direitos de outros materiais do site.
+
+{{< qee-credits >}}
+
+A tag LaTeX é mantida como referência de navegação histórica. A implementação sintética atual gera relatórios Markdown e não depende de LaTeX.
