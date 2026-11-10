@@ -2,7 +2,7 @@
 title: "Python para engenharia e análise de dados"
 description: "Tratamento de dados técnicos com Pandas e NumPy, gráficos com Matplotlib e automação de relatórios em Python, a partir dos arquivos e requisitos fornecidos."
 date: 2026-11-05
-lastmod: 2026-11-06
+lastmod: 2026-11-10
 draft: false
 weight: 2
 card_title: "Python e dados de engenharia"
@@ -34,9 +34,9 @@ Estudantes, pesquisadores e profissionais que trabalham com arquivos de mediçõ
 
 ## Projeto publicado {#projetos}
 
-O [pipeline de qualidade de energia em Python]({{< relref "/portfolio/qualidade-energia" >}}) apresenta tratamento de arquivos, cálculos e gráficos com bibliotecas como Pandas, NumPy e Matplotlib. O caso permite conhecer uma aplicação de programação à análise de dados elétricos.
+O [estudo sintético de qualidade de energia em Python]({{< relref "/portfolio/qualidade-energia" >}}) demonstra geração independente de cenários elétricos, cálculos físicos, exportação Excel e gráficos SVG com Pandas, NumPy e Matplotlib. É uma simulação didática reproduzível, não uma campanha de medições ou diagnóstico de instalação.
 
-O exemplo demonstra processamento computacional em um contexto documentado. Não significa que os mesmos indicadores, critérios ou resultados possam ser aplicados a qualquer arquivo. Tempos de execução relatados no estudo não são garantias para novos conjuntos de dados ou ambientes.
+O exemplo demonstra processamento computacional em um contexto documentado. Não significa que os mesmos indicadores, critérios ou resultados possam ser aplicados a qualquer arquivo. A análise de arquivos fornecidos em um atendimento exige avaliação própria de origem, qualidade e requisitos.
 
 ## O que informar para avaliar seu pedido
 

@@ -16,7 +16,7 @@ items:
   - image: "images/2.jpg"
     pretitle: "Ciência de Dados"
     title: "Análise de Dados em Python"
-    text: "Pipeline de qualidade de energia com Pandas, NumPy e Matplotlib para tratar arquivos, calcular indicadores e gerar gráficos e relatórios no contexto do estudo publicado."
+    text: "Simulação de qualidade de energia em Python com dados exclusivamente sintéticos: modelos trifásicos, indicadores, validações e gráficos SVG reproduzíveis. Os resultados não são medições de instalações reais."
     buttons:
       - label: "Ver detalhes"
         link: "/portfolio/qualidade-energia/"

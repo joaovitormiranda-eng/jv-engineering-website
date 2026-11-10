@@ -1,0 +1,13 @@
+{{- $src := printf "images/portfolio/qee/%s" (.Get "file") -}}
+{{- $image := resources.Get $src -}}
+{{- if not $image -}}{{ errorf "QEE figure missing: %s" $src }}{{- end -}}
+{{- if ne $image.MediaType.SubType "svg" -}}{{ errorf "QEE requires a vector SVG: %s" $src }}{{- end -}}
+<figure class="not-prose my-10" aria-labelledby="qee-caption-{{ .Get "number" }}">
+  <img src="{{ $image.RelPermalink }}" width="792" height="468" alt="{{ .Get "alt" }}"
+    loading="lazy" decoding="async" class="block h-auto w-full rounded-lg bg-white" />
+  <figcaption id="qee-caption-{{ .Get "number" }}" class="mt-3 text-sm leading-relaxed text-gray-300">
+    {{ .Get "caption" }}
+    <a href="{{ $image.RelPermalink }}" target="_blank" rel="noopener noreferrer"
+      class="mt-2 inline-flex min-h-11 items-center rounded px-2 font-semibold text-blue-400 underline underline-offset-4 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-400">Ampliar figura {{ .Get "number" }} (SVG; nova aba)</a>
+  </figcaption>
+</figure>
