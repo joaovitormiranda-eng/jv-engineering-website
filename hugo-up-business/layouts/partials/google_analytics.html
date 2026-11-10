@@ -13,7 +13,15 @@
       {{- if in . "python" -}}{{- $service = "python" -}}{{- end -}}
     {{- end -}}
   {{- end -}}
-  {{- $config := dict "id" $a.id "page" .Permalink "title" .Title "pageType" $type "serviceType" $service "contact" site.Params.social.whatsapp "cookiePath" (urls.Parse site.BaseURL).Path -}}
+  {{- $cookiePath := (urls.Parse site.BaseURL).Path -}}
+  {{- $cookiePaths := slice $cookiePath -}}
+  {{- range site.Pages -}}
+    {{- $path := (urls.Parse .Permalink).Path -}}
+    {{- if strings.HasPrefix $path $cookiePath -}}
+      {{- $cookiePaths = $cookiePaths | append $path -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $config := dict "id" $a.id "page" .Permalink "title" .Title "pageType" $type "serviceType" $service "contact" site.Params.social.whatsapp "cookiePath" $cookiePath "cookiePaths" ($cookiePaths | uniq | sort) -}}
   <script id="analytics-config" type="application/json">{{ $config | jsonify | safeJS }}</script>
   {{- with resources.Get "css/analytics-consent.css" | minify -}}
   <style>{{ .Content | safeCSS }}</style>

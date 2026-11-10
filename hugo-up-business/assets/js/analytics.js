@@ -9,6 +9,15 @@ if (configNode) {
   const lifetime = 180 * 24 * 60 * 60 * 1000;
   const disabledKey = `ga-disable-${config.id}`;
   const denied = { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' };
+  const pageURL = new URL(config.page);
+  pageURL.search = ''; pageURL.hash = '';
+  let referrer = '';
+  try {
+    const source = new URL(document.referrer);
+    if (['http:', 'https:'].includes(source.protocol)) referrer = `${source.origin}/`;
+  } catch { /* direct visit */ }
+  const pageFields = { page_location: pageURL.href, page_title: config.title, page_referrer: referrer };
+  const eventFields = { ...pageFields, send_to: config.id };
   let choice = 'unknown';
   let started = false;
   let ready = false;
@@ -46,19 +55,42 @@ if (configNode) {
     if (focus && open) document.getElementById('analytics-consent-title').focus();
     if (focus && !open) (opener || lastOutsideFocus)?.focus({ preventScroll: true });
   }
-  function clearCookies() {
-    // Only this site's prefixed cookies, never cookies belonging to other Pages sites.
-    document.cookie.split(';').map(c => c.trim().split('=')[0]).filter(n => /^jveng_ga(?:_|$)/.test(n)).forEach(name => {
-      document.cookie = `${name}=; Max-Age=0; Path=${config.cookiePath}; SameSite=Lax; Secure`;
-    });
+  function clearCookies(allKnownPaths = false) {
+    const stream = config.id.replace(/^G-/, '');
+    const owned = ['jveng_ga', `jveng_ga_${stream}`, `_ga_${stream}`];
+    const cookieNames = new Set(document.cookie.split(';').map(c => c.trim().split('=')[0]));
+    if (!allKnownPaths && ![...owned, '_ga'].some(name => cookieNames.has(name))) return;
+    const paths = new Set(['/', config.cookiePath]);
+    const candidates = allKnownPaths ? (config.cookiePaths || []) : [location.pathname];
+    for (const candidate of candidates) {
+      // Only this project's paths; never expire cookies under another Pages project.
+      if (!candidate.startsWith(config.cookiePath)) continue;
+      const parts = candidate.split('/').filter(Boolean);
+      while (parts.length) {
+        const path = `/${parts.join('/')}`;
+        paths.add(path); paths.add(`${path}/`);
+        parts.pop();
+      }
+    }
+    for (const path of paths) {
+      // A root _ga is shared/ambiguous. The stream-specific legacy cookie is ours.
+      const names = path === '/' ? owned : [...owned, '_ga'];
+      for (const name of names) {
+        if (!allKnownPaths && !cookieNames.has(name)) continue;
+        for (const domain of ['', `; Domain=${location.hostname}`]) {
+          document.cookie = `${name}=; Max-Age=0; Path=${path}${domain}; SameSite=Lax; Secure`;
+        }
+      }
+    }
   }
   function stop() {
     choice = 'denied'; ready = false;
     window[disabledKey] = true;
     clearTimeout(expiryTimer);
-    clearCookies();
+    if (started) window.gtag('consent', 'update', denied);
+    clearCookies(true);
     // Removing a script element does not unload third-party code. Reload into
-    // a denied document; do not issue advanced-mode cookieless consent pings.
+    // a denied document after disabling events and updating consent.
     if (started) location.reload();
   }
   function scheduleExpiry(record) {
@@ -76,18 +108,21 @@ if (configNode) {
     window.gtag = gtag;
     gtag('consent', 'default', denied);
     gtag('consent', 'update', { ...denied, analytics_storage: 'granted' });
-    gtag('js', new Date());
-    let referrer = '';
-    try { referrer = new URL(document.referrer).origin + '/'; } catch { /* direct visit */ }
-    gtag('config', config.id, {
+    const defaults = {
       send_page_view: false,
-      page_location: config.page, page_title: config.title, page_referrer: referrer,
+      ...pageFields,
       allow_google_signals: false, allow_ad_personalization_signals: false,
+      url_passthrough: false, ads_data_redaction: true,
       cookie_domain: 'none', cookie_path: config.cookiePath, cookie_prefix: 'jveng',
       cookie_flags: 'SameSite=Lax;Secure',
       cookie_expires: 15552000, cookie_update: false
-    });
-    gtag('event', 'page_view', { page_location: config.page, page_title: config.title, page_referrer: referrer });
+    };
+    // The remote tag can initialize its destination before processing config.
+    // Global defaults must precede js/config so that initialization is private too.
+    gtag('set', defaults);
+    gtag('js', new Date());
+    gtag('config', config.id, defaults);
+    gtag('event', 'page_view', eventFields);
     const loadTag = () => {
       if (choice !== 'accepted' || window[disabledKey] || readChoice()?.choice !== 'accepted') return;
       const tag = document.createElement('script');
@@ -145,7 +180,12 @@ if (configNode) {
     reconciled = true;
   }
   window.addEventListener('storage', event => { if (event.key === key || event.key === null) reconcile(); });
-  window.addEventListener('pageshow', reconcile);
+  window.addEventListener('pageshow', event => {
+    reconcile();
+    if (event.persisted && ready && choice === 'accepted' && readChoice()?.choice === 'accepted') {
+      window.gtag('event', 'page_view', eventFields);
+    }
+  });
   window.addEventListener('focus', reconcile);
   window[disabledKey] = true;
   if (readChoice()?.choice !== 'accepted') clearCookies();
@@ -173,6 +213,7 @@ if (configNode) {
     const componentService = anchor.closest('[data-contact-service]')?.dataset.contactService;
     const service = ['matlab', 'python'].includes(componentService) ? componentService : config.serviceType;
     window.gtag('event', 'contact_click', {
+      ...eventFields,
       contact_method: 'whatsapp', cta_location: location,
       page_type: config.pageType, service_type: service
     });
