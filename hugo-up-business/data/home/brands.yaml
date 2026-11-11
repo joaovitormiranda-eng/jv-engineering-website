@@ -2,55 +2,49 @@ enable: true
 
 title: "Ferramentas a serviço do problema"
 text: "Linguagens, ambientes, simuladores e plataformas têm papéis diferentes. A escolha depende dos requisitos e dos recursos disponíveis. Os estudos demonstram usos específicos de MATLAB, GNU Octave e Python; outras tecnologias podem ser discutidas na avaliação da demanda."
+independence: "Os símbolos representam funções técnicas. Referências a ferramentas não indicam parceria, certificação ou endosso dos fabricantes."
+trademarks: "Python é marca registrada da Python Software Foundation; Jupyter é marca da LF Charities; Arduino é marca da Arduino S.r.l.; AutoCAD é marca do grupo Autodesk; LTspice é marca registrada de Analog Devices, Inc.; Power BI e Visual Studio Code são marcas do grupo Microsoft; GitHub é marca da GitHub, Inc. Demais marcas pertencem aos respectivos titulares."
+mathworks_notice: "MATLAB and Simulink are registered trademarks of The MathWorks, Inc."
 
 items:
   - name: "MATLAB"
-    image: "images/software/matlab.svg"
     tag: "Linguagem e ambiente"
-
+    registered: true
+    symbol: "model"
   - name: "Python"
-    image: "images/software/pythoncerto.svg"
     tag: "Linguagem"
-
+    registered: true
+    symbol: "code"
   - name: "LTspice"
-    image: "images/software/ltspice.svg"
     tag: "Simulador de circuitos"
-    invert: true # Força o logo escuro a ficar claro no dark mode
-
+    symbol: "circuit"
   - name: "Power BI"
-    image: "images/software/Power-BI.svg"
     tag: "Visualização de dados"
-
-  - name: "VS Code"
-    image: "images/software/vscode.svg"
+    symbol: "data"
+  - name: "Visual Studio Code"
     tag: "Editor de código"
-
+    symbol: "code"
   - name: "Arduino"
-    image: "images/software/arduino3.png"
     tag: "Plataforma embarcada"
-
+    registered: true
+    symbol: "chip"
   - name: "Altair"
-    image: "images/software/altaircerto.png"
     tag: "Suíte de engenharia"
-
+    symbol: "model"
   - name: "SimulIDE"
-    image: "images/software/simulide.png"
     tag: "Simulador eletrônico"
-
+    symbol: "circuit"
   - name: "Jupyter"
-    image: "images/software/Jupyter.svg"
     tag: "Ambiente de notebooks"
-
+    registered: true
+    symbol: "notebook"
   - name: "LaTeX"
-    image: "images/software/latex5.png"
     tag: "Preparação de documentos"
-    invert: true # Força o logo escuro a ficar claro no dark mode
-
+    symbol: "document"
   - name: "AutoCAD"
-    image: "images/software/autocad-seeklogo.png"
     tag: "Ferramenta CAD"
-
+    registered: true
+    symbol: "drawing"
   - name: "GitHub"
-    image: "images/software/github-icon.svg"
     tag: "Plataforma de repositórios"
-    invert: true # Força o logo escuro a ficar claro no dark mode
+    symbol: "repository"
