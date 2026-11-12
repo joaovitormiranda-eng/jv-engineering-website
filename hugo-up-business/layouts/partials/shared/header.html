@@ -14,55 +14,45 @@
       </picture>
     </a>
 
-    <!-- BOTÃO HAMBÚRGUER (MOBILE) -->
-    <button class="cursor-pointer text-white hover:text-blue-400 transition-colors p-2 xl:hidden" type="button"
+    <!-- Disclosure não modal: o mesmo controle abre e fecha o painel. -->
+    <button class="navigation-toggle cursor-pointer text-white hover:text-blue-400 transition-colors p-2 xl:hidden" type="button"
       id="navigation-toggle" data-navigation-toggle aria-controls="navbarContent" aria-expanded="false" aria-label="Abrir navegação">
-      {{ partial "heroicons/bars-4" }}
+      <span data-navigation-open-icon aria-hidden="true">{{ partial "heroicons/bars-4" }}</span>
+      <span data-navigation-close-icon aria-hidden="true">{{ partial "heroicons/x-mark" }}</span>
     </button>
 
-    <!-- CONTEÚDO DO MENU / DRAWER MOBILE (TELA CHEIA) -->
-    <div
-      class="fixed top-0 left-0 z-[120] flex h-[100dvh] w-full -translate-y-full flex-col bg-[#0a0f1d] duration-500 xl:static xl:h-auto xl:w-auto xl:translate-y-0 xl:flex-row xl:items-center xl:gap-8 xl:bg-transparent"
+    <div class="navigation-panel flex w-full flex-col xl:static xl:h-auto xl:w-auto xl:flex-row xl:items-center xl:gap-8 xl:bg-transparent"
       id="navbarContent" data-navigation-panel data-open="false">
-
-      <!-- CABEÇALHO DO MENU MOBILE ABERTO (Logo + X) -->
-      <div class="flex w-full items-center justify-between px-4 py-3 border-b border-gray-800/80 xl:hidden">
-        <a class="flex items-center" href="{{ .Site.BaseURL }}" aria-label="JV Engineering — início">
-          <img src="{{ $symbol.RelPermalink }}" width="66" height="48" alt=""
-            class="block h-12 w-[66px] object-contain" loading="eager" decoding="async" />
-        </a>
-
-        <button class="cursor-pointer text-white hover:text-blue-400 transition-colors p-2" type="button"
-          data-navigation-close aria-controls="navbarContent" aria-label="Fechar navegação">
-          {{ partial "heroicons/x-mark" }}
-        </button>
-      </div>
-
-      <!-- ÁREA DE LINKS E BOTÕES (Centralizados na tela) -->
-      <div class="flex flex-col items-center justify-center flex-1 gap-8 p-6 overflow-y-auto xl:flex-row xl:p-0 xl:overflow-visible xl:justify-end w-full">
-        
-        <!-- LINKS PRINCIPAIS -->
-        <ul class="flex flex-col items-center gap-6 xl:flex-row xl:gap-8 w-full">
+      <div class="navigation-content flex flex-col items-center justify-center flex-1 gap-8 p-6 xl:flex-row xl:p-0 xl:justify-end w-full">
+        <ul class="navigation-links flex flex-col items-center gap-6 xl:flex-row xl:gap-8 w-full">
           {{ range site.Menus.main }}
           <li class="w-full text-center">
-            <a class="block w-full py-2 text-gray-200 hover:text-blue-400 text-xl xl:text-base font-medium transition-colors duration-200"
-              href="{{ .URL }}">
-              {{ .Name }}
-            </a>
+            <a class="navigation-link block w-full py-2 text-gray-200 hover:text-blue-400 text-xl xl:text-base font-medium transition-colors duration-200"
+              href="{{ .URL }}">{{ .Name }}</a>
           </li>
           {{ end }}
         </ul>
-
-        <!-- BOTÕES DE AÇÃO -->
-        <ul class="flex flex-col items-center gap-4 mt-4 xl:mt-0 xl:flex-row xl:gap-4 w-full xl:w-auto px-4 xl:px-0">
+        <ul class="navigation-actions flex flex-col items-center gap-4 mt-4 xl:mt-0 xl:flex-row xl:gap-4 w-full xl:w-auto px-4 xl:px-0">
           {{ range .Site.Menus.buttons }}
           <li class="w-full sm:w-80 xl:w-auto text-center">
             {{ partial "components/button/primary" (dict "label" .Name "href" .URL ) }}
           </li>
           {{ end }}
         </ul>
-
       </div>
     </div>
+    <noscript>
+      <style>
+        @media (width < 80rem) {
+          [data-navigation] { position: static; }
+          [data-navigation] > div { flex-wrap: wrap; }
+          .navigation-toggle { display: none; }
+          [data-navigation-panel][data-open="false"] {
+            display: flex; position: static; max-height: none; max-width: none;
+            margin: 0.75rem 0 0; width: 100%; overflow: visible;
+          }
+        }
+      </style>
+    </noscript>
   </div>
 </nav>
