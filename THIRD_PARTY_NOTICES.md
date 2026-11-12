@@ -57,11 +57,12 @@ Copies of these fonts must retain the applicable copyright and license notice.
 
 ## Bootstrap Icons
 
-Several inline SVG paths in the footer, contact controls and icon partials match
-Bootstrap Icons. The paths for GitHub, envelope-fill, WhatsApp, arrow-right and
-geo-alt match the official `v1.10.5` assets. This geometric correspondence does
-not establish the original import version of every icon; the LinkedIn path and
-other legacy icons still require provenance confirmation.
+The generic envelope-fill, arrow-right and geo-alt inline SVG paths match the
+official Bootstrap Icons `v1.10.5` assets. The former footer GitHub and WhatsApp
+paths also matched that release; they have been replaced by the official brand
+assets documented below. This geometric correspondence does not establish the
+original import version of every icon. Provenance of the former LinkedIn path
+and other unused legacy icons remains unconfirmed.
 
 The matching assets carry the MIT License, copyright (c) 2019-2023 The Bootstrap
 Authors. The full notice is preserved in
@@ -70,6 +71,40 @@ and published at `licenses/bootstrap-icons-MIT.txt`.
 Source: <https://github.com/twbs/icons/blob/v1.10.5/LICENSE>.
 This identifies Bootstrap Icons, not a bundled Bootstrap CSS/JavaScript framework.
 The icon license does not grant rights to the depicted third-party trademarks.
+
+## Official social-link brand assets
+
+The footer links to the proprietor's GitHub and LinkedIn profiles and the JV
+Engineering WhatsApp contact channel. These are factual account/contact links,
+not a statement of partnership, certification or endorsement. The following
+assets were obtained from the holders' official brand download pages on
+2026-11-10 and are used without changing their bytes, proportions or colors.
+Their trademark permissions are separate from software/icon licenses; they are
+not relicensed under this site's or QEE's MIT notices.
+
+- GitHub: `assets/images/social-icons/github-invertocat-white.svg`, from
+  `GitHub Logos/SVG/GitHub_Invertocat_White.svg` in
+  <https://brand.github.com/GitHub_Logos.zip>.
+  SHA-256: `ccd84c89b1056345608fc3489357f8acc7397e49a3cdc2d418b6c8016911d47b`.
+  The [GitHub logo guidelines](https://brand.github.com/foundations/logo) describe
+  an Invertocat social button linking to one's GitHub profile or project.
+- LinkedIn: `assets/images/social-icons/linkedin-in-white.png`, from
+  `in-logo/InBug-White.png` in the official [downloads](https://brand.linkedin.com/downloads).
+  SHA-256: `ed22a5ab46c171e3449708ff34923de7298da00ac204c7f85444db05bf888791`.
+  The [LinkedIn [in] logo guidelines](https://brand.linkedin.com/in-logo) cover
+  links to member profiles and social-icon rows using the supplied assets.
+  This does not claim a license for the full LinkedIn wordmark.
+- WhatsApp: `assets/images/social-icons/whatsapp-glyph-green.svg`, from
+  `Digital_Glyph_Green_RGB_2026.svg` in `WhatsApp-Brand-Resource-Center.zip`,
+  downloaded through the [official WhatsApp brand page](https://www.meta.com/brand/resources/whatsapp/whatsapp-brand/).
+  SHA-256: `f7b1311db718533e671645f57cd94b92f0e006e61d7e6581a80675fc5a478fc4`.
+  The supplied green glyph identifies the WhatsApp contact link; its design and
+  colors are preserved. The brand guidelines and applicable terms still apply.
+
+GitHub, LinkedIn and WhatsApp marks remain the property of their respective
+holders. These references document the limited use above, not a general right
+to use their marks in advertising or unrelated products. Recheck the holders'
+current guidelines before changing this context or the supplied artwork.
 
 ## Heroicons
 
