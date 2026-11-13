@@ -1,0 +1,32 @@
+{{ with site.Data.services.journey }}
+<section class="service-section" aria-labelledby="quando-esse-apoio-faz-sentido">
+  <div class="service-section__heading">
+    <p class="service-eyebrow">FORMAS DE APOIO</p>
+    <h2 id="quando-esse-apoio-faz-sentido" tabindex="-1">Apoio no ponto em que você precisa avançar</h2>
+    <p>As modalidades podem se complementar. A escolha depende do objetivo e dos materiais disponíveis.</p>
+  </div>
+  <div class="service-modes">
+    {{ range .modes }}<article class="service-mode"><h3>{{ .title }}</h3><p>{{ .text }}</p></article>{{ end }}
+  </div>
+</section>
+<section class="service-section" aria-labelledby="como-o-trabalho-é-conduzido">
+  <div class="service-section__heading">
+    <p class="service-eyebrow">DA CONVERSA À ENTREGA</p>
+    <h2 id="como-o-trabalho-é-conduzido" tabindex="-1">{{ .title }}</h2>
+    <p>{{ .text }}</p>
+  </div>
+  <ol class="service-steps" role="list">
+    {{ range $index, $step := .steps }}
+    <li><span class="service-step__number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span><div><h3>{{ .title }}</h3><p>{{ .text }}</p></div></li>
+    {{ end }}
+  </ol>
+</section>
+<section class="service-section service-boundaries" aria-labelledby="escopo-e-responsabilidades">
+  <div class="service-section__heading">
+    <p class="service-eyebrow">ANTES DE COMBINAR O TRABALHO</p>
+    <h2 id="escopo-e-responsabilidades" tabindex="-1">Limites claros desde a primeira conversa</h2>
+    <p>Conforme o pedido, podem ser combinados explicações, revisão comentada, código, modelos, gráficos, instruções de teste e documentação. Aplicações em condições reais exigem as verificações e os responsáveis pertinentes.</p>
+  </div>
+  <div class="service-limits">{{ range .limits }}<article><h3>{{ .title }}</h3><p>{{ .text }}</p></article>{{ end }}</div>
+</section>
+{{ end }}
