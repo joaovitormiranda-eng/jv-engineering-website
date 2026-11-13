@@ -1,0 +1,52 @@
+{{ define "main" }}
+<section class="portfolio-shell portfolio-study">
+  <div class="container mx-auto px-4">
+    <nav class="portfolio-breadcrumb" aria-label="Caminho da página">
+      <a href="{{ site.Home.RelPermalink }}">Início</a><span aria-hidden="true">/</span>
+      {{ with site.GetPage "/portfolio" }}<a href="{{ .RelPermalink }}">Portfólio</a>{{ end }}
+      <span aria-hidden="true">/</span><span aria-current="page">Estudo técnico</span>
+    </nav>
+    <header class="portfolio-intro">
+      <p class="portfolio-eyebrow">{{ with .Params.categories }}{{ delimit . " · " }}{{ else }}Projeto próprio · Desenvolvimento web{{ end }}</p>
+      <h1>{{ .Title | markdownify }}</h1>
+      {{ with .Description }}<p>{{ . | markdownify }}</p>{{ end }}
+    </header>
+    <aside class="portfolio-study__context" aria-label="Contexto do estudo publicado">
+      <p>Estudo técnico do portfólio, apresentado com métodos, código e resultados no contexto documentado. Não é apresentado como case de cliente nem como garantia para outras aplicações.</p>
+      {{ partial "shared/responsible.html" . }}
+    </aside>
+    {{ $toc := .TableOfContents }}
+    {{ if gt (len .Fragments.Headings) 0 }}
+    <details class="portfolio-study__contents portfolio-study__toc">
+      <summary>Índice do estudo</summary>
+      {{ replace $toc `id="TableOfContents"` `id="TableOfContents-mobile"` | safeHTML }}
+    </details>
+    {{ end }}
+    <div class="portfolio-study__layout">
+      <div class="portfolio-study__body prose prose-lg prose-invert prose-a:text-blue-400 prose-headings:text-white">
+        {{ .Content }}
+      </div>
+      {{ if gt (len .Fragments.Headings) 0 }}
+      <aside class="portfolio-study__index portfolio-study__toc" aria-label="Navegação do estudo">
+        <p>Neste estudo</p>{{ $toc }}
+      </aside>
+      {{ end }}
+    </div>
+    {{ with .GetTerms "tags" }}
+    <nav class="portfolio-study__related" aria-label="Tecnologias e áreas do projeto">
+      {{ with site.GetPage "/tags" }}<p><a class="portfolio-section-link" href="{{ .RelPermalink }}">Tecnologias e áreas</a></p>{{ end }}
+      <ul>{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}</ul>
+    </nav>
+    {{ end }}
+    {{ with .Params.service }}{{ with site.GetPage . }}
+    <nav class="portfolio-study__related" aria-label="Serviço relacionado ao projeto">
+      <p>Quer discutir uma aplicação desses métodos ao seu projeto?</p>
+      <a class="portfolio-section-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </nav>
+    {{ end }}{{ end }}
+    {{ with site.GetPage "/portfolio" }}
+    <p class="mt-8"><a class="portfolio-section-link" href="{{ .RelPermalink }}">← Explorar os outros estudos</a></p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

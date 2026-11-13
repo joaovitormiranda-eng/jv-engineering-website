@@ -1,7 +1,8 @@
-    <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-      {{ range $index, $project := . }}
-      <a href="{{ .Permalink }}"
-        class="bg-[#111827] border border-gray-800 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 flex flex-col h-full shadow-xl group">
+<div class="portfolio-grid">
+  {{ range $index, $project := . }}
+  {{ $id := printf "project-%s" .File.ContentBaseName }}
+  <article class="portfolio-card">
+    <a href="{{ .Permalink }}" class="portfolio-card__link" aria-labelledby="{{ $id }}-title" aria-describedby="{{ $id }}-description">
         {{ with .Params.catalog_image }}
         {{ $source := resources.Get .src }}
         {{ if not $source }}{{ errorf "Portfolio image not found: %s" .src }}{{ end }}
@@ -28,32 +29,34 @@
         {{ $width = $largest.Width }}
         {{ $height = $largest.Height }}
         {{ end }}
-        <figure>
+        <figure class="portfolio-card__figure">
           {{/* Contain preserves the complete scientific figure; hover never scales it. */}}
-          <div class="aspect-[4/3] w-full bg-[#080d16] p-3">
+          <div class="portfolio-card__visual">
             <img src="{{ $largest.RelPermalink }}" {{ if not $vector }}srcset="{{ delimit $srcset ", " }}"{{ end }}
-              sizes="(min-width: 80rem) calc((100vw - 10.875rem) / 3), (min-width: 48rem) calc((100vw - 7.25rem) / 2), calc(100vw - 3.625rem)"
+              sizes="(min-width: 80rem) 564px, (min-width: 64rem) 484px, (min-width: 48rem) 356px, (min-width: 40rem) 608px, calc(100vw - 2rem)"
               width="{{ $width }}" height="{{ $height }}" alt="{{ .alt }}"
               class="block h-full w-full object-contain" loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}" decoding="async" />
           </div>
-          <figcaption class="border-b border-gray-800 px-4 py-3 text-xs leading-relaxed text-gray-300">{{ .caption }}</figcaption>
+          <figcaption class="portfolio-card__caption">{{ .caption }}</figcaption>
         </figure>
         {{ end }}
 
-        <div class="p-6 flex flex-col flex-grow">
-          <h2 class="text-white mb-3 text-xl font-bold group-hover:text-blue-400 transition-colors duration-300">
-            {{ .Title }}
-          </h2>
-          <p class="text-gray-300 text-sm leading-relaxed flex-grow">
-            {{ .Description | plainify }}
-          </p>
-          <div class="mt-6 flex items-center gap-2 text-blue-400 text-sm font-semibold group-hover:translate-x-1 transition-transform duration-300">
-            <span>Conhecer o estudo</span>
-            <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
-          </div>
-        </div>
-      </a>
-      {{ end }}
-    </div>
+
+      <div class="portfolio-card__body">
+        <p class="portfolio-card__category">{{ with .Params.categories }}{{ index . 0 }}{{ else }}Projeto próprio · Desenvolvimento web{{ end }}</p>
+        <h2 class="portfolio-card__title" id="{{ $id }}-title">{{ .Title }}</h2>
+        <p class="portfolio-card__description" id="{{ $id }}-description">{{ .Description | plainify }}</p>
+        {{ with .Params.tags }}
+        <ul class="portfolio-card__tags" aria-label="Tecnologias e métodos">
+          {{ range first 3 . }}<li>{{ . }}</li>{{ end }}
+        </ul>
+        {{ end }}
+        <span class="portfolio-card__action">
+          <span>Explorar o estudo</span>
+          <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+        </span>
+      </div>
+    </a>
+  </article>
+  {{ end }}
+</div>
