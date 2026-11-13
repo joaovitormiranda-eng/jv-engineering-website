@@ -9,6 +9,8 @@
 .service-intro h1 { margin: 0 0 1.25rem; font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 800; line-height: 1.15; letter-spacing: normal; }
 .service-intro__description { max-width: 65ch; color: #cbd5e1; font-size: 1.0625rem; line-height: 1.8; }
 .service-responsible { max-width: 65ch; margin-top: 1.25rem; }
+/* Keep the responsible link as one inline unit when it fits; allow wrapping at text zoom. */
+.service-responsible a { display: inline-block; max-width: 100%; }
 .service-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem 1.5rem; margin-top: 1.75rem; }
 .service-button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; max-width: 100%; padding: .875rem 20px; border: 1px solid #5385ee; border-radius: .625rem; background: #1d4ed8; color: #fff; font-size: .875rem; font-weight: 650; line-height: 1.5; text-align: center; text-decoration: none; }
 .service-button:hover { background: #1e40af; }
