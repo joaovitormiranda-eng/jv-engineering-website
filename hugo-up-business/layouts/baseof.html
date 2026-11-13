@@ -54,6 +54,14 @@
   {{ end }}
   {{ end }}
 
+  {{/* The service overview owns this presentation; specialized pages keep their existing assets. */}}
+  {{ if and (eq .Section "servicos") .IsSection }}
+  {{ with resources.Get "css/services.css" }}
+  {{ $serviceStyles := . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $serviceStyles.RelPermalink }}" integrity="{{ $serviceStyles.Data.Integrity }}" crossorigin="anonymous" />
+  {{ end }}
+  {{ end }}
+
   <!-- Load Fonts -->
   {{ with resources.Get "css/fonts.css" }}
   {{ with resources.ExecuteAsTemplate "css/fonts.css" $ . }}

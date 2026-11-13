@@ -1,0 +1,70 @@
+{{ $contactContext := "general" }}
+<section class="service-shell">
+  <div class="container mx-auto px-4">
+    <nav class="service-breadcrumb" aria-label="Caminho da página">
+      <ol>
+        <li><a href="{{ site.Home.RelPermalink }}">Início</a></li><li aria-hidden="true">/</li>
+        <li aria-current="page">Serviços</li>
+      </ol>
+    </nav>
+    <header class="service-intro">
+      <p class="service-eyebrow">ATENDIMENTO REMOTO · ESCOPO POR PROJETO</p>
+      <h1>{{ .Params.heading | default .Title }}</h1>
+      <p class="service-intro__description">{{ .Description }}</p>
+      <div class="service-responsible">{{ partial "shared/responsible.html" . }}</div>
+      <div class="service-actions">
+        {{ with site.Params.social.whatsapp }}
+        <a class="service-button" href="{{ partial "utilities/contact-url.html" (dict "href" . "context" $contactContext) }}" target="_blank" rel="noopener noreferrer">Apresentar minha demanda pelo WhatsApp</a>
+        {{ end }}
+        <a class="service-text-link" href="#projetos">Ver exemplos técnicos</a>
+      </div>
+      <p class="service-note">O WhatsApp abre em outra aba, com uma mensagem curta e editável. Não é necessário enviar arquivos para iniciar.</p>
+    </header>
+    <nav class="service-wayfinding" aria-label="Nesta página de serviços">
+      <a href="#areas">Áreas de atuação</a><a href="#quando-esse-apoio-faz-sentido">Formas de apoio</a><a href="#como-o-trabalho-é-conduzido">Etapas do atendimento</a><a href="#escopo-e-responsabilidades">Limites</a>
+    </nav>
+    <section class="service-section" aria-labelledby="areas">
+      <div class="service-section__heading">
+        <p class="service-eyebrow">COMECE PELO PROBLEMA</p>
+        <h2 id="areas" tabindex="-1">Cinco áreas para orientar a conversa</h2>
+        <p>Apoio a estudantes, pesquisadores e demandas técnicas compatíveis em Engenharia, Computação e áreas STEM. Não é preciso escolher um software antes de conversar; os exemplos orientam a avaliação, sem garantir aceitação ou resultado.</p>
+      </div>
+      <div class="service-area-grid">
+        {{ range $index, $area := site.Data.services.areas }}
+        <article class="service-area" aria-labelledby="{{ .id }}">
+          <span class="service-area__number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
+          <h3 id="{{ .id }}" tabindex="-1">{{ .title }}</h3>
+          <p>{{ .summary }}</p>
+          <div class="service-example"><p class="service-example__label">Exemplo para avaliação</p><p>{{ .example }}</p></div>
+          <details class="service-inputs"><summary>O que ajuda a descrever o contexto</summary><p>{{ .topics }}</p><p>{{ .inputs }}</p><p class="service-note">Compartilhe somente materiais autorizados; combine antes o tratamento de informações confidenciais.</p></details>
+          {{ with site.Params.social.whatsapp }}
+          <a class="service-area__contact" data-contact-location="service_area" href="{{ partial "utilities/contact-url.html" (dict "href" . "context" $area.id) }}" target="_blank" rel="noopener noreferrer" aria-label="Conversar sobre {{ $area.title }} pelo WhatsApp">Conversar sobre esta área <span aria-hidden="true">↗</span></a>
+          {{ end }}
+        </article>
+        {{ end }}
+      </div>
+      <p class="service-note service-section__note">As áreas podem se cruzar. Se a sua necessidade não se encaixa em uma delas, descreva o objetivo para avaliar os próximos passos.</p>
+    </section>
+    <section class="service-section" aria-labelledby="ofertas">
+      <div class="service-section__heading"><p class="service-eyebrow">APROFUNDE O CONTEXTO</p><h2 id="ofertas" tabindex="-1">Especialidades com exemplos publicados</h2><p>Para demandas em MATLAB ou Python, estas páginas detalham métodos, entregáveis possíveis e limites. São especialidades dentro da atuação multidisciplinar.</p></div>
+      <div class="service-specialties">
+        {{ range .RegularPages.ByWeight }}
+        <article><h3>{{ .Params.card_title }}</h3><p>{{ .Params.card_text }}</p><a class="service-text-link" href="{{ .RelPermalink }}">{{ .Params.link_label }} <span aria-hidden="true">→</span></a></article>
+        {{ end }}
+      </div>
+    </section>
+    {{ partial "services/journey.html" . }}
+    <div class="service-content prose prose-lg prose-invert prose-a:text-blue-400 prose-headings:text-white">{{ .Content }}</div>
+    <section class="service-contact" aria-labelledby="conversar">
+      <div><p class="service-eyebrow">PRIMEIRO CONTATO</p><h2 id="conversar" tabindex="-1">Vamos entender o que você precisa?</h2><p>Comece com o objetivo, a dificuldade e o ambiente disponível. A conversa inicial serve para avaliar viabilidade e próximos passos.</p></div>
+      <div class="service-contact__next">
+        <h3 id="o-que-enviar-para-uma-primeira-avaliação" tabindex="-1">Para preparar a conversa</h3>
+        <ul><li>O que você deseja compreender ou desenvolver.</li><li>O que já tentou e onde encontrou dificuldade.</li><li>Ferramentas, restrições e prazo desejado, se houver.</li></ul>
+        <p class="service-note">Não inclua informações pessoais ou confidenciais na mensagem inicial. Materiais e condições de compartilhamento podem ser combinados depois.</p>
+        {{ with site.Params.social.whatsapp }}
+        <a class="service-button" href="{{ partial "utilities/contact-url.html" (dict "href" . "context" $contactContext) }}" target="_blank" rel="noopener noreferrer">Iniciar conversa pelo WhatsApp</a>
+        {{ end }}
+      </div>
+    </section>
+  </div>
+</section>
