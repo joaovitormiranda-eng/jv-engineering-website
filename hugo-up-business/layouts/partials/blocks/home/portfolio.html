@@ -6,9 +6,14 @@
   <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="container mx-auto px-4 flex flex-col gap-16 xl:gap-24 relative z-10">
-    <header class="max-w-3xl">
+    <header class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-3xl">
       <h2 class="text-white text-3xl sm:text-4xl font-extrabold mb-4">{{ .title }}</h2>
       <p class="text-slate-300 leading-relaxed">{{ .text }}</p>
+      </div>
+      {{ with site.GetPage "/portfolio" }}
+      <a href="{{ .RelPermalink }}" class="inline-flex min-h-11 items-center text-sky-300 underline underline-offset-4 hover:text-white">Explorar todos os estudos →</a>
+      {{ end }}
     </header>
     {{ range $i, $e := .items }}
     {{ $contactService := "general" }}
@@ -22,7 +27,7 @@
         {{ end }}
       {{ end }}
     {{ end }}
-    <div class="grid xl:grid-cols-2 gap-8 xl:gap-12 items-center" data-contact-service="{{ $contactService }}">
+    <div class="grid xl:grid-cols-2 gap-8 xl:gap-12 items-center {{ if gt $i 0 }}border-t border-slate-800 pt-8{{ end }}" data-contact-service="{{ $contactService }}">
 
       <!-- COLUNA DO MOCKUP EM CÓDIGO (alterna lados com base na ordem $i) -->
       <div class="{{ if (eq (mod $i 2) 0) }}xl:order-2{{ end }} flex flex-col items-center justify-center w-full">
@@ -167,7 +172,7 @@
         <p class="text-gray-300 mb-6 text-center xl:text-start leading-relaxed text-base xl:text-lg">{{ . | markdownify }}</p>
         {{ end }}
 
-        <div class="flex items-center justify-center gap-4 xl:justify-start">
+        <div class="flex flex-col sm:flex-row flex-wrap items-stretch justify-center gap-3 xl:justify-start">
           {{ range $i, $e := .buttons }}
             {{ if (eq $i 0) }}
               {{ partial "components/button/primary" (dict "label" .label "href" .link "contact_context" $contactService) }}

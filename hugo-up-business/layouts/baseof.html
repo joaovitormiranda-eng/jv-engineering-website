@@ -46,6 +46,14 @@
   {{ end }}
   {{ end }}
 
+  {{/* Load the scoped presentation only where portfolio components appear. */}}
+  {{ if or (eq .Section "portfolio") (eq .Kind "term") }}
+  {{ with resources.Get "css/portfolio.css" }}
+  {{ $portfolioStyles := . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $portfolioStyles.RelPermalink }}" integrity="{{ $portfolioStyles.Data.Integrity }}" crossorigin="anonymous" />
+  {{ end }}
+  {{ end }}
+
   <!-- Load Fonts -->
   {{ with resources.Get "css/fonts.css" }}
   {{ with resources.ExecuteAsTemplate "css/fonts.css" $ . }}
