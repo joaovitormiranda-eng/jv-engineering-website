@@ -75,3 +75,11 @@
 @media (prefers-reduced-motion: reduce) {
   .portfolio-card__link { transition: none; }
 }
+
+/* Read existing figures at full size and continue through related studies. */
+.portfolio-study__figure figcaption { color: #cbd5e1; font-size: .8125rem; line-height: 1.7; text-align: left; overflow-wrap: anywhere; }
+.portfolio-study__figure figcaption .portfolio-section-link { display: flex; width: fit-content; max-width: 100%; margin-top: .5rem; font-family: Inter, system-ui, sans-serif; font-size: .8125rem; }
+.portfolio-study__related h2 { margin: 0 0 .75rem; color: #e2e8f0; font-size: 1.125rem; font-weight: 700; line-height: 1.5; }
+.portfolio-study__related[aria-labelledby="related-studies-title"] { overflow-wrap: anywhere; }
+.portfolio-study__related[aria-labelledby="related-studies-title"] li { min-width: 0; max-width: 100%; }
+.portfolio-study__related[aria-labelledby="related-studies-title"] a { max-width: 100%; }
