@@ -49,7 +49,7 @@ tags:
       <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
     </div>
     <div>
-      <h4 class="text-white font-bold text-sm mb-0.5">Código-Fonte do Projeto</h4>
+      <p class="text-white font-bold text-sm mb-0.5">Código-Fonte do Projeto</p>
       <p class="text-gray-400 text-xs m-0">Acesse a arquitetura completa em MATLAB/Octave e scripts do motor de inferência no GitHub.</p>
     </div>
   </div>
@@ -146,10 +146,11 @@ Para assegurar reprodutibilidade, alto desempenho e padrões de engenharia corpo
 ### 🔹 Superfície de Controle 3D
 A combinação do banco de regras gera uma **Superfície de Resposta 3D** não-linear. A malha amostra combinações das variáveis de entrada e permite examinar a gorjeta estimada no domínio amostrado.
 
-<figure class="my-6 text-center">
+<figure class="portfolio-study__figure my-6 text-center" aria-labelledby="fuzzy-caption-1">
   <img src="/images/portfolio/fuzzy/fuzzy-superficie-resposta-3d.png" width="3507" height="1527" loading="lazy" decoding="async" alt="Superfície de resposta 3D gerada pelo motor de inferência fuzzy Mamdani" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
-  <figcaption class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
+  <figcaption id="fuzzy-caption-1" class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
     Figura 1: Malha 3D da gorjeta estimada em função das avaliações de comida e serviço.
+    <a class="portfolio-section-link" href="/images/portfolio/fuzzy/fuzzy-superficie-resposta-3d.png" target="_blank" rel="noopener noreferrer">Ampliar figura 1 (PNG; nova aba)</a>
   </figcaption>
 </figure>
 
@@ -158,10 +159,11 @@ A combinação do banco de regras gera uma **Superfície de Resposta 3D** não-l
 ### 🔹 Transições da Superfície e Limites de Aplicação {#-continuidade-e-eliminação-de-chattering}
 Os gráficos permitem examinar as transições da saída no exemplo de cálculo de gorjeta. A avaliação de estabilidade em malha fechada, de *chattering* e de efeitos sobre atuadores exige um modelo dinâmico e ensaios específicos; o escopo deste demonstrador é a análise da superfície de inferência.
 
-<figure class="my-6 text-center">
+<figure class="portfolio-study__figure my-6 text-center" aria-labelledby="fuzzy-caption-2">
   <img src="/images/portfolio/fuzzy/fuzzy-mapa-contorno-2d.png" width="3453" height="1588" loading="lazy" decoding="async" alt="Mapa de contorno 2D das zonas de transição da gorjeta fuzzy" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
-  <figcaption class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
+  <figcaption id="fuzzy-caption-2" class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
     Figura 2: Mapa de contorno 2D da gorjeta estimada em função das avaliações de comida e serviço.
+    <a class="portfolio-section-link" href="/images/portfolio/fuzzy/fuzzy-mapa-contorno-2d.png" target="_blank" rel="noopener noreferrer">Ampliar figura 2 (PNG; nova aba)</a>
   </figcaption>
 </figure>
 

@@ -50,7 +50,7 @@ tags:
       <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
     </div>
     <div>
-      <h4 class="text-white font-bold text-sm mb-0.5">Código-Fonte do Projeto</h4>
+      <p class="text-white font-bold text-sm mb-0.5">Código-Fonte do Projeto</p>
       <p class="text-gray-400 text-xs m-0">Consulte o Live Script .mlx e a documentação técnica do projeto no GitHub.</p>
     </div>
   </div>
@@ -114,12 +114,13 @@ Para a resolução do problema de contaminação espectral, implementou-se uma m
 Observa-se a degradação massiva sofrida pelo sinal original devido à sobreposição da componente de **300 Hz** e ao ruído estocástico, justificando a intervenção via PDS.
 
 <!-- PAINEL INTERATIVO - FIGURA 1 -->
-<div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
+<figure class="portfolio-study__figure my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg" aria-labelledby="pds-caption-1">
   <img src="/images/portfolio/pds/figura1.png" width="830" height="542" loading="lazy" decoding="async" alt="Sinal Original vs Sinal Corrompido" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
+  <figcaption id="pds-caption-1" class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 1: Degradação temporal do sinal de entrada (Interferência + Estocástico).
-  </p>
-</div>
+    <a class="portfolio-section-link" href="/images/portfolio/pds/figura1.png" target="_blank" rel="noopener noreferrer">Ampliar figura 1 (PNG; nova aba)</a>
+  </figcaption>
+</figure>
 
 ---
 
@@ -127,12 +128,13 @@ Observa-se a degradação massiva sofrida pelo sinal original devido à sobrepos
 A Transformada Rápida de Fourier mapeou os picos fundamentais de informação (**10 Hz** e **30 Hz**) e a anomalia espectral (**300 Hz**), validando empiricamente o ponto de corte em **100 Hz**.
 
 <!-- PAINEL INTERATIVO - FIGURA 2 -->
-<div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
+<figure class="portfolio-study__figure my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg" aria-labelledby="pds-caption-2">
   <img src="/images/portfolio/pds/figura2.png" width="898" height="613" loading="lazy" decoding="async" alt="Espectro de Frequência do Sinal Sujo" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
+  <figcaption id="pds-caption-2" class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 2: Análise espectral de base validando a distribuição de frequências.
-  </p>
-</div>
+    <a class="portfolio-section-link" href="/images/portfolio/pds/figura2.png" target="_blank" rel="noopener noreferrer">Ampliar figura 2 (PNG; nova aba)</a>
+  </figcaption>
+</figure>
 
 ---
 
@@ -142,12 +144,13 @@ O diagrama apresenta magnitude e fase do filtro. Os indicadores de **0 dB** na b
 A figura apresenta a resposta do filtro de uma passagem, calculada por `freqz(b, a, ...)`. O processamento do sinal usa `filtfilt`, cuja resposta em magnitude corresponde ao quadrado da resposta de uma passagem; os valores devem ser interpretados considerando essa distinção.
 
 <!-- PAINEL INTERATIVO - FIGURA 3 -->
-<div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
+<figure class="portfolio-study__figure my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg" aria-labelledby="pds-caption-3">
   <img src="/images/portfolio/pds/figura3.png" width="672" height="423" loading="lazy" decoding="async" alt="Resposta em Frequência do Filtro Passa-Baixa" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
+  <figcaption id="pds-caption-3" class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 3: Homologação da magnitude e fase do filtro Butterworth (4ª Ordem).
-  </p>
-</div>
+    <a class="portfolio-section-link" href="/images/portfolio/pds/figura3.png" target="_blank" rel="noopener noreferrer">Ampliar figura 3 (PNG; nova aba)</a>
+  </figcaption>
+</figure>
 
 ---
 
@@ -155,12 +158,13 @@ A figura apresenta a resposta do filtro de uma passagem, calculada por `freqz(b,
 Comparação técnica que comprova a recuperação do ativo de dados. A atenuação eliminou oscilações de alta frequência e restaurou a topologia da onda teórica com precisão extrema.
 
 <!-- PAINEL INTERATIVO - FIGURA 4 -->
-<div class="my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg">
+<figure class="portfolio-study__figure my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg" aria-labelledby="pds-caption-4">
   <img src="/images/portfolio/pds/figura4.png" width="605" height="393" loading="lazy" decoding="async" alt="Resultado da Filtragem" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <p class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
+  <figcaption id="pds-caption-4" class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
     Figura 4: Sinal recuperado, atestando a eficácia total do modelo PDS aplicado.
-  </p>
-</div>
+    <a class="portfolio-section-link" href="/images/portfolio/pds/figura4.png" target="_blank" rel="noopener noreferrer">Ampliar figura 4 (PNG; nova aba)</a>
+  </figcaption>
+</figure>
 
 ## 04. Entregáveis de Processo e Impacto (ROI Técnico)
 
