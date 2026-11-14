@@ -24,7 +24,8 @@
       <p class="mb-4 text-sm font-semibold text-blue-400">Atendimento remoto · Escopo definido para cada projeto</p>
       <h1 class="mb-6 text-4xl font-extrabold leading-tight xl:text-6xl">{{ .Params.heading | default .Title }}</h1>
       <p class="max-w-3xl text-lg leading-relaxed text-gray-300">{{ .Description }}</p>
-      <div class="mt-6 max-w-3xl">
+      {{/* Keep the MATLAB responsible link together across font swap; still wrap at text zoom. */}}
+      <div class="mt-6 max-w-3xl{{ if eq $contactContext "matlab" }} [&_a]:inline-block [&_a]:max-w-full{{ end }}">
         {{ partial "shared/responsible.html" . }}
       </div>
       <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
