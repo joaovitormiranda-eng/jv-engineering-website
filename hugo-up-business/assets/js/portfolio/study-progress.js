@@ -68,6 +68,10 @@ function setupScrollSpy(toc, headings) {
   })
   if (links.size === 0) return
 
+  // Only track headings that actually have a TOC entry.
+  const tracked = headings.filter((h) => links.has(h.id))
+  if (tracked.length === 0) return
+
   let currentId = null
   const setActive = (id) => {
     if (id === currentId) return
@@ -83,55 +87,45 @@ function setupScrollSpy(toc, headings) {
     })
   }
 
-  // Track which headings are in the activation band near the top of the
-  // viewport; the last one past the top is the active section.
-  const visible = new Set()
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) visible.add(entry.target)
-        else visible.delete(entry.target)
-      })
-      pickActive(headings, visible, links, setActive)
-    },
-    {
-      // Activation line sits just below the sticky header; bottom margin keeps
-      // only the upper band active so the current section is the one being read.
-      rootMargin: '-20% 0px -70% 0px',
-      threshold: 0,
+  // Active section = the last heading whose top is at or above an activation
+  // line just below the sticky header. Robust for sections taller than the
+  // viewport (no dependence on a heading sitting inside a narrow band).
+  const recompute = () => {
+    const navOffset =
+      parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          '--navigation-offset'
+        )
+      ) || 128
+    const line = navOffset + 24
+    let active = tracked[0]
+    for (const h of tracked) {
+      if (h.getBoundingClientRect().top <= line) active = h
+      else break
     }
-  )
-  headings.forEach((h) => observer.observe(h))
+    setActive(active.id)
+  }
 
-  // Clicking a TOC entry should mark it immediately, before scrolling settles.
+  let ticking = false
+  const onScroll = () => {
+    if (ticking) return
+    ticking = true
+    window.requestAnimationFrame(() => {
+      ticking = false
+      recompute()
+    })
+  }
+  window.addEventListener('scroll', onScroll, { passive: true })
+  window.addEventListener('resize', onScroll, { passive: true })
+  recompute()
+
+  // Clicking a TOC entry marks it immediately, before scrolling settles.
   toc.addEventListener('click', (e) => {
     const a = e.target.closest('a[href^="#"]')
     if (!a) return
     const id = decodeURIComponent(a.getAttribute('href').slice(1))
     if (links.has(id)) setActive(id)
   })
-}
-
-function pickActive(headings, visible, links, setActive) {
-  // Prefer the topmost heading currently in the activation band.
-  let active = null
-  for (const h of headings) {
-    if (visible.has(h) && links.has(h.id)) {
-      active = h
-      break
-    }
-  }
-  // None in band (e.g. a long section fills the viewport): keep the last
-  // heading scrolled past the activation line.
-  if (!active) {
-    const line = window.innerHeight * 0.2
-    for (const h of headings) {
-      if (!links.has(h.id)) continue
-      if (h.getBoundingClientRect().top <= line) active = h
-      else break
-    }
-  }
-  if (active) setActive(active.id)
 }
 
 if (document.readyState === 'loading') {

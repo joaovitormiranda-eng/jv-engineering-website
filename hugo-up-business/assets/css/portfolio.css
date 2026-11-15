@@ -64,10 +64,31 @@
   .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 80rem) {
+  /* The index is first in source order so stray closing tags inside the article
+     content cannot pop it out of the grid. CSS keeps the article on the left and
+     the index on the right (grid-column), preserving the original visual order. */
   .portfolio-study__layout { grid-template-columns: minmax(0, 1fr) 15rem; gap: 3rem; }
-  .portfolio-study__index { display: block; position: sticky; top: calc(var(--navigation-offset, 8rem) + 1.5rem); max-height: calc(100vh - var(--navigation-offset, 8rem) - 3rem); max-height: calc(100svh - var(--navigation-offset, 8rem) - 3rem); overflow-y: auto; padding-left: 1.25rem; border-left: 1px solid #314055; }
+  .portfolio-study__body { grid-column: 1; grid-row: 1; }
+  .portfolio-study__index {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    position: sticky;
+    top: calc(var(--navigation-offset, 8rem) + 1.5rem);
+    max-height: calc(100svh - var(--navigation-offset, 8rem) - 3rem);
+    overflow-y: auto;
+    padding-left: 1.25rem;
+    border-left: 1px solid #314055;
+  }
   .portfolio-study__index > p { margin: 0 0 .75rem; color: #7dd3fc; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
   .portfolio-study__contents { display: none; }
+}
+
+@supports not (max-height: 100svh) {
+  @media (min-width: 80rem) {
+    .portfolio-study__index { max-height: calc(100vh - var(--navigation-offset, 8rem) - 3rem); }
+  }
 }
 @media (max-width: 39.999rem) {
   .portfolio-card__body { padding: 1.25rem; }
