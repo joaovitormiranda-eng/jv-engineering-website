@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{ $study := index site.Data.portfolio.studies .File.ContentBaseName }}
 <section class="portfolio-shell portfolio-study">
   <div class="container mx-auto px-4">
     <nav class="portfolio-breadcrumb" aria-label="Caminho da página">
@@ -32,6 +33,12 @@
       </aside>
       {{ end }}
     </div>
+    {{ with $study.related }}
+    <nav class="portfolio-study__related" aria-labelledby="related-studies-title">
+      <h2 id="related-studies-title">Continue por outros métodos</h2>
+      <ul>{{ range . }}{{ with site.GetPage . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ else }}{{ errorf "Related study not found: %s" . }}{{ end }}{{ end }}</ul>
+    </nav>
+    {{ end }}
     {{ with .GetTerms "tags" }}
     <nav class="portfolio-study__related" aria-label="Tecnologias e áreas do projeto">
       {{ with site.GetPage "/tags" }}<p><a class="portfolio-section-link" href="{{ .RelPermalink }}">Tecnologias e áreas</a></p>{{ end }}

@@ -1,0 +1,17 @@
+# Existing studies grouped by complementary methods; no external materials are added.
+qualidade-energia:
+  related:
+    - "/portfolio/modelagem-simulacao"
+    - "/portfolio/plataforma-web"
+modelagem-simulacao:
+  related:
+    - "/portfolio/solucoes-computacionais"
+    - "/portfolio/qualidade-energia"
+solucoes-computacionais:
+  related:
+    - "/portfolio/modelagem-simulacao"
+    - "/portfolio/qualidade-energia"
+plataforma-web:
+  related:
+    - "/portfolio/qualidade-energia"
+    - "/portfolio/modelagem-simulacao"

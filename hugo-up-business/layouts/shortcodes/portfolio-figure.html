@@ -1,9 +1,11 @@
-<figure>
+<figure class="portfolio-study__figure" aria-labelledby="portfolio-figure-caption-{{ .Ordinal }}">
   {{ $vector := resources.Get (.Get "vector") }}
   {{ if not $vector }}{{ errorf "Portfolio vector not found: %s" (.Get "vector") }}{{ end }}
   <picture class="block">
   <source srcset="{{ $vector.RelPermalink }}" type="image/svg+xml" />
   {{ partial "utilities/image.html" (dict "src" (.Get "src") "alt" (.Get "alt") "class" "h-auto w-full" "sizes" "(min-width: 80rem) 1024px, calc(100vw - 2rem)" "page" .Page) }}
   </picture>
-  <figcaption>{{ .Get "caption" }}</figcaption>
+  <figcaption id="portfolio-figure-caption-{{ .Ordinal }}">{{ .Get "caption" }}
+    <a class="portfolio-section-link" href="{{ $vector.RelPermalink }}" target="_blank" rel="noopener noreferrer">Ampliar diagrama (SVG; nova aba)</a>
+  </figcaption>
 </figure>
