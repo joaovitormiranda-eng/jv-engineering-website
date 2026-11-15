@@ -24,14 +24,14 @@
     </details>
     {{ end }}
     <div class="portfolio-study__layout">
-      <div class="portfolio-study__body prose prose-lg prose-invert prose-a:text-blue-400 prose-headings:text-white">
-        {{ .Content }}
-      </div>
       {{ if gt (len .Fragments.Headings) 0 }}
       <aside class="portfolio-study__index portfolio-study__toc" aria-label="Navegação do estudo">
         <p>Neste estudo</p>{{ $toc }}
       </aside>
       {{ end }}
+      <div class="portfolio-study__body prose prose-lg prose-invert prose-a:text-blue-400 prose-headings:text-white">
+        {{ .Content }}
+      </div>
     </div>
     {{ with $study.related }}
     <nav class="portfolio-study__related" aria-labelledby="related-studies-title">
