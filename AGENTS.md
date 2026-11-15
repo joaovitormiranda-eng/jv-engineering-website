@@ -1,36 +1,34 @@
 # AGENTS — JV Engineering
 
-Instruções permanentes para agentes que trabalham neste repositório. Em Kiro Web
-o `AGENTS.md` de um diretório é descoberto e carregado como contexto de steering;
-ele garante que as regras abaixo viajem com o repositório mesmo quando o
-`.kiro/steering/` não está na raiz do workspace da sessão.
+Índice de orientação para agentes de programação (Kiro, Codex e outros) que
+trabalham neste repositório. A JV Engineering é um site estático (Hugo) de
+portfólio e apoio técnico em Engenharia/STEM, publicado no GitHub Pages, e também
+um estudo de engenharia de software (segurança de publicação, privacidade,
+acessibilidade, testes).
 
-**Leia os quatro arquivos de steering antes de qualquer tarefa:**
+## Antes de implementar qualquer mudança
 
-- `.kiro/steering/product.md` — propósito, estudos publicados, rigor de conteúdo.
-- `.kiro/steering/tech.md` — Hugo 0.169.0, Node 24.18.0, build, CI/Pages, 8 testes
-  de supply chain, Analytics/consentimento, limitações do Kiro Web.
-- `.kiro/steering/structure.md` — mapa de caminhos, overrides do tema, invariantes.
-- `.kiro/steering/governance.md` — limites de publicação, áreas protegidas, Git
-  seguro, P0 do hero e S22.
+Consulte os arquivos de steering relevantes à sua tarefa. Eles contêm as versões
+de ferramentas, a estrutura do projeto, as invariantes e as regras completas:
 
-## Regras que nunca mudam sem autorização humana
+- `.kiro/steering/product.md` — propósito, estudos publicados e rigor de conteúdo.
+- `.kiro/steering/tech.md` — stack, build, CI/Pages, testes e Analytics/consentimento.
+- `.kiro/steering/structure.md` — mapa de caminhos, overrides do tema e invariantes.
+- `.kiro/steering/governance.md` — limites de publicação, áreas protegidas e Git seguro.
 
-- GitHub é a fonte oficial do código; confirmar HEAD/PR/CI/deploy antes de agir.
-- Projeto Hugo em `hugo-up-business/`. Hugo Extended **0.169.0**, Node **24.18.0**.
-- Sem merge, deploy ou `workflow_dispatch` sem autorização humana. Merge na `main`
-  dispara o Pages.
-- Branches isoladas; PRs pequenos; sem Git destrutivo ou force push.
-- **`design/` é intocável.** Não abrir, listar, ler, mover ou publicar.
-- Preservar conteúdo científico, acessibilidade, SEO e os 8 testes de supply chain.
-- Analytics só conforme o consentimento existente; **proibido tráfego de teste no
-  GA4 real**.
-- **P0 do hero no iPhone continua ABERTO** (causa raiz não demonstrada); não propor
-  CSS especulativo nem declarar resolvido por CI/emulação.
-- **07D-S.22 (laboratório Fuzzy)** não é aprovado nem publicado; não reutilizar
-  arquivos experimentais locais.
-- Não adicionar segredos, dados pessoais ou documentos internos ao repositório.
-- Dependabot #20/#21: não mexer sem autorização específica.
+> Observação sobre carregamento: o Kiro carrega automaticamente os arquivos em
+> `.kiro/steering/` (front matter `inclusion: always`) e descobre `AGENTS.md`.
+> Os caminhos listados acima são **referências textuais** para você abrir os
+> arquivos — não são um mecanismo de inclusão automática. Abra cada documento
+> relevante antes de agir.
 
-O documento mestre de handoff é a fonte de detalhe; GitHub e o código são a
-verdade atual.
+## Três regras críticas
+
+1. **Não modificar áreas protegidas sem autorização** (ex.: `design/`, hero/P0,
+   Analytics, consentimento, conteúdo científico, workflows). Detalhe em
+   `governance.md`.
+2. **Não executar merge ou deploy sem aprovação humana.** GitHub é a fonte oficial;
+   merge na `main` dispara publicação.
+3. **Não alegar correções ou resultados científicos sem evidência.** Preservar
+   equações, unidades, limites e fontes; nenhuma afirmação absoluta de bug
+   resolvido, conformidade ou ganho sem demonstração.
