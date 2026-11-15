@@ -54,6 +54,14 @@
   {{ end }}
   {{ end }}
 
+  {{/* Home design system ("Folha de Engenharia"); scoped .jv-* selectors, home only. */}}
+  {{ if .IsHome }}
+  {{ with resources.Get "css/home.css" }}
+  {{ $homeStyles := . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $homeStyles.RelPermalink }}" integrity="{{ $homeStyles.Data.Integrity }}" crossorigin="anonymous" />
+  {{ end }}
+  {{ end }}
+
   {{/* The service overview owns this presentation; specialized pages keep their existing assets. */}}
   {{ if and (eq .Section "servicos") .IsSection }}
   {{ with resources.Get "css/services.css" }}

@@ -2,33 +2,11 @@ enable: true
 title: "Exemplos técnicos documentados"
 text: "Os estudos de sinais, dados elétricos e lógica Fuzzy demonstram métodos em contextos específicos. São exemplos do portfólio, não uma lista de todas as demandas que podem ser avaliadas."
 
-items:
-  - image: "images/1.jpg"
-    pretitle: "Processamento e Simulação"
-    title: "Modelagem e Simulação Computacional"
-    text: "Estudo de filtragem digital em MATLAB, com filtro IIR Butterworth, FFT e comparação dos sinais no tempo e na frequência. Consulte os parâmetros e as limitações da simulação no projeto."
-    buttons:
-      - label: "Ver detalhes"
-        link: "/portfolio/modelagem-simulacao/"
-      - label: "Entrar em contato"
-        link: "https://wa.me/5516981946642"
-
-  - image: "images/2.jpg"
-    pretitle: "Ciência de Dados"
-    title: "Análise de Dados em Python"
-    text: "Simulação de qualidade de energia em Python com dados exclusivamente sintéticos: modelos trifásicos, indicadores, validações e gráficos SVG reproduzíveis. Os resultados não são medições de instalações reais."
-    buttons:
-      - label: "Ver detalhes"
-        link: "/portfolio/qualidade-energia/"
-      - label: "Entrar em contato"
-        link: "https://wa.me/5516981946642"
-
-  - image: "images/33.png"
-    pretitle: "Algoritmos e Métodos Numéricos"
-    title: "Programação Científica e Lógica Nebulosa"
-    text: "Exemplo didático de inferência Fuzzy Mamdani em GNU Octave e MATLAB. O estudo utiliza avaliações de comida e serviço para estimar gorjetas e explorar superfícies de resposta."
-    buttons:
-      - label: "Ver detalhes"
-        link: "/portfolio/solucoes-computacionais/"
-      - label: "Entrar em contato"
-        link: "https://wa.me/5516981946642"
+# Studies shown in the home explorer, in this order. Title, description,
+# categories, tags, figure and caption come from each study's front matter,
+# so the home never restates (or drifts from) the published study.
+studies:
+  - "/portfolio/modelagem-simulacao"
+  - "/portfolio/qualidade-energia"
+  - "/portfolio/solucoes-computacionais"
+  - "/portfolio/plataforma-web"

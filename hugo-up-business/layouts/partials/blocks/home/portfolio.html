@@ -1,189 +1,86 @@
-<section id="portfolio"
-  class="py-16 xl:py-24 bg-[#0a0f1d] text-white relative overflow-hidden border-t border-slate-800/60">
-
-  <!-- Efeitos de Luz no Fundo (Glow) -->
-  <div class="absolute top-1/4 -left-20 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
-  <div class="container mx-auto px-4 flex flex-col gap-16 xl:gap-24 relative z-10">
-    <header class="flex flex-wrap items-end justify-between gap-6">
-      <div class="max-w-3xl">
-      <h2 class="text-white text-3xl sm:text-4xl font-extrabold mb-4">{{ .title }}</h2>
-      <p class="text-slate-300 leading-relaxed">{{ .text }}</p>
+{{/* 04 · Estudos — explorer of the published studies using their real figures.
+     Without JS every plate is shown in sequence; assets/js/home/study-explorer.js
+     upgrades the index into an ARIA tablist. Figures are shown complete (contain). */}}
+<section id="portfolio" class="jv-section jv-section--band" aria-labelledby="portfolio-title">
+  <div class="jv-wrap">
+    <p class="jv-sheet"><span class="jv-sheet__num">04</span>Estudos técnicos</p>
+    <div class="jv-studies__head">
+      <div>
+        <h2 id="portfolio-title" class="jv-title">{{ .title }}</h2>
+        {{ with .text }}<p class="jv-lead">{{ . }}</p>{{ end }}
       </div>
       {{ with site.GetPage "/portfolio" }}
-      <a href="{{ .RelPermalink }}" class="inline-flex min-h-11 items-center text-sky-300 underline underline-offset-4 hover:text-white">Explorar todos os estudos →</a>
+      <a href="{{ .RelPermalink }}" class="jv-link">Explorar todos os estudos
+        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
       {{ end }}
-    </header>
-    {{ range $i, $e := .items }}
-    {{ $contactService := "general" }}
-    {{ range .buttons }}
-      {{ if hasPrefix .link "/portfolio/" }}
-        {{ with site.GetPage .link }}
-          {{ with .Params.service }}
-            {{ if in . "matlab" }}{{ $contactService = "matlab" }}{{ end }}
-            {{ if in . "python" }}{{ $contactService = "python" }}{{ end }}
-          {{ end }}
-        {{ end }}
-      {{ end }}
-    {{ end }}
-    <div class="grid xl:grid-cols-2 gap-8 xl:gap-12 items-center {{ if gt $i 0 }}border-t border-slate-800 pt-8{{ end }}" data-contact-service="{{ $contactService }}">
-
-      <!-- COLUNA DO MOCKUP EM CÓDIGO (alterna lados com base na ordem $i) -->
-      <div class="{{ if (eq (mod $i 2) 0) }}xl:order-2{{ end }} flex flex-col items-center justify-center w-full">
-
-        {{ if eq $i 0 }}
-        <!-- MOCKUP 1: PDS / SIMULAÇÃO COMPUTACIONAL -->
-        <div class="w-full max-w-lg rounded-2xl border border-slate-800 bg-[#0d111e] shadow-2xl overflow-hidden font-mono text-xs">
-          <!-- Header da Janela -->
-          <div class="flex items-center justify-between px-4 py-3 bg-[#13192b] border-b border-slate-800">
-            <div class="flex items-center gap-2">
-              <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-              <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-              <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-              <span class="ml-2 text-xs text-slate-400 font-sans font-medium">filtro_pds.m</span>
-            </div>
-            <span class="text-[10px] text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2 py-0.5 rounded font-sans">
-              Ilustrativo
-            </span>
-          </div>
-
-          <!-- Gráfico de Sinal & Telemetria -->
-          <div class="p-5 space-y-4 bg-[#090d18]">
-            <div class="h-40 w-full rounded-xl bg-slate-950/90 border border-slate-800/80 p-3 relative flex items-center justify-center overflow-hidden">
-              <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_16px] opacity-30"></div>
-              <!-- Gráfico simulando PDS (Sinal Ruidoso vs Filtrado) -->
-              <svg class="w-full h-full relative z-10" viewBox="0 0 300 80" fill="none">
-                <!-- Sinal Ruidoso -->
-                <path d="M0 40 Q 15 10, 30 40 T 60 40 T 90 20 T 120 40 T 150 70 T 180 40 T 210 10 T 240 40 T 270 60 T 300 40" stroke="#475569" stroke-width="1.5" opacity="0.6" />
-                <!-- Sinal Filtrado (Suave) -->
-                <path d="M0 40 C 30 15, 60 65, 90 40 C 120 15, 150 65, 180 40 C 210 15, 240 65, 270 40 C 290 25, 300 40, 300 40" stroke="#38bdf8" stroke-width="2.5" class="drop-shadow-[0_0_6px_rgba(56,189,248,0.8)]" />
-              </svg>
-            </div>
-
-            <div class="grid grid-cols-3 gap-2 text-center font-mono text-[11px]">
-              <div class="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800">
-                <span class="text-slate-500 block text-[9px] uppercase">Freq. Corte</span>
-                <span class="text-sky-400 font-bold">100 Hz</span>
-              </div>
-              <div class="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800">
-                <span class="text-slate-500 block text-[9px] uppercase">Atenuação</span>
-                <span class="text-emerald-400 font-bold">-40 dB</span>
-              </div>
-              <div class="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800">
-                <span class="text-slate-500 block text-[9px] uppercase">Tipo IIR</span>
-                <span class="text-emerald-400 font-bold">Butterworth</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {{ else if eq $i 1 }}
-        <!-- MOCKUP 2: PYTHON / CIÊNCIA DE DADOS -->
-        <div class="w-full max-w-lg rounded-2xl border border-slate-800 bg-[#0d111e] shadow-2xl overflow-hidden font-mono text-xs">
-          <div class="flex items-center justify-between px-4 py-3 bg-[#13192b] border-b border-slate-800">
-            <div class="flex items-center gap-2">
-              <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-              <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-              <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-              <span class="ml-2 text-xs text-slate-400 font-sans font-medium">jv_qee</span>
-            </div>
-            <span class="text-[10px] text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 px-2 py-0.5 rounded font-sans">
-              Dados sintéticos
-            </span>
-          </div>
-
-          <div class="p-5 space-y-2 text-slate-300 leading-relaxed overflow-x-auto bg-[#090d18]">
-            <p><span class="text-purple-400">from</span> jv_qee.config <span class="text-purple-400">import</span> Config</p>
-            <p><span class="text-purple-400">from</span> jv_qee.generator <span class="text-purple-400">import</span> generate</p>
-            <br>
-            <p><span class="text-slate-400"># Modelo independente; sem medições reais</span></p>
-            <p>config = Config(</p>
-            <p class="pl-4">scenario=<span class="text-green-400">"S4"</span>, n=1008,</p>
-            <p class="pl-4">seed=746031</p>
-            <p>)</p>
-            <p>dados = generate(config)</p>
-            <br>
-            <p><span class="text-slate-400"># Fasores → indicadores → SVGs</span></p>
-          </div>
-          
-          <div class="bg-[#080c16] px-4 py-3 border-t border-slate-800/80 font-mono text-[11px] space-y-1">
-             <p class="text-slate-400"><span class="text-yellow-400">~</span> python -m jv_qee.cli suite --output resultados</p>
-             <p class="text-slate-300">9 cenários sintéticos documentados</p>
-             <p class="text-emerald-400">Avaliação normativa: not_assessed</p>
-          </div>
-        </div>
-
-        {{ else }}
-        <!-- MOCKUP 3: LÓGICA NEBULOSA (OCTAVE/MATLAB) -->
-        <div class="w-full max-w-lg rounded-2xl border border-slate-800 bg-[#0d111e] shadow-2xl overflow-hidden font-mono text-xs">
-          <div class="flex items-center justify-between px-4 py-3 bg-[#13192b] border-b border-slate-800">
-            <div class="flex items-center gap-2">
-              <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-              <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-              <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-              <span class="ml-2 text-xs text-slate-400 font-sans font-medium">tip_fuzzy_manual.m</span>
-            </div>
-            <span class="text-[10px] text-orange-400 bg-orange-500/10 border border-orange-500/20 px-2 py-0.5 rounded font-sans">
-              Exemplo de gorjeta
-            </span>
-          </div>
-
-          <!-- Código Real do Script Fuzzy -->
-          <div class="p-5 space-y-1 text-slate-300 leading-relaxed overflow-x-auto bg-[#090d18] font-mono text-[11px]">
-            <p><span class="text-slate-500">% Funções de pertinência para a gorjeta (Tip)</span></p>
-            <p>mu_tip_peq = @(z) trimf(z,[<span class="text-orange-300">0 5 7</span>]);</p>
-            <p>mu_tip_med = @(z) trimf(z,[<span class="text-orange-300">8 10 12</span>]);</p>
-            <p>mu_tip_gen = @(z) trimf(z,[<span class="text-orange-300">13 15 20</span>]);</p>
-            <br>
-            <p><span class="text-slate-500">% Geração da malha para a Superfície de Resposta</span></p>
-            <p>[F, S] = meshgrid(<span class="text-orange-300">0:0.5:10</span>, <span class="text-orange-300">0:0.5:10</span>);</p>
-            <p>TipGrid = zeros(size(F));</p>
-            <p><span class="text-blue-400">for</span> i = <span class="text-orange-300">1</span>:numel(F)</p>
-            <p class="pl-4">TipGrid(i) = eval_point(F(i), S(i), ...</p>
-            <p class="pl-8">mu_food_ruim, mu_food_bom, mu_food_exc, ...</p>
-            <p class="pl-8">mu_serv_ruim, mu_serv_bom, mu_serv_exc, ...</p>
-            <p class="pl-8">mu_tip_peq, mu_tip_med, mu_tip_gen, y);</p>
-            <p><span class="text-blue-400">end</span></p>
-          </div>
-
-          <!-- Saída do Terminal - Caso C -->
-          <div class="bg-[#080c16] px-4 py-3 border-t border-slate-800/80 font-mono text-[11px] space-y-1">
-            <p class="text-slate-400"><span class="text-emerald-400">>></span> tip_fuzzy_manual(8, 9)</p>
-            <p class="text-slate-300">Exemplos (food, service) -> tip (%)</p>
-            <p class="text-sky-400 font-bold">Resultado pontual: (food=8, service=9) -> tip = 14.98%</p>
-          </div>
-        </div>
-        {{ end }}
-
-      </div>
-
-      <!-- Coluna de Informações e Ações -->
-      <div class="flex flex-col justify-center">
-        {{ with .pretitle }}
-        <p class="text-blue-400 mb-2 text-center font-bold xl:text-start text-sm uppercase tracking-wider">{{ . | markdownify }}</p>
-        {{ end }}
-
-        {{ with .title }}
-        <h3 class="text-white mb-4 text-center text-3xl font-extrabold xl:text-4xl xl:text-start leading-tight">{{ . | markdownify }}</h3>
-        {{ end }}
-
-        {{ with .text }}
-        <p class="text-gray-300 mb-6 text-center xl:text-start leading-relaxed text-base xl:text-lg">{{ . | markdownify }}</p>
-        {{ end }}
-
-        <div class="flex flex-col sm:flex-row flex-wrap items-stretch justify-center gap-3 xl:justify-start">
-          {{ range $i, $e := .buttons }}
-            {{ if (eq $i 0) }}
-              {{ partial "components/button/primary" (dict "label" .label "href" .link "contact_context" $contactService) }}
-            {{ else }}
-              {{ partial "components/button/outline" (dict "label" .label "href" .link "contact_context" $contactService) }}
-            {{ end }}
-          {{ end }}
-        </div>
-      </div>
-
     </div>
-    {{ end }}
+
+    <div class="jv-explorer" data-study-explorer>
+      <ol class="jv-explorer__tabs" data-explorer-tabs aria-label="Estudos técnicos">
+        {{ range $i, $path := .studies }}
+        {{ with site.GetPage $path }}
+        <li>
+          <a class="jv-tab" href="#estudo-{{ .File.ContentBaseName }}" id="tab-{{ .File.ContentBaseName }}" data-explorer-tab>
+            <span class="jv-tab__num">{{ printf "%02d" (add $i 1) }}</span>
+            <span class="jv-tab__cat">{{ with .Params.categories }}{{ index . 0 }}{{ else }}Projeto próprio{{ end }}</span>
+            <span class="jv-tab__title">{{ .LinkTitle }}</span>
+          </a>
+        </li>
+        {{ else }}{{ errorf "Home study not found: %s" $path }}{{ end }}
+        {{ end }}
+      </ol>
+
+      <div class="jv-plates">
+        {{ range $i, $path := .studies }}
+        {{ with site.GetPage $path }}
+        {{ $slug := .File.ContentBaseName }}
+        {{ $service := "general" }}
+        {{ with .Params.service }}{{ if in . "matlab" }}{{ $service = "matlab" }}{{ else if in . "python" }}{{ $service = "python" }}{{ end }}{{ end }}
+        <article class="jv-plate" id="estudo-{{ $slug }}" data-explorer-panel aria-labelledby="plate-{{ $slug }}-title" data-contact-service="{{ $service }}">
+          {{ with .Params.catalog_image }}
+          {{ $source := resources.Get .src }}
+          {{ if not $source }}{{ errorf "Study figure not found: %s" .src }}{{ end }}
+          <figure class="jv-plate__figure">
+            <div class="jv-plate__stage">
+              {{ if eq $source.MediaType.SubType "svg" }}
+              <img src="{{ $source.RelPermalink }}" width="{{ .width | default 792 }}" height="{{ .height | default 468 }}" alt="{{ .alt }}" loading="lazy" decoding="async" />
+              {{ else }}
+              {{ $largest := $source }}
+              {{ if gt $source.Width 1440 }}{{ $largest = $source.Resize "1440x webp q85" }}{{ else }}{{ $largest = $source.Resize (printf "%dx webp q85" $source.Width) }}{{ end }}
+              {{ $srcset := slice }}
+              {{ range slice 480 800 1200 }}{{ if lt . $largest.Width }}{{ $r := $source.Resize (printf "%dx webp q85" .) }}{{ $srcset = $srcset | append (printf "%s %dw" $r.RelPermalink $r.Width) }}{{ end }}{{ end }}
+              {{ $srcset = $srcset | append (printf "%s %dw" $largest.RelPermalink $largest.Width) }}
+              <img src="{{ $largest.RelPermalink }}" srcset="{{ delimit $srcset ", " }}"
+                sizes="(min-width: 80rem) 880px, (min-width: 64rem) calc(100vw - 27rem), calc(100vw - 2.5rem)"
+                width="{{ $largest.Width }}" height="{{ $largest.Height }}" alt="{{ .alt }}" loading="lazy" decoding="async" />
+              {{ end }}
+            </div>
+            <figcaption class="jv-plate__caption"><span class="jv-mono">Fig. {{ printf "%02d" (add $i 1) }}</span><span>{{ .caption }}</span></figcaption>
+          </figure>
+          {{ end }}
+
+          <div class="jv-plate__body">
+            <div>
+            <p class="jv-plate__cat">{{ with .Params.categories }}{{ delimit . " · " }}{{ else }}Projeto próprio · Desenvolvimento web{{ end }}</p>
+            <h3 class="jv-plate__title" id="plate-{{ $slug }}-title">{{ .Title }}</h3>
+            <p class="jv-plate__text">{{ .Description | plainify }}</p>
+            <div class="jv-actions">
+              <a class="jv-btn jv-btn--primary" href="{{ .RelPermalink }}">Ler o estudo
+                <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+              {{ with site.Params.social.whatsapp }}
+              <a class="jv-btn jv-btn--ghost" href="{{ partial "utilities/contact-url.html" (dict "href" . "context" $service) }}" target="_blank" rel="noopener noreferrer">Conversar sobre este método</a>
+              {{ end }}
+            </div>
+            </div>
+            <dl class="jv-specs">
+              {{ with .Params.tags }}<div><dt>Ferramentas</dt><dd>{{ delimit (first 4 .) " · " }}</dd></div>{{ end }}
+              <div><dt>Atualizado</dt><dd><time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_long" }}</time></dd></div>
+            </dl>
+          </div>
+        </article>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
   </div>
 </section>
