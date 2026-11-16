@@ -140,16 +140,17 @@ Both notices name Tailwind Labs, Inc. and are published under `licenses/`.
 Dependencies used only during development retain their own licenses; this notice
 does not relicense them or imply that their entire packages ship to visitors.
 
-## Hero photograph
+## Former hero photograph (no longer published)
 
-The photograph used by `data/home/hero.yaml` as `images/10.jpg` corresponds to
-Nicolas Thomas's photograph on Unsplash:
+Until the S29 hero redesign, `data/home/hero.yaml` used `images/10.jpg`, which
+corresponds to Nicolas Thomas's photograph on Unsplash:
 <https://unsplash.com/photos/electronic-circuit-boards-near-tester-3GZi6OpSDcY>.
+The site has not published it since S29, and the file was removed from the
+working tree in S32; it remains in Git history (for example, `main` @ `84b89f7`).
 The [Unsplash License](https://unsplash.com/license) permits commercial and
-noncommercial reuse and does not require attribution; this credit is voluntary.
-It is an illustrative photograph, not evidence of work, equipment ownership or
-measurements by JV Engineering. Other rights, including depicted trademarks,
-remain separate from the photographic license.
+noncommercial reuse and does not require attribution; this credit is voluntary
+and is kept for the historical versions. It was an illustrative photograph, not
+evidence of work, equipment ownership or measurements by JV Engineering.
 
 ## Brand names and unresolved provenance
 
