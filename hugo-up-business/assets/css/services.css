@@ -81,6 +81,11 @@
 .service-contact__next { display: flex; flex-direction: column; align-items: flex-start; gap: .25rem; }
 .service-contact__next .jv-btn { max-width: 100%; text-align: center; }
 .service-specialties .jv-link { margin-top: auto; padding-top: .5rem; }
+/* S28: modalities as a numbered list ("o que você pode solicitar"). */
+.service-modes { list-style: none; margin: 0; padding: 0; counter-reset: service-mode; }
+.service-mode { counter-increment: service-mode; }
+.service-mode__number { display: inline-flex; align-items: center; justify-content: center; min-width: 2.25rem; height: 1.75rem; margin-bottom: .875rem; padding-inline: .5rem; border: 1px solid var(--jv-line-strong); border-radius: .375rem; color: var(--jv-accent); font-family: var(--jv-mono); font-size: .8125rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.service-mode:hover .service-mode__number { border-color: var(--jv-accent); }
 .service-wayfinding a { font-family: var(--jv-mono); font-size: .75rem; letter-spacing: .04em; }
 .service-wayfinding { border-block-color: var(--jv-line-strong); }
 .service-shell .jv-btn { white-space: normal; }
