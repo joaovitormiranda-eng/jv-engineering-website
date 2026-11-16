@@ -1,0 +1,15 @@
+{{ define "main" }}
+<section class="jv-page">
+  <div class="jv-wrap">
+    <header class="jv-pagehead">
+      <p class="jv-sheet"><span class="jv-sheet__num">404</span>Página não encontrada</p>
+      <h1 class="jv-title jv-title--display">Esse endereço não existe mais.</h1>
+      <p class="jv-lead">A página pode ter sido movida ou o link pode estar incompleto. Estes caminhos levam ao conteúdo publicado.</p>
+    </header>
+    {{ $items := slice (dict "kicker" "Início" "title" "Página inicial" "text" "Perfil, áreas de atuação, estudos e contato." "url" site.Home.Permalink) }}
+    {{ with site.GetPage "/portfolio" }}{{ $items = $items | append (dict "kicker" "Portfólio" "title" "Estudos técnicos" "text" "Métodos, figuras reais e código com limites documentados." "url" .Permalink) }}{{ end }}
+    {{ with site.GetPage "/servicos" }}{{ $items = $items | append (dict "kicker" "Atendimento" "title" "Áreas de suporte técnico" "text" "O que pode ser avaliado e como iniciar a conversa." "url" .Permalink) }}{{ end }}
+    {{ partial "system/paths.html" (dict "id" "notfound-paths" "title" "Por onde seguir" "items" $items) }}
+  </div>
+</section>
+{{ end }}

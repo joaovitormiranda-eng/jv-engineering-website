@@ -81,13 +81,13 @@
       
       <!-- COLUNA 2: NAVEGAÇÃO -->
       <div class="xl:col-span-3">
-        <h3 class="text-blue-400 font-mono font-bold text-xs uppercase tracking-widest mb-4 text-center xl:text-start">
+        <h2 class="text-blue-400 font-mono font-bold text-xs uppercase tracking-widest mb-4 text-center xl:text-start">
           // Navegação
-        </h3>
+        </h2>
         <ul class="flex flex-col gap-2.5 text-sm">
           {{ range .Site.Menus.footer }}
           <li class="text-center xl:text-start">
-            <a class="text-gray-400 hover:text-white transition-colors duration-200 hover:underline underline-offset-4 decoration-blue-500"
+            <a class="inline-flex min-h-11 items-center justify-center text-gray-400 hover:text-white transition-colors duration-200 hover:underline underline-offset-4 decoration-blue-500 xl:justify-start"
               href="{{ partial "utilities/contact-url.html" (dict "href" .URL) }}" {{ if hasPrefix .URL site.Params.social.whatsapp }}target="_blank" rel="noopener noreferrer"{{ end }}>
               {{ .Name }}
             </a>
@@ -101,9 +101,9 @@
 
       <!-- COLUNA 3: LOCALIZAÇÃO -->
       <div class="xl:col-span-3">
-        <h3 class="text-blue-400 font-mono font-bold text-xs uppercase tracking-widest mb-4 text-center xl:text-start">
+        <h2 class="text-blue-400 font-mono font-bold text-xs uppercase tracking-widest mb-4 text-center xl:text-start">
           // Localização
-        </h3>
+        </h2>
         <ul class="flex flex-col gap-3 text-sm">
           {{ range .Site.Params.location }}
           <li class="flex items-center justify-center gap-3 xl:justify-start text-gray-400">

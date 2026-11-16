@@ -1,0 +1,19 @@
+{{- /* Breadcrumb trail + BreadcrumbList JSON-LD from the same data.
+       Input: slice of dicts {name, url}; the last item is the current page (no link). */ -}}
+{{- $items := . -}}
+<nav class="jv-crumbs" aria-label="Caminho da página">
+  <ol>
+    {{- range $i, $c := $items }}
+    {{- if eq (add $i 1) (len $items) }}
+    <li><span aria-current="page">{{ $c.name }}</span></li>
+    {{- else }}
+    <li><a href="{{ $c.url }}">{{ $c.name }}</a></li>
+    {{- end }}
+    {{- end }}
+  </ol>
+</nav>
+{{- $list := slice -}}
+{{- range $i, $c := $items -}}
+  {{- $list = $list | append (dict "@type" "ListItem" "position" (add $i 1) "name" $c.name "item" $c.url) -}}
+{{- end -}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $list | jsonify | safeJS }}</script>

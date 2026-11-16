@@ -46,6 +46,12 @@
   {{ end }}
   {{ end }}
 
+  {{/* Shared "Folha de Engenharia" tokens and primitives (S27): every page, before the family styles. */}}
+  {{ with resources.Get "css/system.css" }}
+  {{ $systemStyles := . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $systemStyles.RelPermalink }}" integrity="{{ $systemStyles.Data.Integrity }}" crossorigin="anonymous" />
+  {{ end }}
+
   {{/* Load the scoped presentation only where portfolio components appear. */}}
   {{ if or (eq .Section "portfolio") (eq .Kind "term") }}
   {{ with resources.Get "css/portfolio.css" }}
@@ -62,8 +68,8 @@
   {{ end }}
   {{ end }}
 
-  {{/* The service overview owns this presentation; specialized pages keep their existing assets. */}}
-  {{ if and (eq .Section "servicos") .IsSection }}
+  {{/* Service family: the overview and the specialised pages share one presentation. */}}
+  {{ if eq .Section "servicos" }}
   {{ with resources.Get "css/services.css" }}
   {{ $serviceStyles := . | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $serviceStyles.RelPermalink }}" integrity="{{ $serviceStyles.Data.Integrity }}" crossorigin="anonymous" />

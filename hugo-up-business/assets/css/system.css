@@ -1,0 +1,153 @@
+/*
+  JV Engineering — "Folha de Engenharia" shared design system (rev. S27).
+  Loaded on EVERY page (baseof.html) before the page-family stylesheets
+  (home.css, portfolio.css, services.css). Holds the tokens and primitives that
+  were born in the home page (S26/S26B) so internal pages speak the same
+  language: tokens, container, numbered sheet label, type scale, links, buttons
+  and focus. Moved verbatim from home.css; home.css keeps only home sections.
+
+  Family stylesheets may use the --jv-* tokens but must not redefine them.
+  Selectors are scoped under .jv-* (or the page-head/plate blocks below), so
+  the hero, header and legacy Tailwind pages are unaffected.
+*/
+:root {
+  --jv-bg: #0a0f1d;
+  --jv-band: #0c1322;
+  --jv-deep: #070b15;
+  --jv-surface: #0f1729;
+  --jv-surface-2: #131d33;
+  --jv-line: #1e2a40;
+  --jv-line-strong: #2d3d58;
+  --jv-text: #f1f5f9;
+  --jv-muted: #b4c0d1;
+  --jv-subtle: #8d9bb1;
+  --jv-accent: #7dd3fc;
+  --jv-accent-strong: #38bdf8;
+  --jv-accent-ink: #04111f;
+  --jv-accent-wash: rgb(125 211 252 / .08);
+  --jv-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  /* Same 1rem inline padding as the header, hero and footer containers (px-4). */
+  --jv-gutter: 1rem;
+  --jv-space: clamp(3.5rem, 8vw, 7rem);
+  --jv-ease: cubic-bezier(.2, .7, .2, 1);
+  --jv-ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* ---------- Layout primitives ---------- */
+.jv-section { position: relative; padding-block: var(--jv-space); background: var(--jv-bg); color: var(--jv-text); border-top: 1px solid var(--jv-line); }
+.jv-section--band { background: var(--jv-band); }
+.jv-section--feature { --jv-space: clamp(4rem, 10vw, 8.5rem); }
+.jv-section--compact { --jv-space: clamp(3rem, 6vw, 5rem); }
+.jv-section--deep { background: var(--jv-deep); }
+.jv-wrap { width: 100%; max-width: 80rem; margin-inline: auto; padding-inline: var(--jv-gutter); }
+.jv-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); }
+
+/* Sheet label: numbered drawing sheet that opens every section. */
+.jv-sheet { display: flex; align-items: center; gap: .875rem; margin: 0 0 clamp(1.25rem, 3vw, 2rem); color: var(--jv-accent); font-family: var(--jv-mono); font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.jv-sheet__num { display: inline-flex; align-items: center; justify-content: center; min-width: 2.25rem; height: 1.5rem; padding-inline: .375rem; border: 1px solid var(--jv-line-strong); border-radius: .25rem; color: var(--jv-text); letter-spacing: .06em; }
+.jv-sheet::after { content: ""; order: 2; flex: 1; min-width: 1.5rem; height: 1px; background: var(--jv-line-strong); }
+.jv-sheet__total { order: 3; color: var(--jv-subtle); font-weight: 500; letter-spacing: .1em; white-space: nowrap; }
+
+/* Type scale: three title tiers. */
+.jv-title { margin: 0; max-width: 22ch; font-size: clamp(1.75rem, 1.15rem + 2.4vw, 3rem); font-weight: 800; line-height: 1.08; letter-spacing: -.03em; text-wrap: balance; }
+.jv-title--display { max-width: 18ch; font-size: clamp(2.125rem, 1.25rem + 3.8vw, 4.25rem); line-height: 1.02; letter-spacing: -.04em; }
+.jv-title--compact { max-width: 26ch; font-size: clamp(1.5rem, 1.15rem + 1.4vw, 2.25rem); line-height: 1.15; letter-spacing: -.025em; }
+.jv-lead { margin: 1.25rem 0 0; max-width: 62ch; color: var(--jv-muted); font-size: clamp(1rem, .95rem + .25vw, 1.125rem); line-height: 1.75; }
+.jv-lead--flush { margin-top: 0; }
+.jv-mono { font-family: var(--jv-mono); }
+.jv-intro { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+/* In the single-column intro the grid gap already separates title and lead. */
+.jv-intro.jv-grid { row-gap: 1.25rem; }
+.jv-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ---------- Links & buttons ---------- */
+.jv-link { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; color: var(--jv-accent); font-weight: 600; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--jv-accent) 40%, transparent); text-decoration-thickness: 1px; text-underline-offset: .32em; transition: color .18s var(--jv-ease), text-decoration-color .18s var(--jv-ease); }
+.jv-link:hover { color: #fff; text-decoration-color: currentColor; }
+.jv-link svg { width: 1rem; height: 1rem; flex-shrink: 0; transition: transform .24s var(--jv-ease-out); }
+.jv-link:hover svg { transform: translateX(4px); }
+
+.jv-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: .625rem; min-height: 48px; padding: .75rem 1.375rem; border: 1px solid transparent; border-radius: .5rem; font: inherit; font-size: .9375rem; font-weight: 650; line-height: 1.2; text-decoration: none; cursor: pointer; transition: background-color .18s var(--jv-ease), border-color .18s var(--jv-ease), color .18s var(--jv-ease), transform .12s var(--jv-ease); }
+.jv-btn svg { width: 1.0625rem; height: 1.0625rem; flex-shrink: 0; transition: transform .24s var(--jv-ease-out); }
+.jv-btn:hover svg { transform: translateX(4px); }
+.jv-btn:active { transform: translateY(1px) scale(.99); }
+.jv-btn--primary { background: var(--jv-accent); color: var(--jv-accent-ink); }
+.jv-btn--primary:hover { background: #bae6fd; }
+.jv-btn--ghost { border-color: var(--jv-line-strong); background: transparent; color: var(--jv-text); }
+.jv-btn--ghost:hover { border-color: var(--jv-accent); color: var(--jv-accent); }
+.jv-btn[disabled] { opacity: .38; cursor: default; pointer-events: none; }
+.jv-section :where(a, button, summary, [tabindex]):focus-visible { outline: 2px solid var(--jv-accent); outline-offset: 3px; border-radius: .375rem; }
+
+/* =========================================================
+   Page chrome for internal pages (S27)
+   Same sheet / title-block language as the home, sized for reading and
+   navigation pages: catalogue, studies, services, privacy, taxonomy, 404.
+   ========================================================= */
+.jv-page { padding-block: clamp(1.5rem, 4vw, 3.5rem) var(--jv-space); background: var(--jv-bg); color: var(--jv-text); overflow-wrap: anywhere; }
+.jv-page :where(a, button, summary, [tabindex]):focus-visible { outline: 2px solid var(--jv-accent); outline-offset: 3px; border-radius: .375rem; }
+.jv-page .jv-sheet { margin-bottom: 1rem; }
+
+/* Breadcrumb: mono trail, 44px targets, one source for visual + JSON-LD. */
+.jv-crumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .5rem; margin: 0 0 clamp(1rem, 3vw, 1.75rem); padding: 0; list-style: none; color: var(--jv-subtle); font-family: var(--jv-mono); font-size: .75rem; letter-spacing: .04em; }
+.jv-crumbs li { display: inline-flex; align-items: center; min-height: 44px; }
+.jv-crumbs li + li::before { content: "/"; margin-right: .5rem; color: var(--jv-line-strong); }
+.jv-crumbs a { display: inline-flex; align-items: center; min-height: 44px; color: var(--jv-muted); text-decoration: underline; text-decoration-color: var(--jv-line-strong); text-underline-offset: .25em; }
+.jv-crumbs a:hover { color: var(--jv-accent); text-decoration-color: currentColor; }
+.jv-crumbs [aria-current] { color: var(--jv-text); }
+
+.jv-pagehead { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+/* Measures on internal pages are in rem, not ch: ch follows the glyph widths of the
+   current font, so a font swap would re-wrap headings and shift the page (CLS). */
+.jv-pagehead .jv-title { max-width: none; }
+/* Internal-page titles top out near 3.5rem (home keeps the larger display scale) so common
+   titles keep the same line count before and after the web font loads. */
+.jv-pagehead .jv-title--display { font-size: clamp(1.875rem, 1rem + 2.2vw, 3.5rem); line-height: 1.08; }
+.jv-pagehead .jv-lead { max-width: 40rem; }
+.jv-pagehead__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.5rem; margin-top: 1.75rem; }
+.jv-note { max-width: 44rem; margin: .875rem 0 0; color: var(--jv-subtle); font-size: .8125rem; line-height: 1.7; }
+
+/* Title block: label/value pairs separated by hairlines (study "ficha técnica"). */
+.jv-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin: clamp(1.5rem, 4vw, 2.25rem) 0 0; padding: 1px; border: 1px solid var(--jv-line-strong); border-radius: .75rem; background: var(--jv-line-strong); overflow: hidden; }
+.jv-facts > div { min-width: 0; padding: .875rem 1.125rem; background: var(--jv-surface); }
+.jv-facts > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.jv-facts dt { margin: 0 0 .25rem; color: var(--jv-subtle); font-family: var(--jv-mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; }
+.jv-facts dd { margin: 0; color: var(--jv-text); font-size: .9375rem; line-height: 1.5; }
+.jv-facts a { color: var(--jv-accent); text-decoration: underline; text-underline-offset: .25em; }
+.jv-facts a:hover { color: #fff; }
+
+.jv-chips { display: flex; flex-wrap: wrap; gap: .375rem; margin: 0; padding: 0; list-style: none; }
+.jv-chips li { padding: .1875rem .625rem; border: 1px solid var(--jv-line-strong); border-radius: .375rem; color: var(--jv-muted); font-family: var(--jv-mono); font-size: .75rem; line-height: 1.6; }
+
+/* Wayfinding: where to go next, as a ruled strip of whole-card links. */
+.jv-paths { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1px; margin: 0; padding: 1px; list-style: none; border: 1px solid var(--jv-line-strong); border-radius: .75rem; background: var(--jv-line-strong); overflow: hidden; }
+.jv-path { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 1.25rem; gap: .25rem 1rem; align-content: start; padding: 1.25rem 1.25rem 1.375rem; background: var(--jv-surface); transition: background-color .2s var(--jv-ease); }
+.jv-path:hover { background: var(--jv-surface-2); }
+.jv-path__kicker { grid-column: 1; color: var(--jv-subtle); font-family: var(--jv-mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; }
+.jv-path__title { grid-column: 1; margin: 0; font-size: 1.0625rem; font-weight: 700; line-height: 1.4; letter-spacing: -.01em; }
+.jv-path__title a { color: var(--jv-text); text-decoration: none; }
+.jv-path__title a::after { content: ""; position: absolute; inset: 0; }
+.jv-path__title a:focus-visible { outline: none; }
+.jv-path:focus-within { outline: 2px solid var(--jv-accent); outline-offset: -2px; }
+.jv-path__text { grid-column: 1; margin: .25rem 0 0; color: var(--jv-muted); font-size: .875rem; line-height: 1.65; }
+.jv-path__arrow { grid-column: 2; grid-row: 1 / span 2; width: 1rem; height: 1rem; margin-top: .25rem; color: var(--jv-subtle); transition: transform .24s var(--jv-ease-out), color .2s var(--jv-ease); }
+.jv-path:hover .jv-path__arrow { color: var(--jv-accent); transform: translateX(3px); }
+.jv-path:hover .jv-path__title a { color: var(--jv-accent); }
+.jv-pathblock { margin-top: clamp(3rem, 7vw, 5rem); }
+.jv-pathblock > h2 { margin: 0 0 1.25rem; font-family: var(--jv-mono); font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--jv-accent); }
+
+/* Long-form text on internal pages (privacy, services copy): readable measure. */
+.jv-prose { max-width: 44rem; }
+
+@media (min-width: 40rem) {
+  .jv-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  /* Last cell absorbs the remainder so no empty cell shows the rule colour. */
+  .jv-facts > div:last-child:nth-child(3n+1) { grid-column: span 3; }
+  .jv-facts > div:last-child:nth-child(3n+2) { grid-column: span 2; }
+}
+@media (min-width: 48rem) {
+  .jv-paths { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .jv-paths--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jv-path, .jv-path__arrow, .jv-btn, .jv-btn svg, .jv-link svg { transition: none; }
+  .jv-path:hover .jv-path__arrow, .jv-btn:hover svg, .jv-link:hover svg { transform: none; }
+}
