@@ -1,41 +1,40 @@
-<nav aria-label="Principal" data-navigation class="sticky top-0 z-[100] bg-[#0a0f1d]/95 backdrop-blur-md border-b border-gray-800/60 transition-all duration-300">
-  <div class="container mx-auto flex items-center justify-between px-4 py-3 xl:py-5">
-
-    <!-- DESKTOP LOGO (Fica visível na barra mobile fechada) -->
+{{/* Global header (S29). Same disclosure contract as before (data-navigation*,
+     #navbarContent, navigation-* classes used by navigation.js and
+     accessibility.css). Solid background: no backdrop-filter or translucency,
+     a pattern associated with WebKit paint glitches. That is a risk reduction,
+     not a confirmed fix for the iPhone P0. */}}
+<nav aria-label="Principal" data-navigation class="jv-header">
+  <div class="jv-header__bar">
     {{ $symbol := resources.Get "images/brand/symbol-white.svg" | fingerprint }}
     {{ $horizontal := resources.Get "images/brand/logo-horizontal-white.svg" | fingerprint }}
     {{/* Accessing RelPermalink keeps the original PNG published for existing references. */}}
     {{ $legacyLogoURL := (resources.Get "images/logo.png").RelPermalink }}
-    <a class="flex h-12 shrink-0 items-center xl:h-16" href="{{ .Site.BaseURL }}" aria-label="JV Engineering — início">
+    <a class="jv-header__brand" href="{{ .Site.BaseURL }}" aria-label="JV Engineering — início">
       <picture class="block">
         <source media="(min-width: 80rem)" srcset="{{ $horizontal.RelPermalink }}" width="256" height="48" />
         <img src="{{ $symbol.RelPermalink }}" width="66" height="48" alt=""
-          class="block h-12 w-[66px] object-contain xl:w-64" loading="eager" fetchpriority="high" decoding="async" />
+          class="block h-11 w-[61px] object-contain xl:h-12 xl:w-64" loading="eager" fetchpriority="high" decoding="async" />
       </picture>
     </a>
 
     <!-- Disclosure não modal: o mesmo controle abre e fecha o painel. -->
-    <button class="navigation-toggle cursor-pointer text-white hover:text-blue-400 transition-colors p-2 xl:hidden" type="button"
+    <button class="navigation-toggle jv-header__toggle xl:hidden" type="button"
       id="navigation-toggle" data-navigation-toggle aria-controls="navbarContent" aria-expanded="false" aria-label="Abrir navegação">
       <span data-navigation-open-icon aria-hidden="true">{{ partial "heroicons/bars-4" }}</span>
       <span data-navigation-close-icon aria-hidden="true">{{ partial "heroicons/x-mark" }}</span>
     </button>
 
-    <div class="navigation-panel flex w-full flex-col xl:static xl:h-auto xl:w-auto xl:flex-row xl:items-center xl:gap-8 xl:bg-transparent"
-      id="navbarContent" data-navigation-panel data-open="false">
-      <div class="navigation-content flex flex-col items-center justify-center flex-1 gap-8 p-6 xl:flex-row xl:p-0 xl:justify-end w-full">
-        <ul class="navigation-links flex flex-col items-center gap-6 xl:flex-row xl:gap-8 w-full">
+    <div class="navigation-panel jv-header__panel" id="navbarContent" data-navigation-panel data-open="false">
+      <div class="navigation-content jv-header__content">
+        <ul class="navigation-links jv-header__links">
           {{ range site.Menus.main }}
-          <li class="w-full text-center">
-            <a class="navigation-link block w-full py-2 text-gray-200 hover:text-blue-400 text-xl xl:text-base font-medium transition-colors duration-200"
-              href="{{ .URL }}">{{ .Name }}</a>
-          </li>
+          <li><a class="navigation-link jv-header__link" href="{{ .URL }}">{{ .Name }}</a></li>
           {{ end }}
         </ul>
-        <ul class="navigation-actions flex flex-col items-center gap-4 mt-4 xl:mt-0 xl:flex-row xl:gap-4 w-full xl:w-auto px-4 xl:px-0">
+        <ul class="navigation-actions jv-header__actions">
           {{ range .Site.Menus.buttons }}
-          <li class="w-full sm:w-80 xl:w-auto text-center">
-            {{ partial "components/button/primary" (dict "label" .Name "href" .URL ) }}
+          <li>
+            <a class="jv-header__cta" href="{{ partial "utilities/contact-url.html" (dict "href" .URL) }}" target="_blank" rel="noopener noreferrer">{{ .Name }}<span class="jv-sr"> pelo WhatsApp (abre em nova aba)</span></a>
           </li>
           {{ end }}
         </ul>

@@ -25,12 +25,21 @@ if (navigation) {
     navigation.style.setProperty('--navigation-panel-height', `${Math.max(0, Math.floor(available))}px`)
   }
 
+  // Section links (no hash) are current on their page and on every page below
+  // it (a study marks "Projetos"); anchor links are current only on the same
+  // page with the same hash.
   function updateCurrentLink() {
     for (const link of panel.querySelectorAll('.navigation-link')) {
       const url = new URL(link.href, location.href)
-      const current = url.origin === location.origin && url.pathname === location.pathname &&
-        url.hash === (location.hash || '#hero')
-      if (current) link.setAttribute('aria-current', 'location')
+      let current = null
+      if (url.origin === location.origin) {
+        if (url.hash) {
+          if (url.pathname === location.pathname && url.hash === location.hash) current = 'location'
+        } else if (url.pathname !== '/' && location.pathname.startsWith(url.pathname)) {
+          current = location.pathname === url.pathname ? 'page' : 'true'
+        }
+      }
+      if (current) link.setAttribute('aria-current', current)
       else link.removeAttribute('aria-current')
     }
   }
