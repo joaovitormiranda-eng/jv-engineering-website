@@ -74,14 +74,10 @@
               <div class="jv-actions">
                 <a class="jv-btn jv-btn--primary" href="{{ .RelPermalink }}">Ler o estudo
                   <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-                {{ with site.Params.social.whatsapp }}
-                <a class="jv-btn jv-btn--ghost" href="{{ partial "utilities/contact-url.html" (dict "href" . "context" $service) }}" target="_blank" rel="noopener noreferrer">Conversar sobre este método</a>
-                {{ end }}
               </div>
             </div>
             <dl class="jv-specs">
               {{ with .Params.tags }}<div><dt>Ferramentas</dt><dd>{{ delimit (first 4 .) " · " }}</dd></div>{{ end }}
-              <div><dt>Atualizado</dt><dd><time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_long" }}</time></dd></div>
             </dl>
           </div>
         </article>

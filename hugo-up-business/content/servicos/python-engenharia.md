@@ -12,8 +12,6 @@ link_label: "Conhecer o serviço Python para engenharia"
 
 ## Que problemas podem ser atendidos
 
-Esta página detalha o atendimento em Python, uma das especialidades da JV Engineering. Demandas com outras ferramentas ou áreas podem ser apresentadas pelo [índice de suporte técnico em Engenharia e Computação]({{< relref "/servicos" >}}#areas), sem precisar se encaixar nesta oferta.
-
 O serviço apoia quem possui dados técnicos e precisa organizar uma análise que possa ser executada novamente, conferida e compreendida. O ponto de partida são os arquivos e os requisitos do projeto, não uma conclusão previamente prometida.
 
 ### Tratamento e validação de tabelas
@@ -55,14 +53,14 @@ O exemplo demonstra processamento computacional em um contexto documentado. Não
 3. **Implementação e verificação.** Organizamos as etapas do processamento e comparamos as saídas com as referências disponíveis.
 4. **Entrega e orientação.** Apresentamos o código e os materiais combinados, com instruções e limitações conhecidas.
 
-## Entregáveis que podem ser combinados
-
+{{< faq q="Entregáveis que podem ser combinados" >}}
 - Scripts organizados para leitura, tratamento e análise de dados.
 - Tabelas processadas e registros de validação pertinentes ao escopo.
 - Gráficos com eixos, unidades, legendas e contexto de interpretação.
 - Rotinas de preparação de relatórios no formato acordado.
 - Documentação das entradas, regras de tratamento e dependências.
 - Instruções para executar e conferir a rotina no ambiente definido.
+{{< /faq >}}
 
 ## Limites da análise e responsabilidades
 
@@ -76,12 +74,10 @@ Em atividades acadêmicas, o apoio é voltado à compreensão, revisão e desenv
 
 ## Dúvidas antes de iniciar
 
-### Posso enviar uma planilha ainda desorganizada?
-
+{{< faq q="Posso enviar uma planilha ainda desorganizada?" >}}
 Sim. Uma amostra com a descrição das colunas ajuda a avaliar o trabalho necessário. A limpeza exige regras explícitas: nem todo valor ausente pode ser estimado ou descartado sem afetar a análise.
+{{< /faq >}}
 
-### O serviço inclui coletar dados em uma instalação?
-
+{{< faq q="O serviço inclui coletar dados em uma instalação?" >}}
 Não. Esta oferta é de programação e análise dos arquivos recebidos. A coleta e a avaliação da aplicação em campo precisam ser conduzidas pelos responsáveis competentes.
-
-Consulte o [índice de serviços técnicos]({{< relref "/servicos" >}}) para comparar as opções. Para filtros, FFT e modelos em MATLAB, veja a [consultoria MATLAB e análise de sinais]({{< relref "/servicos/matlab" >}}).
+{{< /faq >}}

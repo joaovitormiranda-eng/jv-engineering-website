@@ -9,7 +9,6 @@
           {{ $logo := resources.Get "images/brand/logo-horizontal-white.svg" | fingerprint }}
           <img src="{{ $logo.RelPermalink }}" width="256" height="48" alt="" loading="lazy" decoding="async" />
         </a>
-        <p class="jv-footer__statement">Engenharia, computação e desenvolvimento aplicados a problemas técnicos, com escopo avaliado em cada demanda.</p>
         <p class="jv-footer__resp">Responsável: <a href="{{ site.Home.RelPermalink }}#responsavel">{{ site.Params.professional.name }}</a></p>
       </div>
 
@@ -50,7 +49,7 @@
 
     <div class="jv-footer__base">
       <p>{{ with .Site.Params.copyright }}{{ . }}{{ else }}© {{ now.Format "2006" }} JV Engineering.{{ end }}</p>
-      <p>Site estático · Hugo · publicação verificada em CI</p>
+      {{ with site.GetPage "/portfolio/plataforma-web" }}<p><a href="{{ .RelPermalink }}">Como este site é feito</a></p>{{ end }}
     </div>
   </div>
 </footer>

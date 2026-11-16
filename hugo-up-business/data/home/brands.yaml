@@ -1,7 +1,7 @@
 enable: true
 
 title: "Ferramentas a serviço do problema"
-text: "Linguagens, ambientes, simuladores e plataformas têm papéis diferentes. A escolha depende dos requisitos e dos recursos disponíveis. Os estudos demonstram usos específicos de MATLAB, GNU Octave e Python; outras tecnologias podem ser discutidas na avaliação da demanda."
+text: "Cada ferramenta tem um papel; a escolha depende dos requisitos. Os estudos usam MATLAB, GNU Octave e Python."
 independence: "Os símbolos representam funções técnicas. Referências a ferramentas não indicam parceria, certificação ou endosso dos fabricantes."
 trademarks: "Python é marca registrada da Python Software Foundation; Jupyter é marca da LF Charities; Arduino é marca da Arduino S.r.l.; AutoCAD é marca do grupo Autodesk; LTspice é marca registrada de Analog Devices, Inc.; Power BI e Visual Studio Code são marcas do grupo Microsoft; GitHub é marca da GitHub, Inc. Demais marcas pertencem aos respectivos titulares."
 mathworks_notice: "MATLAB and Simulink are registered trademarks of The MathWorks, Inc."

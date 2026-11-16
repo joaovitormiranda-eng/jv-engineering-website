@@ -1,6 +1,5 @@
 {{/* 01 · Perfil — feature sheet. The YAML text is unchanged: its first sentence is set
      as the statement and the remainder as body copy (presentation only). */}}
-{{ $studies := where site.RegularPages "Section" "portfolio" }}
 {{ $text := .text | default "" }}
 {{ $parts := split $text ". " }}
 {{ $statement := index $parts 0 }}
@@ -37,35 +36,5 @@
       </dl>
     </div>
 
-    {{/* Each item links to the evidence that supports it; the study count is computed from published pages. */}}
-    <ul class="jv-evidence" aria-label="Evidências verificáveis">
-      {{ with site.GetPage "/portfolio" }}
-      <li>
-        <a href="{{ .RelPermalink }}">
-          <span class="jv-evidence__value"><span class="jv-evidence__num">{{ len $studies }}</span> estudos técnicos publicados</span>
-          <span class="jv-evidence__label">Métodos, parâmetros e limites documentados em cada estudo.</span>
-        </a>
-        <svg class="jv-evidence__arrow" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M9 7h8v8"/></svg>
-      </li>
-      {{ end }}
-      {{ with site.Params.social.github }}
-      <li>
-        <a href="{{ . }}" target="_blank" rel="noopener noreferrer">
-          <span class="jv-evidence__value">Código em repositórios públicos</span>
-          <span class="jv-evidence__label">Os estudos referenciam o código-fonte correspondente.</span>
-        </a>
-        <svg class="jv-evidence__arrow" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M9 7h8v8"/></svg>
-      </li>
-      {{ end }}
-      {{ with site.GetPage "/portfolio/plataforma-web" }}
-      <li>
-        <a href="{{ .RelPermalink }}">
-          <span class="jv-evidence__value">Publicação verificada em CI</span>
-          <span class="jv-evidence__label">Cada publicação deste site passa por build e verificação de integridade automatizados.</span>
-        </a>
-        <svg class="jv-evidence__arrow" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M9 7h8v8"/></svg>
-      </li>
-      {{ end }}
-    </ul>
   </div>
 </section>

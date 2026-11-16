@@ -1,0 +1,2 @@
+{{- /* Question with its answer behind a native disclosure (S30). */ -}}
+<details class="study-faq"><summary>{{ .Get "q" }}</summary><div class="study-faq__body">{{ .Inner | .Page.RenderString (dict "display" "block") }}</div></details>

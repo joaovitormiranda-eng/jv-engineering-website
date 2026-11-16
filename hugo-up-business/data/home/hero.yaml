@@ -7,9 +7,8 @@ enable: true
 kicker: "Operação técnica independente"
 title: "Engenharia, computação e desenvolvimento aplicados a problemas técnicos."
 text: >-
-  Modelagem, simulação, programação, análise de dados e documentação técnica.
-  Orientação, revisão ou desenvolvimento com escopo avaliado em cada demanda,
-  e estudos publicados com método, código e limites.
+  Modelagem, simulação, programação e análise de dados, com escopo avaliado
+  em cada demanda e estudos publicados com método e código.
 
 primary:
   label: "Ver projetos e estudos"
@@ -17,12 +16,6 @@ primary:
 secondary:
   label: "Conversar sobre uma demanda"
   url: "https://wa.me/5516981946642"
-
-disciplines:
-  - "Sinais e sistemas"
-  - "Energia elétrica"
-  - "Controle e inferência"
-  - "Software e dados"
 
 # Plates: path of the study + which figure to show. The main plate uses the
 # study's vector SVG; the secondary uses the catalogue image.

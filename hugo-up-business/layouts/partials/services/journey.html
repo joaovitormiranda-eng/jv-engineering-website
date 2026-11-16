@@ -1,14 +1,14 @@
-{{/* "Como funciona" (steps) + "Limites" (boundaries). Modalities moved to
-     services/modalities.html so the overview can lead with what can be
-     requested. Content from data/services/journey.yaml; presentation only. */}}
+{{/* "Como funciona" (steps) + "Limites" (S30). Steps form a compact numbered
+     sequence; the four limits are listed in full (they are the real boundaries
+     of the service and are not collapsed). Content: data/services/journey.yaml. */}}
 {{ with site.Data.services.journey }}
 <section class="service-section" aria-labelledby="como-o-trabalho-é-conduzido">
   <div class="service-section__heading">
-    <p class="service-eyebrow">COMO FUNCIONA</p>
-    <h2 id="como-o-trabalho-é-conduzido" tabindex="-1">{{ .title }}</h2>
-    <p>{{ .text }}</p>
+    <p class="service-eyebrow">Como funciona</p>
+    <h2 id="como-o-trabalho-é-conduzido" tabindex="-1">Da conversa à entrega</h2>
+    <p>Viabilidade, prazos e materiais dependem da avaliação de cada demanda.</p>
   </div>
-  <ol class="service-steps" role="list">
+  <ol class="service-steps" role="list" data-reveal>
     {{ range $index, $step := .steps }}
     <li><span class="service-step__number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span><div><h3>{{ .title }}</h3><p>{{ .text }}</p></div></li>
     {{ end }}
@@ -16,9 +16,9 @@
 </section>
 <section class="service-section service-boundaries" aria-labelledby="escopo-e-responsabilidades">
   <div class="service-section__heading">
-    <p class="service-eyebrow">LIMITES DO ATENDIMENTO</p>
-    <h2 id="escopo-e-responsabilidades" tabindex="-1">O que está dentro e fora do escopo</h2>
-    <p>Conforme o pedido, podem ser combinados explicações, revisão comentada, código, modelos, gráficos, instruções de teste e documentação. Aplicações em condições reais exigem as verificações e os responsáveis pertinentes.</p>
+    <p class="service-eyebrow">Limites</p>
+    <h2 id="escopo-e-responsabilidades" tabindex="-1">O que está fora do escopo</h2>
+    <p>Aplicações em condições reais exigem as verificações e os responsáveis pertinentes.</p>
   </div>
   <div class="service-limits">{{ range .limits }}<article><h3>{{ .title }}</h3><p>{{ .text }}</p></article>{{ end }}</div>
 </section>

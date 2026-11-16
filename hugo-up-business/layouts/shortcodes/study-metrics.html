@@ -1,0 +1,7 @@
+{{- /* Key parameters of a study (S30). Inner content: one "value | label" per line.
+       Values and labels are rendered verbatim (labels may contain <sub>). */ -}}
+<dl class="study-metrics">
+{{- range split (trim .Inner "\n ") "\n" }}{{ with trim . " " }}{{ $p := split . "|" }}
+  <div><dt>{{ index $p 1 | strings.TrimSpace | safeHTML }}</dt><dd>{{ index $p 0 | strings.TrimSpace | safeHTML }}</dd></div>
+{{- end }}{{ end }}
+</dl>

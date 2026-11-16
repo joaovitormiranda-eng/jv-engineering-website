@@ -29,43 +29,16 @@ highlights:
   - "Executa em MATLAB e GNU Octave; estudo estático e didático."
 ---
 
-<!-- METRICAS DE IMPACTO (KPI GRID) -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-8">
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-blue-400">3</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Variáveis Linguísticas</span>
-  </div>
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-blue-400">5</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Regras de Inferência</span>
-  </div>
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-emerald-400">&lt; 15ms</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Tempo de Resposta</span>
-  </div>
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-emerald-400">Mamdani</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Motor de Inferência</span>
-  </div>
-</div>
+{{< study-metrics >}}
+3 | Variáveis Linguísticas
+5 | Regras de Inferência
+&lt; 15ms | Tempo de Resposta
+Mamdani | Motor de Inferência
+{{< /study-metrics >}}
 
-<!-- CARD DO REPOSITORIO GITHUB -->
-<div class="my-8 p-4 rounded-xl bg-[#111827] border border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-  <div class="flex items-center gap-3">
-    <div class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20">
-      <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-    </div>
-    <div>
-      <p class="text-white font-bold text-sm mb-0.5">Código-Fonte do Projeto</p>
-      <p class="text-gray-400 text-xs m-0">Acesse a arquitetura completa em MATLAB/Octave e scripts do motor de inferência no GitHub.</p>
-    </div>
-  </div>
-  <a href="https://github.com/joaovitormiranda-eng/MATLAB/tree/main/Gorjeta" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
-    Ver Repositório no GitHub →
-  </a>
-</div>
+{{< study-source url="https://github.com/joaovitormiranda-eng/MATLAB/tree/main/Gorjeta" text="Acesse a arquitetura completa em MATLAB/Octave e scripts do motor de inferência no GitHub." >}}
 
-## 📁 Estrutura do Repositório
+## Estrutura do Repositório
 
 O código-fonte foi modularizado para comparar a lógica clássica com a lógica difusa. No repositório, você terá acesso aos seguintes scripts:
 
@@ -76,7 +49,7 @@ O código-fonte foi modularizado para comparar a lógica clássica com a lógica
 
 ---
 
-## 📋 Ficha Técnica (Project Charter)
+## Ficha Técnica (Project Charter)
 
 | Parâmetro | Especificação / Tecnologias |
 | :--- | :--- |
@@ -100,40 +73,12 @@ O projeto implementa uma **arquitetura de inferência Mamdani em GNU Octave/MATL
 
 O pipeline executa o cálculo matricial contínuo das funções geométricas para derivar as respostas do controlador, substituindo a rigidez dos limites clássicos por graus de pertinência:
 
-<!-- CONTAINER DE EQUAÇÕES FORMATADO COM HTML/UNICODE PURO -->
-<div class="my-6 p-6 rounded-xl bg-[#111827] border border-gray-800 font-mono text-sm md:text-base space-y-6">
-  <div>
-    <span class="text-blue-400 font-bold block text-xs tracking-wider uppercase mb-1">Função Triangular (Pertinência)</span>
-    <div class="text-gray-200 bg-[#0B0F17] p-3 rounded-lg border border-gray-800/60 overflow-x-auto text-center font-serif text-lg italic">
-      μ<sub>A</sub>(x) = max( min( (x - a)/(b - a) , (c - x)/(c - b) ) , 0 )
-    </div>
-  </div>
-
-  <div>
-    <span class="text-amber-400 font-bold block text-xs tracking-wider uppercase mb-1">Intersecção (AND) - T-Norma</span>
-    <div class="text-gray-200 bg-[#0B0F17] p-3 rounded-lg border border-gray-800/60 overflow-x-auto text-center font-serif text-lg italic">
-      μ<sub>A ∩ B</sub>(x) = min( μ<sub>A</sub>(x) , μ<sub>B</sub>(x) )
-    </div>
-  </div>
-
-  <div>
-    <span class="text-purple-400 font-bold block text-xs tracking-wider uppercase mb-1">União (OR) - S-Norma</span>
-    <div class="text-gray-200 bg-[#0B0F17] p-3 rounded-lg border border-gray-800/60 overflow-x-auto text-center font-serif text-lg italic">
-      μ<sub>A ∪ B</sub>(x) = max( μ<sub>A</sub>(x) , μ<sub>B</sub>(x) )
-    </div>
-  </div>
-
-  <div>
-    <span class="text-emerald-400 font-bold block text-xs tracking-wider uppercase mb-1">Centroide (Defuzzificação por Centro de Gravidade)</span>
-    <div class="text-gray-200 bg-[#0B0F17] p-4 rounded-lg border border-gray-800/60 overflow-x-auto text-center font-serif text-lg italic flex items-center justify-center gap-2">
-      <span>z* = </span>
-      <span class="inline-flex flex-col items-center justify-center align-middle">
-        <span class="border-b border-gray-500 px-2">∫ μ<sub>C</sub>(z) · z dz</span>
-        <span class="px-2">∫ μ<sub>C</sub>(z) dz</span>
-      </span>
-    </div>
-  </div>
-</div>
+{{< study-equations label="Operadores da inferência" >}}
+<div class="study-eq__item"><p class="study-eq__label">Função Triangular (Pertinência)</p><p class="study-eq__row">μ<sub>A</sub>(x) = max( min( (x - a)/(b - a) , (c - x)/(c - b) ) , 0 )</p></div>
+<div class="study-eq__item"><p class="study-eq__label">Intersecção (AND) - T-Norma</p><p class="study-eq__row">μ<sub>A ∩ B</sub>(x) = min( μ<sub>A</sub>(x) , μ<sub>B</sub>(x) )</p></div>
+<div class="study-eq__item"><p class="study-eq__label">União (OR) - S-Norma</p><p class="study-eq__row">μ<sub>A ∪ B</sub>(x) = max( μ<sub>A</sub>(x) , μ<sub>B</sub>(x) )</p></div>
+<div class="study-eq__item"><p class="study-eq__label">Centroide (Defuzzificação por Centro de Gravidade)</p><p class="study-eq__row study-eq__row--frac"><span>z* = </span><span class="study-eq__frac"><span>∫ μ<sub>C</sub>(z) · z dz</span><span>∫ μ<sub>C</sub>(z) dz</span></span></p></div>
+{{< /study-equations >}}
 
 ---
 
@@ -150,12 +95,12 @@ Para assegurar reprodutibilidade, alto desempenho e padrões de engenharia corpo
 
 ## 03. Verificação, Validação & Diagnóstico Executivo (V&V)
 
-### 🔹 Superfície de Controle 3D
+### Superfície de Controle 3D
 A combinação do banco de regras gera uma **Superfície de Resposta 3D** não-linear. A malha amostra combinações das variáveis de entrada e permite examinar a gorjeta estimada no domínio amostrado.
 
-<figure class="portfolio-study__figure my-6 text-center" aria-labelledby="fuzzy-caption-1">
-  <img src="/images/portfolio/fuzzy/fuzzy-superficie-resposta-3d.png" width="3507" height="1527" loading="lazy" decoding="async" alt="Superfície de resposta 3D gerada pelo motor de inferência fuzzy Mamdani" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
-  <figcaption id="fuzzy-caption-1" class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
+<figure class="portfolio-study__figure" aria-labelledby="fuzzy-caption-1">
+  <img src="/images/portfolio/fuzzy/fuzzy-superficie-resposta-3d.png" width="3507" height="1527" loading="lazy" decoding="async" alt="Superfície de resposta 3D gerada pelo motor de inferência fuzzy Mamdani" />
+  <figcaption id="fuzzy-caption-1">
     Figura 1: Malha 3D da gorjeta estimada em função das avaliações de comida e serviço.
     <a class="portfolio-section-link" href="/images/portfolio/fuzzy/fuzzy-superficie-resposta-3d.png" target="_blank" rel="noopener noreferrer">Ampliar figura 1 (PNG; nova aba)</a>
   </figcaption>
@@ -163,12 +108,12 @@ A combinação do banco de regras gera uma **Superfície de Resposta 3D** não-l
 
 ---
 
-### 🔹 Transições da Superfície e Limites de Aplicação {#-continuidade-e-eliminação-de-chattering}
+### Transições da Superfície e Limites de Aplicação {#-continuidade-e-eliminação-de-chattering}
 Os gráficos permitem examinar as transições da saída no exemplo de cálculo de gorjeta. A avaliação de estabilidade em malha fechada, de *chattering* e de efeitos sobre atuadores exige um modelo dinâmico e ensaios específicos; o escopo deste demonstrador é a análise da superfície de inferência.
 
-<figure class="portfolio-study__figure my-6 text-center" aria-labelledby="fuzzy-caption-2">
-  <img src="/images/portfolio/fuzzy/fuzzy-mapa-contorno-2d.png" width="3453" height="1588" loading="lazy" decoding="async" alt="Mapa de contorno 2D das zonas de transição da gorjeta fuzzy" class="rounded-xl border border-gray-800 shadow-lg mx-auto w-full h-auto max-w-3xl object-contain" />
-  <figcaption id="fuzzy-caption-2" class="text-xs md:text-sm text-gray-400 mt-2 font-mono">
+<figure class="portfolio-study__figure" aria-labelledby="fuzzy-caption-2">
+  <img src="/images/portfolio/fuzzy/fuzzy-mapa-contorno-2d.png" width="3453" height="1588" loading="lazy" decoding="async" alt="Mapa de contorno 2D das zonas de transição da gorjeta fuzzy" />
+  <figcaption id="fuzzy-caption-2">
     Figura 2: Mapa de contorno 2D da gorjeta estimada em função das avaliações de comida e serviço.
     <a class="portfolio-section-link" href="/images/portfolio/fuzzy/fuzzy-mapa-contorno-2d.png" target="_blank" rel="noopener noreferrer">Ampliar figura 2 (PNG; nova aba)</a>
   </figcaption>

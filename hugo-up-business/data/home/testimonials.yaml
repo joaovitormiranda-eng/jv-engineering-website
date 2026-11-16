@@ -5,19 +5,19 @@ title: "Como o trabalho técnico é conduzido"
 approach:
   label: "ENGENHARIA APLICADA"
   title: "Do problema à interpretação dos resultados"
-  text: "Partimos da dúvida, dos materiais e do resultado esperado para definir como apoiar: explicar um conceito, revisar uma solução ou desenvolver uma implementação. Métodos, ferramentas e formas de conferir o trabalho são combinados conforme o contexto."
+  text: "Do problema e dos materiais disponíveis até um resultado que pode ser conferido, com métodos e limites explícitos."
 
 capabilities:
   - label: "Modelagem matemática"
-    text: "Formulação de hipóteses, definição de variáveis e escolha de métodos coerentes com o problema de engenharia."
+    text: "Hipóteses, variáveis e método adequados ao problema."
   - label: "Simulação computacional"
-    text: "Exploração do comportamento de modelos e comparação entre cenários e sinais de referência."
+    text: "Comportamento do modelo e comparação de cenários."
   - label: "Programação e revisão"
-    text: "Organização, depuração e implementação de código, escolhendo a linguagem e o ambiente conforme os requisitos do projeto."
+    text: "Código organizado, depurado e adequado ao ambiente."
   - label: "Análise de dados"
-    text: "Tratamento de registros, cálculo de indicadores e visualizações para apoiar a interpretação técnica."
+    text: "Indicadores e gráficos que apoiam a interpretação."
   - label: "Documentação técnica"
-    text: "Apresentação das hipóteses, parâmetros e resultados, com atenção ao escopo e aos limites de aplicação."
+    text: "Parâmetros, resultados e limites registrados."
 
 # Relatos originais preservados. A publicação depende de confirmação da origem,
 # da atribuição e da autorização; o partial público usa approach e capabilities.
