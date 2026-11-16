@@ -98,11 +98,17 @@ function init() {
   // Size the image to the stage: the whole figure fits the area (width and
   // height) at 1x; 2x doubles that size and the stage scrolls. Rasters are not
   // enlarged past their natural size at 1x.
+  // The dialog's height follows its content, so the area available to the
+  // figure is derived from the dialog's height cap (max-height) minus the bar,
+  // not from the stage's current height (that would be circular).
   const fit = () => {
     const zoom = ZOOM_LEVELS[level]
     const cs = getComputedStyle(stage)
+    const ds = getComputedStyle(dialog)
+    const cap = parseFloat(ds.maxHeight) || window.innerHeight * 0.94
+    const chrome = parseFloat(ds.borderTopWidth) + parseFloat(ds.borderBottomWidth) + dialog.querySelector('.figure-viewer__bar').offsetHeight
     const aw = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)
-    const ah = stage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)
+    const ah = cap - chrome - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)
     const nw = imgEl.naturalWidth
     const nh = imgEl.naturalHeight
     if (!nw || !nh || aw <= 0 || ah <= 0) {
