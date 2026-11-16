@@ -1,8 +1,8 @@
 enable: true
 
-title: "Conte qual é o seu desafio técnico"
+title: "Tem um problema técnico para resolver?"
 
-text: "Uma dúvida em circuitos, um código que não funciona ou um projeto com sensores? Apresente o contexto, o que já possui e onde precisa de apoio. Avaliamos a demanda para definir orientação, revisão ou desenvolvimento técnico com escopo claro."
+text: "Conte o objetivo, o que já existe e onde está a dificuldade: um modelo que não converge, um código que não roda, um circuito, um conjunto de dados. A conversa inicial serve para avaliar viabilidade e escopo."
 
 image: "images/brand/logo-full-white.svg"
 
@@ -13,4 +13,4 @@ button:
 checklist:
   - "Escopo definido"
   - "Métodos explicados"
-  - "Métodos documentados"
+  - "Limites declarados"

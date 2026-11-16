@@ -1,98 +1,63 @@
-<section id="hero" class="relative overflow-hidden py-4 xl:py-6 bg-[#0a0f1d] text-white flex items-center min-h-[calc(100vh-80px)]">
-  <div class="container mx-auto grid gap-6 px-4 xl:grid-cols-2 items-center w-full max-w-7xl">
-
-    <!-- COLUNA DA ESQUERDA: CONTEÚDO -->
-    <div class="flex flex-col justify-center gap-3">
-
-      <!-- Pílula de Tags -->
-      {{ if .badge }}
-      <div class="flex justify-center xl:justify-start">
-        <span
-          class="inline-flex max-w-full items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-center xl:text-start text-xs font-semibold text-sky-400 backdrop-blur-sm">
-          {{ .badge }}
-        </span>
-      </div>
-      {{ end }}
-
-      <!-- Título Principal -->
-      {{ with .title }}
-      <h1
-        class="title text-center text-2xl sm:text-3xl xl:text-4xl font-extrabold leading-tight xl:text-start text-white tracking-tight">
-        {{ . | markdownify }}
-      </h1>
-      {{ end }}
-
-      <!-- Texto Descritivo -->
-      {{ with .text }}
-      <p
-        class="text-center text-slate-300 xl:text-start leading-relaxed text-xs sm:text-sm max-w-xl mx-auto xl:mx-0">
-        {{ . | markdownify }}
-      </p>
-      {{ end }}
-
-      <!-- Botões de Ação -->
-      {{ if .buttons }}
-      <div class="flex flex-col items-center justify-center gap-3 sm:flex-row xl:justify-start pt-1">
-        {{ range $i, $e := .buttons }}
-        {{ if (eq $i 0) }}
-        <a class="w-full sm:w-auto text-center bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg px-4 py-2 text-sm duration-300 shadow-lg shadow-blue-600/25 hover:-translate-y-0.5 transition-all"
-          href="{{ partial "utilities/contact-url.html" (dict "href" .url) }}" {{ if in .url "http" }}target="_blank" rel="noopener noreferrer" {{ end }}>
-          {{ .label }}
-        </a>
-        {{ else }}
-        <a class="w-full sm:w-auto text-center border border-blue-500/40 text-blue-400 hover:bg-blue-600 hover:text-white flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold duration-300 hover:-translate-y-0.5 transition-all"
-          href="{{ .url }}" {{ if in .url "http" }}target="_blank" rel="noopener noreferrer" {{ end }}>
-          <span>{{ .label }}</span>
-          {{ partial "icons/arrow-right" }}
-        </a>
-        {{ end }}
+{{/* Hero (S29). Typographic statement + "drawing sheet" of real study figures.
+     P0 (iPhone black rectangle) is OPEN, root cause not demonstrated. This hero
+     deliberately avoids the patterns present in the old one (blur glow,
+     gradient overlay, backdrop-filter badge, large object-cover photo) and uses
+     no filters, blend modes, fixed backgrounds or animation. That lowers risk;
+     it is not evidence that the defect is gone. Baseline: main @ 84b89f7.
+     The h1 is the LCP candidate; plates are below it on narrow screens. */}}
+{{ $plates := .plates }}
+<section id="hero" class="jv-hero" aria-labelledby="hero-title">
+  <div class="jv-wrap jv-hero__grid">
+    <div class="jv-hero__copy">
+      {{ with .kicker }}<p class="jv-hero__kicker">{{ . }}</p>{{ end }}
+      <h1 id="hero-title" class="jv-hero__title">{{ .title }}</h1>
+      {{ with .text }}<p class="jv-hero__lead">{{ . }}</p>{{ end }}
+      <div class="jv-hero__actions">
+        {{ with .primary }}{{ with site.GetPage .page }}
+        <a class="jv-btn jv-btn--primary" href="{{ .RelPermalink }}">{{ $.primary.label }}
+          <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        {{ end }}{{ end }}
+        {{ with .secondary }}
+        <a class="jv-btn jv-btn--ghost" href="{{ partial "utilities/contact-url.html" (dict "href" .url) }}" target="_blank" rel="noopener noreferrer">{{ .label }}<span class="jv-sr"> pelo WhatsApp (abre em nova aba)</span></a>
         {{ end }}
       </div>
+      {{ with .disciplines }}
+      <ul class="jv-hero__disciplines" aria-label="Áreas de engenharia">
+        {{ range $i, $d := . }}<li><span aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>{{ $d }}</li>{{ end }}
+      </ul>
       {{ end }}
-
-      <!-- Áreas de atuação, sem contagens comerciais não documentadas -->
-      <div class="grid grid-cols-3 gap-3 mt-1 pt-3 border-t border-slate-800/80 w-full">
-        <!-- Coluna 1 -->
-        <div class="border-l-2 sm:border-l-3 border-blue-600 pl-3">
-          <div class="text-xl sm:text-2xl font-extrabold text-sky-400 leading-none">Elétrica</div>
-          <div class="text-[11px] sm:text-xs text-slate-400 mt-1 leading-tight">
-            Circuitos e<br>eletrônica
-          </div>
-        </div>
-        <!-- Coluna 2 -->
-        <div class="border-l-2 sm:border-l-3 border-blue-600 pl-3">
-          <div class="text-xl sm:text-2xl font-extrabold text-sky-400 leading-none">Código</div>
-          <div class="text-[11px] sm:text-xs text-slate-400 mt-1 leading-tight">
-            Programação e<br>embarcados
-          </div>
-        </div>
-        <!-- Coluna 3 -->
-        <div class="border-l-2 sm:border-l-3 border-blue-600 pl-3">
-          <div class="text-xl sm:text-2xl font-extrabold text-sky-400 leading-none">Projeto</div>
-          <div class="text-[11px] sm:text-xs text-slate-400 mt-1 leading-tight">
-            Modelos, dados<br>e orientação
-          </div>
-        </div>
-      </div>
-      <!-- FIM DAS ÁREAS DE ATUAÇÃO -->
-
     </div>
 
-    <!-- COLUNA DA DIREITA: IMAGEM COM GLOW -->
-    {{ with .image }}
-    <div class="relative flex items-center justify-center w-full max-w-md mx-auto xl:max-w-none">
-      <!-- Glow de fundo azul escuro -->
-      <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-blue-600 to-sky-500 opacity-20 blur-xl"></div>
-
-      <!-- Container da Imagem -->
-      <div
-        class="relative w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/50 shadow-2xl">
-        {{ $imgClass := "w-full h-[260px] sm:h-[300px] xl:h-[340px] object-cover rounded-2xl" }}
-        {{ $imgSizes := "(min-width: 80rem) calc((min(100vw, 80rem) - 3.5rem) / 2 - 2px), (min-width: 30rem) calc(28rem - 2px), calc(100vw - 2rem - 2px)" }}
-        {{ partial "utilities/image.html" (dict "src" . "class" $imgClass "loading" "eager" "fetchpriority" "high" "sizes" $imgSizes) }}
+    {{ with $plates }}
+    <div class="jv-hero__sheet">
+      <p class="jv-hero__sheet-label" aria-hidden="true"><span>Figuras reais dos estudos publicados</span><span>FL. 00</span></p>
+      {{ with .main }}{{ $study := site.GetPage .study }}{{ $img := resources.Get .src }}
+      {{ if not $img }}{{ errorf "Hero figure not found: %s" .src }}{{ end }}
+      <figure class="jv-hero__plate jv-hero__plate--main">
+        <a href="{{ $study.RelPermalink }}" class="jv-hero__plate-link">
+          <span class="jv-hero__plate-stage">
+            <img src="{{ $img.RelPermalink }}" width="{{ .width }}" height="{{ .height }}" alt="{{ .alt }}" loading="lazy" decoding="async" />
+          </span>
+          <figcaption><span class="jv-mono">{{ .label }}</span><span class="jv-hero__plate-go">Abrir estudo<svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></span></figcaption>
+        </a>
+      </figure>
+      {{ end }}
+      <div class="jv-hero__minor">
+        {{ range slice .second .third }}
+        {{ $plate := . }}
+        {{ $study := site.GetPage .study }}
+        {{ with $study.Params.catalog_image }}{{ $src := resources.Get .src }}
+        {{ $thumb := $src.Resize "560x webp q85" }}
+        <figure class="jv-hero__plate jv-hero__plate--minor">
+          <a href="{{ $study.RelPermalink }}" class="jv-hero__plate-link">
+            <span class="jv-hero__plate-stage{{ if $plate.dark }} is-dark{{ end }}"><img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ .alt }}" loading="lazy" decoding="async" /></span>
+            <figcaption><span class="jv-mono">{{ $plate.label }}</span></figcaption>
+          </a>
+        </figure>
+        {{ end }}
+        {{ end }}
       </div>
     </div>
     {{ end }}
-
   </div>
 </section>
