@@ -4,34 +4,27 @@ Documento curto de decisão. O relatório completo desta rodada (evidências,
 fontes, matriz de inconsistências) fica fora do repositório, nos artefatos da
 sessão. Nada aqui é resultado comercial comprovado.
 
-## Decisão
+## Decisão (revista na S29)
 
-**Direção B, reversível: portfólio técnico como prova de competência, com
-acompanhamento técnico como serviço complementar iniciado por conversa.**
+**A JV Engineering é uma marca técnica independente de engenharia, computação e
+desenvolvimento, que também publica estudos e projetos reais.** Serviços técnicos
+(orientação, revisão e desenvolvimento, com escopo avaliado) e portfólio fazem
+parte da mesma identidade; o site não segmenta visitantes por perfil.
 
-Por quê:
+- Não é site de candidatura nem currículo online. Recrutadores não têm jornada
+  própria; a bifurcação "estudante / recrutador" da S28 foi rejeitada e removida.
+- Acompanhar estudantes é uma aplicação dos serviços, não a identidade da marca.
+- Fora de escopo: executar avaliações acadêmicas em nome de terceiros.
+- Nenhum vínculo, parceria ou endosso empresarial é sugerido.
 
-- A demanda observada é pequena e autodeclarada (cerca de 15 contatos, alguns
-  recorrentes por mais de um semestre, vindos de WhatsApp e indicações). Isso
-  justifica manter o serviço, mas não justifica apresentar o site como plataforma
-  de acompanhamento já validada (direção A).
-- O que o site já tem de diferente de um marketplace de aulas é evidência
-  verificável: estudos com método, figuras reais, código e limites. É isso que
-  gera confiança antes do contato.
-- O portfólio mantém valor profissional (recrutadores, GitHub) mesmo se a receita
-  não crescer. A direção A pode ser retomada sem refazer nada.
+## Estrutura da experiência
 
-Fora de escopo, por escolha: execução de atividades avaliativas em nome de
-terceiros. O texto dos serviços já registra aprendizado, autoria e integridade
-acadêmica.
-
-## Caminhos do visitante
-
-| Público | Entra por | Prova | Contato |
-|---|---|---|---|
-| Estudante / dúvida técnica | Início → Serviços | Estudos do portfólio ligados a cada especialidade | WhatsApp com mensagem contextual |
-| Recrutador / profissional | Início → Perfil → GitHub | Catálogo, estudos, repositórios | LinkedIn, GitHub, e-mail |
-| Explorador de estudos | Catálogo → Estudo → Outros estudos | Figuras, equações, código | CTA ao fim de cada estudo |
+| Página | Papel |
+|---|---|
+| Início | Hero tipográfico com figuras reais dos estudos → projetos → serviços → método → ferramentas → sobre → contato |
+| Projetos | Quatro estudos em linhas editoriais: figura, decisões de engenharia, ferramentas e natureza dos dados |
+| Estudo | Ficha técnica, decisões de engenharia, conteúdo integral, visualizador de figuras, TOC com scroll-spy |
+| Serviços | O que solicitar → áreas → exemplos publicados → como funciona → limites → contato, com índice fixo |
 
 ## Medição (a configurar, sem dados hoje)
 
