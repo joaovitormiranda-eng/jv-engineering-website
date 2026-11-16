@@ -1,16 +1,30 @@
 {{ define "main" }}
-<section class="portfolio-shell portfolio-catalogue">
-  <div class="container mx-auto px-4">
-    <header class="portfolio-intro">
-      <p class="portfolio-eyebrow">Engenharia, métodos e implementação</p>
-      <h1>{{ .Title | markdownify }}</h1>
-      {{ with .Description }}<p>{{ . | markdownify }}</p>{{ end }}
-      <div class="portfolio-intro__guide" aria-label="O que encontrar nos estudos">
-        <span>Métodos e contexto</span><span>Figuras e resultados</span><span>Código e limites de aplicação</span>
-      </div>
+{{ $studies := .RegularPages }}
+<section class="jv-page portfolio-shell portfolio-catalogue">
+  <div class="jv-wrap">
+    {{ partial "system/crumbs.html" (slice (dict "name" "Início" "url" site.Home.Permalink) (dict "name" "Portfólio" "url" .Permalink)) }}
+    <header class="jv-pagehead">
+      <p class="jv-sheet"><span class="jv-sheet__num">PR</span>Catálogo técnico<span class="jv-sheet__total" aria-hidden="true">{{ printf "%02d" (len $studies) }} estudos</span></p>
+      <h1 class="jv-title jv-title--display">{{ .Title | markdownify }}</h1>
+      {{ with .Description }}<p class="jv-lead">{{ . | markdownify }}</p>{{ end }}
+      <dl class="jv-facts jv-facts--steps" aria-label="Como ler cada estudo">
+        <div><dt>01 · Contexto</dt><dd>Problema, método e hipóteses.</dd></div>
+        <div><dt>02 · Evidência</dt><dd>Figuras reais, tabelas e equações do estudo.</dd></div>
+        <div><dt>03 · Limites</dt><dd>Código, dados e onde o resultado não se aplica.</dd></div>
+      </dl>
     </header>
-    {{ partial "portfolio/cards.html" (.Paginate .RegularPages).Pages }}
-    <div class="pt-16 pb-8">{{ partial "pagination.html" . }}</div>
+
+    {{ partial "portfolio/cards.html" (.Paginate $studies).Pages }}
+    {{ partial "pagination.html" . }}
+
+    {{ $contact := partial "utilities/contact-url.html" (dict "href" site.Params.social.whatsapp "context" "general") }}
+    {{ $items := slice
+      (dict "kicker" "Para estudantes e demandas técnicas" "title" "Áreas de suporte técnico" "text" "Veja o que pode ser avaliado, os limites do atendimento e como iniciar a conversa." "url" (site.GetPage "/servicos").Permalink)
+      (dict "kicker" "Para recrutadores e profissionais" "title" "Perfil profissional e código" "text" "Quem é o responsável, formação e os repositórios públicos no GitHub." "url" (printf "%s#responsavel" site.Home.Permalink))
+      (dict "kicker" "Para explorar por tema" "title" "Tecnologias e áreas" "text" "Navegue pelos estudos por ferramenta ou método: MATLAB, Python, Fuzzy, PDS e mais." "url" (site.GetPage "/tags").Permalink)
+    }}
+    {{ partial "system/paths.html" (dict "id" "catalogue-paths" "title" "Próximos passos" "items" $items) }}
+    <p class="jv-note">Dúvida ou demanda específica? <a class="jv-link" href="{{ $contact }}" target="_blank" rel="noopener noreferrer">Conversar pelo WhatsApp<span class="jv-sr"> (abre em nova aba)</span></a></p>
   </div>
 </section>
 {{ end }}

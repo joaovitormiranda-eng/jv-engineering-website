@@ -1,4 +1,5 @@
 import './shared/navigation'
 import './portfolio/study-progress'
+import './portfolio/figure-viewer'
 import './home/study-explorer'
 import './home/reveal'

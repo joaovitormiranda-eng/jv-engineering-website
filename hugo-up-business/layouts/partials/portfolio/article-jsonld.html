@@ -1,0 +1,15 @@
+{{- /* Study pages: TechArticle built only from front-matter facts (dates, title, description, author). */ -}}
+{{- $image := resources.Get "images/social/jv-engineering.png" | fingerprint -}}
+{{- $article := dict
+  "@context" "https://schema.org"
+  "@type" "TechArticle"
+  "headline" (.Title | plainify)
+  "description" (.Description | plainify)
+  "inLanguage" "pt-BR"
+  "datePublished" (.Date.Format "2006-01-02")
+  "dateModified" (.Lastmod.Format "2006-01-02")
+  "mainEntityOfPage" .Permalink
+  "image" $image.Permalink
+  "author" (dict "@type" "Person" "name" site.Params.professional.name "url" (printf "%s#responsavel" site.Home.Permalink))
+-}}
+<script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>

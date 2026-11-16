@@ -1,3 +1,4 @@
+{{ $total := len . }}
 <div class="portfolio-grid">
   {{ range $index, $project := . }}
   {{ $id := printf "project-%s" .File.ContentBaseName }}
@@ -37,15 +38,16 @@
               width="{{ $width }}" height="{{ $height }}" alt="{{ .alt }}"
               class="block h-full w-full object-contain" loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}" decoding="async" />
           </div>
-          <figcaption class="portfolio-card__caption">{{ .caption }}</figcaption>
+          <figcaption class="portfolio-card__caption"><span class="jv-mono">Fig. {{ printf "%02d" (add $index 1) }}</span><span>{{ .caption }}</span></figcaption>
         </figure>
         {{ end }}
 
 
       <div class="portfolio-card__body">
-        <p class="portfolio-card__category">{{ with .Params.categories }}{{ index . 0 }}{{ else }}Projeto próprio · Desenvolvimento web{{ end }}</p>
+        <p class="portfolio-card__category"><span class="portfolio-card__count">Estudo {{ printf "%02d" (add $index 1) }}/{{ printf "%02d" $total }}</span><span>{{ with .Params.categories }}{{ index . 0 }}{{ else }}Projeto próprio · Desenvolvimento web{{ end }}</span></p>
         <h2 class="portfolio-card__title" id="{{ $id }}-title">{{ .Title }}</h2>
         <p class="portfolio-card__description" id="{{ $id }}-description">{{ .Description | plainify }}</p>
+        {{ with .Params.catalog_nature }}<p class="portfolio-card__nature"><span class="jv-sr">Natureza dos dados: </span>{{ . }}</p>{{ end }}
         {{ with .Params.tags }}
         <ul class="portfolio-card__tags" aria-label="Tecnologias e métodos">
           {{ range first 3 . }}<li>{{ . }}</li>{{ end }}

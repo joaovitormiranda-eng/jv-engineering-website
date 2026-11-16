@@ -1,9 +1,11 @@
 ---
 title: "Filtragem Digital e Processamento de Sinais com MATLAB"
+seo_title: "Filtragem Digital e PDS com MATLAB: filtro IIR e FFT"
 date: 2026-07-28
 lastmod: 2026-11-05
 service: "/servicos/matlab"
 draft: false
+catalog_nature: "Estudo computacional documentado · MATLAB"
 catalog_image:
   src: "images/portfolio/pds-espectro.png"
   alt: "Espectro do sinal de entrada do projeto PDS: amplitude em função da frequência, com pico de interferência próximo de 300 Hz."
@@ -54,7 +56,7 @@ tags:
       <p class="text-gray-400 text-xs m-0">Consulte o Live Script .mlx e a documentação técnica do projeto no GitHub.</p>
     </div>
   </div>
-  <a href="https://github.com/joaovitormiranda-eng/MATLAB/tree/main/Sinais%20e%20sistemas" target="_blank" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
+  <a href="https://github.com/joaovitormiranda-eng/MATLAB/tree/main/Sinais%20e%20sistemas" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
     Ver Repositório no GitHub →
   </a>
 </div>
@@ -217,7 +219,7 @@ Na filtragem bidirecional, a resposta em magnitude corresponde ao quadrado da re
       Desenvolvemos algoritmos customizados, modelagens matemáticas rigorosas e simulações de alta precisão para a sua demanda acadêmica ou profissional.
     </p>
     <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="https://wa.me/5516981946642?text=Olá!%20Gostaria%20de%20uma%20consultoria%20em%20MATLAB/PDS." target="_blank" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-lg hover:shadow-blue-500/25 w-full sm:w-auto">
+      <a href="https://wa.me/5516981946642?text=Olá!%20Gostaria%20de%20uma%20consultoria%20em%20MATLAB/PDS." target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-lg hover:shadow-blue-500/25 w-full sm:w-auto">
         Solicitar Consultoria Técnica →
       </a>
       <a href="/#portfolio" class="px-6 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300         font-semibold text-sm transition-colors border border-gray-700 w-full sm:w-auto">

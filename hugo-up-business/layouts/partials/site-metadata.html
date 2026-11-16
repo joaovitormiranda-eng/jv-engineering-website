@@ -2,6 +2,9 @@
 {{- if ne .Title .Site.Title -}}
   {{- $title = printf "%s | %s" .Title .Site.Title -}}
 {{- end -}}
+{{- with .Params.seo_title -}}
+  {{- $title = printf "%s | %s" . $.Site.Title -}}
+{{- end -}}
 {{- if eq .Kind "term" -}}
   {{- $title = printf "%s: projetos e estudos | %s" .Title .Site.Title -}}
 {{- end -}}

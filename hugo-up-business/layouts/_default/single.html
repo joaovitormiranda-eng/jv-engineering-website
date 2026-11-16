@@ -1,59 +1,24 @@
 {{ define "main" }}
-<section class="py-16 bg-[#0a0f1d] text-white min-h-screen">
-  <div class="container mx-auto px-4">
+<section class="jv-page">
+  <div class="jv-wrap">
+    {{ partial "system/crumbs.html" (slice (dict "name" "Início" "url" site.Home.Permalink) (dict "name" .Title "url" .Permalink)) }}
+    <header class="jv-pagehead">
+      <p class="jv-sheet"><span class="jv-sheet__num">DC</span>{{ with .Params.sheet }}{{ . }}{{ else }}Documento{{ end }}{{ with .Lastmod }}{{ if not .IsZero }}<span class="jv-sheet__total">Atualizado em {{ .Format "02/01/2006" }}</span>{{ end }}{{ end }}</p>
+      {{ with .Title }}<h1 class="jv-title jv-title--display">{{ . | markdownify }}</h1>{{ end }}
+      {{ with .Params.description }}<p class="jv-lead">{{ . | markdownify }}</p>{{ end }}
+    </header>
 
-    <!-- Título da Página -->
-    {{ with .Title }}
-    <h1 class="text-white mb-8 text-center text-4xl font-extrabold xl:text-6xl">{{ . | markdownify }}</h1>
-    {{ end }}
-
-    <!-- Descrição nas Parâmetros -->
-    {{ with .Params.description }}
-    <p class="mx-auto mb-12 text-center text-gray-300 text-base xl:text-lg leading-relaxed xl:max-w-[60%]">
-      {{ . | markdownify }}
-    </p>
-    {{ end }}
-
-    {{ if eq .Section "portfolio" }}
-    <aside class="mx-auto mb-8 max-w-5xl rounded-xl border border-gray-800 bg-[#111827] p-4" aria-label="Contexto do estudo publicado">
-      <p class="mb-3 text-sm leading-relaxed text-gray-300">Estudo técnico do portfólio, apresentado com métodos, código e resultados no contexto documentado. Não é apresentado como case de cliente nem como garantia para outras aplicações.</p>
-      {{ partial "shared/responsible.html" . }}
-    </aside>
-    {{ end }}
-
-    <!-- Conteúdo vindo do arquivo Markdown -->
     {{ with .Content }}
-    <div class="prose prose-lg prose-invert mx-auto max-w-5xl prose-a:text-blue-400 prose-headings:text-white">
+    <div class="jv-prose prose prose-lg prose-invert prose-a:text-blue-400 prose-headings:text-white">
       {{ . }}
     </div>
     {{ end }}
 
-    {{ if eq .Section "portfolio" }}
-    {{ with .GetTerms "tags" }}
-    <nav class="mx-auto mt-12 max-w-5xl border-t border-gray-800 pt-6" aria-label="Tecnologias e áreas do projeto">
-      {{ with site.GetPage "/tags" }}
-      <p class="mb-4 text-sm font-semibold">
-        <a class="text-blue-400 hover:text-white" href="{{ .RelPermalink }}">Tecnologias e áreas</a>
-      </p>
-      {{ end }}
-      <ul class="flex flex-wrap gap-3 text-sm">
-        {{ range . }}
-        <li><a class="text-blue-400 hover:text-white underline underline-offset-4" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
-        {{ end }}
-      </ul>
-    </nav>
-    {{ end }}
-    {{ end }}
-
-    {{ with .Params.service }}
-    {{ with site.GetPage . }}
-    <nav class="mx-auto mt-8 max-w-5xl border-t border-gray-800 pt-6" aria-label="Serviço relacionado ao projeto">
-      <p class="mb-3 text-gray-300">Quer discutir uma aplicação desses métodos ao seu projeto?</p>
-      <a class="font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </nav>
-    {{ end }}
-    {{ end }}
-
+    {{ $items := slice }}
+    {{ with site.GetPage "/servicos" }}{{ $items = $items | append (dict "kicker" "Atendimento" "title" "Áreas de suporte técnico" "text" "O que pode ser avaliado e como iniciar a conversa." "url" .Permalink) }}{{ end }}
+    {{ with site.GetPage "/portfolio" }}{{ $items = $items | append (dict "kicker" "Portfólio" "title" "Estudos técnicos" "text" "Métodos, figuras e código com limites documentados." "url" .Permalink) }}{{ end }}
+    {{ $items = $items | append (dict "kicker" "Perfil" "title" "Responsável e GitHub" "text" "Formação, atuação e repositórios públicos." "url" (printf "%s#responsavel" site.Home.Permalink)) }}
+    {{ partial "system/paths.html" (dict "id" "doc-paths" "title" "Continuar navegando" "items" $items) }}
   </div>
 </section>
 {{ end }}

@@ -8,7 +8,8 @@
 #   4. the 8 supply-chain tests  (.github/scripts/test-supply-chain.py);
 #   5. production Hugo build into an isolated dir (never inside the repo);
 #   6. verify-build.py            (.github/scripts/verify-build.py);
-#   7. build invariants           (scripts/dev/check-invariants.py).
+#   7. build invariants           (scripts/dev/check-invariants.py);
+#   8. static site audit          (scripts/dev/audit-site.py: SEO, links, headings, JSON-LD).
 #
 # It REUSES the existing CI scripts; it does not re-implement them. Nothing is
 # written inside the repository. A real failure exits non-zero.
@@ -87,6 +88,9 @@ python3 "$repo_root/.github/scripts/verify-build.py" "$public_dir" --manifest "$
 
 echo "== invariantes do site =="
 python3 "$repo_root/scripts/dev/check-invariants.py" "$public_dir"
+
+echo "== auditoria estática (SEO, links, headings, JSON-LD) =="
+python3 "$repo_root/scripts/dev/audit-site.py" "$public_dir"
 
 # --- short report -------------------------------------------------------------
 echo

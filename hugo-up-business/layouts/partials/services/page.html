@@ -1,95 +1,47 @@
 {{ $contactContext := "general" }}
-{{ if not .IsSection }}
-  {{ if eq .File.ContentBaseName "matlab" }}{{ $contactContext = "matlab" }}{{ end }}
-  {{ if eq .File.ContentBaseName "python-engenharia" }}{{ $contactContext = "python" }}{{ end }}
-{{ end }}
-<section class="bg-[#0a0f1d] py-16 text-white">
-  <div class="container mx-auto px-4">
-    <header class="mx-auto mb-12 max-w-5xl">
-      <nav aria-label="Caminho da página" class="mb-8 text-sm text-gray-300">
-        <ol class="flex flex-wrap items-center gap-2">
-          <li><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ site.Home.RelPermalink }}">Início</a></li>
-          <li aria-hidden="true">/</li>
-          {{ if .IsSection }}
-          <li aria-current="page">Serviços</li>
-          {{ else }}
-          {{ with site.GetPage "/servicos" }}
-          <li><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">Serviços</a></li>
-          {{ end }}
-          <li aria-hidden="true">/</li>
-          <li aria-current="page">{{ .Params.card_title }}</li>
-          {{ end }}
-        </ol>
-      </nav>
-      <p class="mb-4 text-sm font-semibold text-blue-400">Atendimento remoto · Escopo definido para cada projeto</p>
-      <h1 class="mb-6 text-4xl font-extrabold leading-tight xl:text-6xl">{{ .Params.heading | default .Title }}</h1>
-      <p class="max-w-3xl text-lg leading-relaxed text-gray-300">{{ .Description }}</p>
-      {{/* Keep the MATLAB responsible link together across font swap; still wrap at text zoom. */}}
-      <div class="mt-6 max-w-3xl{{ if eq $contactContext "matlab" }} [&_a]:inline-block [&_a]:max-w-full{{ end }}">
-        {{ partial "shared/responsible.html" . }}
-      </div>
-      <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+{{ if eq .File.ContentBaseName "matlab" }}{{ $contactContext = "matlab" }}{{ end }}
+{{ if eq .File.ContentBaseName "python-engenharia" }}{{ $contactContext = "python" }}{{ end }}
+{{ $servicos := site.GetPage "/servicos" }}
+<section class="jv-page service-shell">
+  <div class="jv-wrap">
+    {{ partial "system/crumbs.html" (slice (dict "name" "Início" "url" site.Home.Permalink) (dict "name" "Serviços" "url" $servicos.Permalink) (dict "name" .Params.card_title "url" .Permalink)) }}
+    <header class="service-intro">
+      <p class="jv-sheet"><span class="jv-sheet__num">SV</span>Atendimento remoto · escopo por projeto</p>
+      <h1 class="jv-title jv-title--display">{{ .Params.heading | default .Title }}</h1>
+      <p class="service-intro__description">{{ .Description }}</p>
+      {{/* Keep the responsible link together across font swap (PR #32/#33); it still wraps at text zoom. */}}
+      <div class="service-responsible">{{ partial "shared/responsible.html" . }}</div>
+      <div class="service-actions">
         {{ with site.Params.social.whatsapp }}
-        {{ partial "components/button/primary" (dict "label" "Descrever minha demanda" "href" . "contact_context" $contactContext) }}
+        <a class="jv-btn jv-btn--primary" href="{{ partial "utilities/contact-url.html" (dict "href" . "context" $contactContext) }}" target="_blank" rel="noopener noreferrer">Descrever minha demanda<span class="jv-sr"> (WhatsApp, abre em nova aba)</span></a>
         {{ end }}
-        <a class="text-blue-400 underline underline-offset-4 hover:text-white" href="#projetos">Ver exemplos técnicos</a>
+        <a class="jv-link" href="#projetos">Ver exemplos técnicos</a>
       </div>
-      <p class="mt-4 text-sm leading-relaxed text-gray-300">O WhatsApp abre com uma mensagem inicial que você pode editar antes de enviar. Não precisa escolher uma ferramenta nem enviar arquivos para iniciar a conversa.</p>
+      <p class="service-note">O WhatsApp abre com uma mensagem inicial que você pode editar antes de enviar. Não precisa escolher uma ferramenta nem enviar arquivos para iniciar a conversa.</p>
     </header>
 
-    {{ if .IsSection }}
-    <section class="mx-auto mb-12 max-w-5xl" aria-labelledby="areas">
-      <h2 id="areas" tabindex="-1" class="mb-4 text-2xl font-bold">Comece pela natureza do problema</h2>
-      <p class="mb-6 leading-relaxed text-gray-300">Você pode apresentar uma demanda mesmo sem saber qual software utilizar. As áreas orientam a avaliação; a aceitação e os entregáveis dependem dos requisitos, da complexidade e das condições de execução.</p>
-      <nav aria-label="Áreas de suporte técnico" class="mb-8">
-        <ul class="flex flex-wrap gap-x-6 gap-y-3 text-sm">
-          {{ range site.Data.services.areas }}
-          <li><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="#{{ .id }}">{{ .title }}</a></li>
-          {{ end }}
-        </ul>
-      </nav>
-      <div class="grid gap-6 md:grid-cols-2">
-        {{ range site.Data.services.areas }}
-        <article class="rounded-2xl border border-gray-800 bg-[#111827] p-6">
-          <h3 id="{{ .id }}" tabindex="-1" class="mb-3 text-xl font-bold">{{ .title }}</h3>
-          <p class="mb-4 leading-relaxed text-gray-300">{{ .topics }}</p>
-          <p class="text-sm leading-relaxed text-gray-300"><strong class="text-white">Para avaliar o pedido:</strong> {{ .inputs }}</p>
-          {{ $areaTitle := .title }}
-          {{ $areaID := .id }}
-          {{ with site.Params.social.whatsapp }}
-          <a class="mt-4 inline-flex min-h-11 items-center py-2 font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ partial "utilities/contact-url.html" (dict "href" . "context" $areaID) }}" target="_blank" rel="noopener noreferrer" data-contact-location="service_area" aria-label="Conversar sobre {{ $areaTitle }} pelo WhatsApp">Conversar sobre esta área</a>
-          {{ end }}
-        </article>
-        {{ end }}
-      </div>
-      <p class="mt-6 leading-relaxed text-gray-300">Não encontrou uma categoria exata? Descreva o problema e os materiais disponíveis. A avaliação pode indicar um escopo viável, pedir mais informações ou esclarecer que a demanda não pode ser assumida.</p>
-    </section>
-
-    <section class="mx-auto mb-12 max-w-5xl" aria-labelledby="ofertas">
-      <h2 id="ofertas" class="mb-4 text-2xl font-bold">Serviços especializados com exemplos publicados</h2>
-      <p class="mb-6 leading-relaxed text-gray-300">Se a demanda envolve MATLAB ou Python, estas páginas detalham o escopo e apresentam estudos relacionados. São especialidades dentro da atuação multidisciplinar, não as únicas demandas que podem ser avaliadas.</p>
-      <div class="grid gap-6 md:grid-cols-2">
-        {{ range .RegularPages.ByWeight }}
-        <article class="flex h-full flex-col rounded-2xl border border-gray-800 bg-[#111827] p-6">
-          <h3 class="mb-3 text-xl font-bold">{{ .Params.card_title }}</h3>
-          <p class="mb-6 flex-grow leading-relaxed text-gray-300">{{ .Params.card_text }}</p>
-          <a class="font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">{{ .Params.link_label }}</a>
-        </article>
-        {{ end }}
-      </div>
-    </section>
-    {{ end }}
-
-    <div class="prose prose-lg prose-invert mx-auto max-w-5xl prose-a:text-blue-400 prose-headings:text-white">
+    <div class="service-content prose prose-lg prose-invert prose-a:text-blue-400 prose-headings:text-white">
       {{ .Content }}
     </div>
 
-    <section class="mx-auto mt-12 max-w-5xl rounded-2xl border border-gray-800 bg-[#111827] p-6" aria-labelledby="conversar">
-      <h2 id="conversar" class="mb-3 text-2xl font-bold">Vamos avaliar sua demanda técnica?</h2>
-      <p class="mb-6 max-w-3xl leading-relaxed text-gray-300">Conte o objetivo, os materiais disponíveis e o tipo de apoio que procura. A conversa inicial ajuda a avaliar a viabilidade e os próximos passos.</p>
-      {{ with site.Params.social.whatsapp }}
-      {{ partial "components/button/primary" (dict "label" "Descrever minha demanda" "href" . "contact_context" $contactContext) }}
-      {{ end }}
+    <section class="service-contact" aria-labelledby="conversar">
+      <div>
+        <p class="service-eyebrow">PRIMEIRO CONTATO</p>
+        <h2 id="conversar">Vamos avaliar sua demanda técnica?</h2>
+        <p>Conte o objetivo, os materiais disponíveis e o tipo de apoio que procura. A conversa inicial ajuda a avaliar a viabilidade e os próximos passos.</p>
+      </div>
+      <div class="service-contact__next">
+        {{ with site.Params.social.whatsapp }}
+        <a class="jv-btn jv-btn--primary" href="{{ partial "utilities/contact-url.html" (dict "href" . "context" $contactContext) }}" target="_blank" rel="noopener noreferrer">Descrever minha demanda<span class="jv-sr"> (WhatsApp, abre em nova aba)</span></a>
+        {{ end }}
+        <p class="service-note">Não inclua informações pessoais ou confidenciais na mensagem inicial.</p>
+      </div>
     </section>
+
+    {{ $items := slice }}
+    {{ range $servicos.RegularPages.ByWeight }}{{ if ne .RelPermalink $.RelPermalink }}{{ $items = $items | append (dict "kicker" "Outra especialidade" "title" .Params.card_title "text" .Params.card_text "url" .Permalink) }}{{ end }}{{ end }}
+    {{ $items = $items | append (dict "kicker" "Todas as áreas" "title" "Áreas de suporte técnico" "text" "Circuitos, programação, embarcados, modelos e dados." "url" $servicos.Permalink) }}
+    {{ with site.GetPage "/portfolio" }}{{ $items = $items | append (dict "kicker" "Evidência técnica" "title" "Estudos do portfólio" "text" "Métodos, figuras e código com limites documentados." "url" .Permalink) }}{{ end }}
+    {{ partial "system/paths.html" (dict "id" "service-paths" "title" "Continuar navegando" "items" $items) }}
   </div>
 </section>

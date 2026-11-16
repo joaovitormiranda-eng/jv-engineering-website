@@ -1,5 +1,6 @@
 ---
 title: "Privacidade e medição de visitas"
+sheet: "Privacidade e dados"
 description: "Como a JV Engineering trata a medição opcional de visitas, suas escolhas de privacidade e os cliques de contato."
 ---
 

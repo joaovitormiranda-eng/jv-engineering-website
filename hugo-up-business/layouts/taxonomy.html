@@ -1,35 +1,27 @@
 {{ define "main" }}
-<section class="py-16 bg-[#0a0f1d] text-white min-h-screen">
-  <div class="container mx-auto px-4">
-    <h1 class="text-white mb-6 text-center text-4xl font-extrabold xl:text-6xl">{{ .Title }}</h1>
-    {{ with .Description }}
-    <p class="mx-auto mb-8 max-w-3xl text-center leading-relaxed text-gray-300">{{ . }}</p>
-    {{ end }}
+<section class="jv-page">
+  <div class="jv-wrap">
+    {{ partial "system/crumbs.html" (slice (dict "name" "Início" "url" site.Home.Permalink) (dict "name" .Title "url" .Permalink)) }}
+    <header class="jv-pagehead">
+      <p class="jv-sheet"><span class="jv-sheet__num">ÍN</span>Índice por tema</p>
+      <h1 class="jv-title jv-title--display">{{ .Title }}</h1>
+      {{ with .Description }}<p class="jv-lead">{{ . }}</p>{{ end }}
+      <div class="jv-pagehead__actions">
+        {{ with site.GetPage "/portfolio" }}<a class="jv-link" href="{{ .RelPermalink }}">Ver catálogo de projetos</a>{{ end }}
+        {{ with site.GetPage "/servicos" }}<a class="jv-link" href="{{ .RelPermalink }}">Conhecer as áreas de suporte técnico</a>{{ end }}
+      </div>
+    </header>
 
-    {{ with site.GetPage "/portfolio" }}
-    <p class="mb-8 text-center text-sm">
-      <a class="text-blue-400 hover:text-white underline underline-offset-4" href="{{ .RelPermalink }}">Ver catálogo de projetos</a>
-    </p>
+    {{/* Keep the existing page/1 alias and list every term on one page. */}}
+    {{ $terms := .Pages.ByTitle }}
+    {{ if $terms }}
+    {{ $items := slice }}
+    {{ range (.Paginate $terms (len $terms)).Pages }}
+      {{ $n := len .Pages }}
+      {{ $items = $items | append (dict "kicker" (printf "%d %s" $n (cond (eq $n 1) "projeto" "projetos")) "title" .LinkTitle "text" "" "url" .RelPermalink) }}
     {{ end }}
-
-    {{ with site.GetPage "/servicos" }}
-    <p class="mb-8 text-center text-sm"><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">Conhecer todas as áreas de suporte técnico</a></p>
+    {{ partial "system/paths.html" (dict "id" "taxonomy-terms" "title" "Tecnologias e áreas" "items" $items) }}
     {{ end }}
-
-    <ul class="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2 xl:grid-cols-3">
-      {{/* Keep the existing page/1 alias and list every term on one page. */}}
-      {{ $terms := .Pages.ByTitle }}
-      {{ if $terms }}
-      {{ range (.Paginate $terms (len $terms)).Pages }}
-      <li>
-        <a class="flex h-full items-center justify-between gap-4 rounded-xl border border-gray-800 bg-[#111827] p-4 text-blue-400 hover:border-blue-500/50 hover:text-white" href="{{ .RelPermalink }}">
-          <span class="font-semibold">{{ .LinkTitle }}</span>
-          <span class="text-xs text-gray-300">{{ len .Pages }} {{ if eq (len .Pages) 1 }}projeto{{ else }}projetos{{ end }}</span>
-        </a>
-      </li>
-      {{ end }}
-      {{ end }}
-    </ul>
   </div>
 </section>
 {{ end }}
