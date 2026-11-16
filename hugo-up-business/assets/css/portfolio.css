@@ -332,3 +332,11 @@
   .figure-viewer[open]::backdrop { animation: jv-fade-in .22s ease-out both; }
 }
 @keyframes jv-viewer-in { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: none; } }
+
+/* Set and integral operators drawn as SVG (study-equations shortcode): the
+   character stays in .jv-sr; the stroke follows the surrounding text colour. */
+.study-eq__op { display: inline-flex; align-items: center; justify-content: center; vertical-align: -0.1em; margin-inline: .12em; }
+.study-eq__op svg { display: block; fill: none; stroke: currentColor; stroke-width: 1.15; stroke-linecap: round; }
+.study-eq__op--set svg { width: .62em; height: .74em; }
+.study-eq__op--int svg { width: .5em; height: 1.25em; stroke-width: 1; }
+.study-eq__op--int { vertical-align: -0.3em; margin-inline: 0 .08em; }
