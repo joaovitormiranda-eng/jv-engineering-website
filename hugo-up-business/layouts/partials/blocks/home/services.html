@@ -1,7 +1,9 @@
-{{/* 02 · Áreas — indexed list (no orphan grid cells, no platform-dependent emoji icons). */}}
+{{/* 02 · Áreas — indexed list on tablet/desktop; on phones the same list becomes a
+     snap-scrolling row with a visible peek (CSS only), so all five areas and their
+     contact links stay in the DOM and in reading order. */}}
 <section id="services" class="jv-section jv-section--band" aria-labelledby="services-title">
   <div class="jv-wrap">
-    <p class="jv-sheet"><span class="jv-sheet__num">02</span>{{ with .kicker }}{{ . }}{{ else }}Áreas de atuação{{ end }}</p>
+    <p class="jv-sheet"><span class="jv-sheet__num">02</span>{{ with .kicker }}{{ . }}{{ else }}Áreas de atuação{{ end }}<span class="jv-sheet__total" aria-hidden="true">FL. 02/06</span></p>
     <div class="jv-grid jv-grid--aside">
       <div>
         <h2 id="services-title" class="jv-title">{{ .title | markdownify }}</h2>
@@ -13,19 +15,23 @@
       </div>
 
       {{ with site.Data.services.areas }}
-      <ol class="jv-areas">
-        {{ range . }}
-        {{ $area := . }}
-        <li class="jv-area">
-          <h3>{{ .title | markdownify }}</h3>
-          {{ with .summary }}<p>{{ . | markdownify }}</p>{{ end }}
-          {{ with site.GetPage "/servicos" }}
-          <a class="jv-link" href="{{ .RelPermalink }}#{{ $area.id }}">{{ $area.link_label }}
-            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <div>
+        <ol class="jv-areas" aria-label="Áreas de atuação ({{ len . }})">
+          {{ range . }}
+          {{ $area := . }}
+          <li class="jv-area">
+            <h3>{{ .title | markdownify }}</h3>
+            {{ with .summary }}<p>{{ . | markdownify }}</p>{{ end }}
+            {{ with site.GetPage "/servicos" }}
+            <a class="jv-link" href="{{ .RelPermalink }}#{{ $area.id }}">{{ $area.link_label }}
+              <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+            {{ end }}
+          </li>
           {{ end }}
-        </li>
-        {{ end }}
-      </ol>
+        </ol>
+        <p class="jv-swipe" aria-hidden="true">{{ len . }} áreas · deslize
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></p>
+      </div>
       {{ end }}
     </div>
   </div>

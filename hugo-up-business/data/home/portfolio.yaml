@@ -5,8 +5,14 @@ text: "Os estudos de sinais, dados elétricos e lógica Fuzzy demonstram método
 # Studies shown in the home explorer, in this order. Title, description,
 # categories, tags, figure and caption come from each study's front matter,
 # so the home never restates (or drifts from) the published study.
+# `short` is only the compact label of the selector chip on narrow screens;
+# the full study title stays in the accessible name of each tab.
 studies:
-  - "/portfolio/modelagem-simulacao"
-  - "/portfolio/qualidade-energia"
-  - "/portfolio/solucoes-computacionais"
-  - "/portfolio/plataforma-web"
+  - path: "/portfolio/modelagem-simulacao"
+    short: "PDS"
+  - path: "/portfolio/qualidade-energia"
+    short: "QEE"
+  - path: "/portfolio/solucoes-computacionais"
+    short: "Fuzzy"
+  - path: "/portfolio/plataforma-web"
+    short: "Web"

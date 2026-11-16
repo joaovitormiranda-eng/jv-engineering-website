@@ -1,19 +1,25 @@
-{{/* 01 · Perfil — who runs JV Engineering and verifiable evidence, no illustrative outputs. */}}
+{{/* 01 · Perfil — feature sheet. The YAML text is unchanged: its first sentence is set
+     as the statement and the remainder as body copy (presentation only). */}}
 {{ $studies := where site.RegularPages "Section" "portfolio" }}
-<section id="about" class="jv-section" aria-labelledby="about-title">
+{{ $text := .text | default "" }}
+{{ $parts := split $text ". " }}
+{{ $statement := index $parts 0 }}
+{{ $rest := delimit (after 1 $parts) ". " }}
+<section id="about" class="jv-section jv-section--feature jv-profile" aria-labelledby="about-title">
   <div class="jv-wrap">
-    <p class="jv-sheet"><span class="jv-sheet__num">01</span>{{ with .subtitle }}{{ . }}{{ else }}Perfil{{ end }}</p>
+    <p class="jv-sheet"><span class="jv-sheet__num">01</span>{{ with .subtitle }}{{ . }}{{ else }}Perfil{{ end }}<span class="jv-sheet__total" aria-hidden="true">FL. 01/06</span></p>
     <div class="jv-grid jv-grid--split">
-      <div class="jv-profile__statement">
-        <h2 id="about-title" class="jv-title">{{ .title | markdownify }}</h2>
-        {{ with .text }}<p class="jv-lead">{{ . | markdownify }}</p>{{ end }}
+      <div>
+        <h2 id="about-title" class="jv-title jv-title--display">{{ .title | markdownify }}</h2>
+        {{ with $statement }}<p class="jv-statement">{{ . | markdownify }}{{ if $rest }}.{{ end }}</p>{{ end }}
+        {{ with $rest }}<p class="jv-profile__body">{{ . | markdownify }}</p>{{ end }}
       </div>
 
       <dl id="responsavel" class="jv-spec" aria-label="Ficha do responsável">
         <div class="jv-spec__head"><span>Ficha técnica</span><strong>JV · Responsável</strong></div>
         <div class="jv-spec__row">
           <dt>Responsável</dt>
-          <dd>{{ site.Params.professional.name }}</dd>
+          <dd class="jv-spec__name">{{ site.Params.professional.name }}</dd>
         </div>
         <div class="jv-spec__row">
           <dt>Formação</dt>
@@ -22,12 +28,11 @@
           </dd>
         </div>
         <div class="jv-spec__row">
-          <dt>Código</dt>
-          <dd>{{ with site.Params.social.github }}<a class="jv-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Perfil e repositórios no GitHub</a>{{ end }}</dd>
-        </div>
-        <div class="jv-spec__row">
-          <dt>Escopo</dt>
-          <dd>{{ with site.GetPage "/servicos" }}<a class="jv-link" href="{{ .RelPermalink }}">Serviços e limites do atendimento</a>{{ end }}</dd>
+          <dt>Referências</dt>
+          <dd class="jv-spec__links">
+            {{ with site.Params.social.github }}<a class="jv-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Perfil e repositórios no GitHub</a>{{ end }}
+            {{ with site.GetPage "/servicos" }}<a class="jv-link" href="{{ .RelPermalink }}">Serviços e limites do atendimento</a>{{ end }}
+          </dd>
         </div>
       </dl>
     </div>
@@ -37,7 +42,7 @@
       {{ with site.GetPage "/portfolio" }}
       <li>
         <a href="{{ .RelPermalink }}">
-          <span class="jv-evidence__value">{{ len $studies }} estudos técnicos publicados</span>
+          <span class="jv-evidence__value"><span class="jv-evidence__num">{{ len $studies }}</span> estudos técnicos publicados</span>
           <span class="jv-evidence__label">Métodos, parâmetros e limites documentados em cada estudo.</span>
         </a>
         <svg class="jv-evidence__arrow" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M9 7h8v8"/></svg>

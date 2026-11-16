@@ -1,28 +1,27 @@
 {{/* 05 · Método — approach + capabilities as a numbered sequence.
      The legacy testimonial fields in data/home/testimonials.yaml (featured/items)
-     are intentionally NOT rendered: their origin and authorization are unconfirmed. */}}
+     are intentionally NOT rendered: their origin and authorization are unconfirmed.
+     The contact link stays inside #testimonials (analytics cta_location = approach). */}}
 <section id="testimonials" class="jv-section" aria-labelledby="method-title">
   <div class="jv-wrap">
-    <p class="jv-sheet"><span class="jv-sheet__num">05</span>Método &amp; documentação</p>
+    <p class="jv-sheet"><span class="jv-sheet__num">05</span>Método &amp; documentação<span class="jv-sheet__total" aria-hidden="true">FL. 05/06</span></p>
     <div class="jv-grid jv-grid--split jv-intro">
       <h2 id="method-title" class="jv-title">{{ .title | markdownify }}</h2>
       {{ with .approach }}
       <div class="jv-method__intro">
-        <p class="jv-plate__cat">{{ .label }}</p>
+        <p class="jv-kicker">{{ .label }}</p>
         <h3>{{ .title }}</h3>
         <p>{{ .text | markdownify }}</p>
         {{ with site.Params.social.whatsapp }}
-        <div class="jv-actions">
-          <a class="jv-btn jv-btn--primary" href="{{ partial "utilities/contact-url.html" (dict "href" .) }}" target="_blank" rel="noopener noreferrer">Conversar sobre meu projeto
-            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-        </div>
+        <a class="jv-link" href="{{ partial "utilities/contact-url.html" (dict "href" .) }}" target="_blank" rel="noopener noreferrer">Conversar sobre meu projeto
+          <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         {{ end }}
       </div>
       {{ end }}
     </div>
 
     {{ with .capabilities }}
-    <ol class="jv-steps" aria-label="Competências aplicadas">
+    <ol class="jv-steps" data-reveal aria-label="Competências aplicadas">
       {{ range . }}
       <li class="jv-step">
         <h3>{{ .label }}</h3>

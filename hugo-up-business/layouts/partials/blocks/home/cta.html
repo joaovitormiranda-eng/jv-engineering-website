@@ -1,9 +1,9 @@
 {{/* 06 · Contato — closing statement + drawing "title block" (carimbo) that frames the
      existing JV vector identity (variant A size preserved, per 07D-S.11).
      No <header> wrapper: analytics.js maps "main section > div > header" to service pages. */}}
-<section class="jv-section jv-section--band" aria-labelledby="contact-title">
+<section class="jv-section jv-section--deep" aria-labelledby="contact-title">
   <div class="jv-wrap">
-    <p class="jv-sheet"><span class="jv-sheet__num">06</span>Contato</p>
+    <p class="jv-sheet"><span class="jv-sheet__num">06</span>Contato<span class="jv-sheet__total" aria-hidden="true">FL. 06/06</span></p>
     <div class="jv-grid jv-grid--split">
       <div>
         {{ with .title }}<h2 id="contact-title" class="jv-title jv-contact__title">{{ . | markdownify }}</h2>{{ end }}
@@ -20,16 +20,19 @@
         {{ end }}
       </div>
 
+      {{/* The full JV logo already closes the page in the footer; the title block uses
+           the official JV symbol (assets/images/brand/symbol-white.svg) instead. */}}
       <div class="jv-stamp">
-        {{ with .image }}
-        {{ $logo := resources.Get . | fingerprint }}
-        <div class="jv-stamp__logo">
-          <img src="{{ $logo.RelPermalink }}" width="764" height="494" alt="" loading="lazy" decoding="async" />
+        {{ with resources.Get "images/brand/symbol-white.svg" }}
+        {{ $mark := . | fingerprint }}
+        <div class="jv-stamp__mark">
+          <img src="{{ $mark.RelPermalink }}" width="421" height="306" alt="" loading="lazy" decoding="async" />
         </div>
         {{ end }}
         <dl class="jv-stamp__fields" aria-label="Legenda do atendimento">
           <div><dt>Projeto</dt><dd>JV Engineering</dd></div>
-          <div><dt>Responsável</dt><dd>{{ site.Params.professional.name }}</dd></div>
+          <div><dt>Folha</dt><dd class="jv-stamp__sheet">06/06</dd></div>
+          <div class="is-wide"><dt>Responsável</dt><dd>{{ site.Params.professional.name }}</dd></div>
           <div class="is-wide"><dt>Modalidades</dt><dd>Orientação · Revisão · Desenvolvimento técnico</dd></div>
           <div class="is-wide"><dt>Canal</dt><dd>WhatsApp, com escopo avaliado por demanda</dd></div>
         </dl>
