@@ -267,6 +267,28 @@
   .jv-stamp__mark img { max-width: 6.25rem; }
 }
 
+/* ---------- 02 · Dois caminhos (audience split) ---------- */
+.jv-audiences__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
+.jv-audience { position: relative; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; padding: clamp(1.5rem, 4vw, 2.25rem); border: 1px solid var(--jv-line-strong); border-radius: .75rem; background: var(--jv-surface); transition: border-color .2s var(--jv-ease), background-color .2s var(--jv-ease); }
+.jv-audience:hover, .jv-audience:focus-within { border-color: var(--jv-accent); background: var(--jv-surface-2); }
+.jv-audience__kicker { margin: 0 0 .75rem; color: var(--jv-accent); font-family: var(--jv-mono); font-size: .6875rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.jv-audience__title { margin: 0 0 .75rem; font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem); font-weight: 750; line-height: 1.2; letter-spacing: -.02em; text-wrap: balance; }
+.jv-audience__title a { color: var(--jv-text); text-decoration: none; }
+.jv-audience__title a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.jv-audience__title a:focus-visible { outline: none; }
+.jv-audience:focus-within { outline: 2px solid var(--jv-accent); outline-offset: 2px; }
+.jv-audience:hover .jv-audience__title a { color: var(--jv-accent); }
+.jv-audience__text { margin: 0 0 1.25rem; color: var(--jv-muted); font-size: .9375rem; line-height: 1.7; }
+.jv-audience__points { display: grid; gap: .5rem; margin: 0 0 1.5rem; padding: 0; list-style: none; }
+.jv-audience__points li { position: relative; padding-left: 1.375rem; color: var(--jv-subtle); font-size: .875rem; line-height: 1.55; }
+.jv-audience__points li::before { content: ""; position: absolute; left: 0; top: .5em; width: .4375rem; height: .4375rem; border: 1px solid var(--jv-accent); transform: translateY(-50%); }
+.jv-audience__cta { display: inline-flex; align-items: center; gap: .5rem; margin-top: auto; color: var(--jv-accent); font-weight: 650; font-size: .9375rem; }
+.jv-audience__cta svg { width: 1rem; height: 1rem; transition: transform .24s var(--jv-ease-out); }
+.jv-audience:hover .jv-audience__cta svg { transform: translateX(4px); }
+@media (min-width: 48rem) {
+  .jv-audiences__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+}
+
 /* Without the explorer script every plate stays visible (progressive enhancement). */
 .jv-explorer:not(.is-enhanced) .jv-explorer__nav { display: none; }
 
