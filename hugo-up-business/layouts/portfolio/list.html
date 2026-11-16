@@ -7,7 +7,7 @@
       <p class="jv-sheet"><span class="jv-sheet__num">PR</span>Catálogo técnico<span class="jv-sheet__total" aria-hidden="true">{{ printf "%02d" (len $studies) }} estudos</span></p>
       <h1 class="jv-title jv-title--display">{{ .Title | markdownify }}</h1>
       {{ with .Description }}<p class="jv-lead">{{ . | markdownify }}</p>{{ end }}
-      <dl class="jv-facts" aria-label="Como ler cada estudo">
+      <dl class="jv-facts jv-facts--steps" aria-label="Como ler cada estudo">
         <div><dt>01 · Contexto</dt><dd>Problema, método e hipóteses.</dd></div>
         <div><dt>02 · Evidência</dt><dd>Figuras reais, tabelas e equações do estudo.</dd></div>
         <div><dt>03 · Limites</dt><dd>Código, dados e onde o resultado não se aplica.</dd></div>

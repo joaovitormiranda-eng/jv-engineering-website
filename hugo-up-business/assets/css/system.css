@@ -109,6 +109,8 @@
 .jv-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin: clamp(1.5rem, 4vw, 2.25rem) 0 0; padding: 1px; border: 1px solid var(--jv-line-strong); border-radius: .75rem; background: var(--jv-line-strong); overflow: hidden; }
 .jv-facts > div { min-width: 0; padding: .875rem 1.125rem; background: var(--jv-surface); }
 .jv-facts > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.jv-facts--steps { grid-template-columns: minmax(0, 1fr); }
+.jv-facts--steps > div:last-child:nth-child(odd) { grid-column: auto; }
 .jv-facts dt { margin: 0 0 .25rem; color: var(--jv-subtle); font-family: var(--jv-mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; }
 .jv-facts dd { margin: 0; color: var(--jv-text); font-size: .9375rem; line-height: 1.5; }
 .jv-facts a { color: var(--jv-accent); text-decoration: underline; text-underline-offset: .25em; }
@@ -138,8 +140,9 @@
 .jv-prose { max-width: 44rem; }
 
 @media (min-width: 40rem) {
-  .jv-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   /* Last cell absorbs the remainder so no empty cell shows the rule colour. */
+  .jv-facts, .jv-facts--steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .jv-facts > div:last-child:nth-child(3n) { grid-column: auto; }
   .jv-facts > div:last-child:nth-child(3n+1) { grid-column: span 3; }
   .jv-facts > div:last-child:nth-child(3n+2) { grid-column: span 2; }
 }

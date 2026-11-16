@@ -77,8 +77,31 @@ function init() {
     dialog.dataset.zoomLevel = String(zoom)
     zoomBtn.setAttribute('aria-pressed', zoom > 1 ? 'true' : 'false')
     zoomBtn.textContent = zoom > 1 ? 'Ajustar à tela' : 'Ampliar 2×'
-    imgEl.style.width = `${zoom * 100}%`
+    fit()
   }
+
+  // Size the image to the stage: the whole figure fits the area (width and
+  // height) at 1x; 2x doubles that size and the stage scrolls. Rasters are not
+  // enlarged past their natural size at 1x.
+  const fit = () => {
+    const zoom = ZOOM_LEVELS[level]
+    const cs = getComputedStyle(stage)
+    const aw = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)
+    const ah = stage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)
+    const nw = imgEl.naturalWidth
+    const nh = imgEl.naturalHeight
+    if (!nw || !nh || aw <= 0 || ah <= 0) {
+      imgEl.style.width = `${zoom * 100}%`
+      return
+    }
+    let w = Math.min(aw, (ah * nw) / nh)
+    if (!/\.svg(\?|$)/i.test(imgEl.currentSrc || imgEl.src)) w = Math.min(w, nw)
+    imgEl.style.width = `${Math.round(w * zoom)}px`
+  }
+  imgEl.addEventListener('load', fit)
+  window.addEventListener('resize', () => {
+    if (dialog.open) fit()
+  })
 
   const open = (figure, img, trigger) => {
     opener = trigger
@@ -91,6 +114,7 @@ function init() {
     stage.scrollTo(0, 0)
     applyZoom()
     dialog.showModal()
+    fit() // stage has a size only once the dialog is open
     zoomBtn.focus()
   }
 
@@ -110,6 +134,21 @@ function init() {
     if (e.key === 'Escape') {
       e.preventDefault()
       dialog.close()
+      return
+    }
+    // Keep Tab inside the dialog: some browsers let focus leave a modal
+    // dialog at its ends (to the page start or the browser UI).
+    if (e.key === 'Tab') {
+      const items = [zoomBtn, dialog.querySelector('[data-close]'), stage]
+      const first = items[0]
+      const last = items[items.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
     }
   })
   dialog.addEventListener('close', () => {

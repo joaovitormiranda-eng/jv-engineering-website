@@ -186,6 +186,7 @@
       "jv-explorer__nav",
       "jv-explorer__tabs",
       "jv-facts",
+      "jv-facts--steps",
       "jv-grid",
       "jv-grid--aside",
       "jv-grid--split",
