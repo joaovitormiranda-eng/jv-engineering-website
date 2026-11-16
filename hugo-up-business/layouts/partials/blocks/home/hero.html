@@ -14,7 +14,7 @@
      uses no filters, blur, blend modes, backdrop or fixed backgrounds; motion is
      transform/opacity only and off under reduced motion. That lowers risk; it
      is not evidence that the defect is gone. */}}
-{{ $studies := site.Data.home.portfolio.studies }}
+{{ $studies := hugo.Data.home.portfolio.studies }}
 {{ $total := len $studies }}
 <section id="hero" class="jv-hero" data-hero aria-labelledby="hero-title">
   <div class="jv-wrap jv-hero__grid">

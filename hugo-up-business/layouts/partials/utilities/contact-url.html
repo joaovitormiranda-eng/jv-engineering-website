@@ -5,7 +5,7 @@
 {{- $contact := urls.Parse $authorized -}}
 {{- if and (eq $target.Scheme $contact.Scheme) (eq $target.Host $contact.Host) (eq $target.Path $contact.Path) -}}
   {{- $context := .context | default "general" -}}
-  {{- $message := index site.Data.contact.messages $context | default site.Data.contact.messages.general -}}
+  {{- $message := index hugo.Data.contact.messages $context | default hugo.Data.contact.messages.general -}}
   {{- $href = printf "%s?%s" $authorized (querify "text" $message) -}}
 {{- end -}}
 {{- return $href -}}

@@ -34,7 +34,7 @@
         <p>Não é preciso saber qual ferramenta usar. Escolha a área mais próxima ou descreva o problema.</p>
       </div>
       <ol class="service-area-grid" role="list" data-reveal>
-        {{ range $index, $area := site.Data.services.areas }}
+        {{ range $index, $area := hugo.Data.services.areas }}
         <li class="service-area" aria-labelledby="{{ .id }}">
           <span class="service-area__number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
           <h3 id="{{ .id }}" tabindex="-1">{{ .title }}</h3>

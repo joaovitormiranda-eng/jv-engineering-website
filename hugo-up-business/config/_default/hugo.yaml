@@ -1,9 +1,0 @@
-baseURL: "https://joaovitormiranda-eng.github.io/jv-engineering-website/"
-title: "JV Engineering"
-summaryLength: 20
-languageCode: "pt-br"
-
-markup:
-  goldmark:
-    renderer:
-      unsafe: true

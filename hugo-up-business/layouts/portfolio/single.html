@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $study := index site.Data.portfolio.studies .File.ContentBaseName }}
+{{ $study := index hugo.Data.portfolio.studies .File.ContentBaseName }}
 {{ $catalogue := site.GetPage "/portfolio" }}
 {{ $all := $catalogue.RegularPages }}
 {{ $position := 0 }}{{ range $i, $p := $all }}{{ if eq $p.RelPermalink $.RelPermalink }}{{ $position = add $i 1 }}{{ end }}{{ end }}

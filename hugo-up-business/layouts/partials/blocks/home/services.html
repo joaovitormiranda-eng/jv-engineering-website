@@ -11,7 +11,7 @@
       {{ with .text }}<p class="jv-lead jv-lead--flush">{{ . | markdownify }}</p>{{ end }}
     </div>
 
-    {{ with site.Data.services.journey.modes }}
+    {{ with hugo.Data.services.journey.modes }}
     <ol class="jv-modes" aria-label="Formas de apoio">
       {{ range $i, $m := . }}
       <li class="jv-mode">
@@ -23,7 +23,7 @@
     </ol>
     {{ end }}
 
-    {{ with site.Data.services.areas }}
+    {{ with hugo.Data.services.areas }}
     <div class="jv-areaindex">
       <h3 class="jv-areaindex__title">Áreas de atuação</h3>
       <ul class="jv-areaindex__list">
