@@ -1,11 +1,21 @@
-{{/* Hero (S29). Typographic statement + "drawing sheet" of real study figures.
-     P0 (iPhone black rectangle) is OPEN, root cause not demonstrated. This hero
-     deliberately avoids the patterns present in the old one (blur glow,
-     gradient overlay, backdrop-filter badge, large object-cover photo) and uses
-     no filters, blend modes, fixed backgrounds or animation. That lowers risk;
-     it is not evidence that the defect is gone. Baseline: main @ 84b89f7.
-     The h1 is the LCP candidate; plates are below it on narrow screens. */}}
-{{ $plates := .plates }}
+{{/* Hero (S31). Typographic statement + the site's single study explorer.
+     The explorer replaces both the S29/S30 static plates and the former
+     "01 · Projetos & estudos" explorer section, which showed the same studies
+     again right below the hero. Content comes from each study's front matter
+     (title, description, categories, catalog_image, catalog_nature); nothing
+     is restated here. Order: data/home/portfolio.yaml.
+
+     Without JS: every study is listed in sequence and the selector is hidden.
+     With assets/js/home/study-explorer.js: an ARIA tablist (automatic
+     activation, arrows/Home/End), swipe on the figure, a real crossfade between
+     studies and a travelling indicator. No autoplay.
+
+     P0 (iPhone black rectangle) is OPEN, root cause not demonstrated. The hero
+     uses no filters, blur, blend modes, backdrop or fixed backgrounds; motion is
+     transform/opacity only and off under reduced motion. That lowers risk; it
+     is not evidence that the defect is gone. */}}
+{{ $studies := site.Data.home.portfolio.studies }}
+{{ $total := len $studies }}
 <section id="hero" class="jv-hero" data-hero aria-labelledby="hero-title">
   <div class="jv-wrap jv-hero__grid">
     <div class="jv-hero__copy">
@@ -23,36 +33,59 @@
       </div>
     </div>
 
-    {{ with $plates }}
-    <div class="jv-hero__sheet">
-      <p class="jv-hero__sheet-label" aria-hidden="true"><span>Figuras reais dos estudos publicados</span><span>FL. 00</span></p>
-      {{ with .main }}{{ $study := site.GetPage .study }}{{ $img := resources.Get .src }}
-      {{ if not $img }}{{ errorf "Hero figure not found: %s" .src }}{{ end }}
-      <figure class="jv-hero__plate jv-hero__plate--main">
-        <a href="{{ $study.RelPermalink }}" class="jv-hero__plate-link">
-          <span class="jv-hero__plate-stage">
-            <img src="{{ $img.RelPermalink }}" width="{{ .width }}" height="{{ .height }}" alt="{{ .alt }}" loading="lazy" decoding="async" />
-          </span>
-          <figcaption><span class="jv-mono">{{ .label }}</span><span class="jv-hero__plate-go">Abrir estudo<svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></span></figcaption>
-        </a>
-      </figure>
-      {{ end }}
-      <div class="jv-hero__minor">
-        {{ range slice .second .third }}
-        {{ $plate := . }}
-        {{ $study := site.GetPage .study }}
-        {{ with $study.Params.catalog_image }}{{ $src := resources.Get .src }}
-        {{ $thumb := $src.Resize "560x webp q85" }}
-        <figure class="jv-hero__plate jv-hero__plate--minor">
-          <a href="{{ $study.RelPermalink }}" class="jv-hero__plate-link">
-            <span class="jv-hero__plate-stage{{ if $plate.dark }} is-dark{{ end }}"><img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ .alt }}" loading="lazy" decoding="async" /></span>
-            <figcaption><span class="jv-mono">{{ $plate.label }}</span></figcaption>
-          </a>
-        </figure>
+    <div class="jv-hx" id="estudos" data-study-explorer>
+      <div class="jv-hx__head">
+        <p class="jv-hx__label" id="hx-label">Estudos publicados</p>
+        <p class="jv-hx__count" aria-hidden="true"><span data-explorer-count>01</span>/{{ printf "%02d" $total }}</p>
+      </div>
+      <div class="jv-hx__nav" data-explorer-nav>
+        <span class="jv-hx__indicator" data-explorer-indicator aria-hidden="true"></span>
+        <ol class="jv-hx__tabs" data-explorer-tabs aria-labelledby="hx-label">
+          {{ range $i, $s := $studies }}
+          {{ with site.GetPage $s.path }}
+          <li><a class="jv-hx__tab" href="#estudo-{{ .File.ContentBaseName }}" id="tab-{{ .File.ContentBaseName }}" data-explorer-tab>
+            <span class="jv-hx__tab-short">{{ $s.short }}</span><span class="jv-sr"> — {{ .LinkTitle }}</span>
+          </a></li>
+          {{ else }}{{ errorf "Home study not found: %s" $s.path }}{{ end }}
+          {{ end }}
+        </ol>
+      </div>
+
+      <div class="jv-hx__panels" data-explorer-swipe>
+        {{ range $i, $s := $studies }}
+        {{ with site.GetPage $s.path }}
+        {{ $slug := .File.ContentBaseName }}
+        {{ $own := eq $slug "plataforma-web" }}
+        <article class="jv-hx__panel" id="estudo-{{ $slug }}" data-explorer-panel aria-labelledby="hx-{{ $slug }}-title">
+          {{ with .Params.catalog_image }}
+          {{ $src := resources.Get .src }}
+          {{ if not $src }}{{ errorf "Study figure not found: %s" .src }}{{ end }}
+          <figure class="jv-hx__figure">
+            <div class="jv-hx__stage{{ if $own }} is-dark{{ end }}">
+              {{ if eq $src.MediaType.SubType "svg" }}
+              <img src="{{ $src.RelPermalink }}" width="{{ .width | default 792 }}" height="{{ .height | default 468 }}" alt="{{ .alt }}" loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}" decoding="async" />
+              {{ else }}
+              {{ $big := $src.Resize "1040x webp q85" }}{{ $small := $src.Resize "560x webp q85" }}
+              <img src="{{ $big.RelPermalink }}" srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $big.RelPermalink }} {{ $big.Width }}w"
+                sizes="(min-width: 64rem) 520px, calc(100vw - 2rem)" width="{{ $big.Width }}" height="{{ $big.Height }}" alt="{{ .alt }}" loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}" decoding="async" />
+              {{ end }}
+            </div>
+            <figcaption class="jv-hx__caption"><span class="jv-mono">Fig. {{ printf "%02d" (add $i 1) }}</span> {{ .caption }}</figcaption>
+          </figure>
+          {{ end }}
+          <div class="jv-hx__body">
+            <p class="jv-hx__cat">{{ with .Params.categories }}{{ index . 0 }}{{ else }}Projeto próprio{{ end }}{{ if $own }} · Esta plataforma{{ end }}</p>
+            <h2 class="jv-hx__title" id="hx-{{ $slug }}-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            <p class="jv-hx__text">{{ .Description | plainify }}</p>
+            <div class="jv-hx__foot">
+              {{ with .Params.catalog_nature }}<p class="jv-hx__nature"><span class="jv-sr">Natureza dos dados: </span>{{ . }}</p>{{ end }}
+              <span class="jv-hx__go" aria-hidden="true">Abrir estudo<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+            </div>
+          </div>
+        </article>
         {{ end }}
         {{ end }}
       </div>
     </div>
-    {{ end }}
   </div>
 </section>

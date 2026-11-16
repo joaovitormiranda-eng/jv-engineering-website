@@ -1,12 +1,8 @@
-enable: true
-title: "Projetos e estudos em destaque"
-text: "Método, figuras, código e limites, incluindo a engenharia desta própria plataforma."
-
-# Studies shown in the home explorer, in this order. Title, description,
-# categories, tags, figure and caption come from each study's front matter,
-# so the home never restates (or drifts from) the published study.
-# `short` is only the compact label of the selector chip on narrow screens;
-# the full study title stays in the accessible name of each tab.
+# Studies shown in the hero explorer (S31), in this order. Title, description,
+# categories, figure, caption and data nature come from each study's front
+# matter, so the home never restates (or drifts from) the published study.
+# `short` is the label of the selector tab; the full study title stays in its
+# accessible name.
 studies:
   - path: "/portfolio/modelagem-simulacao"
     short: "PDS"
