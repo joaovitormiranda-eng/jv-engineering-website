@@ -216,3 +216,68 @@
 .jv-footer .analytics-preferences { display: inline-flex; align-items: center; min-height: 44px; margin: .5rem 0 0; padding: 0; background: none; border: 0; color: var(--jv-muted); font: inherit; font-size: .875rem; text-decoration: underline; text-underline-offset: .25em; cursor: pointer; }
 .jv-footer .analytics-preferences[hidden] { display: none; }
 .jv-facts dd a { display: inline-flex; align-items: center; min-height: 24px; }
+
+/* =========================================================
+   S30 · Motion system. One easing family, short durations, transform/opacity
+   only, never on text visibility, everything off under reduced motion.
+   ========================================================= */
+@keyframes jv-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes jv-slide { from { transform: translateY(10px); } to { transform: none; } }
+@keyframes jv-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes jv-pop { from { opacity: 0; transform: translateY(-6px) scale(.985); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Groups revealed on scroll (reveal.js adds .is-pending only below the fold). */
+  [data-reveal]:not(.jv-steps).is-pending > * { opacity: 0; transform: translateY(14px); }
+  [data-reveal]:not(.jv-steps).is-revealed > * { animation: jv-rise .52s var(--jv-ease-out) both; animation-delay: calc(var(--i, 0) * 70ms); }
+
+  /* Page openings ([data-hero]): headline slides (stays visible), media follows. */
+  [data-hero] h1 { animation: jv-slide .6s var(--jv-ease-out) both; }
+  [data-hero] :is(.jv-hero__lead, .jv-hero__actions, .jv-lead, .study-open__facts) { animation: jv-slide .6s .06s var(--jv-ease-out) both; }
+  [data-hero] :is(.jv-hero__sheet, .study-open__cover) { animation: jv-rise .7s .14s var(--jv-ease-out) both; }
+
+  /* Mobile menu: drops in from the header instead of appearing abruptly. */
+  [data-navigation-panel][data-open="true"] { animation: jv-pop .2s var(--jv-ease-out) both; }
+
+  /* Disclosures: content eases in when opened. */
+  details[open] > :not(summary) { animation: jv-rise .28s var(--jv-ease-out) both; }
+}
+@media print {
+  [data-reveal] > * { opacity: 1 !important; transform: none !important; animation: none !important; }
+}
+
+/* Disclosure affordance shared by services, studies and FAQ. */
+:is(.service-inputs, .study-faq, .portfolio-study__contents) > summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; list-style: none; cursor: pointer; }
+:is(.service-inputs, .study-faq, .portfolio-study__contents) > summary::-webkit-details-marker { display: none; }
+:is(.service-inputs, .study-faq, .portfolio-study__contents) > summary::after { content: ""; flex: none; width: .5rem; height: .5rem; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .2s var(--jv-ease-out); }
+:is(.service-inputs, .study-faq, .portfolio-study__contents)[open] > summary::after { transform: translateY(2px) rotate(-135deg); }
+@media (prefers-reduced-motion: reduce) {
+  :is(.service-inputs, .study-faq, .portfolio-study__contents) > summary::after { transition: none; }
+}
+
+/* FAQ (services specialty pages). */
+.study-faq { border-top: 1px solid var(--jv-line-strong); }
+.study-faq:last-of-type { border-bottom: 1px solid var(--jv-line-strong); }
+.study-faq > summary { min-height: 52px; padding-block: .875rem; color: var(--jv-text); font-weight: 650; }
+.study-faq > summary:hover { color: var(--jv-accent); }
+.study-faq__body { padding-bottom: 1rem; color: var(--jv-muted); }
+.study-faq__body p { margin: 0; }
+
+/* =========================================================
+   S30 · Header and footer, mobile weight
+   ========================================================= */
+@media (max-width: 47.999rem) {
+  .jv-footer__grid { gap: 1.75rem; padding-block: 2.25rem 1.25rem; }
+  .jv-footer__brand img { height: 2.75rem; }
+  .jv-footer__nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1rem; }
+  .jv-footer__contact { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1rem; }
+  .jv-footer__base { padding-block: 1rem 1.5rem; }
+}
+.jv-footer__base a { color: var(--jv-muted); text-decoration: underline; text-underline-offset: .25em; display: inline-flex; align-items: center; min-height: 44px; }
+.jv-footer__base a:hover { color: var(--jv-accent); }
+
+/* Touch feedback equivalent to hover for whole-card links. */
+.jv-path:active, .portfolio-row:active, .jv-hero__plate-link:active { transform: scale(.995); }
+@media (prefers-reduced-motion: reduce) {
+  .jv-path:active, .portfolio-row:active, .jv-hero__plate-link:active { transform: none; }
+}
