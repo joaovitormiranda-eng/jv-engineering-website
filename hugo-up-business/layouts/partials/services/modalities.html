@@ -1,14 +1,12 @@
-{{/* "O que você pode solicitar" — the three modalities, placed up front so a
-     visitor immediately knows what can be asked for. Content from
-     data/services/journey.yaml (modes); presentation only. */}}
+{{/* "O que você pode solicitar" — three modalities (data/services/journey.yaml). */}}
 {{ with site.Data.services.journey }}
 <section class="service-section" aria-labelledby="o-que-solicitar">
   <div class="service-section__heading">
-    <p class="service-eyebrow">O QUE VOCÊ PODE SOLICITAR</p>
+    <p class="service-eyebrow">O que solicitar</p>
     <h2 id="o-que-solicitar" tabindex="-1">Três formas de apoio</h2>
-    <p>Estas são as modalidades de atendimento. Elas podem se complementar; a escolha depende do seu objetivo e dos materiais disponíveis. O foco é o aprendizado e o desenvolvimento legítimo, com escopo combinado.</p>
+    <p>Podem se combinar. O foco é o aprendizado e o desenvolvimento legítimo.</p>
   </div>
-  <ol class="service-modes" role="list">
+  <ol class="service-modes" role="list" data-reveal>
     {{ range $index, $mode := .modes }}
     <li class="service-mode">
       <span class="service-mode__number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>

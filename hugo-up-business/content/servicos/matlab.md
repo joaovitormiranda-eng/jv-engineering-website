@@ -12,8 +12,6 @@ link_label: "Conhecer a consultoria MATLAB"
 
 ## Que problemas podem ser atendidos
 
-Esta é uma especialidade dentro do suporte multidisciplinar da JV Engineering. Para uma necessidade em outra linguagem, circuitos ou sistemas embarcados, consulte as [áreas de suporte técnico]({{< relref "/servicos" >}}#areas) e apresente o contexto para avaliação.
-
 O serviço apoia a transformação de um problema técnico em código MATLAB compreensível e organizado. Pode atender quem precisa implementar um método, revisar um script existente ou interpretar resultados de uma simulação.
 
 ### Programação e modelagem computacional
@@ -61,13 +59,13 @@ Primeiro avaliamos o problema e os materiais. Depois delimitamos as tarefas, os 
 
 Não é necessário chegar com a solução pronta, mas é importante apresentar o problema e as restrições conhecidas. Se faltarem dados essenciais, essa lacuna será indicada antes de assumir uma conclusão técnica.
 
-## Entregáveis que podem ser combinados
-
+{{< faq q="Entregáveis que podem ser combinados" >}}
 - Scripts ou funções organizados, com parâmetros e comentários pertinentes.
 - Gráficos com identificação de variáveis, unidades e condições de análise.
 - Explicação do método, das entradas e das hipóteses utilizadas.
 - Instruções de execução e registro das dependências necessárias.
 - Comparações e verificações compatíveis com os dados de referência fornecidos.
+{{< /faq >}}
 
 ## Limites da oferta
 
@@ -77,12 +75,10 @@ Não inclui emissão de laudos, ART ou responsabilidade técnica regulamentada. 
 
 ## Dúvidas antes de iniciar
 
-### Posso solicitar revisão de um código que já existe?
-
+{{< faq q="Posso solicitar revisão de um código que já existe?" >}}
 Sim. Envie o objetivo, o código e um exemplo do problema observado. A avaliação inicial identifica se a revisão é viável e quais partes podem ser tratadas.
+{{< /faq >}}
 
-### É possível trabalhar com GNU Octave?
-
+{{< faq q="É possível trabalhar com GNU Octave?" >}}
 A compatibilidade precisa ser verificada conforme as funções e os pacotes utilizados. Os exemplos Fuzzy do portfólio apresentam esse contexto, mas não significam que qualquer código MATLAB funcione sem adaptações.
-
-Para comparar as ofertas, consulte o [índice de serviços técnicos]({{< relref "/servicos" >}}). Se sua demanda envolve principalmente tabelas e automação de relatórios, conheça o [serviço de Python para engenharia]({{< relref "/servicos/python-engenharia" >}}).
+{{< /faq >}}
