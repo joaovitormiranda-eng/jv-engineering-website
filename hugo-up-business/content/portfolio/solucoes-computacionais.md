@@ -22,6 +22,11 @@ tags:
   - "Sistemas Especialistas"
   - "Automação"
   - "Modelagem Matemática"
+weight: 3
+highlights:
+  - "Motor Mamdani vetorizado sem toolbox, comparado à Fuzzy Logic Toolbox."
+  - "Defuzzificação por centroide; erro médio absoluto (MAE) frente à lógica crisp."
+  - "Executa em MATLAB e GNU Octave; estudo estático e didático."
 ---
 
 <!-- METRICAS DE IMPACTO (KPI GRID) -->

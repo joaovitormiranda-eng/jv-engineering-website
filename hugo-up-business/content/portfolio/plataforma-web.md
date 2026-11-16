@@ -13,6 +13,11 @@ catalog_image:
   format: "webp"
   alt: "Fluxo documental: Pull Request executa CI sem deploy; após revisão e merge, o push em main publica no GitHub Pages."
   caption: "Arquitetura documental · validação e publicação do próprio site"
+weight: 4
+highlights:
+  - "Pull Requests compilam e verificam o site sem permissão de publicação."
+  - "Publicação separada por job, com artefato conferido por manifesto SHA-256."
+  - "Analytics carregado somente após consentimento; contato funciona sem ele."
 ---
 
 ## Problema e objetivo
