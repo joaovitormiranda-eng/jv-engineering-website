@@ -1,171 +1,34 @@
-<section id="testimonials"
-  class="py-16 xl:py-24 bg-[#0a0f1d] text-white relative overflow-hidden border-t border-gray-800/80">
-
-  <!-- Efeito Neon/Glow de Fundo -->
-  <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none">
-  </div>
-
-  <div class="container mx-auto px-4 relative z-10">
-
-    <!-- Cabeçalho da Seção -->
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <span
-        class="text-blue-400 font-mono text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 mb-3 inline-block">
-        MÉTODO & DOCUMENTAÇÃO
-      </span>
-      {{ with .title }}
-      <h2 class="text-white text-3xl xl:text-5xl font-extrabold tracking-tight mt-2">{{ . | markdownify }}</h2>
-      {{ end }}
-    </div>
-
-    <!-- Critérios de trabalho, sem notas ou métricas comerciais não documentadas -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-16">
-      <div
-        class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center shadow-lg hover:border-blue-500/30 transition-colors">
-        <span class="block text-2xl xl:text-3xl font-extrabold text-blue-400 font-mono">Escopo</span>
-        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Requisitos definidos</span>
-      </div>
-      <div
-        class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center shadow-lg hover:border-blue-500/30 transition-colors">
-        <span class="block text-2xl xl:text-3xl font-extrabold text-emerald-400 font-mono">Modelos</span>
-        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Simulação computacional</span>
-      </div>
-      <div
-        class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center shadow-lg hover:border-blue-500/30 transition-colors">
-        <span class="block text-2xl xl:text-3xl font-extrabold text-purple-400 font-mono">Código</span>
-        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Implementação e revisão</span>
-      </div>
-     <div
-        class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center shadow-lg hover:border-blue-500/30 transition-colors">
-        <span class="block text-2xl xl:text-3xl font-extrabold text-amber-400 font-mono">Análise</span>
-        <span class="text-[11px] text-gray-400 mt-1 block uppercase tracking-wider">Interpretação técnica</span>
-      </div>
-    </div>
-
-    <!-- Apresentação institucional; os relatos originais do YAML não são publicados -->
-    {{ with .approach }}
-    <div class="grid grid-cols-12 gap-y-8 xl:gap-8 items-center mb-16">
-
-      <!-- Card de abordagem técnica, sem selo de avaliação formal -->
-      <div class="col-span-12 flex flex-col justify-center xl:col-span-5">
-        <div
-          class="relative w-full max-w-sm mx-auto bg-[#111827] border border-blue-500/30 rounded-2xl p-6 shadow-[0_0_30px_rgba(59,130,246,0.15)] text-left font-mono">
-
-          <!-- Header do Card Tech -->
-          <div class="flex items-center justify-between border-b border-gray-800 pb-3 mb-4">
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span class="text-[11px] text-blue-400 font-bold uppercase tracking-wider">JV // MÉTODO</span>
-            </div>
-            <span
-              class="text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              POR PROJETO
-            </span>
-          </div>
-
-          <!-- Indicador Central -->
-          <div class="text-center py-3">
-            <div
-              class="w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-tr from-blue-600/20 to-cyan-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-2xl font-extrabold shadow-inner">
-              V&amp;V
-            </div>
-            <h3 class="text-white text-base font-bold font-sans">Análise técnica documentada</h3>
-            <p class="text-gray-400 text-xs font-sans mt-1">Hipóteses, parâmetros e comparação de resultados.
-            </p>
-          </div>
-
-          <!-- Checklist Técnico -->
-          <div class="space-y-2 pt-4 border-t border-gray-800/80 text-xs text-gray-300 font-sans">
-            <div class="flex items-center justify-between">
-              <span class="text-gray-400 flex items-center gap-1.5"><span class="text-emerald-400">✓</span> Critérios
-                de análise</span>
-              <span class="text-emerald-400 font-mono font-bold">Por projeto</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-gray-400 flex items-center gap-1.5"><span class="text-emerald-400">✓</span> Código
-                Documentado</span>
-              <span class="text-blue-400 font-mono font-bold">OK</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Card institucional, sem citação ou atribuição a cliente -->
-      <div
-        class="col-span-12 flex flex-col justify-center xl:col-span-7">
-        <div
-          class="flex flex-col items-start gap-6 rounded-2xl bg-[#111827] p-8 xl:p-10 border border-blue-500/30 shadow-[0_0_30px_rgba(59,130,246,0.1)] relative">
-
-          <!-- Identificação institucional -->
-          <div class="flex items-center justify-between w-full">
-            <span
-              class="text-[11px] font-mono font-medium px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
-              {{ .label }}
-            </span>
-          </div>
-
-          <div class="flex items-start gap-5">
-            <!-- Marca textual institucional -->
-            <div
-              class="size-14 min-h-14 min-w-14 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-slate-950 font-bold text-xl shadow-lg shrink-0">
-              JV
-            </div>
-
-            <div class="flex flex-col gap-3">
-              <h3 class="text-white text-base xl:text-lg font-bold">{{ .title }}</h3>
-              <p class="text-gray-200 text-base xl:text-lg leading-relaxed font-light">
-                {{ .text | markdownify }}
-              </p>
-            </div>
-          </div>
-
-          {{ with site.Params.social.whatsapp }}
-          <div class="w-full text-center sm:text-start">
-            {{ partial "components/button/primary" (dict "label" "Conversar sobre meu projeto" "href" .) }}
-          </div>
-          {{ end }}
-
-        </div>
-      </div>
-
-    </div>
-    {{ end }}
-
-    <!-- Competências apresentadas no portfólio -->
-    {{ if .capabilities }}
-    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {{ range .capabilities }}
-      <div
-        class="flex flex-col justify-between gap-6 rounded-xl bg-[#111827] p-6 xl:p-8 border border-gray-800 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 group">
-
-        <!-- Descrição da competência -->
-        <div>
-
-          <div class="flex items-start gap-4">
-            <p
-              class="text-gray-300 text-sm xl:text-base leading-relaxed group-hover:text-white transition-colors">
-              {{ .text | markdownify }}
-            </p>
-          </div>
-        </div>
-
-        <!-- Identificação da competência -->
-        <div class="pt-4 border-t border-gray-800/80 flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <div
-              class="size-9 min-h-9 min-w-9 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold text-xs shrink-0">
-              {{ substr .label 0 1 }}
-            </div>
-            <h3 class="text-blue-400 text-xs xl:text-sm font-semibold">{{ .label }}</h3>
-          </div>
-        </div>
-
+{{/* 05 · Método — approach + capabilities as a numbered sequence.
+     The legacy testimonial fields in data/home/testimonials.yaml (featured/items)
+     are intentionally NOT rendered: their origin and authorization are unconfirmed.
+     The contact link stays inside #testimonials (analytics cta_location = approach). */}}
+<section id="testimonials" class="jv-section" aria-labelledby="method-title">
+  <div class="jv-wrap">
+    <p class="jv-sheet"><span class="jv-sheet__num">05</span>Método &amp; documentação<span class="jv-sheet__total" aria-hidden="true">FL. 05/06</span></p>
+    <div class="jv-grid jv-grid--split jv-intro">
+      <h2 id="method-title" class="jv-title">{{ .title | markdownify }}</h2>
+      {{ with .approach }}
+      <div class="jv-method__intro">
+        <p class="jv-kicker">{{ .label }}</p>
+        <h3>{{ .title }}</h3>
+        <p>{{ .text | markdownify }}</p>
+        {{ with site.Params.social.whatsapp }}
+        <a class="jv-link" href="{{ partial "utilities/contact-url.html" (dict "href" .) }}" target="_blank" rel="noopener noreferrer">Conversar sobre meu projeto
+          <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        {{ end }}
       </div>
       {{ end }}
     </div>
-    {{ end }}
 
+    {{ with .capabilities }}
+    <ol class="jv-steps" data-reveal aria-label="Competências aplicadas">
+      {{ range . }}
+      <li class="jv-step">
+        <h3>{{ .label }}</h3>
+        <p>{{ .text | markdownify }}</p>
+      </li>
+      {{ end }}
+    </ol>
+    {{ end }}
   </div>
 </section>

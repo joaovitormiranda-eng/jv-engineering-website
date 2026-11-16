@@ -1,77 +1,38 @@
-<section id="services" class="py-20 bg-[#0a0f1d] text-white overflow-hidden">
-  <div class="container mx-auto px-4 lg:px-8 max-w-7xl">
-    
-    <!-- Grid Principal: Texto na esquerda, Cards na direita -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-
-      <!-- COLUNA DA ESQUERDA: TÍTULOS E DESCRIÇÃO -->
-      <div class="lg:col-span-4 lg:sticky lg:top-32 pr-0 lg:pr-6">
-        
-        {{ with .kicker }}
-        <span class="text-blue-500 font-bold tracking-widest uppercase text-xs mb-4 block">
-          {{ . }}
-        </span>
-        {{ end }}
-
-        {{ with .title }}
-        <h2 class="text-white text-3xl md:text-4xl lg:text-4xl font-extrabold leading-tight mb-6">
-          {{ . | markdownify }}
-        </h2>
-        {{ end }}
-
-        {{ with .text }}
-        <p class="text-gray-400 text-base leading-relaxed">
-          {{ . | markdownify }}
-        </p>
-        {{ end }}
+{{/* 02 · Áreas — indexed list on tablet/desktop; on phones the same list becomes a
+     snap-scrolling row with a visible peek (CSS only), so all five areas and their
+     contact links stay in the DOM and in reading order. */}}
+<section id="services" class="jv-section jv-section--band" aria-labelledby="services-title">
+  <div class="jv-wrap">
+    <p class="jv-sheet"><span class="jv-sheet__num">02</span>{{ with .kicker }}{{ . }}{{ else }}Áreas de atuação{{ end }}<span class="jv-sheet__total" aria-hidden="true">FL. 02/06</span></p>
+    <div class="jv-grid jv-grid--aside">
+      <div>
+        <h2 id="services-title" class="jv-title">{{ .title | markdownify }}</h2>
+        {{ with .text }}<p class="jv-lead">{{ . | markdownify }}</p>{{ end }}
         {{ with site.GetPage "/servicos" }}
-        <a class="mt-6 inline-block font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">Conhecer áreas e formas de atendimento</a>
+        <p class="mt-6"><a class="jv-link" href="{{ .RelPermalink }}">Conhecer áreas e formas de atendimento
+          <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a></p>
         {{ end }}
-        
       </div>
 
-      <!-- COLUNA DA DIREITA: GRID DE CARDS -->
-      <div class="lg:col-span-8">
-        {{ with site.Data.services.areas }}
-        <!-- Grid interno dos cards (1 coluna no mobile, 2 no tablet, 3 no desktop) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          
+      {{ with site.Data.services.areas }}
+      <div>
+        <ol class="jv-areas" aria-label="Áreas de atuação ({{ len . }})">
           {{ range . }}
           {{ $area := . }}
-          <!-- Card individual -->
-          <div class="bg-[#111827] rounded-2xl p-6 border border-gray-800 hover:border-blue-500/50 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] flex flex-col h-full group">
-            
-            <!-- Ícone (usando emoji do YAML encapsulado em um box escuro) -->
-            {{ with .icon }}
-            <div class="w-12 h-12 bg-gray-800/50 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform duration-300">
-              {{ . }}
-            </div>
-            {{ end }}
-
-            <!-- Título do Card -->
-            {{ with .title }}
-            <h3 class="text-white text-lg font-bold mb-3 group-hover:text-blue-400 transition-colors duration-300">
-              {{ . | markdownify }}
-            </h3>
-            {{ end }}
-
-            <!-- Texto descritivo -->
-            {{ with .summary }}
-            <p class="text-gray-400 text-sm leading-relaxed flex-grow">
-              {{ . | markdownify }}
-            </p>
-            {{ end }}
+          <li class="jv-area">
+            <h3>{{ .title | markdownify }}</h3>
+            {{ with .summary }}<p>{{ . | markdownify }}</p>{{ end }}
             {{ with site.GetPage "/servicos" }}
-            <a class="mt-4 text-sm font-semibold text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}#{{ $area.id }}">{{ $area.link_label }}</a>
+            <a class="jv-link" href="{{ .RelPermalink }}#{{ $area.id }}">{{ $area.link_label }}
+              <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
             {{ end }}
-            
-          </div>
+          </li>
           {{ end }}
-
-        </div>
-        {{ end }}
+        </ol>
+        <p class="jv-swipe" aria-hidden="true">{{ len . }} áreas · deslize
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></p>
       </div>
-
+      {{ end }}
     </div>
   </div>
 </section>
