@@ -24,6 +24,9 @@ Caminhos relativos à raiz do repositório. O projeto Hugo está em
 | Estudos | `content/portfolio/*.md`, `data/portfolio/studies.yaml`, `layouts/portfolio/` |
 | Analytics / privacidade | `assets/js/analytics.js`, `layouts/partials/analytics/`, `content/privacidade.md` |
 | Licenças publicadas | `static/licenses/` (9 arquivos) |
+| Design system / chrome interno | `assets/css/system.css`, `layouts/partials/system/{crumbs,paths}.html` (breadcrumb + JSON-LD, faixa "próximos passos") |
+| Visualizador de figuras | `assets/js/portfolio/figure-viewer.js` (`<dialog>` nativo; só em `[data-figure-viewer]`) |
+| Auditoria estática | `scripts/dev/audit-site.py` (roda no bootstrap) |
 | Figuras QEE | `assets/images/portfolio/qee/` (5 SVGs) |
 
 ## Overrides do tema
@@ -35,9 +38,12 @@ arquivo não existe, consultar ambos. Preferir override localizado a editar o
 vendor. `layouts/index.html` é um legado com ordem diferente de `home.html`; a
 Home efetiva é `home.html` — não presumir que os dois renderizam.
 
-CSS condicional: `portfolio.css` só em portfolio/termos; `services.css` só no
-índice de serviços (páginas MATLAB/Python não o recebem automaticamente);
-`accessibility.css` é global. Existir um `custom.css` não prova que esteja no
+CSS: `system.css` (tokens `--jv-*`, container, selo de folha, tipografia, links e
+botões, breadcrumb, ficha técnica, faixa de caminhos) é global e vem antes dos
+arquivos por família; `home.css` só na Home; `portfolio.css` só em portfolio/termos;
+`services.css` em todas as páginas de `servicos/` (índice e especialidades);
+`accessibility.css` é global. Medidas de texto em páginas internas usam `rem`, não
+`ch`, para não re-quebrar linhas na troca de fonte (CLS). Existir um `custom.css` não prova que esteja no
 head — verificar o import real antes de editar.
 
 ## Invariantes (confirmar antes de mexer; não manipular contadores para ficar verde)

@@ -35,6 +35,11 @@ What it runs, in order:
 7. `check-invariants.py` — count invariants (29 URLs, 20 aliases, figures per
    study, 5 QEE SVGs, 9 licenses, 8 supply-chain tests).
 
+8. `audit-site.py` — static audit of the built pages (one `<h1>`, title/description,
+   canonical, Open Graph, JSON-LD parses, `<img>` alt/size, internal links and
+   `#fragments`, `target=_blank` without `rel=noopener`). Errors fail the run;
+   warnings (e.g. long titles, a heading level skipped inside study content) are listed.
+
 A real failure makes the script exit non-zero.
 
 ## Files
@@ -44,6 +49,7 @@ A real failure makes the script exit non-zero.
 | `bootstrap.sh` | Orchestrator; single entry point. |
 | `install-hugo-tarball.sh` | Isolated, hash-verified Hugo install (tarball variant for sandboxes without `dpkg-deb`). |
 | `check-invariants.py` | Count invariants not covered by `verify-build.py`. |
+| `audit-site.py` | Offline SEO / link / heading / JSON-LD audit of the built site (stdlib only). |
 
 ## Differences from CI
 
