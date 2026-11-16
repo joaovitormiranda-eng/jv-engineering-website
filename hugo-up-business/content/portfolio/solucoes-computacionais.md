@@ -60,7 +60,7 @@ tags:
   </a>
 </div>
 
-### 📁 Estrutura do Repositório
+## 📁 Estrutura do Repositório
 
 O código-fonte foi modularizado para comparar a lógica clássica com a lógica difusa. No repositório, você terá acesso aos seguintes scripts:
 
@@ -71,7 +71,7 @@ O código-fonte foi modularizado para comparar a lógica clássica com a lógica
 
 ---
 
-### 📋 Ficha Técnica (Project Charter)
+## 📋 Ficha Técnica (Project Charter)
 
 | Parâmetro | Especificação / Tecnologias |
 | :--- | :--- |

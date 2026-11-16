@@ -1,0 +1,31 @@
+{{/* 02 · Dois caminhos — standard sheet. The audience split sits right after the
+     profile so each visitor finds a clear path. Each card is a whole-card link to
+     an existing page (no new routes, no promises). Scoped under .jv-* like the
+     rest of the home design system. */}}
+<section id="caminhos" class="jv-section jv-audiences" aria-labelledby="audiences-title">
+  <div class="jv-wrap">
+    <p class="jv-sheet"><span class="jv-sheet__num">02</span>Dois caminhos<span class="jv-sheet__total" aria-hidden="true">FL. 02/07</span></p>
+    <div class="jv-intro jv-grid">
+      <h2 id="audiences-title" class="jv-title">{{ .title }}</h2>
+      {{ with .text }}<p class="jv-lead jv-lead--flush">{{ . }}</p>{{ end }}
+    </div>
+    <ul class="jv-audiences__grid" role="list">
+      {{ range .paths }}
+      {{ $page := site.GetPage .href_ref }}
+      <li class="jv-audience" id="caminho-{{ .id }}">
+        <p class="jv-audience__kicker">{{ .kicker }}</p>
+        <h3 class="jv-audience__title">{{ if $page }}<a href="{{ $page.RelPermalink }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}</h3>
+        <p class="jv-audience__text">{{ .text }}</p>
+        {{ with .points }}
+        <ul class="jv-audience__points" role="list">
+          {{ range . }}<li>{{ . }}</li>{{ end }}
+        </ul>
+        {{ end }}
+        <span class="jv-audience__cta" aria-hidden="true">{{ .cta }}
+          <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </span>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>

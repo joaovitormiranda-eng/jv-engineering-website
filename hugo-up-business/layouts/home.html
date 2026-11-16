@@ -8,6 +8,10 @@
 {{ if .enable }}{{ partial "blocks/home/about.html" . }}{{ end }}
 {{ end }}
 
+{{ with .Site.Data.home.audiences }}
+{{ if .enable }}{{ partial "blocks/home/audiences.html" . }}{{ end }}
+{{ end }}
+
 {{ with .Site.Data.home.services }}
 {{ if .enable }}{{ partial "blocks/home/services.html" . }}{{ end }}
 {{ end }}

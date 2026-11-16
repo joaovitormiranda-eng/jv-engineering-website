@@ -126,6 +126,24 @@
 .portfolio-card__action svg { width: 1.0625rem; height: 1.0625rem; flex-shrink: 0; transition: transform .24s var(--jv-ease-out); }
 .portfolio-card__link:hover .portfolio-card__action svg { transform: translateX(4px); }
 .portfolio-catalogue .jv-pagehead { max-width: none; }
+/* S28: verifiable-evidence strip on the catalogue (recruiter path). */
+.portfolio-evidence { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1px; margin: 0 0 clamp(2rem, 5vw, 3rem); padding: 1px; list-style: none; border: 1px solid var(--jv-line-strong); border-radius: .75rem; background: var(--jv-line-strong); overflow: hidden; }
+.portfolio-evidence li { position: relative; display: grid; gap: .25rem; padding: 1.125rem 1.25rem; background: var(--jv-surface); transition: background-color .2s var(--jv-ease); }
+.portfolio-evidence li:has(a):hover { background: var(--jv-surface-2); }
+.portfolio-evidence a { display: contents; color: inherit; text-decoration: none; }
+.portfolio-evidence a::after { content: ""; position: absolute; inset: 0; }
+.portfolio-evidence a:focus-visible { outline: none; }
+.portfolio-evidence li:focus-within { outline: 2px solid var(--jv-accent); outline-offset: -2px; }
+.portfolio-evidence__value { color: var(--jv-text); font-size: 1rem; font-weight: 700; line-height: 1.4; }
+.portfolio-evidence li:has(a):hover .portfolio-evidence__value { color: var(--jv-accent); }
+.portfolio-evidence__num { color: var(--jv-accent); font-family: var(--jv-mono); font-weight: 600; }
+.portfolio-evidence__label { color: var(--jv-muted); font-size: .8125rem; line-height: 1.6; }
+@media (min-width: 48rem) {
+  .portfolio-evidence { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-evidence li { transition: none; }
+}
 
 /* Study header, context note and closing blocks */
 .portfolio-study .jv-pagehead .jv-title { max-width: 48rem; }

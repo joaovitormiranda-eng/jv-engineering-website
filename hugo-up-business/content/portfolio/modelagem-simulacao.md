@@ -63,7 +63,7 @@ tags:
 
 ---
 
-### 📋 Ficha Técnica (Project Charter)
+## 📋 Ficha Técnica (Project Charter)
 
 | Parâmetro | Especificação / Tecnologias |
 | :--- | :--- |

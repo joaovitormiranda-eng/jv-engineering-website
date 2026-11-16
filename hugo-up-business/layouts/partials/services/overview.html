@@ -16,8 +16,9 @@
       <p class="service-note">O WhatsApp abre em outra aba, com uma mensagem curta e editável. Não é necessário enviar arquivos para iniciar.</p>
     </header>
     <nav class="service-wayfinding" aria-label="Nesta página de serviços">
-      <a href="#areas">Áreas de atuação</a><a href="#quando-esse-apoio-faz-sentido">Formas de apoio</a><a href="#como-o-trabalho-é-conduzido">Etapas do atendimento</a><a href="#escopo-e-responsabilidades">Limites</a>
+      <a href="#o-que-solicitar">O que solicitar</a><a href="#areas">Áreas de atuação</a><a href="#projetos">Exemplos publicados</a><a href="#como-o-trabalho-é-conduzido">Como funciona</a><a href="#escopo-e-responsabilidades">Limites</a>
     </nav>
+    {{ partial "services/modalities.html" . }}
     <section class="service-section" aria-labelledby="areas">
       <div class="service-section__heading">
         <p class="service-eyebrow">COMECE PELO PROBLEMA</p>
@@ -40,16 +41,16 @@
       </div>
       <p class="service-note service-section__note">As áreas podem se cruzar. Se a sua necessidade não se encaixa em uma delas, descreva o objetivo para avaliar os próximos passos.</p>
     </section>
-    <section class="service-section" aria-labelledby="ofertas">
-      <div class="service-section__heading"><p class="service-eyebrow">APROFUNDE O CONTEXTO</p><h2 id="ofertas" tabindex="-1">Especialidades com exemplos publicados</h2><p>Para demandas em MATLAB ou Python, estas páginas detalham métodos, entregáveis possíveis e limites. São especialidades dentro da atuação multidisciplinar.</p></div>
+    <section class="service-section" id="projetos" aria-labelledby="ofertas">
+      <div class="service-section__heading"><p class="service-eyebrow">EXEMPLOS PUBLICADOS</p><h2 id="ofertas" tabindex="-1">Especialidades com estudos reais</h2><p>Para demandas em MATLAB ou Python, estas páginas detalham métodos, entregáveis possíveis e limites, e levam ao estudo correspondente no portfólio. São especialidades dentro da atuação multidisciplinar, não as únicas demandas que podem ser avaliadas.</p></div>
       <div class="service-specialties">
         {{ range .RegularPages.ByWeight }}
         <article><h3>{{ .Params.card_title }}</h3><p>{{ .Params.card_text }}</p><a class="jv-link" href="{{ .RelPermalink }}">{{ .Params.link_label }}<svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a></article>
         {{ end }}
       </div>
+      <div class="service-content prose prose-lg prose-invert prose-a:text-blue-400 prose-headings:text-white">{{ .Content }}</div>
     </section>
     {{ partial "services/journey.html" . }}
-    <div class="service-content prose prose-lg prose-invert prose-a:text-blue-400 prose-headings:text-white">{{ .Content }}</div>
     <section class="service-contact" aria-labelledby="conversar">
       <div><p class="service-eyebrow">PRIMEIRO CONTATO</p><h2 id="conversar" tabindex="-1">Vamos entender o que você precisa?</h2><p>Comece com o objetivo, a dificuldade e o ambiente disponível. A conversa inicial serve para avaliar viabilidade e próximos passos.</p></div>
       <div class="service-contact__next">
