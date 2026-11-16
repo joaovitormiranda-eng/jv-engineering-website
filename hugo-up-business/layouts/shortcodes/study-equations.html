@@ -1,0 +1,3 @@
+{{- /* Equation sheet (S30). Inner content is the study's equation markup, rendered
+       verbatim; only the presentation wrapper is shared. Each row: optional label. */ -}}
+<div class="study-eq" role="group" aria-label="{{ .Get "label" | default "Equações do modelo" }}">{{ .Inner | safeHTML }}</div>

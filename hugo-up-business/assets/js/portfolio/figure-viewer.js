@@ -118,9 +118,15 @@ function init() {
     zoomBtn.focus()
   }
 
+  // Zoom around the centre of what is on screen, so the figure does not jump to
+  // its top-left corner when switching between 1x and 2x.
   zoomBtn.addEventListener('click', () => {
+    const cx = (stage.scrollLeft + stage.clientWidth / 2) / Math.max(stage.scrollWidth, 1)
+    const cy = (stage.scrollTop + stage.clientHeight / 2) / Math.max(stage.scrollHeight, 1)
     level = (level + 1) % ZOOM_LEVELS.length
     applyZoom()
+    stage.scrollLeft = cx * stage.scrollWidth - stage.clientWidth / 2
+    stage.scrollTop = cy * stage.scrollHeight - stage.clientHeight / 2
   })
   dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close())
   // Click on the backdrop (the dialog element itself) closes; clicks inside do not.

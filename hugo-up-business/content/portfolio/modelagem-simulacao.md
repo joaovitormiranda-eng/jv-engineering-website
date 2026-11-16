@@ -30,45 +30,18 @@ highlights:
   - "Distingue a resposta de uma passagem (freqz) do processamento bidirecional com filtfilt."
 ---
 
-<!-- METRICAS DE IMPACTO (KPI GRID) -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-8">
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-blue-400">1000 Hz</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Amostragem (f<sub>s</sub>)</span>
-  </div>
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-blue-400">100 Hz</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Corte (f<sub>c</sub>)</span>
-  </div>
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-blue-400">4ª Ordem</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Filtro Butterworth</span>
-  </div>
-  <div class="p-4 rounded-xl bg-[#111827] border border-gray-800 text-center">
-    <span class="block text-2xl md:text-3xl font-extrabold text-emerald-400">300 Hz</span>
-    <span class="text-xs text-gray-400 font-mono uppercase tracking-wider">Interferência Alvo</span>
-  </div>
-</div>
+{{< study-metrics >}}
+1000 Hz | Amostragem (f<sub>s</sub>)
+100 Hz | Corte (f<sub>c</sub>)
+4ª Ordem | Filtro Butterworth
+300 Hz | Interferência Alvo
+{{< /study-metrics >}}
 
-<!-- CARD DO REPOSITORIO GITHUB -->
-<div class="my-8 p-4 rounded-xl bg-[#111827] border border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-  <div class="flex items-center gap-3">
-    <div class="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20">
-      <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-    </div>
-    <div>
-      <p class="text-white font-bold text-sm mb-0.5">Código-Fonte do Projeto</p>
-      <p class="text-gray-400 text-xs m-0">Consulte o Live Script .mlx e a documentação técnica do projeto no GitHub.</p>
-    </div>
-  </div>
-  <a href="https://github.com/joaovitormiranda-eng/MATLAB/tree/main/Sinais%20e%20sistemas" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
-    Ver Repositório no GitHub →
-  </a>
-</div>
+{{< study-source url="https://github.com/joaovitormiranda-eng/MATLAB/tree/main/Sinais%20e%20sistemas" text="Consulte o Live Script .mlx e a documentação técnica do projeto no GitHub." >}}
 
 ---
 
-## 📋 Ficha Técnica (Project Charter)
+## Ficha Técnica (Project Charter)
 
 | Parâmetro | Especificação / Tecnologias |
 | :--- | :--- |
@@ -90,18 +63,11 @@ O objetivo deste projeto consistiu em desenhar e analisar uma arquitetura de sof
 
 O ambiente de simulação estabeleceu um sinal útil composto por duas harmônicas fundamentais (**10 Hz** e **30 Hz**), corrompido por uma interferência senoidal severa (**300 Hz**) e ruído branco gaussiano **w(t)**. As equações de estado definem o modelo:
 
-<!-- CARD ESTILIZADO DE EQUAÇÕES MATEMÁTICAS -->
-<div class="my-6 p-6 rounded-xl bg-[#111827] border border-gray-800 font-mono text-sm md:text-base text-gray-200 shadow-inner space-y-3 text-center">
-  <div>
-    <span class="text-blue-400 font-bold">x<sub>limpo</sub>(t)</span> = 2 · sin(2π · 10t) + 1.5 · sin(2π · 30t)
-  </div>
-  <div>
-    <span class="text-amber-400 font-bold">n(t)</span> = 2.5 · sin(2π · 300t) + w(t)
-  </div>
-  <div class="pt-2 border-t border-gray-800/80 max-w-md mx-auto">
-    <span class="text-emerald-400 font-bold">x<sub>sujo</sub>(t)</span> = x<sub>limpo</sub>(t) + n(t)
-  </div>
-</div>
+{{< study-equations label="Modelo do sinal" >}}
+<p class="study-eq__row"><span class="study-eq__sym">x<sub>limpo</sub>(t)</span> = 2 · sin(2π · 10t) + 1.5 · sin(2π · 30t)</p>
+<p class="study-eq__row"><span class="study-eq__sym">n(t)</span> = 2.5 · sin(2π · 300t) + w(t)</p>
+<p class="study-eq__row study-eq__row--result"><span class="study-eq__sym">x<sub>sujo</sub>(t)</span> = x<sub>limpo</sub>(t) + n(t)</p>
+{{< /study-equations >}}
 
 ---
 
@@ -117,13 +83,13 @@ Para a resolução do problema de contaminação espectral, implementou-se uma m
 
 ## 03. Verificação e Validação Experimental (V&V)
 
-### 🔹 Análise no Domínio do Tempo (Entrada Ruidosa)
+### Análise no Domínio do Tempo (Entrada Ruidosa)
 Observa-se a degradação massiva sofrida pelo sinal original devido à sobreposição da componente de **300 Hz** e ao ruído estocástico, justificando a intervenção via PDS.
 
-<!-- PAINEL INTERATIVO - FIGURA 1 -->
-<figure class="portfolio-study__figure my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg" aria-labelledby="pds-caption-1">
-  <img src="/images/portfolio/pds/figura1.png" width="830" height="542" loading="lazy" decoding="async" alt="Sinal Original vs Sinal Corrompido" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <figcaption id="pds-caption-1" class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
+<!-- FIGURA 1 -->
+<figure class="portfolio-study__figure" aria-labelledby="pds-caption-1">
+  <img src="/images/portfolio/pds/figura1.png" width="830" height="542" loading="lazy" decoding="async" alt="Sinal Original vs Sinal Corrompido" />
+  <figcaption id="pds-caption-1">
     Figura 1: Degradação temporal do sinal de entrada (Interferência + Estocástico).
     <a class="portfolio-section-link" href="/images/portfolio/pds/figura1.png" target="_blank" rel="noopener noreferrer">Ampliar figura 1 (PNG; nova aba)</a>
   </figcaption>
@@ -131,13 +97,13 @@ Observa-se a degradação massiva sofrida pelo sinal original devido à sobrepos
 
 ---
 
-### 🔹 Mapeamento Espectral via FFT
+### Mapeamento Espectral via FFT
 A Transformada Rápida de Fourier mapeou os picos fundamentais de informação (**10 Hz** e **30 Hz**) e a anomalia espectral (**300 Hz**), validando empiricamente o ponto de corte em **100 Hz**.
 
-<!-- PAINEL INTERATIVO - FIGURA 2 -->
-<figure class="portfolio-study__figure my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg" aria-labelledby="pds-caption-2">
-  <img src="/images/portfolio/pds/figura2.png" width="898" height="613" loading="lazy" decoding="async" alt="Espectro de Frequência do Sinal Sujo" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <figcaption id="pds-caption-2" class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
+<!-- FIGURA 2 -->
+<figure class="portfolio-study__figure" aria-labelledby="pds-caption-2">
+  <img src="/images/portfolio/pds/figura2.png" width="898" height="613" loading="lazy" decoding="async" alt="Espectro de Frequência do Sinal Sujo" />
+  <figcaption id="pds-caption-2">
     Figura 2: Análise espectral de base validando a distribuição de frequências.
     <a class="portfolio-section-link" href="/images/portfolio/pds/figura2.png" target="_blank" rel="noopener noreferrer">Ampliar figura 2 (PNG; nova aba)</a>
   </figcaption>
@@ -145,15 +111,15 @@ A Transformada Rápida de Fourier mapeou os picos fundamentais de informação (
 
 ---
 
-### 🔹 Resposta em Frequência (Diagrama de Bode)
+### Resposta em Frequência (Diagrama de Bode)
 O diagrama apresenta magnitude e fase do filtro. Os indicadores de **0 dB** na banda de passagem e **-40 dB** na região de interferência devem ser interpretados na resposta em frequência e nas condições de processamento descritas abaixo.
 
 A figura apresenta a resposta do filtro de uma passagem, calculada por `freqz(b, a, ...)`. O processamento do sinal usa `filtfilt`, cuja resposta em magnitude corresponde ao quadrado da resposta de uma passagem; os valores devem ser interpretados considerando essa distinção.
 
-<!-- PAINEL INTERATIVO - FIGURA 3 -->
-<figure class="portfolio-study__figure my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg" aria-labelledby="pds-caption-3">
-  <img src="/images/portfolio/pds/figura3.png" width="672" height="423" loading="lazy" decoding="async" alt="Resposta em Frequência do Filtro Passa-Baixa" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <figcaption id="pds-caption-3" class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
+<!-- FIGURA 3 -->
+<figure class="portfolio-study__figure" aria-labelledby="pds-caption-3">
+  <img src="/images/portfolio/pds/figura3.png" width="672" height="423" loading="lazy" decoding="async" alt="Resposta em Frequência do Filtro Passa-Baixa" />
+  <figcaption id="pds-caption-3">
     Figura 3: Homologação da magnitude e fase do filtro Butterworth (4ª Ordem).
     <a class="portfolio-section-link" href="/images/portfolio/pds/figura3.png" target="_blank" rel="noopener noreferrer">Ampliar figura 3 (PNG; nova aba)</a>
   </figcaption>
@@ -161,13 +127,13 @@ A figura apresenta a resposta do filtro de uma passagem, calculada por `freqz(b,
 
 ---
 
-### 🔹 Resultado Final e Validação de QA
+### Resultado Final e Validação de QA
 Comparação técnica que comprova a recuperação do ativo de dados. A atenuação eliminou oscilações de alta frequência e restaurou a topologia da onda teórica com precisão extrema.
 
-<!-- PAINEL INTERATIVO - FIGURA 4 -->
-<figure class="portfolio-study__figure my-6 p-3 md:p-4 rounded-xl bg-[#111827] border border-gray-800 shadow-lg" aria-labelledby="pds-caption-4">
-  <img src="/images/portfolio/pds/figura4.png" width="605" height="393" loading="lazy" decoding="async" alt="Resultado da Filtragem" class="w-full rounded-lg mx-auto block" style="filter: invert(0.9) hue-rotate(180deg);" />
-  <figcaption id="pds-caption-4" class="text-center text-xs md:text-sm text-gray-400 mt-3 mb-1 font-mono">
+<!-- FIGURA 4 -->
+<figure class="portfolio-study__figure" aria-labelledby="pds-caption-4">
+  <img src="/images/portfolio/pds/figura4.png" width="605" height="393" loading="lazy" decoding="async" alt="Resultado da Filtragem" />
+  <figcaption id="pds-caption-4">
     Figura 4: Sinal recuperado, atestando a eficácia total do modelo PDS aplicado.
     <a class="portfolio-section-link" href="/images/portfolio/pds/figura4.png" target="_blank" rel="noopener noreferrer">Ampliar figura 4 (PNG; nova aba)</a>
   </figcaption>
@@ -211,27 +177,3 @@ Na filtragem bidirecional, a resposta em magnitude corresponde ao quadrado da re
 * **Filtros Digitais IIR:** Projeto, síntese e validação de topologias Butterworth maximamente planas.
 * **Análise Espectral (FFT):** Mapeamento no domínio da frequência com adequação ao critério de Nyquist.
 * **Engenharia de Requisitos & V&V:** Rastreabilidade matemática e garantia de qualidade do sinal recuperado.
-
----
-
-<!-- CARD CALL TO ACTION (CTA) -->
-<div class="my-12 p-8 rounded-2xl bg-gradient-to-r from-blue-900/40 via-gray-900 to-indigo-900/40 border border-blue-500/30 text-center relative overflow-hidden shadow-2xl">
-  <div class="relative z-10 max-w-2xl mx-auto space-y-4">
-    <h3 class="text-2xl md:text-3xl font-extrabold text-white">
-      Precisa de suporte especializado em Processamento de Sinais ou MATLAB?
-    </h3>
-    <p class="text-gray-300 text-sm md:text-base">
-      Desenvolvemos algoritmos customizados, modelagens matemáticas rigorosas e simulações de alta precisão para a sua demanda acadêmica ou profissional.
-    </p>
-    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="https://wa.me/5516981946642?text=Olá!%20Gostaria%20de%20uma%20consultoria%20em%20MATLAB/PDS." target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-lg hover:shadow-blue-500/25 w-full sm:w-auto">
-        Solicitar Consultoria Técnica →
-      </a>
-      <a href="/#portfolio" class="px-6 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300         font-semibold text-sm transition-colors border border-gray-700 w-full sm:w-auto">
-        ← Voltar ao Portfólio
-      </a>
-      </a>
-    </div>
-  </div>
-</div>
-</div>

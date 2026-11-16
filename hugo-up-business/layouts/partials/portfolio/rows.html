@@ -3,7 +3,7 @@
      the study text), tools and data nature. The title link covers the row.
      Input: slice of study pages. */}}
 {{ $total := len . }}
-<ol class="portfolio-rows" role="list">
+<ol class="portfolio-rows" role="list" data-reveal>
   {{ range $i, $p := . }}
   {{ $id := printf "study-%s" .File.ContentBaseName }}
   {{ $own := eq .File.ContentBaseName "plataforma-web" }}
