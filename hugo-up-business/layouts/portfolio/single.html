@@ -1,16 +1,23 @@
 {{ define "main" }}
 {{ $study := index site.Data.portfolio.studies .File.ContentBaseName }}
-<section class="portfolio-shell portfolio-study">
-  <div class="container mx-auto px-4">
-    <nav class="portfolio-breadcrumb" aria-label="Caminho da página">
-      <a href="{{ site.Home.RelPermalink }}">Início</a><span aria-hidden="true">/</span>
-      {{ with site.GetPage "/portfolio" }}<a href="{{ .RelPermalink }}">Portfólio</a>{{ end }}
-      <span aria-hidden="true">/</span><span aria-current="page">Estudo técnico</span>
-    </nav>
-    <header class="portfolio-intro">
-      <p class="portfolio-eyebrow">{{ with .Params.categories }}{{ delimit . " · " }}{{ else }}Projeto próprio · Desenvolvimento web{{ end }}</p>
-      <h1>{{ .Title | markdownify }}</h1>
-      {{ with .Description }}<p>{{ . | markdownify }}</p>{{ end }}
+{{ $catalogue := site.GetPage "/portfolio" }}
+{{ $all := $catalogue.RegularPages }}
+{{ $position := 0 }}{{ range $i, $p := $all }}{{ if eq $p.RelPermalink $.RelPermalink }}{{ $position = add $i 1 }}{{ end }}{{ end }}
+{{ $serviceKey := "general" }}
+{{ with .Params.service }}{{ if in . "matlab" }}{{ $serviceKey = "matlab" }}{{ else if in . "python" }}{{ $serviceKey = "python" }}{{ end }}{{ end }}
+<section class="jv-page portfolio-shell portfolio-study">
+  <div class="jv-wrap">
+    {{ partial "system/crumbs.html" (slice (dict "name" "Início" "url" site.Home.Permalink) (dict "name" "Portfólio" "url" $catalogue.Permalink) (dict "name" "Estudo técnico" "url" .Permalink)) }}
+    <header class="jv-pagehead portfolio-intro">
+      <p class="jv-sheet"><span class="jv-sheet__num">PR</span>{{ with .Params.categories }}{{ delimit . " · " }}{{ else }}Projeto próprio · Desenvolvimento web{{ end }}{{ if $position }}<span class="jv-sheet__total" aria-hidden="true">Estudo {{ printf "%02d" $position }}/{{ printf "%02d" (len $all) }}</span>{{ end }}</p>
+      <h1 class="jv-title">{{ .Title | markdownify }}</h1>
+      {{ with .Description }}<p class="jv-lead">{{ . | markdownify }}</p>{{ end }}
+      <dl class="jv-facts" aria-label="Ficha técnica do estudo">
+        {{ with .Params.catalog_nature }}<div><dt>Natureza</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{ with .Params.tags }}<div><dt>Ferramentas e métodos</dt><dd>{{ delimit (first 3 .) ", " }}</dd></div>{{ end }}
+        <div><dt>Atualizado em</dt><dd><time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "02/01/2006" }}</time> · leitura de cerca de {{ .ReadingTime }} min</dd></div>
+        <div><dt>Responsável</dt><dd><a href="{{ site.Home.RelPermalink }}#responsavel">{{ site.Params.professional.name }}</a></dd></div>
+      </dl>
     </header>
     <aside class="portfolio-study__context" aria-label="Contexto do estudo publicado">
       <p>Estudo técnico do portfólio, apresentado com métodos, código e resultados no contexto documentado. Não é apresentado como case de cliente nem como garantia para outras aplicações.</p>
@@ -29,31 +36,56 @@
         <p>Neste estudo</p>{{ $toc }}
       </aside>
       {{ end }}
-      <div class="portfolio-study__body prose prose-lg prose-invert prose-a:text-blue-400 prose-headings:text-white">
+      <div class="portfolio-study__body prose prose-lg prose-invert prose-a:text-blue-400 prose-headings:text-white" data-figure-viewer>
         {{ .Content }}
       </div>
     </div>
+
+    {{/* Continue: the other studies (curated order from data/portfolio/studies.yaml) as cards with their real figure. */}}
     {{ with $study.related }}
-    <nav class="portfolio-study__related" aria-labelledby="related-studies-title">
+    <section class="jv-pathblock portfolio-study__related" aria-labelledby="related-studies-title">
       <h2 id="related-studies-title">Continue por outros métodos</h2>
-      <ul>{{ range . }}{{ with site.GetPage . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ else }}{{ errorf "Related study not found: %s" . }}{{ end }}{{ end }}</ul>
-    </nav>
+      <ul class="portfolio-more">
+        {{ range . }}{{ with site.GetPage . }}
+        <li class="portfolio-more__item">
+          {{ with .Params.catalog_image }}{{ $src := resources.Get .src }}{{ if $src }}
+          {{ $thumb := $src }}{{ $w := .width | default 792 }}{{ $h := .height | default 468 }}
+          {{ if ne $src.MediaType.SubType "svg" }}{{ $thumb = $src.Resize "480x webp q85" }}{{ $w = $thumb.Width }}{{ $h = $thumb.Height }}{{ end }}
+          <span class="portfolio-more__thumb"><img src="{{ $thumb.RelPermalink }}" width="{{ $w }}" height="{{ $h }}" alt="" loading="lazy" decoding="async" /></span>
+          {{ end }}{{ end }}
+          <span class="portfolio-more__text">
+            <span class="jv-path__kicker">{{ with .Params.categories }}{{ index . 0 }}{{ else }}Projeto próprio{{ end }}</span>
+            <a class="portfolio-more__title" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+          </span>
+        </li>
+        {{ else }}{{ errorf "Related study not found: %s" . }}{{ end }}{{ end }}
+      </ul>
+    </section>
     {{ end }}
+
+    {{/* Study -> contact: the related service page for scope, WhatsApp with a message for this area. */}}
+    <section class="portfolio-cta" aria-labelledby="study-cta-title">
+      <div>
+        <p class="jv-path__kicker">Aplicar a um problema seu</p>
+        <h2 id="study-cta-title">Quer discutir um método como este no seu projeto?</h2>
+        <p>Conte o objetivo e o contexto. A conversa avalia viabilidade e escopo; este estudo não é garantia de resultado para outras aplicações.</p>
+      </div>
+      <div class="portfolio-cta__actions">
+        <a class="jv-btn jv-btn--primary" href="{{ partial "utilities/contact-url.html" (dict "href" site.Params.social.whatsapp "context" $serviceKey) }}" target="_blank" rel="noopener noreferrer">Descrever minha demanda<span class="jv-sr"> (WhatsApp, abre em nova aba)</span></a>
+        {{ with .Params.service }}{{ with site.GetPage . }}<a class="jv-link" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}{{ end }}
+      </div>
+    </section>
+
     {{ with .GetTerms "tags" }}
-    <nav class="portfolio-study__related" aria-label="Tecnologias e áreas do projeto">
+    <nav class="portfolio-study__related portfolio-study__tags" aria-label="Tecnologias e áreas do projeto">
       {{ with site.GetPage "/tags" }}<p><a class="portfolio-section-link" href="{{ .RelPermalink }}">Tecnologias e áreas</a></p>{{ end }}
-      <ul>{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}</ul>
+      <ul class="jv-chips">{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}</ul>
     </nav>
     {{ end }}
-    {{ with .Params.service }}{{ with site.GetPage . }}
-    <nav class="portfolio-study__related" aria-label="Serviço relacionado ao projeto">
-      <p>Quer discutir uma aplicação desses métodos ao seu projeto?</p>
-      <a class="portfolio-section-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </nav>
-    {{ end }}{{ end }}
-    {{ with site.GetPage "/portfolio" }}
-    <p class="mt-8"><a class="portfolio-section-link" href="{{ .RelPermalink }}">← Explorar os outros estudos</a></p>
+    {{ with $catalogue }}
+    <p class="jv-note"><a class="jv-link" href="{{ .RelPermalink }}">Explorar todos os estudos do catálogo</a></p>
     {{ end }}
   </div>
 </section>
+{{ partial "portfolio/article-jsonld.html" . }}
 {{ end }}

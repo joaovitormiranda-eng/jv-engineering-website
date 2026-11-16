@@ -4,6 +4,7 @@ date: 2026-07-28
 lastmod: 2026-11-10
 service: "/servicos/python-engenharia"
 draft: false
+catalog_nature: "Dados exclusivamente sintéticos · simulação didática"
 catalog_image:
   src: "images/portfolio/qee/03_carga.svg"
   width: 792

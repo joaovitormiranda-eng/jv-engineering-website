@@ -1,24 +1,16 @@
 {{ define "main" }}
-<section class="py-16 bg-[#0a0f1d] text-white min-h-screen">
-  <div class="container mx-auto px-4">
-    <nav aria-label="Caminho da página" class="mb-8 text-sm text-gray-300">
-      <ol class="flex flex-wrap items-center gap-2">
-        <li><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ site.Home.RelPermalink }}">Início</a></li>
-        <li aria-hidden="true">/</li>
-        {{ with site.GetPage "/tags" }}
-        <li><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-        {{ end }}
-        <li aria-hidden="true">/</li>
-        <li aria-current="page">{{ .Title }}</li>
-      </ol>
-    </nav>
-
-    <h1 class="text-white mb-6 text-center text-4xl font-extrabold xl:text-6xl">{{ .Title }}</h1>
-    {{ $metadata := partial "site-metadata.html" . }}
-    <p class="mx-auto mb-8 max-w-3xl text-center leading-relaxed text-gray-300">{{ $metadata.description }}</p>
-    {{ with site.GetPage "/portfolio" }}
-    <p class="mb-8 text-center text-sm"><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">Ver todos os projetos do portfólio</a></p>
-    {{ end }}
+{{ $metadata := partial "site-metadata.html" . }}
+<section class="jv-page portfolio-shell">
+  <div class="jv-wrap">
+    {{ partial "system/crumbs.html" (slice (dict "name" "Início" "url" site.Home.Permalink) (dict "name" "Tecnologias e áreas" "url" (site.GetPage "/tags").Permalink) (dict "name" .Title "url" .Permalink)) }}
+    <header class="jv-pagehead">
+      <p class="jv-sheet"><span class="jv-sheet__num">TM</span>Tema<span class="jv-sheet__total" aria-hidden="true">{{ len .RegularPages }} {{ if eq (len .RegularPages) 1 }}estudo{{ else }}estudos{{ end }}</span></p>
+      <h1 class="jv-title jv-title--display">{{ .Title }}</h1>
+      <p class="jv-lead">{{ $metadata.description }}</p>
+      <div class="jv-pagehead__actions">
+        {{ with site.GetPage "/portfolio" }}<a class="jv-link" href="{{ .RelPermalink }}">Ver todos os projetos do portfólio</a>{{ end }}
+      </div>
+    </header>
 
     {{ partial "portfolio/cards.html" (.Paginate .RegularPages).Pages }}
 
@@ -26,22 +18,13 @@
     {{ range .RegularPages }}
       {{ with .Params.service }}{{ $services = $services | append . }}{{ end }}
     {{ end }}
-    {{ with $services | uniq }}
-    <nav class="mt-12 border-t border-gray-800 pt-6" aria-label="Serviços relacionados aos estudos">
-      <p class="mb-4 text-gray-300">Para discutir uma aplicação ao seu projeto, conheça o escopo dos serviços relacionados:</p>
-      <ul class="flex flex-col gap-3">
-        {{ range . }}{{ with site.GetPage . }}
-        <li><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-        {{ end }}{{ end }}
-      </ul>
-    </nav>
-    {{ end }}
-
-    {{ with site.GetPage "/servicos" }}
-    <p class="mt-6 text-sm"><a class="text-blue-400 underline underline-offset-4 hover:text-white" href="{{ .RelPermalink }}">Outras demandas? Conheça as áreas de suporte técnico</a></p>
-    {{ end }}
-
-    <div class="pt-16 pb-8">{{ partial "pagination.html" . }}</div>
+    {{ $items := slice }}
+    {{ range $services | uniq }}{{ with site.GetPage . }}
+      {{ $items = $items | append (dict "kicker" "Serviço relacionado" "title" .Title "text" "Escopo, limites e como iniciar a conversa." "url" .RelPermalink) }}
+    {{ end }}{{ end }}
+    {{ with site.GetPage "/servicos" }}{{ $items = $items | append (dict "kicker" "Outras demandas" "title" "Áreas de suporte técnico" "text" "Veja todas as áreas que podem ser avaliadas." "url" .RelPermalink) }}{{ end }}
+    {{ partial "system/paths.html" (dict "id" "term-paths" "title" "Aplicar ao seu projeto" "items" $items) }}
+    {{ partial "pagination.html" . }}
   </div>
 </section>
 {{ end }}

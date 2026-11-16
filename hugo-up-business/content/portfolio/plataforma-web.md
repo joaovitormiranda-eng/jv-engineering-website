@@ -1,11 +1,13 @@
 ---
 title: "Plataforma Web com Hugo, CI/CD e Consentimento para Analytics"
+seo_title: "Plataforma Web com Hugo, CI/CD e Analytics"
 date: 2026-11-06
 lastmod: 2026-11-06
 draft: false
 slug: "plataforma-web"
 description: "Projeto próprio da JV Engineering: site estático com Hugo, validação em Pull Requests, publicação no GitHub Pages e Analytics condicionado ao consentimento."
 service: "/servicos"
+catalog_nature: "Projeto próprio · diagrama documental"
 catalog_image:
   src: "images/portfolio/plataforma-web-pipeline.png"
   format: "webp"

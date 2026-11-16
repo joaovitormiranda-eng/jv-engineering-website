@@ -1,9 +1,11 @@
 ---
 title: "Modelagem de Incertezas com Lógica Nebulosa (Fuzzy) em MATLAB/Octave"
+seo_title: "Lógica Fuzzy em MATLAB/Octave: inferência Mamdani"
 date: 2026-08-04
 lastmod: 2026-11-05
 service: "/servicos/matlab"
 draft: false
+catalog_nature: "Estudo estático · MATLAB e GNU Octave"
 catalog_image:
   src: "images/portfolio/fuzzy-contorno.png"
   alt: "Mapa de contorno da gorjeta estimada pelo sistema Fuzzy, em função das avaliações de comida e serviço de zero a dez, com escala de cores em porcentagem."
@@ -53,7 +55,7 @@ tags:
       <p class="text-gray-400 text-xs m-0">Acesse a arquitetura completa em MATLAB/Octave e scripts do motor de inferência no GitHub.</p>
     </div>
   </div>
-  <a href="https://github.com/joaovitormiranda-eng/MATLAB/tree/main/Gorjeta" target="_blank" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
+  <a href="https://github.com/joaovitormiranda-eng/MATLAB/tree/main/Gorjeta" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors whitespace-nowrap">
     Ver Repositório no GitHub →
   </a>
 </div>
