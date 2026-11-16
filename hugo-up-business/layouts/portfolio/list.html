@@ -14,6 +14,31 @@
       </dl>
     </header>
 
+    {{/* Engineering summary for recruiters/professionals: verifiable facts, each
+         linking to the evidence. Counts computed from published pages. */}}
+    <ul class="portfolio-evidence" aria-label="Evidências verificáveis">
+      <li>
+        <span class="portfolio-evidence__value"><span class="portfolio-evidence__num">{{ printf "%02d" (len $studies) }}</span> estudos com método, figuras e limites</span>
+        <span class="portfolio-evidence__label">Cada estudo documenta parâmetros, hipóteses e onde o resultado não se aplica.</span>
+      </li>
+      {{ with site.Params.social.github }}
+      <li>
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer">
+          <span class="portfolio-evidence__value">Código em repositórios públicos</span>
+          <span class="portfolio-evidence__label">Os estudos referenciam o código-fonte correspondente no GitHub.</span>
+        </a>
+      </li>
+      {{ end }}
+      {{ with site.GetPage "/portfolio/plataforma-web" }}
+      <li>
+        <a href="{{ .RelPermalink }}">
+          <span class="portfolio-evidence__value">Este site é um projeto de engenharia</span>
+          <span class="portfolio-evidence__label">Publicação com Hugo, CI/CD e verificação de integridade, documentada em um estudo.</span>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+
     {{ partial "portfolio/cards.html" (.Paginate $studies).Pages }}
     {{ partial "pagination.html" . }}
 
