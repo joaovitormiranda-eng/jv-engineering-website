@@ -1,0 +1,44 @@
+{{/* Catalogue rows (S29): one editorial row per study — figure plate + title,
+     description, engineering decisions (front matter "highlights", taken from
+     the study text), tools and data nature. The title link covers the row.
+     Input: slice of study pages. */}}
+{{ $total := len . }}
+<ol class="portfolio-rows" role="list">
+  {{ range $i, $p := . }}
+  {{ $id := printf "study-%s" .File.ContentBaseName }}
+  {{ $own := eq .File.ContentBaseName "plataforma-web" }}
+  <li class="portfolio-row{{ if $own }} is-own{{ end }}">
+    {{ with .Params.catalog_image }}
+    {{ $src := resources.Get .src }}
+    {{ if not $src }}{{ errorf "Portfolio image not found: %s" .src }}{{ end }}
+    <figure class="portfolio-row__figure">
+      <div class="portfolio-row__stage{{ if $own }} is-dark{{ end }}">
+        {{ if eq $src.MediaType.SubType "svg" }}
+        <img src="{{ $src.RelPermalink }}" width="{{ .width | default 792 }}" height="{{ .height | default 468 }}" alt="{{ .alt }}" loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}" decoding="async" />
+        {{ else }}
+        {{ $big := $src.Resize "1040x webp q85" }}{{ $small := $src.Resize "560x webp q85" }}
+        <img src="{{ $big.RelPermalink }}" srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $big.RelPermalink }} {{ $big.Width }}w"
+          sizes="(min-width: 64rem) 560px, calc(100vw - 2rem)" width="{{ $big.Width }}" height="{{ $big.Height }}" alt="{{ .alt }}" loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}" decoding="async" />
+        {{ end }}
+      </div>
+      <figcaption><span class="jv-mono">Fig. {{ printf "%02d" (add $i 1) }}</span><span>{{ .caption }}</span></figcaption>
+    </figure>
+    {{ end }}
+
+    <div class="portfolio-row__body">
+      <p class="portfolio-row__meta"><span class="portfolio-row__count">Estudo {{ printf "%02d" (add $i 1) }}/{{ printf "%02d" $total }}</span><span>{{ with .Params.categories }}{{ delimit . " · " }}{{ end }}</span>{{ if $own }}<span class="portfolio-row__own">Esta plataforma</span>{{ end }}</p>
+      <h2 class="portfolio-row__title" id="{{ $id }}-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <p class="portfolio-row__text">{{ .Description | plainify }}</p>
+      {{ with .Params.highlights }}
+      <h3 class="portfolio-row__label">Decisões de engenharia</h3>
+      <ul class="portfolio-row__decisions">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+      {{ end }}
+      <div class="portfolio-row__foot">
+        {{ with .Params.tags }}<ul class="jv-chips" aria-label="Ferramentas e métodos">{{ range first 4 . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+        <span class="portfolio-row__go" aria-hidden="true">Ler o estudo<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </div>
+      {{ with .Params.catalog_nature }}<p class="portfolio-row__nature"><span class="jv-sr">Natureza dos dados: </span>{{ . }}</p>{{ end }}
+    </div>
+  </li>
+  {{ end }}
+</ol>

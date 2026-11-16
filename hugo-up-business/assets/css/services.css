@@ -92,3 +92,22 @@
 @media (prefers-reduced-motion: reduce) {
   .service-area, .service-specialties article, .service-mode { transition: none; }
 }
+
+/* S29: sticky in-page index with current-section state (assets/js/shared/section-spy.js). */
+.service-wayfinding { position: sticky; top: calc(var(--navigation-offset, 5.5rem) - 1rem); z-index: 40; display: flex; flex-wrap: nowrap; gap: .25rem; margin-inline: calc(-1 * var(--jv-gutter)); padding: .375rem var(--jv-gutter); overflow-x: auto; scrollbar-width: none; background: var(--jv-bg); }
+.service-wayfinding::-webkit-scrollbar { display: none; }
+.service-wayfinding a { flex: none; padding-inline: .75rem; border-radius: .375rem; text-decoration: none; white-space: nowrap; }
+.service-wayfinding a[aria-current] { background: var(--jv-surface-2); color: var(--jv-accent); }
+.service-shell [id] { scroll-margin-top: calc(var(--navigation-offset, 8rem) + 3.5rem); }
+@media (max-width: 29rem) {
+  .service-wayfinding { display: flex; }
+}
+
+/* S29: compact area cards (example + inputs behind one disclosure). */
+@media (min-width: 64rem) {
+  .service-area-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .service-area:last-child { grid-column: auto; }
+}
+.service-area > p { margin-bottom: 1rem; }
+.service-inputs[open] summary { color: var(--jv-accent); }
+.service-inputs .service-example { margin-block: .75rem 1rem; }

@@ -25,6 +25,11 @@ tags:
   - "ETL"
   - "Qualidade de Energia"
   - "Automação"
+weight: 1
+highlights:
+  - "Modelo elétrico explícito gera as entradas; os indicadores são conferidos contra oráculos analíticos."
+  - "Pacote Python modular (src/jv_qee/) com configuração, cálculos, validação, exportação e visualização."
+  - "Dados exclusivamente sintéticos, com semente fixa; sem avaliação normativa."
 ---
 
 **Os dados e resultados deste estudo são sintéticos e foram gerados por simulação computacional. Não representam medições de instalações reais nem certificação de conformidade normativa.**

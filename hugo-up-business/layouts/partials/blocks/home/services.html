@@ -1,38 +1,43 @@
-{{/* 02 · Áreas — indexed list on tablet/desktop; on phones the same list becomes a
-     snap-scrolling row with a visible peek (CSS only), so all five areas and their
-     contact links stay in the DOM and in reading order. */}}
+{{/* 02 · Serviços (S29). One block answers "what can I ask for?": the three
+     modalities (data/services/journey.yaml) and an index of the five areas
+     (data/services/areas.yaml) linking to their detail on /servicos. Replaces the
+     long per-area list; detail and limits live on the services page. */}}
+{{ $servicos := site.GetPage "/servicos" }}
 <section id="services" class="jv-section jv-section--band" aria-labelledby="services-title">
   <div class="jv-wrap">
-    <p class="jv-sheet"><span class="jv-sheet__num">03</span>{{ with .kicker }}{{ . }}{{ else }}Áreas de atuação{{ end }}<span class="jv-sheet__total" aria-hidden="true">FL. 03/07</span></p>
-    <div class="jv-grid jv-grid--aside">
-      <div>
-        <h2 id="services-title" class="jv-title">{{ .title | markdownify }}</h2>
-        {{ with .text }}<p class="jv-lead">{{ . | markdownify }}</p>{{ end }}
-        {{ with site.GetPage "/servicos" }}
-        <p class="mt-6"><a class="jv-link" href="{{ .RelPermalink }}">Conhecer áreas e formas de atendimento
-          <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a></p>
-        {{ end }}
-      </div>
+    <p class="jv-sheet"><span class="jv-sheet__num">02</span>{{ with .kicker }}{{ . }}{{ else }}Serviços{{ end }}<span class="jv-sheet__total" aria-hidden="true">FL. 02/06</span></p>
+    <div class="jv-grid jv-grid--aside jv-intro">
+      <h2 id="services-title" class="jv-title">{{ .title | markdownify }}</h2>
+      {{ with .text }}<p class="jv-lead jv-lead--flush">{{ . | markdownify }}</p>{{ end }}
+    </div>
 
-      {{ with site.Data.services.areas }}
-      <div>
-        <ol class="jv-areas" aria-label="Áreas de atuação ({{ len . }})">
-          {{ range . }}
-          {{ $area := . }}
-          <li class="jv-area">
-            <h3>{{ .title | markdownify }}</h3>
-            {{ with .summary }}<p>{{ . | markdownify }}</p>{{ end }}
-            {{ with site.GetPage "/servicos" }}
-            <a class="jv-link" href="{{ .RelPermalink }}#{{ $area.id }}">{{ $area.link_label }}
-              <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-            {{ end }}
-          </li>
-          {{ end }}
-        </ol>
-        <p class="jv-swipe" aria-hidden="true">{{ len . }} áreas · deslize
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></p>
-      </div>
+    {{ with site.Data.services.journey.modes }}
+    <ol class="jv-modes" aria-label="Formas de apoio">
+      {{ range $i, $m := . }}
+      <li class="jv-mode">
+        <span class="jv-mode__num" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+        <h3>{{ .title }}</h3>
+        <p>{{ .text }}</p>
+      </li>
       {{ end }}
+    </ol>
+    {{ end }}
+
+    {{ with site.Data.services.areas }}
+    <div class="jv-areaindex">
+      <h3 class="jv-areaindex__title">Áreas de atuação</h3>
+      <ul class="jv-areaindex__list">
+        {{ range $i, $a := . }}
+        <li><a href="{{ $servicos.RelPermalink }}#{{ .id }}"><span class="jv-mono" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>{{ .title }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+    <div class="jv-actions">
+      {{ with $servicos }}<a class="jv-btn jv-btn--ghost" href="{{ .RelPermalink }}">Ver processo, áreas e limites
+        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6 6 6-6 6"/></svg></a>{{ end }}
+      {{ with site.Params.social.whatsapp }}<a class="jv-link" href="{{ partial "utilities/contact-url.html" (dict "href" .) }}" target="_blank" rel="noopener noreferrer">Descrever uma demanda<span class="jv-sr"> pelo WhatsApp (abre em nova aba)</span></a>{{ end }}
     </div>
   </div>
 </section>

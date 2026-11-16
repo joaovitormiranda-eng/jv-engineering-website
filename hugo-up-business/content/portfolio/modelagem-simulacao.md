@@ -23,6 +23,11 @@ tags:
   - "Butterworth"
   - "FFT"
   - "Sinais e Sistemas"
+weight: 2
+highlights:
+  - "Filtro IIR Butterworth passa-baixa de 4ª ordem contra uma interferência de 300 Hz."
+  - "Validação no tempo, no espectro (FFT) e na resposta em frequência (Bode)."
+  - "Distingue a resposta de uma passagem (freqz) do processamento bidirecional com filtfilt."
 ---
 
 <!-- METRICAS DE IMPACTO (KPI GRID) -->

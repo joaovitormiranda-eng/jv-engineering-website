@@ -1,28 +1,43 @@
 enable: true
 
-badge: "Graduando em Engenharia Elétrica na USP • Apoio técnico multidisciplinar"
-title: "Seu parceiro técnico durante toda a graduação."
-subtitle: "Muito além de uma entrega pontual."
+# S29 hero: typographic statement + plates built from real study figures.
+# No photograph, no fabricated data: each plate is a published figure, captioned
+# as such and linked to its study. Previous version (photo 10.jpg, legacy
+# "highlights" with unverified numbers) remains in Git history (main @ 84b89f7).
+kicker: "Operação técnica independente"
+title: "Engenharia, computação e desenvolvimento aplicados a problemas técnicos."
+text: >-
+  Modelagem, simulação, programação, análise de dados e documentação técnica.
+  Orientação, revisão ou desenvolvimento com escopo avaliado em cada demanda,
+  e estudos publicados com método, código e limites.
 
-text: >
-  Suporte em Engenharia Elétrica, Computação e áreas STEM: circuitos,
-  programação, sistemas embarcados, simulações e dados. Apresente sua dúvida
-  ou projeto; avaliamos os requisitos e a viabilidade para definir o atendimento.
+primary:
+  label: "Ver projetos e estudos"
+  page: "/portfolio"
+secondary:
+  label: "Conversar sobre uma demanda"
+  url: "https://wa.me/5516981946642"
 
-# Nossos números entrando pela lista de destaques que o Hero lê nativamente:
-highlights:
-  - "📊 +50 Alunos Atendidos"
-  - "🚀 +300 Projetos Desenvolvidos"
-  - "🎓 +40 Disciplinas Atendidas"
-  - "⚡ 100% de Acompanhamento Contínuo"
+disciplines:
+  - "Sinais e sistemas"
+  - "Energia elétrica"
+  - "Controle e inferência"
+  - "Software e dados"
 
-buttons:
-  - label: "Conversar pelo WhatsApp"
-    url: "https://wa.me/5516981946642"
-    link: "https://wa.me/5516981946642"
-    
-  - label: "Conhecer áreas de atuação"
-    url: "#services"
-    link: "#services"
-
-image: "images/10.jpg"
+# Plates: path of the study + which figure to show. The main plate uses the
+# study's vector SVG; the secondary uses the catalogue image.
+plates:
+  main:
+    study: "/portfolio/qualidade-energia"
+    src: "images/portfolio/qee/03_carga.svg"
+    width: 792
+    height: 468
+    alt: "Perfil de potência ativa sintético ao longo de 48 horas, com degrau de carga programado em t = 12 h. Figura do estudo de qualidade de energia, com dados exclusivamente sintéticos."
+    label: "Fig. QEE · perfil de carga (dados sintéticos)"
+  second:
+    study: "/portfolio/modelagem-simulacao"
+    label: "Fig. PDS · espectro do sinal de entrada"
+  third:
+    study: "/portfolio/plataforma-web"
+    label: "Fig. Web · publicação desta plataforma"
+    dark: true

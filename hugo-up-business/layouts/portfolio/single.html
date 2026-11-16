@@ -7,7 +7,7 @@
 {{ with .Params.service }}{{ if in . "matlab" }}{{ $serviceKey = "matlab" }}{{ else if in . "python" }}{{ $serviceKey = "python" }}{{ end }}{{ end }}
 <section class="jv-page portfolio-shell portfolio-study">
   <div class="jv-wrap">
-    {{ partial "system/crumbs.html" (slice (dict "name" "Início" "url" site.Home.Permalink) (dict "name" "Portfólio" "url" $catalogue.Permalink) (dict "name" "Estudo técnico" "url" .Permalink)) }}
+    {{ partial "system/crumbs.html" (slice (dict "name" "Início" "url" site.Home.Permalink) (dict "name" "Projetos" "url" $catalogue.Permalink) (dict "name" "Estudo técnico" "url" .Permalink)) }}
     <header class="jv-pagehead portfolio-intro">
       <p class="jv-sheet"><span class="jv-sheet__num">PR</span>{{ with .Params.categories }}{{ delimit . " · " }}{{ else }}Projeto próprio · Desenvolvimento web{{ end }}{{ if $position }}<span class="jv-sheet__total" aria-hidden="true">Estudo {{ printf "%02d" $position }}/{{ printf "%02d" (len $all) }}</span>{{ end }}</p>
       <h1 class="jv-title">{{ .Title | markdownify }}</h1>
@@ -18,6 +18,12 @@
         <div><dt>Atualizado em</dt><dd><time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "02/01/2006" }}</time> · leitura de cerca de {{ .ReadingTime }} min</dd></div>
         <div><dt>Responsável</dt><dd><a href="{{ site.Home.RelPermalink }}#responsavel">{{ site.Params.professional.name }}</a></dd></div>
       </dl>
+      {{ with .Params.highlights }}
+      <div class="portfolio-decisions">
+        <h2 class="portfolio-decisions__title">Decisões de engenharia</h2>
+        <ol>{{ range . }}<li>{{ . }}</li>{{ end }}</ol>
+      </div>
+      {{ end }}
     </header>
     <aside class="portfolio-study__context" aria-label="Contexto do estudo publicado">
       <p>Estudo técnico do portfólio, apresentado com métodos, código e resultados no contexto documentado. Não é apresentado como case de cliente nem como garantia para outras aplicações.</p>

@@ -17,8 +17,8 @@ Caminhos relativos à raiz do repositório. O projeto Hugo está em
 | Config Hugo | `hugo-up-business/hugo.yaml`; `config/_default/{hugo.yaml,params.yaml,menus.yaml}` |
 | Dependências | `hugo-up-business/package.json`, `package-lock.json`, `go.mod`, `go.sum`, `_vendor/` |
 | Layout global | `layouts/{baseof.html,home.html,index.html}` |
-| Header / nav | `layouts/partials/shared/header.html`, `assets/js/shared/navigation.js` |
-| Hero (P0) | `data/home/hero.yaml`, `layouts/partials/blocks/home/hero.html` |
+| Header / nav | `layouts/partials/shared/header.html` (S29: classes `jv-header*`, fundo sólido, sem backdrop-filter; contrato `data-navigation*` mantido), `assets/js/shared/navigation.js` |
+| Hero (P0) | `data/home/hero.yaml`, `layouts/partials/blocks/home/hero.html` (S29: tipográfico + figuras reais; sem foto, filtros, blur ou animação; baseline anterior = main @ 84b89f7) |
 | Blocos Home | `data/home/*.yaml`, `layouts/partials/blocks/home/` |
 | Serviços | `content/servicos/*.md`, `layouts/servicos/`, `data/services/*.yaml`, `layouts/partials/services/` |
 | Estudos | `content/portfolio/*.md`, `data/portfolio/studies.yaml`, `layouts/portfolio/` |

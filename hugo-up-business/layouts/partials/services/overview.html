@@ -15,7 +15,7 @@
       </div>
       <p class="service-note">O WhatsApp abre em outra aba, com uma mensagem curta e editável. Não é necessário enviar arquivos para iniciar.</p>
     </header>
-    <nav class="service-wayfinding" aria-label="Nesta página de serviços">
+    <nav class="service-wayfinding" aria-label="Nesta página de serviços" data-section-spy>
       <a href="#o-que-solicitar">O que solicitar</a><a href="#areas">Áreas de atuação</a><a href="#projetos">Exemplos publicados</a><a href="#como-o-trabalho-é-conduzido">Como funciona</a><a href="#escopo-e-responsabilidades">Limites</a>
     </nav>
     {{ partial "services/modalities.html" . }}
@@ -31,8 +31,7 @@
           <span class="service-area__number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
           <h3 id="{{ .id }}" tabindex="-1">{{ .title }}</h3>
           <p>{{ .summary }}</p>
-          <div class="service-example"><p class="service-example__label">Exemplo para avaliação</p><p>{{ .example }}</p></div>
-          <details class="service-inputs"><summary>O que ajuda a descrever o contexto</summary><p>{{ .topics }}</p><p>{{ .inputs }}</p><p class="service-note">Compartilhe somente materiais autorizados; combine antes o tratamento de informações confidenciais.</p></details>
+          <details class="service-inputs"><summary>Exemplo e o que informar</summary><div class="service-example"><p class="service-example__label">Exemplo para avaliação</p><p>{{ .example }}</p></div><p>{{ .topics }}</p><p>{{ .inputs }}</p><p class="service-note">Compartilhe somente materiais autorizados; combine antes o tratamento de informações confidenciais.</p></details>
           {{ with site.Params.social.whatsapp }}
           <a class="service-area__contact" data-contact-location="service_area" href="{{ partial "utilities/contact-url.html" (dict "href" . "context" $area.id) }}" target="_blank" rel="noopener noreferrer" aria-label="Conversar sobre {{ $area.title }} pelo WhatsApp">Conversar sobre esta área<svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M8 7h9v9"/></svg></a>
           {{ end }}
