@@ -340,3 +340,31 @@
 .study-eq__op--set svg { width: .62em; height: .74em; }
 .study-eq__op--int svg { width: .5em; height: 1.25em; stroke-width: 1; }
 .study-eq__op--int { vertical-align: -0.3em; margin-inline: 0 .08em; }
+
+/* =========================================================
+   S31 · Figure viewer as a study gallery (prev/next, counter, slide).
+   ========================================================= */
+.figure-viewer__actions { align-items: center; flex-wrap: wrap; }
+.figure-viewer__btn--icon { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; padding: .5rem; }
+.figure-viewer__btn[disabled] { opacity: .35; cursor: default; }
+.figure-viewer__btn[disabled]:hover { border-color: var(--jv-line-strong); color: var(--jv-text); }
+.figure-viewer__btn[hidden], .figure-viewer__count[hidden] { display: none; }
+.figure-viewer__count { min-width: 3.5rem; white-space: nowrap; margin: 0; color: var(--jv-muted); font-family: var(--jv-mono); font-size: .75rem; letter-spacing: .04em; text-align: center; font-variant-numeric: tabular-nums; }
+/* At 1x a horizontal swipe browses figures; at 2x the stage pans natively. */
+.figure-viewer__stage { touch-action: pan-x pan-y; }
+.figure-viewer[data-zoom-level="1"] .figure-viewer__stage { touch-action: pan-y; }
+@media (prefers-reduced-motion: no-preference) {
+  .figure-viewer__btn { transition: border-color var(--jv-dur-fast) var(--jv-ease), color var(--jv-dur-fast) var(--jv-ease), transform var(--jv-dur-instant) var(--jv-ease); }
+  .figure-viewer__btn:not([disabled]):active { transform: scale(.96); }
+  .figure-viewer__stage.is-next .figure-viewer__img { animation: jv-fig-next var(--jv-dur-base) var(--jv-ease-out) both; }
+  .figure-viewer__stage.is-prev .figure-viewer__img { animation: jv-fig-prev var(--jv-dur-base) var(--jv-ease-out) both; }
+}
+@keyframes jv-fig-next { from { opacity: 0; transform: translateX(calc(var(--jv-shift) * 2)); } to { opacity: 1; transform: none; } }
+@keyframes jv-fig-prev { from { opacity: 0; transform: translateX(calc(var(--jv-shift) * -2)); } to { opacity: 1; transform: none; } }
+@media (max-width: 39.999rem) {
+  .figure-viewer__bar { flex-direction: column; align-items: stretch; }
+  .figure-viewer__caption { flex: 0 0 auto; }
+  .figure-viewer__actions { justify-content: space-between; gap: .375rem; }
+  .figure-viewer__count { min-width: 0; flex: 1; }
+  .figure-viewer__btn { padding-inline: .75rem; }
+}
