@@ -1,6 +1,6 @@
 enable: true
 title: "Projetos e estudos em destaque"
-text: "Quatro estudos com método, figuras, código e limites documentados, incluindo a engenharia desta própria plataforma. Cada um mostra uma abordagem em um contexto específico."
+text: "Método, figuras, código e limites, incluindo a engenharia desta própria plataforma."
 
 # Studies shown in the home explorer, in this order. Title, description,
 # categories, tags, figure and caption come from each study's front matter,

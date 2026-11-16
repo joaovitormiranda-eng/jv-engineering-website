@@ -325,3 +325,13 @@
 @media (prefers-reduced-motion: reduce) {
   .jv-hero__plate-link, .jv-hero__plate-go svg, .jv-areaindex__list a { transition: none; }
 }
+
+/* S30: contact as one focused band (the title block repeated other sections). */
+.jv-contact { max-width: 46rem; }
+.jv-contact .jv-contact__title { max-width: 20ch; }
+/* S30: hero on narrow screens — figures start right after the actions. */
+@media (max-width: 63.999rem) {
+  .jv-hero { padding-block: 2rem 3rem; }
+  .jv-hero__grid { gap: 2rem; }
+  .jv-hero__sheet-label { display: none; }
+}

@@ -2,7 +2,7 @@ enable: true
 
 title: "Tem um problema técnico para resolver?"
 
-text: "Conte o objetivo, o que já existe e onde está a dificuldade: um modelo que não converge, um código que não roda, um circuito, um conjunto de dados. A conversa inicial serve para avaliar viabilidade e escopo."
+text: "Conte o objetivo, o que já existe e onde está a dificuldade. A primeira conversa avalia viabilidade e escopo."
 
 image: "images/brand/logo-full-white.svg"
 

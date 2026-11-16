@@ -6,7 +6,7 @@
      it is not evidence that the defect is gone. Baseline: main @ 84b89f7.
      The h1 is the LCP candidate; plates are below it on narrow screens. */}}
 {{ $plates := .plates }}
-<section id="hero" class="jv-hero" aria-labelledby="hero-title">
+<section id="hero" class="jv-hero" data-hero aria-labelledby="hero-title">
   <div class="jv-wrap jv-hero__grid">
     <div class="jv-hero__copy">
       {{ with .kicker }}<p class="jv-hero__kicker">{{ . }}</p>{{ end }}
@@ -21,11 +21,6 @@
         <a class="jv-btn jv-btn--ghost" href="{{ partial "utilities/contact-url.html" (dict "href" .url) }}" target="_blank" rel="noopener noreferrer">{{ .label }}<span class="jv-sr"> pelo WhatsApp (abre em nova aba)</span></a>
         {{ end }}
       </div>
-      {{ with .disciplines }}
-      <ul class="jv-hero__disciplines" aria-label="Áreas de engenharia">
-        {{ range $i, $d := . }}<li><span aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>{{ $d }}</li>{{ end }}
-      </ul>
-      {{ end }}
     </div>
 
     {{ with $plates }}
