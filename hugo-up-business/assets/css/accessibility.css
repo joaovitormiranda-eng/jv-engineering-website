@@ -96,24 +96,3 @@ main [id] {
     overflow-wrap: anywhere;
   }
 }
-
-/* Keep Typography's link color from overriding the blue buttons' white text. */
-.prose a.bg-blue-600 {
-  color: #fff;
-}
-
-/* The lighter blue hover background falls below 4.5:1 with white text. */
-a.bg-blue-600:hover {
-  background-color: #1d4ed8;
-}
-
-#brands .text-gray-500,
-footer .text-gray-500,
-footer .text-gray-600 {
-  color: #9ca3af;
-}
-
-#about .text-slate-500,
-#portfolio .text-slate-500 {
-  color: #94a3b8;
-}

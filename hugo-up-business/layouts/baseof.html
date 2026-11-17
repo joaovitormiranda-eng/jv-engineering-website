@@ -97,13 +97,9 @@
   {{ end }}
 
   <!-- Load JS -->
-  {{- $main := resources.Get "js/main.js" -}}
-  {{ with $main }}
-  {{- $main = $main | js.Build (dict "minify" "true") | fingerprint -}}
-  {{ if hugo.IsProduction }}
-  {{ $main = $main | minify }}
-  {{ end }}
-  <script src="{{ $main.RelPermalink }}" defer></script>
+  {{/* esbuild already minifies; fingerprint last so the SRI hash matches the served bytes. */}}
+  {{ with resources.Get "js/main.js" | js.Build (dict "minify" true) | fingerprint }}
+  <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
   {{ end }}
 </head>
 

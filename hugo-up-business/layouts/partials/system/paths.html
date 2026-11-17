@@ -1,8 +1,8 @@
 {{- /* "Where next" strip. Input: dict {title (optional, mono label), items: slice of dicts
-       {kicker, title, text, url, external (bool)}, cols ("two" for 2 columns)}. Whole card is the link. */ -}}
+       {kicker, title, text, url, external (bool)}. Whole card is the link. */ -}}
 <section class="jv-pathblock" aria-labelledby="{{ .id }}">
   <h2 id="{{ .id }}">{{ .title }}</h2>
-  <ul class="jv-paths{{ if eq .cols "two" }} jv-paths--two{{ end }}">
+  <ul class="jv-paths">
     {{- range .items }}
     <li class="jv-path">
       <span class="jv-path__kicker">{{ .kicker }}</span>

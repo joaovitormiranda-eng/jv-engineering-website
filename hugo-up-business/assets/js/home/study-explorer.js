@@ -14,6 +14,8 @@
 //  - nothing changes on its own (no autoplay), and nothing touches the URL.
 // prefers-reduced-motion: instant switch, no indicator slide.
 
+import { decodeFragment } from '../shared/fragment'
+
 const SWIPE_MIN = 48 // px of horizontal travel
 const SWIPE_RATIO = 1.4 // horizontal must dominate vertical (page scroll stays native)
 
@@ -152,7 +154,8 @@ function enhance(root) {
 
   root.classList.add('is-enhanced')
   // A deep link to one study (#estudo-…) opens on it; otherwise the first one.
-  const fromHash = panels.findIndex((p) => '#' + p.id === decodeURIComponent(location.hash))
+  const wanted = decodeFragment(location.hash)
+  const fromHash = wanted ? panels.findIndex((p) => p.id === wanted) : -1
   select(fromHash >= 0 ? fromHash : 0, { animate: false })
   // Enable the indicator transition only after its first placement (no initial slide).
   requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('is-ready')))

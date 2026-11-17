@@ -4,6 +4,8 @@
 // Children get a --i index for a short stagger (CSS). Each group animates once,
 // then the observer lets go of it. Only transform/opacity are animated.
 
+import { elementForHash } from '../shared/fragment'
+
 function init() {
   const groups = Array.from(document.querySelectorAll('[data-reveal]'))
   if (groups.length === 0 || !('IntersectionObserver' in window)) return
@@ -30,8 +32,7 @@ function init() {
   const revealAll = () => groups.forEach((g) => { g.classList.remove('is-pending'); g.classList.add('is-revealed') })
   window.addEventListener('beforeprint', revealAll)
   window.addEventListener('hashchange', () => {
-    const t = document.getElementById(decodeURIComponent(location.hash.slice(1)))
-    const g = t && t.closest('[data-reveal]')
+    const g = elementForHash(location.hash)?.closest('[data-reveal]')
     if (g) { g.classList.remove('is-pending'); g.classList.add('is-revealed') }
   })
 }

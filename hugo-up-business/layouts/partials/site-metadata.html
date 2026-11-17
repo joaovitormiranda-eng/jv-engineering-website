@@ -20,7 +20,7 @@
   {{- $description = "Explore os projetos do portfólio da JV Engineering por tecnologias e áreas de engenharia." -}}
 {{- else if eq .Kind "term" -}}
   {{- $description = printf "Projetos relacionados a %s no portfólio técnico da JV Engineering: modelos, programação científica e análises de engenharia." .Title -}}
-  {{- with index site.Data.seo.tags (replace (.Title | lower) " " "-") -}}
+  {{- with index hugo.Data.seo.tags (replace (.Title | lower) " " "-") -}}
     {{- $description = .description -}}
   {{- end -}}
 {{- end -}}

@@ -2,11 +2,13 @@
 # Install the pinned Hugo Extended release into an isolated directory, for Kiro
 # Web / sandboxes that lack dpkg-deb (so the CI .deb path in
 # .github/scripts/install-hugo.sh cannot run). Downloads the official tar.gz and
-# verifies its SHA-256 against the release's own checksums file before use.
+# verifies its SHA-256 before extraction.
 #
-# The authoritative version is read from .github/hugo-toolchain.json (same pin as
-# the CI). No tarball hash is hardcoded here; it is checked against the official
-# checksums.txt fetched from the same release. Reuses an already-validated binary.
+# Version and the linux-amd64 tarball digest come from .github/hugo-toolchain.json
+# (reviewed, versioned data, like the CI .deb digest). The release's own
+# checksums.txt must agree with that pin. Other architectures have no pin and
+# fall back to checksums.txt alone, with a warning. Reuses an already-validated
+# binary.
 #
 # Usage:   scripts/dev/install-hugo-tarball.sh <install_dir>
 # Prints the absolute path of the hugo binary on stdout (last line).
@@ -16,17 +18,18 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 config="$repo_root/.github/hugo-toolchain.json"
 install_dir="${1:?install_dir required}"
 
-# Read and validate the pinned version from the shared toolchain config.
-version="$(python3 - "$config" <<'PY'
+# Read and validate the pinned version (and amd64 tarball digest) from the shared config.
+read -r version pinned_tar < <(python3 - "$config" <<'PY'
 import json, re, sys
 with open(sys.argv[1], encoding='utf-8') as f:
     cfg = json.load(f)
 v = cfg['version']
-if not re.fullmatch(r'\d+\.\d+\.\d+', v):
-    raise SystemExit('Invalid Hugo version in toolchain config')
-print(v)
+d = cfg.get('linux_amd64_tar_sha256', '-')
+if not re.fullmatch(r'\d+\.\d+\.\d+', v) or not (d == '-' or re.fullmatch(r'[a-f0-9]{64}', d)):
+    raise SystemExit('Invalid Hugo version or tarball SHA-256 in toolchain config')
+print(v, d)
 PY
-)"
+)
 
 binary="$install_dir/hugo-$version/hugo"
 
@@ -66,6 +69,14 @@ expected="$(awk -v f="$tarball" '$2==f {print $1}' "$work/checksums.txt")"
 if ! printf '%s' "$expected" | grep -Eq '^[a-f0-9]{64}$'; then
   echo "No valid SHA-256 for $tarball in official checksums" >&2
   exit 4
+fi
+if [ "$hugo_arch" = 'linux-amd64' ] && [ "$pinned_tar" != '-' ]; then
+  if [ "$expected" != "$pinned_tar" ]; then
+    echo "Release checksums disagree with the pinned tarball digest in $config" >&2
+    exit 4
+  fi
+else
+  echo "warning: no pinned digest for $tarball; trusting the release checksums only" >&2
 fi
 printf '%s  %s\n' "$expected" "$work/$tarball" | sha256sum --check --strict - >&2
 

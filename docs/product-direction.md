@@ -21,9 +21,9 @@ parte da mesma identidade; o site não segmenta visitantes por perfil.
 
 | Página | Papel |
 |---|---|
-| Início | Hero tipográfico com figuras reais dos estudos → projetos → serviços → método → ferramentas → sobre → contato |
+| Início | Hero tipográfico com o explorador dos estudos (S31) → serviços → método → ferramentas → sobre → contato |
 | Projetos | Quatro estudos em linhas editoriais: figura, decisões de engenharia, ferramentas e natureza dos dados |
-| Estudo | Ficha técnica, decisões de engenharia, conteúdo integral, visualizador de figuras, TOC com scroll-spy |
+| Estudo | Ficha técnica, decisões de engenharia, conteúdo integral, galeria de figuras (S31), TOC com scroll-spy |
 | Serviços | O que solicitar → áreas → exemplos publicados → como funciona → limites → contato, com índice fixo |
 
 ## Medição (a configurar, sem dados hoje)

@@ -11,8 +11,9 @@ antigo não é a `main` atual.
 ## Versões fixadas (não atualizar sem revisão explícita)
 
 - **Hugo Extended 0.169.0** — versão de build validada e mínimo do módulo.
-  Pin e digest em `.github/hugo-toolchain.json`
-  (`linux_amd64_deb_sha256: a20f7da84e0981bebbecc032cc87f0dda2049a844727720aab14e61ce416e5e9`).
+  Pin e digests em `.github/hugo-toolchain.json`
+  (`linux_amd64_deb_sha256: a20f7da84e0981bebbecc032cc87f0dda2049a844727720aab14e61ce416e5e9`
+  para o CI; `linux_amd64_tar_sha256` para o instalador de sandbox).
 - **Node.js 24.18.0** — fixado em `ci.yml` e `hugo.yml`.
 - Dependências CSS/ferramentas resolvidas pelo `package-lock.json`. Reprodução
   usa `npm ci --include=dev --ignore-scripts` (nunca `npm install`).
@@ -23,8 +24,9 @@ antigo não é a `main` atual.
 
 O projeto Hugo fica em **`hugo-up-business/`**, não na raiz do repositório.
 baseURL com prefixo obrigatório `/jv-engineering-website/`, `canonifyURLs: true`,
-`relativeURLs: false`, idioma pt-br. Config distribuída entre
-`hugo-up-business/hugo.yaml` e `hugo-up-business/config/_default/`.
+`relativeURLs: false`, `locale: pt-br`. Config do site em
+`hugo-up-business/hugo.yaml`; `params.yaml` e `menus.yaml` em `config/_default/`.
+Nos templates, usar `hugo.Data` (não `site.Data`, obsoleto desde o Hugo 0.156).
 
 Fluxo: Markdown + YAML + assets → templates locais + tema vendorizado →
 Tailwind/Hugo Pipes → `public/` → `verify-build.py` + manifesto SHA-256 →
@@ -37,8 +39,8 @@ o build pode alterá-la. Não editar seus números à mão nem descartá-la sem 
 
 - **`.github/workflows/ci.yml`** — check de PR (`Build Hugo`), ubuntu-latest,
   timeout 15 min, `contents: read`, sem permissões de deploy. Roda os 8 testes de
-  supply chain, instala Hugo verificado, `npm ci`, build de produção e
-  `verify-build.py`.
+  supply chain, instala Hugo verificado, `npm ci`, build de produção,
+  `verify-build.py`, `scripts/dev/check-invariants.py` e `scripts/dev/audit-site.py`.
 - **`.github/workflows/hugo.yml`** — push na `main` ou `workflow_dispatch`. O
   build não recebe permissões de publicação; só o job de deploy tem
   `pages: write` + `id-token: write`. Artefato de `public/` com retenção de 1 dia;
@@ -76,8 +78,12 @@ pode enviar dados reais.
 
 - Rede `COMMON_DEPENDENCIES` (apenas domínios allowlisted); `curl` à produção
   pode falhar — usar `gh api` para checar deploy.
-- Hugo, `dpkg-deb`, Playwright, axe e actionlint **não vêm instalados**. Node 22
-  é o default (24 disponível via nvm); Python default 3.11.
+- Hugo, `dpkg-deb`, Playwright (pacote npm), axe e actionlint **não vêm
+  instalados**. Node 22 é o default (24 disponível via nvm); Python default 3.11.
+  Há um Chrome for Testing em `/usr/local/bin/chrome`; ele só inicia com `HOME`
+  apontando para uma pasta gravável e pode ser controlado por CDP (WebSocket nativo
+  do Node 22). Processos em segundo plano não sobrevivem entre comandos: servidor e
+  navegador precisam rodar no mesmo comando.
 - **Não há iPhone físico nem Safari Web Inspector.** Chrome headless não
   reproduz o P0 do hero.
 - Não há worktrees/relatórios do Windows nem arquivos experimentais locais.

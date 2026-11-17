@@ -1,9 +1,11 @@
 baseURL: "https://joaovitormiranda-eng.github.io/jv-engineering-website/"
+title: "JV Engineering"
+locale: "pt-br"
+summaryLength: 20 # RSS item summaries (index.xml feeds)
 canonifyURLs: true
 relativeURLs: false
 
 theme: "github.com/writeonlycode/hugo-up-business"
-languageCode: "pt-br"
 
 build:
   buildStats:
@@ -46,12 +48,14 @@ security:
       - '^postcss$'
       - '^tailwindcss$'
 
-# Suporte ao LaTeX (Goldmark Passthrough)
 markup:
   goldmark:
     renderer:
-      unsafe: true  # Permite carregar os scripts do KaTeX
+      # Study pages embed authored HTML (figures, tables, notes). Content is
+      # written by the site owner only; there is no user-submitted Markdown.
+      unsafe: true
     extensions:
+      # Keeps `$…$` / `$$…$$` spans verbatim (no Markdown processing inside).
       passthrough:
         enable: true
         delimiters:

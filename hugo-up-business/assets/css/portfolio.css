@@ -6,7 +6,7 @@
 .portfolio-study__body > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
 .portfolio-study__body :where(h2, h3, h4):focus-visible { outline: 2px solid var(--jv-accent); outline-offset: .25rem; }
 .portfolio-study__body :where(h2, h3, h4, p, li, a) { overflow-wrap: anywhere; }
-.portfolio-study__body pre { max-width: 100%; overflow-x: auto; font-size: .8125rem; }
+.portfolio-study__body pre { max-width: 100%; overflow-x: auto; }
 .portfolio-study__body :not(pre) > code { overflow-wrap: anywhere; }
 .portfolio-study__body img { max-width: 100%; height: auto; }
 .portfolio-study__body figcaption { line-height: 1.7; }
@@ -197,7 +197,7 @@
    S29 — catalogue as editorial rows + engineering decisions.
    ========================================================= */
 .portfolio-rows { display: grid; gap: clamp(1.5rem, 4vw, 2.5rem); margin: 0; padding: 0; list-style: none; }
-.portfolio-row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); border: 1px solid var(--jv-line-strong); border-radius: .75rem; background: var(--jv-surface); overflow: hidden; transition: border-color .2s var(--jv-ease); }
+.portfolio-row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); border: 1px solid var(--jv-line-strong); border-radius: .75rem; background: var(--jv-surface); overflow: hidden; }
 .portfolio-row:hover, .portfolio-row:focus-within { border-color: var(--jv-accent); }
 .portfolio-row:focus-within { outline: 2px solid var(--jv-accent); outline-offset: 3px; }
 .portfolio-row__figure { margin: 0; min-width: 0; display: flex; flex-direction: column; background: var(--jv-deep); }
