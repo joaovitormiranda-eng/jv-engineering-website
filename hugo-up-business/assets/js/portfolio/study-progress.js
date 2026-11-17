@@ -6,6 +6,8 @@
 // It enhances the TOC already rendered by layouts/portfolio/single.html; it does
 // NOT create a second navigation. No dependencies.
 
+import { decodeFragment } from '../shared/fragment'
+
 function init() {
   const body = document.querySelector('.portfolio-study__body')
   if (!body) return
@@ -14,16 +16,16 @@ function init() {
   const toc = document.getElementById('TableOfContents')
   const headings = Array.from(body.querySelectorAll('h2[id], h3[id]'))
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-
-  setupProgressBar(body, reduceMotion)
+  setupProgressBar(body)
 
   if (!toc || headings.length === 0) return
   setupScrollSpy(toc, headings)
 }
 
 // --- Reading-progress bar ---------------------------------------------------
-function setupProgressBar(body, reduceMotion) {
+// Under reduced motion the CSS drops the fill transition; the bar still
+// reflects the position, it just does not animate.
+function setupProgressBar(body) {
   const bar = document.createElement('div')
   bar.className = 'portfolio-reading-progress'
   bar.setAttribute('aria-hidden', 'true') // decorative; mirrors scroll position
@@ -48,22 +50,16 @@ function setupProgressBar(body, reduceMotion) {
     window.requestAnimationFrame(update)
   }
 
-  // Under reduced-motion the CSS already drops the fill transition; the bar
-  // still reflects position (a static indicator), it just does not animate.
   window.addEventListener('scroll', onScroll, { passive: true })
   window.addEventListener('resize', onScroll, { passive: true })
   update()
-
-  // If the preference changes mid-session, nothing to tear down: CSS handles
-  // the transition, JS only writes the ratio.
-  void reduceMotion
 }
 
 // --- Scroll-spy -------------------------------------------------------------
 function setupScrollSpy(toc, headings) {
   const links = new Map()
   toc.querySelectorAll('a[href^="#"]').forEach((a) => {
-    const id = decodeURIComponent(a.getAttribute('href').slice(1))
+    const id = decodeFragment(a.getAttribute('href'))
     if (id) links.set(id, a)
   })
   if (links.size === 0) return
@@ -123,7 +119,7 @@ function setupScrollSpy(toc, headings) {
   toc.addEventListener('click', (e) => {
     const a = e.target.closest('a[href^="#"]')
     if (!a) return
-    const id = decodeURIComponent(a.getAttribute('href').slice(1))
+    const id = decodeFragment(a.getAttribute('href'))
     if (links.has(id)) setActive(id)
   })
 }

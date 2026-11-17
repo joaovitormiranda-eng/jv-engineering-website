@@ -1,3 +1,5 @@
+import { elementForHash } from './fragment'
+
 const navigation = document.querySelector('[data-navigation]')
 
 if (navigation) {
@@ -69,8 +71,7 @@ if (navigation) {
     const url = new URL(link.href, window.location.href)
     let target
     if (link.target !== '_blank' && url.origin === location.origin && url.pathname === location.pathname && url.search === location.search && url.hash) {
-      try { target = document.getElementById(decodeURIComponent(url.hash.slice(1))) }
-      catch { /* Leave malformed fragments to the browser. */ }
+      target = elementForHash(url.hash) // malformed fragments are left to the browser
     }
 
     if (target) {

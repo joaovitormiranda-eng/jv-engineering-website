@@ -4,6 +4,8 @@
 // scrolls horizontally (narrow screens). Without JS the links still work as
 // plain anchors. No dependencies; rAF-throttled; no layout writes on scroll.
 
+import { elementForHash } from './fragment'
+
 function init() {
   document.querySelectorAll('[data-section-spy]').forEach(setup)
 }
@@ -11,8 +13,7 @@ function init() {
 function setup(nav) {
   const links = []
   nav.querySelectorAll('a[href^="#"]').forEach((a) => {
-    let el = null
-    try { el = document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1))) } catch { /* malformed */ }
+    const el = elementForHash(a.getAttribute('href'))
     if (el) links.push({ a, el })
   })
   if (!links.length) return
