@@ -1,0 +1,13 @@
+# Repository-level ignores. Hugo/npm output rules live in hugo-up-business/.gitignore.
+
+# Local-only design material; never versioned (see .kiro/steering/governance.md).
+/design/
+
+# npm runs only inside hugo-up-business/. A stray install at the root must not
+# leave a second lockfile or node_modules behind.
+/node_modules/
+/package-lock.json
+
+# OS files
+.DS_Store
+Thumbs.db
