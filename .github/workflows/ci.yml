@@ -58,3 +58,11 @@ jobs:
       - name: Verify build output
         working-directory: .
         run: python3 .github/scripts/verify-build.py hugo-up-business/public --manifest "$RUNNER_TEMP/site-manifest.json"
+
+      - name: Check build invariants
+        working-directory: .
+        run: python3 scripts/dev/check-invariants.py hugo-up-business/public
+
+      - name: Static site audit
+        working-directory: .
+        run: python3 scripts/dev/audit-site.py hugo-up-business/public

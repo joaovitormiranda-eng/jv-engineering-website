@@ -5,7 +5,8 @@ verify-build.py (in .github/scripts) already validates required files, sitemap
 URL correctness, forbidden/private paths, links and the SHA-256 manifest/archive.
 This script does NOT duplicate that; it only adds the *count* invariants noted in
 the handoff (section P.5): number of sitemap URLs, meta-refresh aliases, figures
-per study, QEE SVGs, published licenses, and the number of supply-chain tests.
+per study, QEE SVGs (present and byte-identical to their source), published
+licenses, and the number of supply-chain tests. CI (ci.yml) runs it on every PR.
 
 Expected values are the documented baseline. A real mismatch exits non-zero so a
 drift (or an accidental content change) is caught, instead of being silently
@@ -102,6 +103,12 @@ def main():
                if not (public / "images" / "portfolio" / "qee" / f"{n}.svg").is_file()]
     check("SVGs QEE presentes", len(EXPECTED_QEE_SVGS) - len(missing),
           len(EXPECTED_QEE_SVGS))
+    # Published bytes must equal the versioned source (figures are never re-encoded).
+    source = repo_root / "hugo-up-business" / "assets" / "images" / "portfolio" / "qee"
+    identical = [n for n in EXPECTED_QEE_SVGS if n not in missing and
+                 (public / "images" / "portfolio" / "qee" / f"{n}.svg").read_bytes()
+                 == (source / f"{n}.svg").read_bytes()]
+    check("SVGs QEE idênticos à fonte", len(identical), len(EXPECTED_QEE_SVGS))
 
     # 5. published licenses
     lic_dir = public / "licenses"
