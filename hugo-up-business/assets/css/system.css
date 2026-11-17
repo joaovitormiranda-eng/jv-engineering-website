@@ -159,7 +159,6 @@
 }
 @media (min-width: 48rem) {
   .jv-paths { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .jv-paths--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .jv-path, .jv-path__arrow, .jv-btn, .jv-btn svg, .jv-link svg { transition: none; }
@@ -205,7 +204,6 @@
 .jv-footer { border-top: 1px solid var(--jv-line); background: var(--jv-deep); color: var(--jv-text); }
 .jv-footer__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; padding-block: clamp(3rem, 7vw, 4.5rem) 2rem; }
 .jv-footer__brand img { display: block; width: auto; height: 3.5rem; }
-.jv-footer__statement { max-width: 34ch; margin: 1.25rem 0 0; color: var(--jv-muted); font-size: .9375rem; line-height: 1.65; }
 .jv-footer__resp { margin: .75rem 0 0; color: var(--jv-subtle); font-size: .8125rem; line-height: 1.6; }
 .jv-footer__resp a { color: var(--jv-muted); text-decoration: underline; text-underline-offset: .25em; }
 .jv-footer__resp a:hover { color: var(--jv-accent); }
@@ -288,7 +286,7 @@
 .jv-footer__base a:hover { color: var(--jv-accent); }
 
 /* Touch feedback equivalent to hover for whole-card links. */
-.jv-path:active, .portfolio-row:active, .jv-hero__plate-link:active { transform: scale(.995); }
+.jv-path:active, .portfolio-row:active { transform: scale(.995); }
 @media (prefers-reduced-motion: reduce) {
-  .jv-path:active, .portfolio-row:active, .jv-hero__plate-link:active { transform: none; }
+  .jv-path:active, .portfolio-row:active { transform: none; }
 }
