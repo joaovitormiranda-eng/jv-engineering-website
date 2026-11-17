@@ -16,6 +16,9 @@ de ferramentas, a estrutura do projeto, as invariantes e as regras completas:
 - `.kiro/steering/structure.md` — mapa de caminhos, overrides do tema e invariantes.
 - `.kiro/steering/governance.md` — limites de publicação, áreas protegidas e Git seguro.
 
+Arquitetura, comandos de build/teste e deploy estão no `README.md`; práticas de
+segurança no `SECURITY.md`. Os arquivos de steering não repetem esse conteúdo.
+
 > Observação sobre carregamento: o Kiro carrega automaticamente os arquivos em
 > `.kiro/steering/` (front matter `inclusion: always`) e descobre `AGENTS.md`.
 > Os caminhos listados acima são **referências textuais** para você abrir os
